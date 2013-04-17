@@ -1,0 +1,51 @@
+{
+    "name": "c33s/CoreBundle",
+    "description": "everything to quickstart a webpage",
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Julian",
+            "email": "jp@consistency.at",
+            "homepage": "http://consistency.at"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "leafo/lessphp": "dev-master",
+        "stealth35/apc-profiler-bundle": "dev-master",
+        "propel/propel-bundle": "1.1.*",
+        "willdurand/propel-typehintable-behavior": "1.0.*",
+        "CarpeHora/ExtraPropertiesBehavior": "dev-master",
+        "smoya/asset-management-bundle": "dev-master",
+        "twitter/bootstrap": "2.3.*",
+        "c33s/static-page-content-bundle": "1.0.*",
+        "modernizr/modernizr": "2.5.3",
+        "fortawesome/font-awesome": "2.0.*",
+        "liip/imagine-bundle": "dev-master",
+        "gregwar/image-bundle": "dev-master"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin",
+        "minimum-stability": "alpha"
+    },
+    "extra": null
+}

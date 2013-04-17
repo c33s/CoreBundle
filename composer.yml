@@ -1,0 +1,117 @@
+name:           c33s/CoreBundle
+description:    everything to quickstart a webpage
+autoload:
+    psr-0:
+        '': src/
+minimum-stability: dev
+
+authors:
+  - name:       Julian
+    email:      jp@consistency.at
+    homepage:   'http://consistency.at'
+    
+
+#repositories:
+#  - type: composer
+#    url: 'http://satis.c33s.net'
+#  - type: vcs
+#    url: 'https://github.com/c33s/ApcProfilerBundle'
+  
+require:
+    php:                                                '>=5.3.3'
+    #jquery
+    
+    #jms/debugging-bundle:                               dev-master
+    
+    
+    
+    leafo/lessphp:                                      dev-master # 0.3.*
+    stealth35/apc-profiler-bundle:                      dev-master
+    #suin/php-rss-writer:                                1.0.*
+    #eluceo/ical:                                        dev-master
+    #leafo/scssphp:                                      dev-master
+    #leafo/scssphp-compass:                              dev-master
+    #sallycms/less-mixins:                               dev-default
+    #ptachoire/cssembed:                                 dev-master
+    #mlehner/gelf-php:                                   dev-master
+
+## Propel Stuff
+    propel/propel-bundle:                               1.1.*
+    willdurand/propel-typehintable-behavior:            1.0.*
+    CarpeHora/ExtraPropertiesBehavior:                  dev-master
+    
+    smoya/asset-management-bundle:                      dev-master
+    #{{ assets_add('assetic/foo.js', 'js') }}
+    #fkr/cssurlrewrite-bundle:                           dev-master
+
+#kriswallsmith/assetic suggests installing ptachoire/cssembed (Assetic provides the integration with phpcssembed to embed data uris)
+#monolog/monolog suggests installing raven/raven (Allow sending log messages to a Sentry server)
+#monolog/monolog suggests installing doctrine/couchdb (Allow sending log messages to a CouchDB server)
+#monolog/monolog suggests installing ext-amqp (Allow sending log messages to an AMQP server (1.0+ required))
+#monolog/monolog suggests installing ext-mongo (Allow sending log messages to a MongoDB server)
+#    
+    twitter/bootstrap:                                  2.3.*
+    
+    #symfony/framework-standard-edition:                 2.1.*
+    #yuicompressor/yuicompressor:                        2.4.*
+
+    c33s/static-page-content-bundle:                    1.0.*
+    modernizr/modernizr:                                2.5.3
+    fortawesome/font-awesome:                           2.0.*
+    #willdurand/faker-bundle:                            dev-master
+    #raulfraile/ladybug-bundle:                           dev-master
+    #jehu/fire-php-bundle:                               dev-master
+    
+    liip/imagine-bundle:                                dev-master
+    #richthegeek/phpsass:                                dev-master
+    gregwar/image-bundle:                               dev-master
+    #avalanche123/imagine-bundle:                        dev-master
+
+    
+    #friendsofsymfony/user-bundle:                       2.0.*
+    #CarpeHora/ExtraPropertiesBehavior:                  dev-master
+    #CarpeHora/AuditableBehavior:                        dev-master
+    #willdurand/propel-publishable-behavior:             1.0.*
+    #genemu/form-bundle:                                 2.1.*
+    
+    #craue/twigextensions-bundle:                        dev-master
+    #mopa/bootstrap-bundle:                              2.1.*@dev
+    #mopa/composer-bridge:                               dev-master
+    
+    #sonata-project/formatter-bundle:                    dev-master
+    #cleonello/jqplot:                                   1.0.2
+    #friendsofsymfony/jsrouting-bundle:                  1.0.*
+    #friendsofsymfony/rest-bundle:                       0.9.*
+    #jms/serializer-bundle:                              dev-master
+    #DmitryBaranovskiy/g.raphael:                        0.5.*
+    #DmitryBaranovskiy/raphael:                          2.1.*
+    #craue/formflow-bundle:                              dev-master
+    
+
+    #harvesthq/chosen:                                   0.9.*
+    #dflydev/markdown:                                   1.0.*
+    #knplabs/knp-markdown-bundle:                        1.1.*    
+    
+    #knplabs/knp-menu-bundle:                            dev-master
+    #white-october/pagerfanta-bundle:                    dev-master
+    
+scripts:
+    post-install-cmd:
+        - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap'
+        - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::clearCache'
+        - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installAssets'
+        - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
+    post-update-cmd:
+        - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap'
+        - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::clearCache'
+        - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installAssets'
+        - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
+
+config:
+    bin-dir: bin
+    minimum-stability: alpha
+extra:
+#    symfony-app-dir: app
+#    symfony-web-dir: web
+#    branch-alias: 
+#        dev-master: 2.2-dev
