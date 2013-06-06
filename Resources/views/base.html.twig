@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html {% block html_attributes %}lang="en"{% endblock %}>
+    <head>
+        {% block head %}
+            <title>{% block meta_title %}{{app_name_long}}{% endblock %}</title>
+            <meta charset="{% block meta_charset %}UTF-8{% endblock %}" />
+            <meta http-equiv="Content-Type" content="{% block meta_content_type %}text/html;charset=utf-8{% endblock %}" />
+            <meta name="description" content="{% block meta_description %}{% endblock %}">
+            <meta name="author" content="{% block meta_author %}{% endblock %}">
+            <meta name="robots" content="{% block meta_robots %}all{% endblock %}">
+            <meta name="viewport" content="{% block meta_viewports %}width=device-width, initial-scale=1.0{% endblock %}" />
+            <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" />
+            {% block meta_extra %}{% endblock %}
+            {% block stylesheets %}
+
+            {% endblock %}
+            {% block head_icons %}
+                <link rel="shortcut icon" type="image/x-icon" href="{% block head_favicon %}favicon.ico{% endblock %}" />
+                <link rel="apple-touch-icon" href="{% block head_apple_touch_icon %}images/apple-touch-icon.png{% endblock %}">
+            {% endblock %}
+            {% block javascripts %}
+            {% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            <noscript>
+            {% block noscript %}
+            {% endblock %}
+            </noscript>
+            
+            {% block message %}
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        <div class="alert alert-success">
+                            <button class="close" data-dismiss="alert">×</button>
+                            {{ type }} - {{ message |trans }}
+                            {#
+
+                            {{ dump(message) }}
+                            alert
+                            alert-error
+                            #}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endblock %}
+            
+            {% block header %}{% endblock %}
+            {% block content_pre %}{% endblock %}
+            {% block content %}{% endblock %}
+            {% block content_post %}{% endblock %}
+            {% block footer %}{% endblock %}
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
