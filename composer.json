@@ -1,23 +1,23 @@
 {
     "name": "c33s/core-bundle",
-    "type": "library",
+    "type": "symfony-bundle",
     "description": "everything to quickstart a webpage",
     "authors": [
         {
             "name": "Julian",
-            "email": "jp@consistency.at",
+            "email": "office@consistency.at",
             "homepage": "http://consistency.at"
         }
     ],
     "autoload": {
         "psr-0": {
-            "": "src/"
+            "c33s\\\\CoreBundle": ""
         }
     },
-    "license": "MIT",
-    "keywords": [
-        "log",
-        "logging"
+    "target-dir": "c33s/CoreBundle",
+    "license": [
+        "MIT",
+        "GPL"
     ],
     "homepage": "https://github.com/c33s/CoreBundle",
     "repositories": [
