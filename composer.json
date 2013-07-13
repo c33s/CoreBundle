@@ -14,7 +14,12 @@
             "": "src/"
         }
     },
-    "minimum-stability": "stable",
+    "license": "MIT",
+    "keywords": [
+        "log",
+        "logging"
+    ],
+    "homepage": "https://github.com/c33s/CoreBundle",
     "repositories": [
         {
             "type": "composer",
@@ -51,5 +56,6 @@
     },
     "config": {
         "bin-dir": "bin"
-    }
+    },
+    "minimum-stability": "stable"
 }

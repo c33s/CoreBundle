@@ -8,8 +8,9 @@ authors:
 autoload:
     psr-0:
         '': src/
-minimum-stability: dev
-
+license:       'MIT'
+keywords: ["log","logging"]
+homepage: "https://github.com/c33s/CoreBundle"
 repositories:
   - type: composer
     url: 'http://satis.c33s.net'
