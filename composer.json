@@ -2,6 +2,11 @@
     "name": "c33s/core-bundle",
     "type": "symfony-bundle",
     "description": "everything to quickstart a webpage",
+    "homepage": "https://github.com/c33s/CoreBundle",
+    "license": [
+        "MIT",
+        "GPL"
+    ],
     "authors": [
         {
             "name": "Julian",
@@ -11,21 +16,11 @@
     ],
     "autoload": {
         "psr-0": {
-            "c33s\\\\CoreBundle": ""
+            "c33s\\CoreBundle": ""
         }
     },
     "target-dir": "c33s/CoreBundle",
-    "license": [
-        "MIT",
-        "GPL"
-    ],
-    "homepage": "https://github.com/c33s/CoreBundle",
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "http://satis.c33s.net"
-        }
-    ],
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.3.3",
         "propel/propel-bundle": "1.2.*",
@@ -53,9 +48,5 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
-    },
-    "config": {
-        "bin-dir": "bin"
-    },
-    "minimum-stability": "stable"
+    }
 }

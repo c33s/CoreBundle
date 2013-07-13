@@ -1,23 +1,24 @@
 name:           c33s/core-bundle
 type:           symfony-bundle
 description:    everything to quickstart a webpage
+#keywords: []
+homepage: "https://github.com/c33s/CoreBundle"
+license:       ["MIT", "GPL"]
 authors:
   - name:       Julian
     email:      office@consistency.at
     homepage:   'http://consistency.at'
 autoload:
     psr-0:
-        'c33s\\CoreBundle': ''
+        'c33s\CoreBundle': ''
 target-dir: "c33s/CoreBundle"
-license:       ["MIT", "GPL"]
-#keywords: []
-homepage: "https://github.com/c33s/CoreBundle"
-repositories:
-  - type: composer
-    url: 'http://satis.c33s.net'
+#repositories:
+#  - type: composer
+#    url: 'http://satis.c33s.net'
 #  - type: vcs
 #    url: 'https://github.com/c33s/ApcProfilerBundle'
   
+minimum-stability: stable
 require:
     php: '>=5.3.3'
     ### propel #################################################################
@@ -36,7 +37,6 @@ require:
     ### general ################################################################
     c33s/static-page-content-bundle:                                '1.0.*'
     friendsofsymfony/user-bundle:                                  '1.3.*'
-    
 
 require-dev:
     ### propel #################################################################
@@ -105,8 +105,7 @@ scripts:
         - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installAssets'
         - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
 
-config:
-    bin-dir: bin
-minimum-stability: stable
+#config:
+#    bin-dir: bin
 #extra:
 
