@@ -1,100 +1,127 @@
 name:           c33s/CoreBundle
+type:           library
 description:    everything to quickstart a webpage
+authors:
+  - name:       Julian
+    email:      jp@consistency.at
+    homepage:   'http://consistency.at'
 autoload:
     psr-0:
         '': src/
 minimum-stability: dev
 
-authors:
-  - name:       Julian
-    email:      jp@consistency.at
-    homepage:   'http://consistency.at'
-    
-
-#repositories:
-#  - type: composer
-#    url: 'http://satis.c33s.net'
+repositories:
+  - type: composer
+    url: 'http://satis.c33s.net'
 #  - type: vcs
 #    url: 'https://github.com/c33s/ApcProfilerBundle'
   
 require:
-    php:                                                '>=5.3.3'
-    #jquery
+    php: '>=5.3.3'
+    #propel
+    propel/propel-bundle:               '1.2.*'
+    willdurand/propel-typehintable-behavior: '~1.0'
+    willdurand/propel-publishable-behavior: '~1.0'
+    #CarpeHora/ExtraPropertiesBehavior:  'dev-master'
     
-    #jms/debugging-bundle:                               dev-master
+    #html
+    #mopa/bootstrap-bundle:              '2.1.*@dev'
+    #modernizr/modernizr:                '2.5.3'
+    #fortawesome/font-awesome:           '2.0.*'
+    leafo/lessphp:                      '0.3.*'
+    
+    ### c33scorebundle #########################################################
+    twitter/bootstrap:                  '2.3.*'
+    c33s/static-page-content-bundle:    '1.0.*'
+    ############################################################################
+    
+    #stuff
+    friendsofsymfony/user-bundle:       '1.3.*'
+    #smoya/asset-management-bundle:      'dev-master'
+    #liip/imagine-bundle:                'dev-master',
+    #gregwar/image-bundle:               'dev-master'    
+    #desarrolla2/rss-client-bundle:      'dev-master'
+    #fkr/simplepie-bundle:               '1.0.*'
+    
+    # default develop
+    #stealth35/apc-profiler-bundle:      'dev-master'
+    #jms/debugging-bundle:               'dev-master'   
+    #{{ assets_add(assetic/foo.js, js) }}
+#    CarpeHora/AuditableBehavior:                        dev-master
+#    CarpeHora/ExtraPropertiesBehavior:                  dev-master
+#    DmitryBaranovskiy/g.raphael:                        0.5.*
+#    DmitryBaranovskiy/raphael:                          2.1.*
+#    avalanche123/imagine-bundle:                        dev-master
+#    c33s/static-page-content-bundle:                    1.0.*
+#    cleonello/jqplot:                                   1.0.2
+#    craue/formflow-bundle:                              dev-master
+#    craue/twigextensions-bundle:                        dev-master
+#    desarrolla2/rss-client-bundle:                      dev-master
+#    dflydev/markdown:                                   1.0.*
+#    doctrine/doctrine-bundle:                           1.2.*
+#    doctrine/orm:                                       ~2.2,>=2.2.3
+#    eluceo/ical:                                        dev-master
+#    fkr/cssurlrewrite-bundle:                           dev-master
+#    fkr/simplepie-bundle:                               1.0.*
+#    fortawesome/font-awesome:                           2.0.*
+#    friendsofsymfony/jsrouting-bundle:                  1.0.*
+#    friendsofsymfony/rest-bundle:                       0.9.*
+#    friendsofsymfony/user-bundle:                       1.3.*
+#    friendsofsymfony/user-bundle:                       2.0.*
+#    genemu/form-bundle:                                 2.1.*
+#    gregwar/image-bundle:                               dev-master
+#    gregwar/image-bundle:                               dev-master    
+#    harvesthq/chosen:                                   0.9.*
+#    jehu/fire-php-bundle:                               dev-master
+#    jms/debugging-bundle:                               dev-master
+#    jms/di-extra-bundle:                                1.3.*
+#    jms/security-extra-bundle:                          1.4.*
+#    jms/serializer-bundle:                              dev-master
+#    jquery
+#    knplabs/knp-markdown-bundle:                        1.1.*    
+#    knplabs/knp-menu-bundle:                            dev-master
+#    leafo/lessphp:                                      dev-master
+#    leafo/lessphp:                                      dev-master # 0.3.*
+#    leafo/scssphp-compass:                              dev-master
+#    leafo/scssphp:                                      dev-master
+#    liip/imagine-bundle:                                dev-master
+#    mlehner/gelf-php:                                   dev-master
+#    modernizr/modernizr:                                2.5.3
+#    mopa/bootstrap-bundle:                              2.1.*@dev
+#    mopa/composer-bridge:                               dev-master
+#    php:                                                >=5.3.3
+#    propel/propel-bundle:                               1.1.*
+#    ptachoire/cssembed:                                 dev-master
+#    raulfraile/ladybug-bundle:                          dev-master
+#    richthegeek/phpsass:                                dev-master
+#    sallycms/less-mixins:                               dev-default
+#    sensio/distribution-bundle:                         2.2.*
+#    sensio/framework-extra-bundle:                      2.2.*
+#    sensio/generator-bundle:                            2.2.*
+#    smoya/asset-management-bundle:                      dev-master
+#    sonata-project/formatter-bundle:                    dev-master
+#    stealth35/apc-profiler-bundle:                      dev-master
+#    suin/php-rss-writer:                                1.0.*
+#    symfony/assetic-bundle:                             2.1.*
+#    symfony/framework-standard-edition:                 2.1.*
+#    symfony/monolog-bundle:                             2.2.*
+#    symfony/swiftmailer-bundle:                         2.2.*
+#    symfony/symfony:                                    2.2.*
+#    twig/extensions:                                    1.0.*
+#    twitter/bootstrap:                                  2.3.*
+#    white-october/pagerfanta-bundle:                    dev-master
+#    willdurand/faker-bundle:                            dev-master
+#    willdurand/propel-publishable-behavior:             1.0.*
+#    willdurand/propel-typehintable-behavior:            1.0.*
+#    yuicompressor/yuicompressor:                        2.4.*
     
     
-    
-    leafo/lessphp:                                      dev-master # 0.3.*
-    stealth35/apc-profiler-bundle:                      dev-master
-    #suin/php-rss-writer:                                1.0.*
-    #eluceo/ical:                                        dev-master
-    #leafo/scssphp:                                      dev-master
-    #leafo/scssphp-compass:                              dev-master
-    #sallycms/less-mixins:                               dev-default
-    #ptachoire/cssembed:                                 dev-master
-    #mlehner/gelf-php:                                   dev-master
-
-## Propel Stuff
-    propel/propel-bundle:                               1.1.*
-    willdurand/propel-typehintable-behavior:            1.0.*
-    CarpeHora/ExtraPropertiesBehavior:                  dev-master
-    
-    smoya/asset-management-bundle:                      dev-master
-    #{{ assets_add('assetic/foo.js', 'js') }}
-    #fkr/cssurlrewrite-bundle:                           dev-master
-
 #kriswallsmith/assetic suggests installing ptachoire/cssembed (Assetic provides the integration with phpcssembed to embed data uris)
 #monolog/monolog suggests installing raven/raven (Allow sending log messages to a Sentry server)
 #monolog/monolog suggests installing doctrine/couchdb (Allow sending log messages to a CouchDB server)
 #monolog/monolog suggests installing ext-amqp (Allow sending log messages to an AMQP server (1.0+ required))
 #monolog/monolog suggests installing ext-mongo (Allow sending log messages to a MongoDB server)
 #    
-    twitter/bootstrap:                                  2.3.*
-    
-    #symfony/framework-standard-edition:                 2.1.*
-    #yuicompressor/yuicompressor:                        2.4.*
-
-    c33s/static-page-content-bundle:                    1.0.*
-    modernizr/modernizr:                                2.5.3
-    fortawesome/font-awesome:                           2.0.*
-    #willdurand/faker-bundle:                            dev-master
-    #raulfraile/ladybug-bundle:                           dev-master
-    #jehu/fire-php-bundle:                               dev-master
-    
-    liip/imagine-bundle:                                dev-master
-    #richthegeek/phpsass:                                dev-master
-    gregwar/image-bundle:                               dev-master
-    #avalanche123/imagine-bundle:                        dev-master
-
-    
-    #friendsofsymfony/user-bundle:                       2.0.*
-    #CarpeHora/ExtraPropertiesBehavior:                  dev-master
-    #CarpeHora/AuditableBehavior:                        dev-master
-    #willdurand/propel-publishable-behavior:             1.0.*
-    #genemu/form-bundle:                                 2.1.*
-    
-    #craue/twigextensions-bundle:                        dev-master
-    #mopa/bootstrap-bundle:                              2.1.*@dev
-    #mopa/composer-bridge:                               dev-master
-    
-    #sonata-project/formatter-bundle:                    dev-master
-    #cleonello/jqplot:                                   1.0.2
-    #friendsofsymfony/jsrouting-bundle:                  1.0.*
-    #friendsofsymfony/rest-bundle:                       0.9.*
-    #jms/serializer-bundle:                              dev-master
-    #DmitryBaranovskiy/g.raphael:                        0.5.*
-    #DmitryBaranovskiy/raphael:                          2.1.*
-    #craue/formflow-bundle:                              dev-master
-    
-
-    #harvesthq/chosen:                                   0.9.*
-    #dflydev/markdown:                                   1.0.*
-    #knplabs/knp-markdown-bundle:                        1.1.*    
-    
-    #knplabs/knp-menu-bundle:                            dev-master
-    #white-october/pagerfanta-bundle:                    dev-master
-    
 scripts:
     post-install-cmd:
         - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap'
@@ -109,8 +136,8 @@ scripts:
 
 config:
     bin-dir: bin
-    minimum-stability: alpha
-extra:
+minimum-stability: stable
+#extra:
 #    symfony-app-dir: app
 #    symfony-web-dir: web
 #    branch-alias: 
