@@ -1,3 +1,0 @@
-c33s_core_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: c33sCoreBundle:Default:index }
