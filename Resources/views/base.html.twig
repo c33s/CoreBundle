@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html {% block html_attributes %}lang="{{ app.request.locale }}"{% endblock %}>
     <head>
         {% block head %}
             <title>{% block meta_title %}{{app_name_long}}{% endblock %}</title>
@@ -29,20 +29,8 @@
             </noscript>
             
             {% block message %}
-                {% for type, messages in app.session.flashbag.all() %}
-                    {% for message in messages %}
-                        <div class="alert alert-success">
-                            <button class="close" data-dismiss="alert">×</button>
-                            {{ type }} - {{ message |trans }}
-                            {#
-
-                            {{ dump(message) }}
-                            alert
-                            alert-error
-                            #}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
+            {#% include 'messages.html.twig' with {'messages': messages }} %#}
+            {% include 'c33sCoreBundle::messages.html.twig' %}
             {% endblock %}
             
             {% block header %}{% endblock %}
