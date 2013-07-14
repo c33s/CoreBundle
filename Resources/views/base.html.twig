@@ -12,7 +12,28 @@
             <meta name="viewport" content="{% block meta_viewports %}width=device-width, initial-scale=1.0{% endblock %}" />
             <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" />
             {% block meta_extra %}{% endblock %}
-            {% block stylesheets %}{% endblock %}
+            {% block stylesheets %}
+                {% stylesheets filter='cssrewrite,lessphp' output='css/generated/core.css' combine=true
+                    '@c33sCoreBundle/Resources/non-public/less/corebundlemain.less'
+                %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+                {% endstylesheets %}
+                
+                {#% stylesheets filter='cssrewrite,lessphp' output='css/backoffice/bootstrap.css' combine=true
+                    '%kernel.root_dir%/../vendor/fortawesome/font-awesome/less/font-awesome.less'
+                    '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less'
+                    '%kernel.root_dir%/../vendor/twitter/bootstrap/less/responsive.less'
+                    '@c33sCoreBundle/Resources/non-public/less/bootstrap.less'
+                    'bundles/mylayout/css/jquery/themes/cupertino/jquery-ui-1.8.20.css'
+                    '@MyLayoutBundle/Resources/non-public/less/global.less'
+                    '@MyLayoutBundle/Resources/non-public/less/bootstrap_backoffice.less'
+                    '%kernel.root_dir%/../vendor/twitter/bootstrap/less/responsive.less'
+                    '%kernel.root_dir%/../vendor/cleonello/jqplot/jquery.jqplot.css'
+                    '%kernel.root_dir%/../vendor/harvesthq/chosen/chosen/chosen.css'
+                    '@MyLayoutBundle/Resources/non-public/less/global_after.less'
+                    %#}
+
+            {% endblock %}
             {% block head_icons %}
                 <link rel="shortcut icon" type="image/x-icon" href="{% block head_favicon %}{{ asset('favicon.ico') }}{% endblock %}" />
                 <link rel="apple-touch-icon" href="{% block head_apple_touch_icon %}{{ asset('apple-touch-icon.png') }}{% endblock %}">
@@ -39,7 +60,13 @@
             {% block content_post %}{% endblock %}
             {% block footer %}{% endblock %}
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts output='js/bootstrap.js' combine=true 
+                '@bootstrap_js'
+                %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
     </body>
 </html>
 {#{ assets_add(assetic/foo.js, js) }#}
