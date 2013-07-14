@@ -34,9 +34,13 @@ require:
     #mopa/bootstrap-bundle:                                         '2.1.*@dev'
     #modernizr/modernizr:                                           '2.5.3'
     
+
+    
     ### general ################################################################
     c33s/static-page-content-bundle:                                '1.0.*'
     friendsofsymfony/user-bundle:                                  '1.3.*'
+    liip/imagine-bundle:                                          '0.11.*'
+    gregwar/image-bundle:                                         '1.0.*'
 
 require-dev:
     ### propel #################################################################
@@ -44,8 +48,6 @@ require-dev:
     
 ### unsorted-require ###########################################################
     #smoya/asset-management-bundle:                                'dev-master'
-    #liip/imagine-bundle:                                          'dev-master'
-    #gregwar/image-bundle:                                         'dev-master'
     #leafo/scssphp-compass:                              dev-master
     #leafo/scssphp:                                      dev-master
     #CarpeHora/AuditableBehavior:                        dev-master
