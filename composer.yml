@@ -34,8 +34,9 @@ require:
     #mopa/bootstrap-bundle:                                         '2.1.*@dev'
     #modernizr/modernizr:                                           '2.5.3'
     
-
-    
+    ### javascript #############################################################
+    components/jquery:                                                '1.9.*'
+    components/jqueryui:                                              '1.10.*'
     ### general ################################################################
     c33s/static-page-content-bundle:                                '1.0.*'
     friendsofsymfony/user-bundle:                                  '1.3.*'
