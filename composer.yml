@@ -37,6 +37,9 @@ require:
     ### javascript #############################################################
     components/jquery:                                                '1.9.*'
     components/jqueryui:                                              '1.10.*'
+    malsup/form:                                                      '3.36'
+
+
     ### general ################################################################
     c33s/static-page-content-bundle:                                '1.0.*'
     friendsofsymfony/user-bundle:                                  '1.3.*'
