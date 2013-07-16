@@ -31,6 +31,7 @@ require:
     fortawesome/font-awesome:                                       2.0.*
     twitter/bootstrap:                                              '2.3.*'
     leafo/lessphp:                                                  '0.3.*'
+    braincrafted/bootstrap-bundle:                                  '1.4.*'
     #mopa/bootstrap-bundle:                                         '2.1.*@dev'
     #modernizr/modernizr:                                           '2.5.3'
     
