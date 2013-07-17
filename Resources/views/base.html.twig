@@ -13,9 +13,10 @@
             <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" />
             {% block meta_extra %}{% endblock %}
             {% block stylesheets %}
+                {#corebundlemain includes bootstrap!#}
                 {% stylesheets filter='cssrewrite,lessphp' output='generated/css/corebundle.css' combine=true
                     '@c33sCoreBundle/Resources/non-public/less/corebundlemain.less'
-                    '%kernel.root_dir%/../web/components/font-awesome/less/font-awesome.css'
+                    '%kernel.root_dir%/../web/components/font-awesome/css/font-awesome.min.css'
                 %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
                 {% endstylesheets %}
@@ -69,12 +70,15 @@
             {% block body_end %}{% endblock %}
         {% endblock %} {# body #}
         {% block javascripts %}
+            {% if app_use_cdn %}
+            {% else %}
             <script src="{{ asset('components/jquery/jquery.min.js') }}"></script>
             {% javascripts output='generated/js/bootstrap.js' combine=true 
                 '@bootstrap_js'
                 %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
+            {% endif %}
         {% endblock %}
     </body>
 </html>

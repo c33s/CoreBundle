@@ -27,6 +27,7 @@
         "willdurand/propel-typehintable-behavior": "~1.0",
         "willdurand/propel-publishable-behavior": "~1.0",
         "components/font-awesome": "3.2.*",
+        "fkr/cssurlrewrite-bundle": "1.0.*",
         "twitter/bootstrap": "2.3.*",
         "leafo/lessphp": "0.3.*",
         "braincrafted/bootstrap-bundle": "1.4.*",
