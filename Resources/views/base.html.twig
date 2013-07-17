@@ -13,8 +13,9 @@
             <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" />
             {% block meta_extra %}{% endblock %}
             {% block stylesheets %}
-                {% stylesheets filter='cssrewrite,lessphp' output='css/generated/core.css' combine=true
+                {% stylesheets filter='cssrewrite,lessphp' output='generated/css/corebundle.css' combine=true
                     '@c33sCoreBundle/Resources/non-public/less/corebundlemain.less'
+                    '%kernel.root_dir%/../web/components/font-awesome/less/font-awesome.css'
                 %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
                 {% endstylesheets %}
@@ -69,7 +70,7 @@
         {% endblock %} {# body #}
         {% block javascripts %}
             <script src="{{ asset('components/jquery/jquery.min.js') }}"></script>
-            {% javascripts output='js/bootstrap.js' combine=true 
+            {% javascripts output='generated/js/bootstrap.js' combine=true 
                 '@bootstrap_js'
                 %}
                 <script src="{{ asset_url }}"></script>

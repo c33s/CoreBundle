@@ -26,7 +26,7 @@
         "propel/propel-bundle": "1.2.*",
         "willdurand/propel-typehintable-behavior": "~1.0",
         "willdurand/propel-publishable-behavior": "~1.0",
-        "fortawesome/font-awesome": "2.0.*",
+        "components/font-awesome": "3.2.*",
         "twitter/bootstrap": "2.3.*",
         "leafo/lessphp": "0.3.*",
         "braincrafted/bootstrap-bundle": "1.4.*",
