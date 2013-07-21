@@ -61,11 +61,11 @@
             {% block content %}{% endblock %}
             {% block content_post %}{% endblock %}
             
-            {% block footer_pre %}<footer><p>{% endblock %}
+            {% block footer_pre %}<footer class="footer">{% endblock %}
             {% block footer %}
                     &copy; {% block footer_company %}{{app_name_long}}{% endblock %}{% block footer_predate %}{% endblock %}{{ "now"|date("Y") }}{% block footer_postdate %}{% endblock %}
             {% endblock %}
-            {% block footer_post %}</p></footer>{% endblock %}
+            {% block footer_post %}</footer>{% endblock %}
             
             {% block body_end %}{% endblock %}
         {% endblock %} {# body #}
