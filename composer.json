@@ -30,6 +30,7 @@
         "fkr/cssurlrewrite-bundle": "1.0.*",
         "twitter/bootstrap": "2.3.*",
         "leafo/lessphp": "0.3.*",
+        "ptachoire/cssembed": "1.0.*",
         "braincrafted/bootstrap-bundle": "1.4.*",
         "components/jquery": "1.9.*",
         "components/jqueryui": "1.10.*",
