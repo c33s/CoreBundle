@@ -14,9 +14,12 @@
             {% block meta_extra %}{% endblock %}
             {% block stylesheets %}
                 {#corebundlemain includes bootstrap!#}
+                {#
+                    '%kernel.root_dir%/../web/components/font-awesome/css/font-awesome.min.css'
+                #}
                 {% stylesheets filter='cssrewrite,lessphp' output='generated/css/corebundle.css' combine=true
                     '@c33sCoreBundle/Resources/non-public/less/corebundlemain.less'
-                    '%kernel.root_dir%/../web/components/font-awesome/css/font-awesome.min.css'
+                    '%kernel.root_dir%/../vendor/fortawesome/font-awesome/css/font-awesome.min.css'
                 %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
                 {% endstylesheets %}

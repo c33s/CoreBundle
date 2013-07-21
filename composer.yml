@@ -28,7 +28,7 @@ require:
     #CarpeHora/ExtraPropertiesBehavior:                            'dev-master'
     
     ### html ###################################################################
-    #fortawesome/font-awesome:                                       2.0.*
+    fortawesome/font-awesome:                                       '3.2.*'
     components/font-awesome:                                        '3.2.*'
     fkr/cssurlrewrite-bundle:                                       '1.0.*'
     twitter/bootstrap:                                              '2.3.*'
