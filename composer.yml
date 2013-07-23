@@ -12,7 +12,9 @@ autoload:
     psr-0:
         'c33s\CoreBundle': ''
 target-dir: "c33s/CoreBundle"
-#repositories:
+repositories:
+  - type: vcs
+    url: https://github.com/c33s/AssetManagementBundle.git
 #  - type: composer
 #    url: 'http://satis.c33s.net'
 #  - type: vcs
@@ -42,6 +44,7 @@ require:
     components/jquery:                                                '1.9.*'
     components/jqueryui:                                              '1.10.*'
     malsup/form:                                                      '3.36'
+    smoya/asset-management-bundle:                                    '1.0.*'
 
 
     ### general ################################################################
