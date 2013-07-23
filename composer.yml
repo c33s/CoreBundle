@@ -45,7 +45,7 @@ require:
     components/jqueryui:                                              '1.10.*'
     malsup/form:                                                      '3.36'
     #c33s/asset-management-bundle:                                    '1.0.*'
-    smoya/asset-management-bundle:                                    '1.0.*'
+    #smoya/asset-management-bundle:                                    '1.0.*'
 
 
     ### general ################################################################
