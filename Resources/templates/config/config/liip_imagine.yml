@@ -1,0 +1,28 @@
+# Liip Imagine Bundle
+liip_imagine:
+    filter_sets:
+        admin_thumb:
+            quality: 85
+            filters:
+                strip: ~
+                thumbnail: { size: [120, 90], mode: outbound }
+        vegas:
+            quality: 85
+            filters:
+                strip: ~
+                thumbnail: { size: [900, 600], mode: outbound }
+        gallery:
+            quality: 85
+            filters:
+                strip: ~
+                relative_resize: { heighten: 600 }
+        gallery_thumb:
+            quality: 85
+            filters:
+                strip: ~
+                thumbnail: { size: [313, 240], mode: outbound }
+        content_image:
+            quality: 85
+            filters:
+                strip: ~
+                thumbnail: { size: [372, 290], mode: outbound }

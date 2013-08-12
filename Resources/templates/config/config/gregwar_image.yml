@@ -1,0 +1,12 @@
+# Gregwar Image
+#gregwar_image: ~
+#gregwar_image:
+    #cache_dir:  my_cache_dir
+#bc_bootstrap:
+#    assets_dir:  %kernel.root_dir%/../vendor/twitter/bootstrap
+    #jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js
+#bc_bootstrap:
+#    less_filter: lessphp    
+#fkr_css_url_rewrite:
+#    rewrite_only_if_file_exists: true
+#    clear_urls: true
