@@ -14,7 +14,7 @@ use Symfony\Component\Process\Process;
 
 class SetupCommand extends Command
 {
-    protected $commandSets = array   
+    protected $commandSetsold = array   
     (
 	//array('command' => 'cache:clear', '--env' => 'prod'),
 	//array('command' => 'cache:clear', '--env' => 'dev'),
@@ -23,7 +23,7 @@ class SetupCommand extends Command
 	//'' => '',
 	//'' => '',
     );
-    protected $commandSets2 = array   
+    protected $commandSets = array   
     (
 	array('description' => 'cache clear prod', 'command' => 'php app/console cache:clear --env=prod'),
 	array('description' => 'cache clear dev', 'command' => 'php app/console cache:clear --env=dev'),
