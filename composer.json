@@ -47,7 +47,8 @@
         "friendsofsymfony/user-bundle": "1.3.*",
         "liip/imagine-bundle": "0.11.*",
         "gregwar/image-bundle": "1.0.*",
-        "liip/monitor-bundle": "1.0.*"
+        "liip/monitor-bundle": "1.0.*",
+        "sensiolabs/security-checker": "1.2.*"
     },
     "require-dev": {
         "willdurand/faker-bundle": "1.0.*"
