@@ -3,7 +3,7 @@
 namespace c33s\CoreBundle\Command;
 
 
-use Symfony\Component\Console\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,7 +12,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Process\Process;
 
-class SetupCommand extends Command
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOException;
+
+class CleanCommand extends ContainerAwareCommand
 {
     protected $commandSetsold = array   
     (
@@ -36,15 +39,23 @@ class SetupCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('c33s:setup')
-            ->setDescription('c33s Setup calls multiple symfony commands to get the project setup')
+            ->setName('c33s:clean')
+            ->setDescription('c33s clean calls multiple symfony commands to get the project setup')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-	$output->writeln('<info>c33s:check</info>');
+	$output->writeln('<info>c33s:clean</info>');
+	
+	//var_dump($sourcePath,$targetPath);
+	$fs = new Filesystem();
+	$output->writeln('deleting <info>web/generated</info> directory');
+	$fs->remove($this->getContainer()->getParameter('kernel.root_dir').'/../web/generated');
+	$output->writeln('deleting <info>web/bundles</info> directory');
+	$fs->remove($this->getContainer()->getParameter('kernel.root_dir').'/../web/bundles');
+	//$fs->remove($this->getContainer()->getParameter('kernel.root_dir').'/../web/bundles');
 
 	foreach ($this->commandSets as $commandSet) 
 	{
