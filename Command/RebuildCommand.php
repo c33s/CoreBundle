@@ -53,7 +53,7 @@ class RebuildCommand extends ContainerAwareCommand
 	$fs = new Filesystem();
 	$overwrite = $input->getOption('force');
 	$options = array('override' => $overwrite);
-	$fs->mkdir('mkdir app/data');
+	$fs->mkdir('app/data');
 	
 	$yaml = new Parser();
 	$path = $this->getContainer()->getParameter('kernel.root_dir').'/../users.yml';
