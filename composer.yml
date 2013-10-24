@@ -49,7 +49,7 @@ require:
 
 
     ### general ################################################################
-    c33s/static-page-content-bundle:                                '1.0.*'
+    c33s/static-page-content-bundle:                                '1.1.*'
     friendsofsymfony/user-bundle:                                  '1.3.*'
     liip/imagine-bundle:                                          '0.11.*'
     gregwar/image-bundle:                                         '1.0.*'
