@@ -25,19 +25,20 @@ class RebuildCommand extends ContainerAwareCommand
     protected $commandSets = array   
     (
 
-	array('description' => '', 'command' => 'php app/console propel:build --insert-sql'),
-	array('description' => '', 'command' => 'php app/console propel:fixtures:load'),
-	array('description' => '', 'command' => 'php ./app/console propel:graphviz:generate'),
+	array('description' => 'cache:clear', 'command' => 'cache:clear'),
+	array('description' => 'propel:build', 'command' => 'php app/console propel:build --insert-sql'),
+	array('description' => 'propel:fixtures:load', 'command' => 'php app/console propel:fixtures:load'),
+	//array('description' => 'propel:graphviz:generate', 'command' => 'php ./app/console propel:graphviz:generate'),
 	//array('description' => '', 'command' => 'dot -Tpdf ./app/propel/graph/default.schema.dot -o ./schema.pdf'),
-	//array('description' => '', 'command' => ''),
-	
+	array('description' => 'assets:install', 'command' => 'assets:install'),
+
 	
     );
     protected function configure()
     {
         $this
             ->setName('c33s:rebuild')
-            ->setDescription('')
+            ->setDescription('replaces the rebuild.bat/rebuild.sh. the command builds the model, loads the fixtures and creates the fos users based upon the user.yml')
 	    ->addOption(
                'force',
                null,
@@ -50,70 +51,74 @@ class RebuildCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-	$fs = new Filesystem();
-	$overwrite = $input->getOption('force');
-	$options = array('override' => $overwrite);
-	$fs->mkdir('app/data');
+		$fs = new Filesystem();
+		$overwrite = $input->getOption('force');
+		$options = array('override' => $overwrite);
+		$fs->mkdir('app/data');
 	
-	$yaml = new Parser();
-	$path = $this->getContainer()->getParameter('kernel.root_dir').'/../users.yml';
-	//var_dump(realpath($path),file_get_contents($path));
+		$yaml = new Parser();
+		//$path = $this->getContainer()->getParameter('kernel.root_dir').'/../users.yml';
+		$path = $this->getContainer()->getParameter('kernel.root_dir').'/config/users.yml';
+		//var_dump(realpath($path),file_get_contents($path));
 	
-	try {
-	    $this->users =  $yaml->parse(file_get_contents($path));
-	} catch (ParseException $e) {
-	    printf("Unable to parse the YAML string: %s", $e->getMessage());
-	}
+		try
+		{
+	    	$this->users =  $yaml->parse(file_get_contents($path));
+		}
+		catch (ParseException $e)
+		{
+	    	printf("Unable to parse the YAML string: %s", $e->getMessage());
+		}
 	
-	//$yaml->parse(file_get_contents($path));
-	//$output->writeln('starting dumping config files');
-	$output->writeln('<info>c33s:check</info>');
+		//$yaml->parse(file_get_contents($path));
+		//$output->writeln('starting dumping config files');
+		//$output->writeln('<info>c33s:rebuild</info>');
 	
-	//var_dump($this->users);
-//	$this->dumpConfigFiles($output);
-//
-	///$commandUserCreate = $this->getApplication()->find('fos:user:create');
-	//$commandUserPromote = $this->getApplication()->find('fos:user:promote');
-	foreach ($this->users['users'] as $key => $user) 
-	{
-	    $this->commandSets[] = array('description' => '', 'command' => "php app/console fos:user:create ${user['name']} ${user['email']} ${user['password']}");
-	    foreach ($user['roles'] as $role) 
-	    {
-		$this->commandSets[] = array('description' => '', 'command' => "php app/console fos:user:promote ${user['name']} ${role}");
-	    }
-	}
+		//var_dump($this->users);
+		//	$this->dumpConfigFiles($output);
+		//
+		///$commandUserCreate = $this->getApplication()->find('fos:user:create');
+		//$commandUserPromote = $this->getApplication()->find('fos:user:promote');
+		foreach ($this->users['users'] as $key => $user)
+		{
+			$this->commandSets[] = array('description' => 'fos:user:create', 'command' => "php app/console fos:user:create ${user['name']} ${user['email']} ${user['password']}");
+			foreach ($user['roles'] as $role)
+			{
+				$this->commandSets[] = array('description' => 'fos:user:promote', 'command' => "php app/console fos:user:promote ${user['name']} ${role}");
+			}
+		}
 	    
 	    
-	foreach ($this->commandSets as $commandSet) 
-	{
-	    $output->writeln(sprintf('Running <comment>%s</comment> check.', $commandSet['description']));
-	    $process = new Process($commandSet['command']);
-	    $process->run(function ($type, $buffer)
-	    {
-		if (Process::ERR === $type)
+		foreach ($this->commandSets as $commandSet)
 		{
-		    echo $buffer;
+			$output->writeln(sprintf('Running <comment>%s</comment>', $commandSet['description']));
+			$process = new Process($commandSet['command']);
+			$process->run(function ($type, $buffer)
+			{
+			if (Process::ERR === $type)
+			{
+				echo $buffer;
+			}
+			else
+			{
+				echo $buffer;
+			}
+			});
 		}
-		else
-		{
-		    echo $buffer;
-		}
-	    });
-	}
 	    //$returnCode = $commandUserCreate->run(new ArrayInput(array('command' => 'fos:user:create', 'gaby' )), $output);
-//	    $output->writeln(sprintf('Running <comment>%s</comment> check.', $commandSet['description']));
-//	    $process = new Process($commandSet['command']);
-//	    $process->run(function ($type, $buffer)
-//	    {
-//		if (Process::ERR === $type)
-//		{
-//		    echo $buffer;
-//		}
-//		else
-//		{
-//		    echo $buffer;
-//		}
-//	    });
+		//	    $output->writeln(sprintf('Running <comment>%s</comment> check.', $commandSet['description']));
+		//	    $process = new Process($commandSet['command']);
+		//	    $process->run(function ($type, $buffer)
+		//	    {
+		//		if (Process::ERR === $type)
+		//		{
+		//		    echo $buffer;
+		//		}
+		//		else
+		//		{
+		//		    echo $buffer;
+		//		}
+		//	    });
     }
 
 

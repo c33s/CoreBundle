@@ -19,20 +19,18 @@ class UpdateProdCommand extends ContainerAwareCommand
 {
     protected $commandSets = array   
     (
-	array('description' => 'git reset', 'command' => 'git reset --hard'),
-	array('description' => 'git pull', 'command' => 'git pull'),
-	array('description' => 'composer install', 'command' => 'composer.phar install'),
-	array('description' => 'cache clear prod', 'command' => 'php app/console c33s:clean'),
-	array('description' => 'chown', 'command' => 'www-data:www-data -R *'),
-	//array('description' => '', 'command' => ''),
-	
-	
+		array('description' => 'git reset', 'command' => 'git reset --hard'),
+		array('description' => 'git pull', 'command' => 'git pull'),
+		array('description' => 'composer install', 'command' => 'composer.phar install'),
+		array('description' => 'cache clear prod', 'command' => 'php app/console c33s:clean'),
+		array('description' => 'chown', 'command' => 'www-data:www-data -R *'),
+		//array('description' => '', 'command' => ''),
     );
     protected function configure()
     {
         $this
             ->setName('c33s:updateprod')
-            ->setDescription('')
+            ->setDescription('updates production installation by calling git reset, git pull, composer install,...')
         ;
     }
 

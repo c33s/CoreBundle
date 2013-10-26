@@ -24,7 +24,7 @@ class InitConfigCommand extends ContainerAwareCommand
     {
         $this
             ->setName('c33s:initconfig')
-            ->setDescription('')
+            ->setDescription('the task will init the project by coping the template config files (config/assettic.yml, propel.yml,...) to the fresh project. do not call this command if you have allready set up your project.')
 	    ->addOption(
                'force',
                null,
