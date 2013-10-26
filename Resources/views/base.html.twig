@@ -21,9 +21,8 @@
                     '@c33sCoreBundle/Resources/non-public/less/corebundlemain.less'
                     '%kernel.root_dir%/../web/components/font-awesome/css/font-awesome.min.css'
                 %}
-                <link rel="stylesheet" href="{{ asset_url }}" />
+                    <link rel="stylesheet" href="{{ asset_url }}" />
                 {% endstylesheets %}
-                
                 {#% stylesheets filter='cssrewrite,lessphp' output='css/backoffice/bootstrap.css' combine=true
                     '%kernel.root_dir%/../vendor/fortawesome/font-awesome/less/font-awesome.less'
                     '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less'
@@ -44,6 +43,20 @@
                 <link rel="apple-touch-icon" href="{% block head_apple_touch_icon %}{{ asset('apple-touch-icon.png') }}{% endblock %}" />
             {% endblock %}
             {% block upper_javascripts %}
+                {% if app_use_cdn %}
+                    <!--[if lt IE 9]>
+                    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                    <![endif]-->
+                {% else %}
+                    <!--[if lt IE 9]>
+                    {% javascripts output='generated/js/html5shiv.js' combine=true
+                        '%kernel.root_dir%/../vendor/afarkas/html5shiv/src/html5shiv.js'
+                    %}
+                    <script src="{{ asset_url }}"></script>
+                    {% endjavascripts %}
+                    <![endif]-->
+                    <script src="{{ asset('components/jquery/jquery.min.js') }}"></script>
+                {% endif %}
             {% endblock %}
         {% endblock %}
     </head>
@@ -75,8 +88,7 @@
         {% block javascripts %}
             {% if app_use_cdn %}
             {% else %}
-            <script src="{{ asset('components/jquery/jquery.min.js') }}"></script>
-            {% javascripts output='generated/js/bootstrap.js' combine=true 
+            {% javascripts output='generated/js/bootstrap.js' combine=true
                 '@bootstrap_js'
                 %}
                 <script src="{{ asset_url }}"></script>
