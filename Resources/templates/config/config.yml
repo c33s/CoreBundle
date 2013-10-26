@@ -36,15 +36,11 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
     globals:
-        app_name_short: 
-        app_name: 
-        app_name_long:  
         app_version:    
-        app_phone:      
-        app_fax:        
-        app_email:      
-        
-        app_ga_tracking: "%ga_tracking%"
+        app_name: 
+        app_name_short: 
+        app_name_long:  
+        app_ga_tracking: "%ga_tracking%"        
         app_description: ""
         app_author: ""
         app_keywords: []
@@ -62,3 +58,7 @@ twig:
         app_contact_title: 
         app_contact_firstname: 
         app_contact_lastname: 
+        app_contact_map_lat: 
+        app_contact_map_long: 
+        app_production_company: consistency.at
+        app_production_company_link: http://consistency.at
