@@ -1,0 +1,48 @@
+{% extends "c33sCoreBundle::base.html.twig" %}
+
+{% block head_favicon %}{{ asset('favicon-admin.ico') }}{% endblock %}
+{% block head_apple_touch_icon %}{{ asset('apple-touch-icon-admin.png') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {# this two css must me seperated because admin conains bootstrap and it must not combined with responsive#}
+    {% stylesheets filter='cssrewrite,lessphp' output='generated/css/bootstrap-responsive.css' combine=true
+    '@bootstrap_css_responsive'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    {#% stylesheets filter='cssrewrite,lessphp' output='css/backoffice/bootstrap.css' combine=true
+        '%kernel.root_dir%/../vendor/fortawesome/font-awesome/less/font-awesome.less'
+        '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less'
+        '%kernel.root_dir%/../vendor/twitter/bootstrap/less/responsive.less'
+        '@c33sCoreBundle/Resources/non-public/less/bootstrap.less'
+        'bundles/mylayout/css/jquery/themes/cupertino/jquery-ui-1.8.20.css'
+        '@MyLayoutBundle/Resources/non-public/less/global.less'
+        '@MyLayoutBundle/Resources/non-public/less/bootstrap_backoffice.less'
+        '%kernel.root_dir%/../vendor/twitter/bootstrap/less/responsive.less'
+        '%kernel.root_dir%/../vendor/cleonello/jqplot/jquery.jqplot.css'
+        '%kernel.root_dir%/../vendor/harvesthq/chosen/chosen/chosen.css'
+        '@MyLayoutBundle/Resources/non-public/less/global_after.less'
+        %#}
+{% endblock %}
+
+{% block header %}
+    my menu here {% include 'c33sCoreBundle::admin-menu.html.twig' %}
+{% endblock %}
+
+{% block content_pre %}
+    {% set routename = app.request.get('_route') %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block content_post %}
+        </div><!--/span-->
+    </div><!--/row-->
+    <hr>
+{% endblock %}
+
+{% block body_end %}</div><!--/.fluid-container-->{% endblock %}
+{% block footer_company %}{{ app_name_short }} admin system {{app_version}} by <a href="{{ app_production_company_link }}">{{ app_production_company }}</a> {% endblock %}
