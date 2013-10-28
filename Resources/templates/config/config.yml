@@ -11,7 +11,8 @@ imports:
     - { resource: config/liip_imagine.yml }
     - { resource: config/swiftmailer.yml }
     - { resource: config/fkr_css_url_rewrite.yml }
-
+    - { resource: config/liip_monitor.yml }
+    - { resource: config/avocode_form_extensions.yml }
 
 framework:
     #esi:             ~
