@@ -1,0 +1,4 @@
+http://stackoverflow.com/questions/8195114/symfony2-assetics-yui-compressor-on-windows-path-syntax
+http://stackoverflow.com/a/8197995/590247
+https://github.com/kriswallsmith/assetic/commit/5621cd449b0d85316e5872d672e7e900edc2246c
+http://blog.droznik.name/post/11324457529/using-assetic-in-symfony2-on-windows-box
