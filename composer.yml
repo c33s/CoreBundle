@@ -30,11 +30,14 @@ require:
     #CarpeHora/ExtraPropertiesBehavior:                            'dev-master'
     
     ### html ###################################################################
-    fortawesome/font-awesome:                                       '3.2.*'
-    components/font-awesome:                                        '3.2.*'
+    fortawesome/font-awesome:                                       '4.0.*'
+    components/font-awesome:                                        '4.0.*'
     fkr/cssurlrewrite-bundle:                                       '1.0.*'
     twitter/bootstrap:                                              '2.3.*'
-    leafo/lessphp:                                                  '0.3.*'
+    # additional twitter bootstrap for v3
+    twbs/bootstrap:                                                 '3.0.*'
+
+    leafo/lessphp:                                                  '0.4.*'
     ptachoire/cssembed:                                             '1.0.*'
     braincrafted/bootstrap-bundle:                                  '1.4.*'
     #mopa/bootstrap-bundle:                                         '2.1.*@dev'
@@ -61,6 +64,14 @@ require-dev:
     willdurand/faker-bundle:                                       '1.0.*'
     
 ### unsorted-require ###########################################################
+    #html
+    #mopa/bootstrap-bundle:              '2.1.*@dev'
+    #modernizr/modernizr:                '2.5.3'
+    #desarrolla2/rss-client-bundle:      'dev-master'
+    #fkr/simplepie-bundle:               '1.0.*'
+    # default develop
+    #stealth35/apc-profiler-bundle:      'dev-master'
+    #jms/debugging-bundle:               'dev-master'
     #smoya/asset-management-bundle:                                'dev-master'
     #leafo/scssphp-compass:                              dev-master
     #leafo/scssphp:                                      dev-master
