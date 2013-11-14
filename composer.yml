@@ -31,7 +31,7 @@ require:
     
     ### html ###################################################################
     fortawesome/font-awesome:                                       '4.0.*'
-    components/font-awesome:                                        '4.0.*'
+    components/font-awesome:                                        '3.2.*'
     fkr/cssurlrewrite-bundle:                                       '1.0.*'
     twitter/bootstrap:                                              '2.3.*'
     # additional twitter bootstrap for v3
