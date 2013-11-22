@@ -35,7 +35,7 @@ require:
     fkr/cssurlrewrite-bundle:                                       '1.0.*'
     twitter/bootstrap:                                              '2.3.*'
     # additional twitter bootstrap for v3
-    twbs/bootstrap:                                                 '3.0.*'
+    twbs/bootstrap:                                  '3.0.0'
 
     leafo/lessphp:                                                  '0.4.*'
     ptachoire/cssembed:                                             '1.0.*'
@@ -58,6 +58,7 @@ require:
     gregwar/image-bundle:                                         '1.0.*'
     liip/monitor-bundle:                                          '1.0.*'
     sensiolabs/security-checker:                                  '1.2.*'
+    knplabs/knp-markdown-bundle:                                  '1.2.*'
 
 require-dev:
     ### propel #################################################################

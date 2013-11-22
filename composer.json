@@ -36,7 +36,7 @@
         "components/font-awesome": "4.0.*",
         "fkr/cssurlrewrite-bundle": "1.0.*",
         "twitter/bootstrap": "2.3.*",
-        "twbs/bootstrap": "3.0.*",
+        "twbs/bootstrap": "3.0.0",
         "leafo/lessphp": "0.4.*",
         "ptachoire/cssembed": "1.0.*",
         "braincrafted/bootstrap-bundle": "1.4.*",
@@ -49,7 +49,8 @@
         "liip/imagine-bundle": "0.11.*",
         "gregwar/image-bundle": "1.0.*",
         "liip/monitor-bundle": "1.0.*",
-        "sensiolabs/security-checker": "1.2.*"
+        "sensiolabs/security-checker": "1.2.*",
+        "knplabs/knp-markdown-bundle": "1.2.*"
     },
     "require-dev": {
         "willdurand/faker-bundle": "1.0.*"
