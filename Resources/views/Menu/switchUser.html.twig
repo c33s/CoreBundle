@@ -1,9 +1,14 @@
 {% if parameters.users is defined %}
     {% if parameters.dropdown == true %}
     <li class="dropdown" data-dropdown="dropdown2">
-        <a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#"><i class="icon-group"></i> Switch User<b class="caret"></b></a>
+        <a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#">
+                <i class="icon-group"></i> 
+                    Switch User {% if app.user.username != parameters.original_user.username %}({% if is_granted('ROLE_PREVIOUS_ADMIN') %}<i class="icon-eye-open"></i> {% endif %}{{app.user.username}}){% endif %}
+                <b class="caret"></b>
+        </a>
         <ul class="dropdown-menu">
     {% endif %}
+    {% if app.user.username == parameters.original_user.username %}
     {% if parameters.header == true %}
         {% if parameters.headerSeperator == true %}
             <li class="divider"></li>
@@ -15,8 +20,11 @@
             <li><a href="?_switch_user={{ user.username }}"><i class="icon-user"></i> {{ user.username }}</a></li>
             {% endif %}
         {% endfor %}
-            <li class="divider"></li>
-            <li><a href="?_switch_user=_exit"><i class="icon-remove"></i> exit back to user {{ parameters.original_user.username }}</a></li>
+    {% endif %}
+    {% if app.user.username != parameters.original_user.username %}
+            {% if parameters.dropdown != true %}<li class="divider"></li>{% endif %}
+            <li><a href="?_switch_user=_exit"><i class="icon-remove"></i> Exit back to user {{ parameters.original_user.username }}</a></li>
+    {% endif %}
     {% if parameters.dropdown == true %}
         </ul>
     </li>
