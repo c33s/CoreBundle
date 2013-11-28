@@ -1,14 +1,24 @@
 {% if parameters.users is defined %}
+    {% if parameters.dropdown == true %}
     <li class="dropdown" data-dropdown="dropdown2">
-        <a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#"><i class="icon-user"></i> Switch User<b class="caret"></b></a>
+        <a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#"><i class="icon-group"></i> Switch User<b class="caret"></b></a>
         <ul class="dropdown-menu">
+    {% endif %}
+    {% if parameters.header == true %}
+        {% if parameters.headerSeperator == true %}
+            <li class="divider"></li>
+        {% endif %}
+            <li class="nav-header"><i class="icon-group"></i> {{ parameters.headerText }}</li>
+    {% endif %}
         {% for user in parameters.users %}
             {% if user.username != parameters.original_user.username and user.username != parameters.current_user.username %}
-            <li><a href="?_switch_user={{ user.username }}">{{ user.username }}</a></li>
+            <li><a href="?_switch_user={{ user.username }}"><i class="icon-user"></i> {{ user.username }}</a></li>
             {% endif %}
         {% endfor %}
             <li class="divider"></li>
-            <li><a href="?_switch_user=_exit">exit back to user {{ parameters.original_user.username }}</a></li>
+            <li><a href="?_switch_user=_exit"><i class="icon-remove"></i> exit back to user {{ parameters.original_user.username }}</a></li>
+    {% if parameters.dropdown == true %}
         </ul>
     </li>
+    {% endif %}
 {% endif %}
