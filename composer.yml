@@ -19,7 +19,7 @@ repositories:
 #    url: 'http://satis.c33s.net'
 #  - type: vcs
 #    url: 'https://github.com/c33s/ApcProfilerBundle'
-  
+bin: ["bin/init-symfony"]
 minimum-stability: stable
 require:
     php: '>=5.3.3'
