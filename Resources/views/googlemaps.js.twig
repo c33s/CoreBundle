@@ -1,0 +1,48 @@
+$(document).ready(function() {
+$(function() {
+        //http://itouchmap.com/latlong.html //get lang lat from address
+	var latlng = new google.maps.LatLng({{ c33s_core_config.contact.map.lat }},{{ c33s_core_config.contact.map.long }});
+	var settings = {
+		zoom: 17,
+		scrollwheel: true,
+		center: latlng,
+		mapTypeControl: true,
+		mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+		navigationControl: true,
+		navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+		mapTypeId: google.maps.MapTypeId.ROADMAP};
+	var map = new google.maps.Map(document.getElementById("mapCanvas"), settings);
+	var contentString = '<div style="color: black">'+
+		'<h4>{{ c33s_core_config.contact.company }}</h4>'
+                //+'{{ c33s_core_config.contact.street }}, {{ c33s_core_config.contact.zip }} {{ c33s_core_config.contact.city }},'+
+		'</div>';
+	var infowindow = new google.maps.InfoWindow({
+		content: contentString
+	});
+
+	var companyImage = new google.maps.MarkerImage('{{ c33s_core_config.contact.map.marker.image }}',
+		new google.maps.Size({{ c33s_core_config.contact.map.marker.size[0] }},{{ c33s_core_config.contact.map.marker.size[1] }}),
+		new google.maps.Point(0,0),
+		new google.maps.Point({{ c33s_core_config.contact.map.marker.point[0] }},{{ c33s_core_config.contact.map.marker.size[1] }})
+	);
+	var companyShadow = new google.maps.MarkerImage('{{ c33s_core_config.contact.map.marker.shadow.image }}',
+		new google.maps.Size({{ c33s_core_config.contact.map.marker.shadow.size[0] }},{{ c33s_core_config.contact.map.marker.shadow.size[1] }}),
+		new google.maps.Point(0,0),
+		new google.maps.Point({{ c33s_core_config.contact.map.marker.shadow.point[0] }},{{ c33s_core_config.contact.map.marker.shadow.point[1] }}));
+
+	var companyPos = new google.maps.LatLng({{ c33s_core_config.contact.map.lat }},{{ c33s_core_config.contact.map.long }});
+
+	var companyMarker = new google.maps.Marker({
+		position: companyPos,
+		map: map,
+		icon: companyImage,
+		shadow: companyShadow,
+		title:"{{ c33s_core_config.contact.company }}",
+		zIndex: 3});
+        infowindow.open(map,companyMarker);
+	google.maps.event.addListener(companyMarker, 'click', function() {
+		infowindow.open(map,companyMarker);
+	});
+
+});
+});
