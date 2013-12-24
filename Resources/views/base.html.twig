@@ -2,14 +2,14 @@
 <html {% block html_attributes %}lang="{{ app.request.locale }}"{% endblock %}>
     <head>
         {% block head %}
-            <title>{% block meta_title %}{{app_name_long}}{% endblock %}</title>
+            <title>{% block meta_title %}{{ c33s_core_config.page.title }}{% endblock %}</title>
             
             <meta charset="{% block meta_charset %}utf-8{% endblock %}" />
-            <meta name="description" content="{% block meta_description %}{{app_description}}{% endblock %}">
-            <meta name="author" content="{% block meta_author %}{{app_author}}{% endblock %}">
+            <meta name="description" content="{% block meta_description %}{{ c33s_core_config.page.description }}{% endblock %}">
+            <meta name="author" content="{% block meta_author %}{{ c33s_core_config.page.authors|join(', ') }}{% endblock %}">
             <meta name="robots" content="{% block meta_robots %}all{% endblock %}">
             <meta name="viewport" content="{% block meta_viewports %}width=device-width, initial-scale=1.0{% endblock %}" />
-            <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" />
+            <meta name="keywords" content="{% block meta_keywords %}{{ c33s_core_config.page.keywords|join(', ') }}{% endblock %}" />
             {% block meta_extra %}{% endblock %}
             {% block stylesheets %}
                 {% stylesheets filter='cssrewrite,lessphp' output='generated/css/corebundle.css' combine=true
@@ -24,7 +24,7 @@
                 <link rel="apple-touch-icon" href="{% block head_apple_touch_icon %}{{ asset('apple-touch-icon.png') }}{% endblock %}" />
             {% endblock %}
             {% block upper_javascripts %}
-                {% if app_use_cdn %}
+                {% if c33s_core_config.app.use_cdn %}
                     <!--[if lt IE 9]>
                     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
                     <![endif]-->
@@ -67,7 +67,7 @@
             {% block body_end %}{% endblock %}
         {% endblock %} {# body #}
         {% block javascripts %}
-            {% if app_use_cdn %}
+            {% if c33s_core_config.app.use_cdn %}
             {% else %}
             {% javascripts output='generated/js/bootstrap.js' combine=true
                 '@bootstrap_js'

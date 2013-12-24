@@ -55,4 +55,4 @@
 {% endblock %}
 
 {% block body_end %}</div><!--/.fluid-container-->{% endblock %}
-{% block footer_company %}{{ app_name_short }} admin system {{app_version}} by <a href="{{ app_production_company_link }}">{{ app_production_company }}</a> {% endblock %}
+{% block footer_company %}{{ c33s_core_config.app.name_short }} admin system {{ c33s_core_config.app.version }} by <a href="{{ c33s_core_config.app.production_company.link }}">{{c33s_core_config.app.production_company.name }}</a> {% endblock %}

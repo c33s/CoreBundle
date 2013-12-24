@@ -2,6 +2,9 @@ parameters:
 #    c33s_core.example.class: c33s\CoreBundle\Example
 
 services:
-#    c33s_core.example:
-#        class: %c33s_core.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    c33s_core.twig.template_extension:
+        class: c33s\CoreBundle\Twig\ConfigVariablesExtension
+        arguments:
+            - %c33s_core.config.variables%
+        tags:
+            - { name: twig.extension }
