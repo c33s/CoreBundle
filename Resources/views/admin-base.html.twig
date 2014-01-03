@@ -35,6 +35,9 @@
         '@MyLayoutBundle/Resources/non-public/less/global_after.less'
         %#}
 {% endblock %}
+{% block google_analytics %}
+{# disabled ga for admins #}
+{% endblock %}
 
 {% block header %}
     my menu here {% include 'c33sCoreBundle::admin-menu.html.twig' %}
