@@ -31,6 +31,7 @@ class Configuration implements ConfigurationInterface
 		    ->children()
 		    ->end()
 		    ->append($this->addAppNode())
+		    ->append($this->addGoogleNode())
 		    ->append($this->addPageNode())
 		    ->append($this->addContactNode())
 		->end()
@@ -41,6 +42,26 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
     
+    public function addGoogleNode()
+    {
+	$builder = new TreeBuilder();
+	$node = $builder->root('google');
+
+	$node
+	    //->addDefaultsIfNotSet()
+	    ->children()
+		->arrayNode('tracking')
+		    ->children()
+			->booleanNode('enabled')->defaultFalse()->end()
+			->scalarNode('id')->defaultNull()->end()
+		    ->end()
+		->end()
+	    ->end()
+	->end()
+	;
+	
+	return $node;
+    }
     
     public function addAppNode()
     {

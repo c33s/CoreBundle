@@ -39,6 +39,9 @@
                     <script src="{{ asset('components/jquery/jquery.min.js') }}"></script>
                 {% endif %}
             {% endblock %}
+            {% block google_analytics %}
+                {% include 'c33sCoreBundle::google-analytics.html.twig' %}
+            {% endblock %}
         {% endblock %}
     </head>
     <body>
