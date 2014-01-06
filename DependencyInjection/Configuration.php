@@ -58,6 +58,11 @@ class Configuration implements ConfigurationInterface
 			->scalarNode('domain')->defaultNull()->end()
 		    ->end()
 		->end()
+		->arrayNode('webmaster_tools')
+		    ->children()
+			->scalarNode('verify')->defaultNull()->end()
+		    ->end()
+		->end()
 	    ->end()
 	->end()
 	;

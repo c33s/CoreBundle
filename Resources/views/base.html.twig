@@ -11,6 +11,9 @@
             <meta name="viewport" content="{% block meta_viewports %}width=device-width, initial-scale=1.0{% endblock %}" />
             <meta name="keywords" content="{% block meta_keywords %}{{ c33s_core_config.page.keywords|join(', ') }}{% endblock %}" />
             {% block meta_extra %}{% endblock %}
+            {% block google_webmaster_tools %}
+                {% include 'c33sCoreBundle::google-webmaster-tools.html.twig' %}
+            {% endblock %}
             {% block stylesheets %}
                 {% stylesheets filter='cssrewrite,lessphp' output='generated/css/corebundle.css' combine=true
                     '@c33sCoreBundle/Resources/non-public/less/corebundlemain.less'
