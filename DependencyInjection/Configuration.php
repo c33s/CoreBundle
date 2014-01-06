@@ -55,6 +55,7 @@ class Configuration implements ConfigurationInterface
 			->booleanNode('enabled')->defaultFalse()->end()
 			->scalarNode('id')->defaultNull()->end()
 			->booleanNode('multi_domain')->defaultFalse()->end()
+			->booleanNode('enable_GDN_impression_reporting')->defaultFalse()->end()
 			->scalarNode('domain')->defaultNull()->end()
 		    ->end()
 		->end()
