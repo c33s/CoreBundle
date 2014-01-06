@@ -54,6 +54,8 @@ class Configuration implements ConfigurationInterface
 		    ->children()
 			->booleanNode('enabled')->defaultFalse()->end()
 			->scalarNode('id')->defaultNull()->end()
+			->booleanNode('multi_domain')->defaultFalse()->end()
+			->scalarNode('domain')->defaultNull()->end()
 		    ->end()
 		->end()
 	    ->end()

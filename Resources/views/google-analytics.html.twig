@@ -4,6 +4,8 @@
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '{{ c33s_core_config.google.tracking.id }}']);
+  {% if c33s_core_config.google.tracking.domain %}_gaq.push(['_setDomainName', '{{ c33s_core_config.google.tracking.domain }}']);{% endif %}
+  {% if c33s_core_config.google.tracking.multi_domain == true %}_gaq.push(['_setAllowLinker', true]);{% endif %}
   _gaq.push(['_trackPageview']);
 
   (function() {
