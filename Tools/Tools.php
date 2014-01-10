@@ -35,4 +35,18 @@ class Tools
 
         return $bytes;
     } 
+    
+    public function removeLineFromFile($file,$stringToRemove)
+    {
+	$lines = file($file);
+	
+	for($i=0;$i<count($lines);$i++)
+	{
+	    if (strstr($lines[$i],$stringToRemove))
+	    {
+		unset($lines[$i]);
+	    }
+	}
+	file_put_contents($file, $lines);
+    }
 }

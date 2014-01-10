@@ -15,9 +15,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 //use Symfony\Component\Process\Process;
 
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Exception\IOException;
+//use Symfony\Component\Filesystem\Exception\IOException;
 
 use Symfony\Component\Finder\Finder;
+use c33s\CoreBundle\Tools\Tools;
 
 class InitSymfonyCommand extends ContainerAwareCommand
 {
@@ -43,26 +44,26 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$this->removeAcmeBundle();
     }
     
-    protected function removeLineFromFile($file,$stringToRemove)
-    {
-	$lines = file($file);
-	
-	for($i=0;$i<count($lines);$i++)
-	{
-	    if (strstr($lines[$i],$stringToRemove))
-	    {
-		unset($lines[$i]);
-	    }
-	}
-	file_put_contents($file, $lines);
-    }
+//    protected function removeLineFromFile($file,$stringToRemove)
+//    {
+//	$lines = file($file);
+//	
+//	for($i=0;$i<count($lines);$i++)
+//	{
+//	    if (strstr($lines[$i],$stringToRemove))
+//	    {
+//		unset($lines[$i]);
+//	    }
+//	}
+//	file_put_contents($file, $lines);
+//    }
     
     protected function removeAcmeBundle()
     {
 	$bundleDefinitionToRemove = '$bundles[] = new Acme\DemoBundle\AcmeDemoBundle();';
 	$appKernelFile = $this->getProjectRootDirectory().'/app/AppKernel.php';
 	
-	$this->removeLineFromFile($appKernelFile,$bundleDefinitionToRemove);
+	Tools::removeLineFromFile($appKernelFile,$bundleDefinitionToRemove);
     }
     
     protected function copyData($overwrite = false)
