@@ -13,17 +13,16 @@
 function includeIfExists($file)
 {
     if (file_exists($file)) 
-{
+    {
         return include $file;
     }
 }
-var_dump(realpath(__DIR__.'/../../../../../../vendor/autoload.php'));
-/*
 
 if 
 (
     (!$loader = includeIfExists(__DIR__.'/../vendor/autoload.php')) 
 && (!$loader = includeIfExists(__DIR__.'/vendor/autoload.php')) 
+&& (!$loader = includeIfExists(__DIR__.'/../../../../../autoload.php'))
 && (!$loader = includeIfExists(__DIR__.'/../../autoload.php'))
 && (!$loader = includeIfExists(__DIR__.'/../../../../autoload.php'))
 ) 
@@ -32,7 +31,7 @@ if
         'curl -sS https://getcomposer.org/installer | php'.PHP_EOL.
         'php composer.phar install'.PHP_EOL);
 }
-*/
+
 use Symfony\Component\Console\Application;
 use c33s\CoreBundle\Command\InitSymfonyCommand;
 
