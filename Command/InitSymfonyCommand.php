@@ -42,6 +42,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$output->writeln('<info>c33s:</info>');
 	$this->copyData($input->getOption('force'));
 	$this->removeAcmeBundle();
+	$this->addCoreBundle();
     }
     
 //    protected function removeLineFromFile($file,$stringToRemove)
@@ -58,6 +59,18 @@ class InitSymfonyCommand extends ContainerAwareCommand
 //	file_put_contents($file, $lines);
 //    }
     
+    protected function addCoreBundle()
+    {
+	$bundleDefinitionToAdd = "\nnew c33s\CoreBundle\c33sCoreBundle(),";
+	$stringAfterToInsert = 'new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),';
+	$appKernelFile = $this->getAppKernelPath();
+	Tools::addLineToFile($appKernelFile,$bundleDefinitionToAdd,$stringAfterToInsert);
+    }
+    
+    protected function getAppKernelPath()
+    {
+	return $this->getProjectRootDirectory().'/app/AppKernel.php';
+    }
     protected function removeAcmeBundle()
     {
 	$bundleDefinitionToRemove = '$bundles[] = new Acme\DemoBundle\AcmeDemoBundle();';

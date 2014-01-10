@@ -49,4 +49,49 @@ class Tools
 	}
 	file_put_contents($file, $lines);
     }
+    public static function addLineToFile($file,$stringToAdd,$stringAfterToInsert=false)
+    {
+	$lines = file($file);
+	
+	if (!Tools::arrayLineHasString($lines, $stringToAdd))
+	{
+	    if ($stringAfterToInsert !== false)
+	    {
+		for($i=0;$i<count($lines);$i++)
+		{
+		    if (strstr($lines[$i],$stringAfterToInsert))
+		    {
+			$lines = Tools::insertBetweenArray($stringToAdd,$i+1,$lines);
+			break;
+		    }
+		}
+	    }
+	    else
+	    {
+		$lines[]=$stringToAdd;
+	    }
+	    file_put_contents($file, $lines);
+	}
+
+    }
+    
+    public static function arrayLineHasString($array,$string)
+    {
+	foreach ($array as $line)
+	{
+	    if (strstr($line,$string))
+	    {
+		return true;
+	    }
+	}
+	
+	return false;
+    }
+
+
+    public static function insertBetweenArray($element,$position,$array)
+    {
+	array_splice($array, $position, 0, $element);
+	return $array;
+    }
 }
