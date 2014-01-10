@@ -1,0 +1,3 @@
+zenstruck_slugify:
+    twig: true #enable twig filter
+    mode: array #iconv or array mode
