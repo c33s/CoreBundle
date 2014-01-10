@@ -68,7 +68,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
     
     protected function copyData($overwrite = false)
     {
-	var_dump($overwrite);
+	//var_dump($overwrite);
 	$finder = new Finder();
 	$fs = new Filesystem();
 	
