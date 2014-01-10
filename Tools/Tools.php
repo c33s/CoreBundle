@@ -36,7 +36,7 @@ class Tools
         return $bytes;
     } 
     
-    public function removeLineFromFile($file,$stringToRemove)
+    public static function removeLineFromFile($file,$stringToRemove)
     {
 	$lines = file($file);
 	
