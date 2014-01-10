@@ -44,6 +44,10 @@ require:
     #mopa/bootstrap-bundle:                                         '2.1.*@dev'
     #modernizr/modernizr:                                           '2.5.3'
     
+    ### admin generator #############################################################
+    cedriclombardot/admingenerator-generator-bundle: 'dev-master#6dd565dacb6e668b9bcfa216a2acca356949375c'
+    avocode/form-extensions-bundle:                  'dev-master#cd83e011f7fcc979cb5714c33423845c7ce36f0a'
+    white-october/pagerfanta-bundle:                 'dev-master#606467f9e9f9e80975128db589eec2f9d11139c2'
     ### javascript #############################################################
     components/jquery:                                                '1.9.*'
     components/jqueryui:                                              '1.10.*'
