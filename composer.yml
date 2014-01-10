@@ -34,6 +34,7 @@ require:
     components/font-awesome:                                        '3.2.*'
     fkr/cssurlrewrite-bundle:                                       '1.0.*'
     twitter/bootstrap:                                              '2.3.*'
+    afarkas/html5shiv:                                              '3.7.*'
     # additional twitter bootstrap for v3
     twbs/bootstrap:                                  '3.0.0'
 

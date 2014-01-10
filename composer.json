@@ -26,6 +26,9 @@
             "url": "https://github.com/c33s/AssetManagementBundle.git"
         }
     ],
+    "bin": [
+        "bin/init-symfony"
+    ],
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.3.3",
@@ -36,6 +39,7 @@
         "components/font-awesome": "3.2.*",
         "fkr/cssurlrewrite-bundle": "1.0.*",
         "twitter/bootstrap": "2.3.*",
+        "afarkas/html5shiv": "3.7.*",
         "twbs/bootstrap": "3.0.0",
         "leafo/lessphp": "0.4.*",
         "ptachoire/cssembed": "1.0.*",
