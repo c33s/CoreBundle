@@ -1,2 +1,67 @@
-## YAML Template.
----
+imports:
+    - { resource: config/_importer.yml }
+    
+c33s_core:
+    bundles:
+        - c33s\StaticPageContentBundle\c33sStaticPageContentBundle
+        - Propel\PropelBundle\PropelBundle
+        - FOS\UserBundle\FOSUserBundle
+        #- Gregwar\ImageBundle\GregwarImageBundle
+        - Liip\ImagineBundle\LiipImagineBundle
+        - Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle
+        - Smoya\Bundle\AssetManagementBundle\SmoyaAssetManagementBundle
+        - Liip\MonitorBundle\LiipMonitorBundle
+        - Knp\Bundle\MarkdownBundle\KnpMarkdownBundle
+        - Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle
+        - Knp\Bundle\MenuBundle\KnpMenuBundle
+        - WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle
+        - Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle
+        #- Liip\HyphenatorBundle\LiipHyphenatorBundle
+        - SunCat\MobileDetectBundle\MobileDetectBundle
+        - Zenstruck\SlugifyBundle\ZenstruckSlugifyBundle
+        #- c33s\Bundle\OpcacheBundle\c33sOpcacheBundle
+        #- c33s\Bundle\CrazyEggBundle\c33sCrazyEggBundle
+
+    twig:
+        app:
+            debug: true
+            use_cdn: false
+            name:       "long name"
+            name_short: "short name"
+        google:
+            tracking:
+                id:      %ga_tracking_id%
+                enabled: %ga_tracking_enabled%
+                multi_domain: true
+                domain: %master_domain%
+                enable_GDN_impression_reporting: true
+        page:
+            title: ""
+            author: ""
+            keywords:
+                - my keyword
+            description: |
+                my description
+        contact:
+            company:   
+            street:    
+            mobile: 
+            phone:     
+            fax:       
+            mail:      
+            www:       http://
+            zip:       
+            city:      
+            country:   
+            title:     
+            firstname: 
+            lastname:  
+            map:
+#                lat: 
+#                long: 
+#                marker: 
+#                    image: http://%master_domain%/media/cache/logotop/media/images/logo.png
+#                    size: [32,32]
+#                    shadow:
+#                        image: http://%master_domain%/media/cache/logotop/media/images/logo-alt.png
+#                        size: [32,32]
