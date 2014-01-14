@@ -1,18 +1,17 @@
 imports:    
-#    - { resource: '@c33sCoreBundle/Resources/config/config.yml' }
-    - { resource: admingenerator_generator.yml }
-    - { resource: assetic.yml }
-    - { resource: propel.yml }
-    - { resource: fos_user.yml }
-    - { resource: doctrine.yml }
-    - { resource: liip_imagine.yml }
-    - { resource: swiftmailer.yml }
-    - { resource: fkr_css_url_rewrite.yml }
-    - { resource: liip_monitor.yml }
-    - { resource: avocode_form_extensions.yml }
-    - { resource: knp_markdown.yml }
-#    - { resource: liip_hyphenator.yml }
-    - { resource: mobile_detect.yml }
-    - { resource: zenstruck_slugify.yml }
-#    - { resource: c33s_crazy_egg.yml }
     - { resource: c33s_core.yml }
+    - { resource: assetic.yml }
+    - { resource: liip_imagine.yml }
+#    - { resource: admingenerator_generator.yml }
+#    - { resource: propel.yml }
+#    - { resource: fos_user.yml }
+#    - { resource: doctrine.yml }
+#    - { resource: swiftmailer.yml }
+#    - { resource: fkr_css_url_rewrite.yml }
+#    - { resource: liip_monitor.yml }
+#    - { resource: avocode_form_extensions.yml }
+#    - { resource: knp_markdown.yml }
+#    - { resource: liip_hyphenator.yml }
+#    - { resource: mobile_detect.yml }
+#    - { resource: zenstruck_slugify.yml }
+#    - { resource: c33s_crazy_egg.yml }
