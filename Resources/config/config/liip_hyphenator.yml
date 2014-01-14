@@ -1,0 +1,11 @@
+liip_hyphenator:
+    language: de
+    hyphen: '&shy;'
+    #left_min: 2
+    #right_min: 2
+    #word_min: 6
+    #quality: highest # either the quality name, either the value of the constant
+    #no_hyphenate_string: ''
+    #custom_hyphen: --
+    #tokenizers: ['liip_hyphenator.tokenizer.whitespace', 'liip_hyphenator.tokenizer.puncuation']
+    #filters: ['liip_hyphenator.filter.simple']

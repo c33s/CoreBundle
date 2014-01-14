@@ -1,0 +1,10 @@
+c33s_crazy_egg:
+    api:
+        key:    %crazy_egg_api_key%
+        secret: %crazy_egg_api_secret%
+    cache:
+        enabled: false
+        ttl:    3600
+        path:  app/cache/crazyegg
+    templates:
+        #parent: MyBundle::mybase.html.twig
