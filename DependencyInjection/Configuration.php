@@ -26,6 +26,10 @@ class Configuration implements ConfigurationInterface
 	$rootNode
 	    ->addDefaultsIfNotSet()		
 	    ->children()
+		->arrayNode('bundles')
+                    ->defaultValue(array('none'))
+                    ->prototype('scalar')->end()
+		->end()
 		->arrayNode('twig')
 		    ->addDefaultsIfNotSet()
 		    ->children()
