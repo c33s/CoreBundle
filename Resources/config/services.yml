@@ -8,3 +8,5 @@ services:
             - %c33s_core.config.variables%
         tags:
             - { name: twig.extension }
+    c33s_core.inflector:
+        class: c33s\CoreBundle\Util\Inflector
