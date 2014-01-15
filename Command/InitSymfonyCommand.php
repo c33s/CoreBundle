@@ -81,7 +81,16 @@ class InitSymfonyCommand extends ContainerAwareCommand
     
     protected function copyData($overwrite = false)
     {
-	//var_dump($overwrite);
+	
+	$fs = new Filesystem();
+	$fs->copy(getCoreBundleTemplatesDirectory().'/.gitignore', $this->getProjectRootDirectory().'/.gitignore', $overwrite);
+	$fs->copy(getCoreBundleTemplatesDirectory().'/parameters.yml.dist', $this->getProjectRootDirectory().'/app/config/parameters.yml.dist', $overwrite);
+	
+	$this->copyFramework($overwrite);
+    }
+    
+    protected function copyFramework($overwrite = false)
+    {
 	$finder = new Finder();
 	$fs = new Filesystem();
 	
@@ -92,6 +101,8 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	    ->ignoreVCS(false)
 	    ->exclude('Acme')
 	    ->notName('.travis.yml')
+	    ->notName('parameters.yml.dist')
+	    ->notName('.gitignore')
 	    ->notName('config.php')
 	    ->notName('UPGRADE*.md')
 	    ->notName('LICENSE')
@@ -101,8 +112,9 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	foreach ($finder as $file) 
 	{
 	    $fs->copy($file->getRealpath(), $this->getProjectRootDirectory().'/'.$file->getRelativePathname(), $overwrite);
-	}
-    }
+	}	
+    }    
+	
     
     protected function getProjectRootDirectory()
     {
@@ -120,6 +132,26 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	if (!realpath($path))
 	{
 	    throw new Exception('Symfony Framwork Standard Edition not found');
+	}
+	return $path;
+    }
+    
+    
+    protected function getCoreBundleTemplatesDirectory()
+    {
+	$path = $this->getCoreBundleDirectory().'/Resources/templates';
+	if (!realpath($path))
+	{
+	    throw new Exception('c33sCoreBundle Templates not found');
+	}
+	return $path;
+    }
+    protected function getCoreBundleDirectory()
+    {
+	$path = $this->getVendorDirectory().'/c33s/core-bundle/c33s/CoreBundle';
+	if (!realpath($path))
+	{
+	    throw new Exception('c33sCoreBundle not found');
 	}
 	return $path;
     }
