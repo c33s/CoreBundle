@@ -16,8 +16,6 @@ use Symfony\Component\Process\Process;
 
 use Symfony\Component\Filesystem\Filesystem;
 //use Symfony\Component\Filesystem\Exception\IOException;
-use Symfony\Component\Yaml\Parser;
-use Symfony\Component\Yaml\Exception\ParseException;
 
 class RebuildCommand extends ContainerAwareCommand
 {
@@ -25,12 +23,13 @@ class RebuildCommand extends ContainerAwareCommand
     protected $commandSets = array   
     (
 
-	array('description' => 'cache:clear', 'command' => 'cache:clear'),
+	array('description' => 'cache:clear', 'command' => 'php app/console cache:clear'),
+	array('description' => 'cache:clear', 'command' => 'php app/console cache:clear --env=prod'),
 	array('description' => 'propel:build', 'command' => 'php app/console propel:build --insert-sql'),
 	array('description' => 'propel:fixtures:load', 'command' => 'php app/console propel:fixtures:load'),
 	//array('description' => 'propel:graphviz:generate', 'command' => 'php ./app/console propel:graphviz:generate'),
 	//array('description' => '', 'command' => 'dot -Tpdf ./app/propel/graph/default.schema.dot -o ./schema.pdf'),
-	array('description' => 'assets:install', 'command' => 'assets:install'),
+	array('description' => 'assets:install', 'command' => 'php app/console assets:install'),
 
 	
     );
@@ -56,11 +55,11 @@ class RebuildCommand extends ContainerAwareCommand
 		$options = array('override' => $overwrite);
 		$fs->mkdir('app/data');
 		
-	$this->createFosUsers();
-	$this->runCommandSets();
+	$this->addCreateFosUsersToCommandSet();
+	$this->runCommandSets($input,$output);
     }
     
-    protected function runCommandSets()
+    protected function runCommandSets(InputInterface $input, OutputInterface $output)
     {
 	foreach ($this->commandSets as $commandSet)
 	{
@@ -80,10 +79,10 @@ class RebuildCommand extends ContainerAwareCommand
 	}
     }
     
-    protected function createFosUsers()
+    protected function addCreateFosUsersToCommandSet()
     {
 	$users = $this->getContainer()->getParameter('fos_users');
-	foreach ($this->users['users'] as $key => $user)
+	foreach ($users as $key => $user)
 	{
 		$this->commandSets[] = array('description' => 'fos:user:create', 'command' => "php app/console fos:user:create ${user['name']} ${user['email']} ${user['password']}");
 		foreach ($user['roles'] as $role)
