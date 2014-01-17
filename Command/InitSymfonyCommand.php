@@ -2,8 +2,6 @@
 
 namespace c33s\CoreBundle\Command;
 
-
-//
 //use Symfony\Component\Console\Command\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 //use Symfony\Component\Console\Input\InputArgument;
@@ -23,10 +21,31 @@ use c33s\CoreBundle\Tools\Tools;
 class InitSymfonyCommand extends ContainerAwareCommand
 {
 
+    protected function isFramework()
+    {
+        //$container = $this->getContainer();
+        $app = $this->getApplication();
+        
+        if (method_exists($app,'getKernel'))
+        {
+            return true;
+        }
+        return false;
+        
+        //method_exists($this,'getContainer')
+    }
+    
     protected function configure()
     {
+        if ($this->isFramework())
+        {
+             $this->setName('c33s:init-symfony');
+        }
+        else
+        {
+            $this->setName('run');
+        }
         $this
-            ->setName('c33s:init-symfony')
             ->setDescription('the task will init the project by coping the template config files (config/assettic.yml, propel.yml,...) to the fresh project. do not call this command if you have allready set up your project.')
 	    ->addOption(
                'force',
@@ -44,20 +63,6 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$this->removeAcmeBundle();
 	$this->addCoreBundle();
     }
-    
-//    protected function removeLineFromFile($file,$stringToRemove)
-//    {
-//	$lines = file($file);
-//	
-//	for($i=0;$i<count($lines);$i++)
-//	{
-//	    if (strstr($lines[$i],$stringToRemove))
-//	    {
-//		unset($lines[$i]);
-//	    }
-//	}
-//	file_put_contents($file, $lines);
-//    }
     
     protected function addCoreBundle()
     {
