@@ -37,7 +37,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
             $this->setName('run');
         }
         $this
-            ->setDescription('the task will init the project from the sf standard distribution in the vendor dir.')
+            ->setDescription('Inits the project from the sf standard distribution in the vendor dir.')
 	    ->addOption(
                'force',
                null,
