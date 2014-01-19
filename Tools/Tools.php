@@ -50,6 +50,31 @@ class Tools
 	file_put_contents($file, $lines);
     }
     
+    public static function removeLines($file, $startLinePattern = false, $endLinePattern = false)
+    {
+         if (is_array($file))
+        {
+            $lines = $file;
+        }
+        else
+        {
+            $lines = file($file);
+        }
+        
+        
+        
+        
+        
+        
+        
+        if (!is_array($file))
+        {
+            file_put_contents($file, $lines);
+        }
+        
+        return $lines;  
+    }
+    
     /**
      * 
      * @param type $file
@@ -58,7 +83,7 @@ class Tools
      * @param type $includeStart
      * @param type $includeEnd
      */
-    public static function cropFileByLine($file, $startLinePattern = false, $endLinePattern = false, $includeStart = false, $includeEnd = false)
+    public static function cropFileByLine($file, $startLinePattern = false, $endLinePattern = false, $includeStart = false, $includeEnd = false, $invert = false)
     {
         if (is_array($file))
         {
@@ -130,7 +155,14 @@ class Tools
 //                $length = abs($length);
 //            }
             
-            $lines = array_slice($lines, $started, $length);
+            if ($invert === false)
+            {
+                $lines = array_slice($lines, $started, $length);
+            }
+            else 
+            {
+                array_splice($lines, $started, $length);
+            }
             
             //var_dump($lines, $started,$ended, $length);
             
