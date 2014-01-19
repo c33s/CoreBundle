@@ -5,7 +5,7 @@ services:
     c33s_core.twig.template_extension:
         class: c33s\CoreBundle\Twig\ConfigVariablesExtension
         arguments:
-            - %c33s_core.config.variables%
+            - %c33s_core.config.twig_variables%
         tags:
             - { name: twig.extension }
     c33s_core.inflector:
