@@ -9,6 +9,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler;
+
 //use Symfony\Component\Console\Input\ArrayInput;
 //use Symfony\Component\Process\Process;
 
@@ -20,20 +22,9 @@ use c33s\CoreBundle\Tools\Tools;
 
 class InitSymfonyCommand extends ContainerAwareCommand
 {
-
-    protected function isFramework()
-    {
-        //$container = $this->getContainer();
-        $app = $this->getApplication();
-        
-        if (method_exists($app,'getKernel'))
-        {
-            return true;
-        }
-        return false;
-        
-        //method_exists($this,'getContainer')
-    }
+    protected $input;
+    protected $output;
+    
     
     protected function configure()
     {
@@ -46,7 +37,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
             $this->setName('run');
         }
         $this
-            ->setDescription('the task will init the project by coping the template config files (config/assettic.yml, propel.yml,...) to the fresh project. do not call this command if you have allready set up your project.')
+            ->setDescription('the task will init the project from the sf standard distribution in the vendor dir.')
 	    ->addOption(
                'force',
                null,
@@ -58,23 +49,47 @@ class InitSymfonyCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-	$output->writeln('<info>c33s:</info>');
+	$output->writeln('<info>initializing symfony</info>');
+        $this->input = $input;
+        $this->output = $output;
+        
 	$this->copyData($input->getOption('force'));
 	$this->removeAcmeBundle();
 	$this->addCoreBundle();
+        $this->addConfigYml();
+        $this->cleanConfig();
+        ScriptHandler::doBuildBootstrap($this->getAppDirectory());
     }
     
     protected function addCoreBundle()
     {
-	$bundleDefinitionToAdd = "\n            new c33s\CoreBundle\c33sCoreBundle(),\n";
+        $checkString = "new c33s\CoreBundle\c33sCoreBundle(),";
+	$bundleDefinitionToAdd = "\n            ### Core Bundle ###\n            new c33s\CoreBundle\c33sCoreBundle(),\n            ### End Core Bundle ###\n\n";
 	$stringAfterToInsert = 'new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),';
 	$appKernelFile = $this->getAppKernelPath();
-	Tools::addLineToFile($appKernelFile,$bundleDefinitionToAdd,$stringAfterToInsert);
+	Tools::addLineToFile($appKernelFile,$bundleDefinitionToAdd,$stringAfterToInsert,$checkString);
+        
+        $this->output->writeln('added CoreBundle to AppKernel');
     }
     
-    protected function getAppKernelPath()
+    protected function addConfigYml()
     {
-	return $this->getProjectRootDirectory().'/app/AppKernel.php';
+        $configFile = $this->getConfigYmlPath();
+        $configToAdd = "    - { resource: @c33sCoreBundle/Resources/config/config.yml }\n";
+        $stringAfterToInsert = "- { resource: security.yml }";
+        
+        Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
+        
+        $this->output->writeln('added CoreBundle config.yml to imports');
+    }
+
+
+    protected function cleanConfig()
+    {
+        $configFile = $this->getConfigYmlPath();
+        
+        Tools::cropFileByLine($configFile, true, "assetic:");
+        $this->output->writeln('config.yml cleaned');
     }
     protected function removeAcmeBundle()
     {
@@ -82,14 +97,18 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$appKernelFile = $this->getProjectRootDirectory().'/app/AppKernel.php';
 	
 	Tools::removeLineFromFile($appKernelFile,$bundleDefinitionToRemove);
+        
+        $this->output->writeln('removed AcmeBundle');
     }
     
     protected function copyData($overwrite = false)
     {
 	
 	$fs = new Filesystem();
-	$fs->copy(getCoreBundleTemplatesDirectory().'/.gitignore', $this->getProjectRootDirectory().'/.gitignore', $overwrite);
-	$fs->copy(getCoreBundleTemplatesDirectory().'/parameters.yml.dist', $this->getProjectRootDirectory().'/app/config/parameters.yml.dist', $overwrite);
+	$fs->copy($this->getCoreBundleTemplatesDirectory().'/.gitignore', $this->getProjectRootDirectory().'/.gitignore', $overwrite);
+	$this->output->writeln('copied .gitignore');
+        $fs->copy($this->getCoreBundleTemplatesDirectory().'/parameters.yml.dist', $this->getProjectRootDirectory().'/app/config/parameters.yml.dist', $overwrite);
+	$this->output->writeln('copied parameters.yml.dist');
 	
 	$this->copyFramework($overwrite);
     }
@@ -117,10 +136,23 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	foreach ($finder as $file) 
 	{
 	    $fs->copy($file->getRealpath(), $this->getProjectRootDirectory().'/'.$file->getRelativePathname(), $overwrite);
-	}	
+	}
+        $this->output->writeln('copied Framework Files');
     }    
 	
-    
+    protected function isFramework()
+    {
+        //$container = $this->getContainer();
+        $app = $this->getApplication();
+        
+        if (method_exists($app,'getKernel'))
+        {
+            return true;
+        }
+        return false;
+        
+        //method_exists($this,'getContainer')
+    }      
     protected function getProjectRootDirectory()
     {
 	return $this->getVendorDirectory().'/..';
@@ -141,6 +173,18 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	return $path;
     }
     
+    protected function getAppKernelPath()
+    {
+	return $this->getAppDirectory().'/AppKernel.php';
+    }
+    protected function getAppDirectory()
+    {
+	return $this->getProjectRootDirectory().'/app';
+    }
+    protected function getConfigYmlPath()
+    {
+	return $this->getAppDirectory().'/config/config.yml';
+    }
     
     protected function getCoreBundleTemplatesDirectory()
     {
