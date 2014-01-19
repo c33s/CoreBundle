@@ -64,7 +64,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
     protected function addCoreBundle()
     {
         $checkString = "new c33s\CoreBundle\c33sCoreBundle(),";
-	$bundleDefinitionToAdd = "\n            ### Core Bundle ###\n            new c33s\CoreBundle\c33sCoreBundle(),\n            ### End Core Bundle ###\n\n";
+	$bundleDefinitionToAdd = "\n            ### Core Bundle ###\n            new c33s\CoreBundle\c33sCoreBundle(),\n            # Sub Bundles ###\n            ### End Core Bundle ###\n\n";
 	$stringAfterToInsert = 'new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),';
 	$appKernelFile = $this->getAppKernelPath();
 	Tools::addLineToFile($appKernelFile,$bundleDefinitionToAdd,$stringAfterToInsert,$checkString);
