@@ -45,6 +45,13 @@ class InitConfigCommand extends ContainerAwareCommand
         $this->output = $output;
 	//$this->copyConfigs();
 	$this->addBundles();
+        
+        /*
+         * import config, appkernel
+         * 
+         * add all bundles to appkernel
+         * create the _importer.yml for  
+         */ 
         //var_dump();
     }
     
@@ -62,6 +69,8 @@ class InitConfigCommand extends ContainerAwareCommand
     protected function addBundles()
     {
         $bundles = $this->getContainer()->parameters['c33s_core.config.bundles'];
+        
+
         foreach ($bundles as $bundle)
         {
             echo $bundle."\n";
