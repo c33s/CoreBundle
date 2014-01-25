@@ -4,7 +4,7 @@ CoreBundle
 everything to quickstart a webpage
 
 
-[![Build Status](https://secure.travis-ci.org/c33s/CoreBundle.png?branch=master)](http://travis-ci.org/c33s/CoreBundle) [![Latest Stable Version](https://poser.pugx.org/c33s/core-bundle/v/stable.png)](https://packagist.org/packages/c33s/core-bundle)[![Latest Unstable Version](https://poser.pugx.org/c33s/core-bundle/v/unstable.png)](https://packagist.org/packages/c33s/core-bundle)[![License](https://poser.pugx.org/c33s/core-bundle/license.png)](https://packagist.org/packages/c33s/core-bundle)
+[![Build Status](https://secure.travis-ci.org/c33s/CoreBundle.png?branch=master)](http://travis-ci.org/c33s/CoreBundle) [![Latest Stable Version](https://poser.pugx.org/c33s/core-bundle/v/stable.png)](https://packagist.org/packages/c33s/core-bundle) [![Latest Unstable Version](https://poser.pugx.org/c33s/core-bundle/v/unstable.png)](https://packagist.org/packages/c33s/core-bundle) [![License](https://poser.pugx.org/c33s/core-bundle/license.png)](https://packagist.org/packages/c33s/core-bundle)
 
 
 Because json is not a really handy format to read and it also lacks in commenting support, this Bundle supports the composer.yml format. [composer-yaml.phar](https://github.com/igorw/composer-yaml) is used, to convert from yml to json. In this manual all composer code snippets are in yml format. Create a script file, which call the yml to json converter before running composer.
