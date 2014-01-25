@@ -161,7 +161,9 @@ class Tools
             }
             else 
             {
-                array_splice($lines, $started, $length);
+		var_dump($lines,$started, $length);
+                $removed = array_splice($lines, $started, $length);
+		var_dump($removed);
             }
             
             //var_dump($lines, $started,$ended, $length);
