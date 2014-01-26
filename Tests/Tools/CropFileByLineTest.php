@@ -288,26 +288,29 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
     
-//    public function testInvert()
-//    {
-//        $data = $this->getData();
-//        
-//        $expected = array(
-//            'My Line Number One',
-//            'My Line Number Two',
-//            'My Line Number Three',
-//            'My Line Number Four',
-//            //'My Line Number Five',
-//            //'My Line Number Six',
-//            //'My Line Number Seven',
-//            //'My Line Number Eight',
-//            'My Line Number Nine',
-//            'My Line Number Ten',
-//        );
-//        
-//        $result = Tools::cropFileByLine($data, "Five", "Eight", false, false,true);
-//        $expected = $data;
-//        
-//        $this->assertEquals($expected, $result);
-//    }
+    public function testInvert()
+    {
+        $data = $this->getData();
+        
+        $expected = array(
+            'My Line Number One',
+            'My Line Number Two',
+            'My Line Number Three',
+            'My Line Number Four',
+            'My Line Number Five',
+            //'My Line Number Six',
+            //'My Line Number Seven',
+            'My Line Number Eight',
+            'My Line Number Nine',
+            'My Line Number Ten',
+        );
+	
+        
+        $result = Tools::cropFileByLine($data, "Five", "Eight", false, false,true);
+        //$expected = ;
+	//$result = $data;
+	//var_dump($expected,$data);
+        
+        $this->assertEquals($expected, $result);
+    }
 }

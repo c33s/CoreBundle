@@ -117,11 +117,11 @@ class Tools
                 {
                    $started = $i;
                    //var_dump("$i start");
-                    if ($includeStart === false)
-                    {
-                        //var_dump("$i start +1");
-                        $started = $started + 1;
-                    }
+                   if ($includeStart === false)
+                   {
+                       //var_dump("$i start +1");
+                       $started = $started + 1;
+                   }
                     
                     
                 }
@@ -161,9 +161,10 @@ class Tools
             }
             else 
             {
-		var_dump($lines,$started, $length);
+		//var_dump("### LINES",$lines,"### STARTED",$started, "### LENGTH",$length);
                 $removed = array_splice($lines, $started, $length);
-		var_dump($removed);
+		//var_dump($removed, $lines);
+		$lines = array_values($lines);
             }
             
             //var_dump($lines, $started,$ended, $length);
