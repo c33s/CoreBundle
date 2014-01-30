@@ -36,6 +36,7 @@ class InitConfigCommand extends ContainerAwareCommand
         $this->input = $input;
         $this->output = $output;
 	$this->rebuildBundles();
+	$this->createPropelDataDirectory();
     }
     
     protected function addImporterToConfig()
@@ -69,14 +70,12 @@ class InitConfigCommand extends ContainerAwareCommand
 	$propelDataDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
 	
 	$fs = new Filesystem();
-	$fs->mkdir($coreBundleConfigDir);
+	$fs->mkdir($propelDataDir);
     }
 
 
     protected function rebuildBaseImporter($bundles)
     {
-	$kernelDir = $this->getContainer()->get('kernel')->getRootDir();
-	
 	$coreBundleConfigDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
 	
 	$importerLines = array();

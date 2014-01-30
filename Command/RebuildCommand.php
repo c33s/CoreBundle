@@ -45,10 +45,8 @@ class RebuildCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-		$fs = new Filesystem();
-		$overwrite = $input->getOption('force');
-		$options = array('override' => $overwrite);
-		$fs->mkdir('app/data');
+	$fs = new Filesystem();
+	$fs->mkdir('app/data');
 		
 	$this->addCreateFosUsersToCommandSet();
 	$this->runCommandSets($input,$output);
