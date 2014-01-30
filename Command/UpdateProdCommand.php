@@ -4,16 +4,10 @@ namespace c33s\CoreBundle\Command;
 
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Process\Process;
 
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Exception\IOException;
 
 class UpdateProdCommand extends ContainerAwareCommand
 {
@@ -24,7 +18,6 @@ class UpdateProdCommand extends ContainerAwareCommand
 		array('description' => 'composer install', 'command' => 'composer.phar install'),
 		array('description' => 'cache clear prod', 'command' => 'php app/console c33s:clean'),
 		array('description' => 'chown', 'command' => 'www-data:www-data -R *'),
-		//array('description' => '', 'command' => ''),
     );
     protected function configure()
     {

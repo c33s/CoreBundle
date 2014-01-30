@@ -19,12 +19,7 @@ class CleanCommand extends ContainerAwareCommand
 {
     protected $commandSetsold = array   
     (
-	//array('command' => 'cache:clear', '--env' => 'prod'),
-	//array('command' => 'cache:clear', '--env' => 'dev'),
-	//array('command' => 'assets:install', 'arguments' => array()),
 	array('command' => 'assetic:dump', '--env' => 'prod'),
-	//'' => '',
-	//'' => '',
     );
     protected $commandSets = array   
     (
@@ -32,7 +27,6 @@ class CleanCommand extends ContainerAwareCommand
 	array('description' => 'cache clear dev', 'command' => 'php app/console cache:clear --env=dev'),
 	array('description' => 'assets install', 'command' => 'php app/console assets:install'),
 	array('description' => 'assetic dump', 'command' => 'php app/console assetic:dump --env=prod'),
-	//array('description' => '', 'command' => ''),
 	
 	
     );
@@ -49,13 +43,11 @@ class CleanCommand extends ContainerAwareCommand
 
 	$output->writeln('<info>c33s:clean</info>');
 	
-	//var_dump($sourcePath,$targetPath);
 	$fs = new Filesystem();
 	$output->writeln('deleting <info>web/generated</info> directory');
 	$fs->remove($this->getContainer()->getParameter('kernel.root_dir').'/../web/generated');
 	$output->writeln('deleting <info>web/bundles</info> directory');
 	$fs->remove($this->getContainer()->getParameter('kernel.root_dir').'/../web/bundles');
-	//$fs->remove($this->getContainer()->getParameter('kernel.root_dir').'/../web/bundles');
 
 	foreach ($this->commandSets as $commandSet) 
 	{
@@ -73,38 +65,5 @@ class CleanCommand extends ContainerAwareCommand
 		}
 	    });
 	}
-
-
-//	$command	 = $this->getApplication()->find('assetic:dump');
-//	$arguments = array(
-//	     'command' => 'assetic:dump',
-//	    '--process-isolation' => true,
-//	    '--shell' => true,
-//	    '--force' => true,
-//	    // 'no-debug'  => true,
-//	    // 'env'    => 'prod',
-//	 );
-//	$input		 = new ArrayInput($arguments);
-//	$returnCode	 = $command->run($input, $output);
-//	foreach ($this->commandSets as $commandSet)
-//	{
-//
-//	    if ($returnCode == 0)
-//	    {
-//
-//	    }
-//	}
-//	$command = $this->getApplication()->find('cache:clear');
-//
-//	    $arguments = array(
-//		'command' => 'cache:clear',
-//		//'name'    => 'Fabien',
-//		'--env'  => 'prod',
-//	    );
-//
-//	    $input = new ArrayInput($arguments);
-//	    $returnCode = $command->run($input, $output);
-
-
     }
 }

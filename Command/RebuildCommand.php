@@ -3,19 +3,14 @@
 namespace c33s\CoreBundle\Command;
 
 
-//
-//use Symfony\Component\Console\Command\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-//use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-//use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Process\Process;
 
 use Symfony\Component\Filesystem\Filesystem;
-//use Symfony\Component\Filesystem\Exception\IOException;
 
 class RebuildCommand extends ContainerAwareCommand
 {
@@ -27,8 +22,8 @@ class RebuildCommand extends ContainerAwareCommand
 	array('description' => 'cache:clear', 'command' => 'php app/console cache:clear --env=prod'),
 	array('description' => 'propel:build', 'command' => 'php app/console propel:build --insert-sql'),
 	array('description' => 'propel:fixtures:load', 'command' => 'php app/console propel:fixtures:load'),
-	//array('description' => 'propel:graphviz:generate', 'command' => 'php ./app/console propel:graphviz:generate'),
-	//array('description' => '', 'command' => 'dot -Tpdf ./app/propel/graph/default.schema.dot -o ./schema.pdf'),
+	//-- array('description' => 'propel:graphviz:generate', 'command' => 'php ./app/console propel:graphviz:generate'),
+	//-- array('description' => '', 'command' => 'dot -Tpdf ./app/propel/graph/default.schema.dot -o ./schema.pdf'),
 	array('description' => 'assets:install', 'command' => 'php app/console assets:install'),
 
 	

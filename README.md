@@ -59,3 +59,17 @@ update your project again.
 then you can call 
 
     php app/console  c33s:init-config
+
+
+## Short Quick Manual
+
+    create empty composer.json
+    create basic composer.yml 
+    commented out scripts part in composer.yml
+    json convert composer.yml
+    composer update
+    bin\init-symfony run
+    comment in scripts part in composer.yml
+    json convert
+    composer run-script post-update-cmd
+    php app/console c33s:init-config

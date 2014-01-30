@@ -69,7 +69,6 @@ class InitConfigCommand extends ContainerAwareCommand
 	$kernelDir = $this->getContainer()->get('kernel')->getRootDir();
 	
 	$coreBundleConfigDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
-	$appKernel = $kernelDir.'/AppKernel.php';
 	
 	$importerLines = array();
 	$importerLines[] = 'imports:';

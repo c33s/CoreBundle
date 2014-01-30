@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler;
+use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler as SensioScriptHandler;
 
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -52,7 +52,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$this->addCoreBundle();
         $this->addConfigYml();
         $this->cleanConfig();
-        ScriptHandler::doBuildBootstrap($this->getAppDirectory());
+        SensioScriptHandler::doBuildBootstrap($this->getAppDirectory());
     }
     
     protected function addCoreBundle()
