@@ -162,7 +162,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$path = $this->getVendorDirectory().'/symfony/framework-standard-edition';
 	if (!realpath($path))
 	{
-	    throw new Exception('Symfony Framwork Standard Edition not found');
+	    throw new \Exception('Symfony Framwork Standard Edition not found');
 	}
 	return $path;
     }

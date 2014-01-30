@@ -28,7 +28,7 @@ class MenuController extends Controller
 	$parameters['headerSeperator'] = $headerSeperator;
 
         $security = $this->get('security.context');
-        if ($security->isGranted('ROLE_ALLOWED_TO_SWITCH') or $security->isGranted('ROLE_PREVIOUS_ADMIN'))
+        if ($security->isGranted('ROLE_ALLOWED_TO_SWITCH') || $security->isGranted('ROLE_PREVIOUS_ADMIN'))
         {
             $parameters['users'] = UserQuery::create()->find();
 

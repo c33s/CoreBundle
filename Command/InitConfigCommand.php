@@ -2,20 +2,12 @@
 
 namespace c33s\CoreBundle\Command;
 
-
-//
-//use Symfony\Component\Console\Command\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-//use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-//use Symfony\Component\Console\Input\ArrayInput;
-//use Symfony\Component\Process\Process;
-
 use Symfony\Component\Filesystem\Filesystem;
-//use Symfony\Component\Filesystem\Exception\IOException;
 
 use c33s\CoreBundle\Tools\Tools;
 
@@ -43,16 +35,7 @@ class InitConfigCommand extends ContainerAwareCommand
 	$output->writeln('<info>c33s:init-config</info>');
         $this->input = $input;
         $this->output = $output;
-	//$this->copyConfigs();
 	$this->rebuildBundles();
-        
-        /*
-         * import config, appkernel
-         * 
-         * add all bundles to appkernel
-         * create the _importer.yml for  
-         */ 
-        //var_dump();
     }
     
     protected function addImporterToConfig()
@@ -70,9 +53,11 @@ class InitConfigCommand extends ContainerAwareCommand
     {
         $bundles = $this->getContainer()->parameters['c33s_core.config.bundles'];
 	$bundles = array_reverse($bundles);
+	$appKernel = $this->getContainer()->get('kernel')->getRootDir().'/AppKernel.php';
 	
-        $appKernel = $this->getContainer()->get('kernel')->getRootDir().'/AppKernel.php';
+	
 	$this->removeBundles($appKernel);
+	$this->cleanBaseImporter();
 	$this->rebuildBaseImporter($bundles);
 	$this->addBundles($appKernel,$bundles);
 	
@@ -81,47 +66,60 @@ class InitConfigCommand extends ContainerAwareCommand
     
     protected function rebuildBaseImporter($bundles)
     {
-	$kernel = $this->getContainer()->get('kernel');
-	$kernelDir = $kernel->getRootDir();
-	$configDir = $kernelDir.'/config';
-	$coreBundleConfigDir = $configDir.'/corebundle';
+	$kernelDir = $this->getContainer()->get('kernel')->getRootDir();
+	
+	$coreBundleConfigDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
 	$appKernel = $kernelDir.'/AppKernel.php';
+	
+	$importerLines = array();
+	$importerLines[] = 'imports:';
+        foreach ($bundles as $bundle => $properties)
+        {
+	    $path = $this->getBundleConfigPath($bundle);
+	    
+	    if ($path !== false)
+	    {
+		$importerLines[] = "- { resource: @c33sCoreBundle/Resources/config/config/$bundle.yml }";
+	    }
+        }
+	$fs = new Filesystem();
+	$fs->dumpFile($coreBundleConfigDir.'/_base_importer.yml', implode("\n", $importerLines));
+	
+	$this->addBaseImporterYmlToConfig();
+	
+	$this->output->writeln('base importer rebuild');
+    }
+    
+    protected function cleanBaseImporter()
+    {
+	$coreBundleConfigDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
+	
+	Tools::removeLineFromFile($this->getContainer()->get('kernel')->getRootDir().'/config/config.yml','- { resource: corebundle/_base_importer.yml }');
+	
 	
 	$fs = new Filesystem();
 	$fs->remove($coreBundleConfigDir);
 	$fs->mkdir($coreBundleConfigDir);
-	
-	$importerLines = array();
-	$importerLines[] = 'imports:';
+    }
     
-	
-	
-        foreach ($bundles as $bundle => $properties)
-        {
-	    try
-	    {
-		$path = $kernel->locateResource("@c33sCoreBundle/Resources/config/config/$bundle.yml");
-	    }
-	    catch (\InvalidArgumentException $e)
-	    {
-		//throw new Exception( 'Something really gone wrong', 0, $e);
-		continue;
-	    }
-	    
-	    
-	    $importerLines[] = "- { resource: @c33sCoreBundle/Resources/config/config/$bundle.yml }";
-//	    if ($properties['class'] !== false)
-//	    {
-//		$bundleDefinition = "            new ".$properties['class']."(),\n";
-//		Tools::addLineToFile($appKernel, $bundleDefinition, "# Sub Bundles ###");
-//	    }
-        }
-	$fs->dumpFile($coreBundleConfigDir.'/_base_importer.yml', implode("\n", $importerLines));
-	
-	//ddLineToFile($file,$stringToAdd,$stringAfterToInsert=false,$checkString = false)
+    protected function addBaseImporterYmlToConfig()
+    {
+	$configDir = $this->getContainer()->get('kernel')->getRootDir().'/config';
 	Tools::addLineToFile($configDir.'/config.yml',"    - { resource: corebundle/_base_importer.yml }\n","- { resource: @c33sCoreBundle/Resources/config/config.yml }");
-	
-	$this->output->writeln('base importer rebuild');
+    }
+    
+    protected function getBundleConfigPath($bundle)
+    {
+	$path = false;
+	try
+	{
+	    $path = $this->getContainer()->get('kernel')->locateResource("@c33sCoreBundle/Resources/config/config/$bundle.yml");
+	}
+	catch (\InvalidArgumentException $e)
+	{
+	    return false;
+	}
+	return $path;
     }
     
     protected function removeBundles($appKernel)
@@ -140,17 +138,4 @@ class InitConfigCommand extends ContainerAwareCommand
 	    }
         }
     }
-
-
-//    protected function copyConfigs()
-//    {
-//	$kernel = $this->getContainer()->get('kernel');
-//	$sourcePath = $kernel->locateResource('@c33sCoreBundle/Resources/templates/config');
-//	$targetPath = $this->getContainer()->getParameter('kernel.root_dir').'/config';
-//
-//	$fs = new Filesystem();
-//	$overwrite = $input->getOption('force');
-//	$options = array('override' => $overwrite);
-//	$fs->mirror($sourcePath, $targetPath, null, $options);	
-//    }
 }

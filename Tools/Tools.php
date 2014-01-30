@@ -39,8 +39,9 @@ class Tools
     public static function removeLineFromFile($file,$stringToRemove)
     {
 	$lines = file($file);
+	$lineCount = count($lines);
 	
-	for($i=0;$i<count($lines);$i++)
+	for($i=0;$i<$lineCount;$i++)
 	{
 	    if (strstr($lines[$i],$stringToRemove))
 	    {
@@ -50,31 +51,6 @@ class Tools
 	file_put_contents($file, $lines);
     }
     
-    public static function removeLines($file, $startLinePattern = false, $endLinePattern = false)
-    {
-         if (is_array($file))
-        {
-            $lines = $file;
-        }
-        else
-        {
-            $lines = file($file);
-        }
-        
-        
-        
-        
-        
-        
-        
-        if (!is_array($file))
-        {
-            file_put_contents($file, $lines);
-        }
-        
-        return $lines;  
-    }
-
     /**
      * 
      * @param type $file
@@ -113,8 +89,6 @@ class Tools
 	$end = Tools::stringPosInArray($lines,$endLinePattern,$start+1);
 	$start = $start + $startOffset;
 	
-	//$endOffset = $endOffset + $start;
-	//var_dump($end);
 	if ($endLinePattern !== false && $end === false)
 	{
 	    throw new \Exception('End line pattern "'.$endLinePattern.'" not found.');
@@ -125,7 +99,6 @@ class Tools
 	}
 	else
 	{
-//	    //offset needed for 
 	    $end = $end +1;
 	}
 	$end = $end + $endOffset;
@@ -166,9 +139,7 @@ class Tools
 	}
 	else 
 	{
-	    //var_dump("### LINES",$lines,"### STARTED",$started, "### LENGTH",$length);
-	    $removed = array_splice($lines, $start, $length);
-	    //var_dump($removed, $lines);
+	    array_splice($lines, $start, $length);
 	    $lines = array_values($lines);
 	}
 	
@@ -193,7 +164,8 @@ class Tools
 	{
 	    if ($stringAfterToInsert !== false)
 	    {
-		for($i=0;$i<count($lines);$i++)
+		$lineCount = count($lines);
+		for($i=0;$i<$lineCount;$i++)
 		{
 		    if (strstr($lines[$i],$stringAfterToInsert))
 		    {
@@ -228,7 +200,8 @@ class Tools
 	    $string = trim($string);
 	}
 	
-	for($i=0+$offset;$i<count($array);$i++)
+	$lineCount = count($array);
+	for($i=0+$offset;$i<$lineCount;$i++)
 	{
 	    $result = strpos($array[$i],$string);
 	    if ($result !== false)

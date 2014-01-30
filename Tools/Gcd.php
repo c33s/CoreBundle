@@ -71,8 +71,10 @@ class Gcd
     public function calculate()
     {
         $gcd = $this->numbers[0];
+	
+	$numberCount = count($this->numbers);
         
-        for ($i = 1; $i < count($this->numbers); ++$i)
+        for ($i = 1; $i < $numberCount; ++$i)
         {
             $gcd = $this->calculatePair($gcd, $this->numbers[$i]);
         }
