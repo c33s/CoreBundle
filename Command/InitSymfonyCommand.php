@@ -2,20 +2,14 @@
 
 namespace c33s\CoreBundle\Command;
 
-//use Symfony\Component\Console\Command\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-//use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler;
 
-//use Symfony\Component\Console\Input\ArrayInput;
-//use Symfony\Component\Process\Process;
-
 use Symfony\Component\Filesystem\Filesystem;
-//use Symfony\Component\Filesystem\Exception\IOException;
 
 use Symfony\Component\Finder\Finder;
 use c33s\CoreBundle\Tools\Tools;
@@ -88,7 +82,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
     {
         $configFile = $this->getConfigYmlPath();
         
-        Tools::cropFileByLine($configFile, true, "# Assetic Configuration");
+        Tools::cropFileByLine($configFile, false, "# Assetic Configuration");
         $this->output->writeln('config.yml cleaned');
     }
     protected function removeAcmeBundle()
@@ -98,7 +92,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	Tools::removeLineFromFile($appKernelFile,$bundleDefinitionToRemove);
 	
 	$configFile = $this->getRoutingDevYmlPath();
-	Tools::cropFileByLine($configFile, true, "# AcmeDemoBundle routes (to be removed)");
+	Tools::cropFileByLine($configFile, false, "# AcmeDemoBundle routes (to be removed)");
 	
         
         $this->output->writeln('removed AcmeBundle');
@@ -145,7 +139,6 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	
     protected function isFramework()
     {
-        //$container = $this->getContainer();
         $app = $this->getApplication();
         
         if (method_exists($app,'getKernel'))
@@ -153,8 +146,6 @@ class InitSymfonyCommand extends ContainerAwareCommand
             return true;
         }
         return false;
-        
-        //method_exists($this,'getContainer')
     }      
     protected function getProjectRootDirectory()
     {
@@ -199,7 +190,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$path = $this->getCoreBundleDirectory().'/Resources/templates';
 	if (!realpath($path))
 	{
-	    throw new Exception('c33sCoreBundle Templates not found');
+	    throw new \Exception('c33sCoreBundle Templates not found');
 	}
 	return $path;
     }
@@ -208,7 +199,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$path = $this->getVendorDirectory().'/c33s/core-bundle/c33s/CoreBundle';
 	if (!realpath($path))
 	{
-	    throw new Exception('c33sCoreBundle not found');
+	    throw new \Exception('c33sCoreBundle not found');
 	}
 	return $path;
     }
