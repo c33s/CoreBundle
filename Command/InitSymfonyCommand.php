@@ -88,15 +88,18 @@ class InitSymfonyCommand extends ContainerAwareCommand
     {
         $configFile = $this->getConfigYmlPath();
         
-        Tools::cropFileByLine($configFile, true, "assetic:");
+        Tools::cropFileByLine($configFile, true, "# Assetic Configuration");
         $this->output->writeln('config.yml cleaned');
     }
     protected function removeAcmeBundle()
     {
 	$bundleDefinitionToRemove = '$bundles[] = new Acme\DemoBundle\AcmeDemoBundle();';
 	$appKernelFile = $this->getProjectRootDirectory().'/app/AppKernel.php';
-	
 	Tools::removeLineFromFile($appKernelFile,$bundleDefinitionToRemove);
+	
+	$configFile = $this->getRoutingDevYmlPath();
+	Tools::cropFileByLine($configFile, true, "# AcmeDemoBundle routes (to be removed)");
+	
         
         $this->output->writeln('removed AcmeBundle');
     }
@@ -184,6 +187,11 @@ class InitSymfonyCommand extends ContainerAwareCommand
     protected function getConfigYmlPath()
     {
 	return $this->getAppDirectory().'/config/config.yml';
+    }
+    
+    protected function getRoutingDevYmlPath()
+    {
+	return $this->getAppDirectory().'/config/routing_dev.yml';
     }
     
     protected function getCoreBundleTemplatesDirectory()

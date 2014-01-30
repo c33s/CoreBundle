@@ -14,10 +14,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 //use Symfony\Component\Console\Input\ArrayInput;
 //use Symfony\Component\Process\Process;
 
-//use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Filesystem;
 //use Symfony\Component\Filesystem\Exception\IOException;
 
-use c33s\CoreBundle\Util\BundleHelper;
+use c33s\CoreBundle\Tools\Tools;
 
 class InitConfigCommand extends ContainerAwareCommand
 {
@@ -44,7 +44,7 @@ class InitConfigCommand extends ContainerAwareCommand
         $this->input = $input;
         $this->output = $output;
 	//$this->copyConfigs();
-	$this->addBundles();
+	$this->rebuildBundles();
         
         /*
          * import config, appkernel
@@ -59,23 +59,71 @@ class InitConfigCommand extends ContainerAwareCommand
     {
         $configFile = $this->getConfigYmlPath();
         $configToAdd = "    - { resource: @c33sCoreBundle/Resources/config/config/_importer.yml }\n";
-        $stringAfterToInsert = "- { resource: @c33sCoreBundle/Resources/config/config.yml }\n";
+        $stringAfterToInsert = "- { resource: security.yml }";
         
         Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
         
         $this->output->writeln('added CoreBundle config.yml to imports');
     }
     
-    protected function addBundles()
+    protected function rebuildBundles()
     {
         $bundles = $this->getContainer()->parameters['c33s_core.config.bundles'];
-        
-
-        foreach ($bundles as $bundle)
-        {
-            echo $bundle."\n";
-        }
+	$bundles = array_reverse($bundles);
+	
+        $appKernel = $this->getContainer()->get('kernel')->getRootDir().'/AppKernel.php';
+	$this->removeBundles($appKernel);
+	$this->buildBaseImporter($bundles);
+	$this->addBundles($appKernel,$bundles);
+	
         $this->output->writeln('added Bundles');
+    }
+    
+    protected function buildBaseImporter($bundles)
+    {
+	$kernelDir = $this->getContainer()->get('kernel')->getRootDir();
+	$configDir = $kernelDir.'/config';
+	$coreBundleConfigDir = $configDir.'/corebundle';
+	$appKernel = $kernelDir.'/AppKernel.php';
+	
+	$fs = new Filesystem();
+	$fs->remove($coreBundleConfigDir);
+	$fs->mkdir($coreBundleConfigDir);
+	
+	$importerLines = array();
+	$importerLines[] = 'imports:';
+    
+        foreach ($bundles as $bundle => $properties)
+        {
+	    //if file exists in core bundle config
+	    $importerLines[] = "- { resource: @c33sCoreBundle/Resources/config/config/$bundle.yml }";
+//	    if ($properties['class'] !== false)
+//	    {
+//		$bundleDefinition = "            new ".$properties['class']."(),\n";
+//		Tools::addLineToFile($appKernel, $bundleDefinition, "# Sub Bundles ###");
+//	    }
+        }
+	$fs->dumpFile($coreBundleConfigDir.'/_base_importer.yml', implode("\n", $importerLines));
+	
+	
+	Tools::addLineToFile($configDir.'/config.yml',"- { resource: security.yml }","    - { resource: config/_base_import.yml }\n");
+    }
+    
+    protected function removeBundles($appKernel)
+    {
+	Tools::cropFileByLine($appKernel,"# Sub Bundles ###", "### End Core Bundle ###", 1, -1, true);
+    }
+    
+    protected function addBundles($appKernel,$bundles)
+    {
+        foreach ($bundles as $bundle => $properties)
+        {
+	    if ($properties['class'] !== false)
+	    {
+		$bundleDefinition = "            new ".$properties['class']."(),\n";
+		Tools::addLineToFile($appKernel, $bundleDefinition, "# Sub Bundles ###");
+	    }
+        }
     }
 
 
