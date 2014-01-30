@@ -3,15 +3,10 @@
 namespace c33s\CoreBundle\Command;
 
 
-//
-//use Symfony\Component\Console\Command\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Process\Process;
 
 use Symfony\Component\Filesystem\Filesystem;
@@ -22,13 +17,11 @@ class FixCommand extends ContainerAwareCommand
     protected $commandSets = array   
     (
 	array('description' => 'Code Standard Fixer', 'command' => 'phpfix fix --verbose ./'),
-	//array('description' => 'Php Code Sniffer', 'command' => 'phpcs ./src --ignore=Model/*/Base --standard=PSR1'),
-	//array('description' => 'Sensio Security Checker', 'command' => 'security-checker security:check'),
-	//array('description' => 'Copy&Paste Dedector', 'command' => 'copypaste --progress ./src'),
-	//array('description' => 'Pdepend', 'command' => 'pdepend --jdepend-chart=tmp/chart.png --jdepend-xml=tmp/depend.xml --overview-pyramid=tmp/pyramid.png --summary-xml=tmp/summary.xml ./src'),
-	//array('description' => 'phploc', 'command' => 'phploc --progress --exclude Model --count-tests ./src'),
-	//array('description' => '', 'command' => ''),
-	//array('description' => '', 'command' => ''),
+	//--array('description' => 'Php Code Sniffer', 'command' => 'phpcs ./src --ignore=Model/*/Base --standard=PSR1'),
+	//--array('description' => 'Sensio Security Checker', 'command' => 'security-checker security:check'),
+	//--array('description' => 'Copy&Paste Dedector', 'command' => 'copypaste --progress ./src'),
+	//---array('description' => 'Pdepend', 'command' => 'pdepend --jdepend-chart=tmp/chart.png --jdepend-xml=tmp/depend.xml --overview-pyramid=tmp/pyramid.png --summary-xml=tmp/summary.xml ./src'),
+	//--array('description' => 'phploc', 'command' => 'phploc --progress --exclude Model --count-tests ./src'),
 	
 	
     );
@@ -42,7 +35,6 @@ class FixCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-	//$output->writeln('starting dumping config files');
 	$output->writeln('<info>c33s:fix</info>');
 	$this->dumpConfigFiles($output);
 
@@ -62,42 +54,6 @@ class FixCommand extends ContainerAwareCommand
 		}
 	    });
 	}
-
-
-
-
-
-//	$command	 = $this->getApplication()->find('assetic:dump');
-//	$arguments = array(
-//	     'command' => 'assetic:dump',
-//	    '--process-isolation' => true,
-//	    '--shell' => true,
-//	    '--force' => true,
-//	    // 'no-debug'  => true,
-//	    // 'env'    => 'prod',
-//	 );
-//	$input		 = new ArrayInput($arguments);
-//	$returnCode	 = $command->run($input, $output);
-//	foreach ($this->commandSets as $commandSet)
-//	{
-//
-//	    if ($returnCode == 0)
-//	    {
-//
-//	    }
-//	}
-//	$command = $this->getApplication()->find('cache:clear');
-//
-//	    $arguments = array(
-//		'command' => 'cache:clear',
-//		//'name'    => 'Fabien',
-//		'--env'  => 'prod',
-//	    );
-//
-//	    $input = new ArrayInput($arguments);
-//	    $returnCode = $command->run($input, $output);
-
-
     }
     
     protected function dumpConfigFiles(OutputInterface $output)

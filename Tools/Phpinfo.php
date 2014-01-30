@@ -53,7 +53,6 @@ class Phpinfo
 	$matches = null;
 	ob_start();
 	phpinfo();
-	$phpinfo = array('phpinfo' => array());
 	$pattern = '#(?:<h2>(?:<a name=".*?">)?(.*?)(?:</a>)?</h2>)|(?:<tr(?: class=".*?")?><t[hd](?: class=".*?")?>(.*?)\s*</t[hd]>(?:<t[hd](?: class=".*?")?>(.*?)\s*</t[hd]>(?:<t[hd](?: class=".*?")?>(.*?)\s*</t[hd]>)?)?</tr>)#s';
 	preg_match_all($pattern, ob_get_clean(), $matches, PREG_SET_ORDER);
 	

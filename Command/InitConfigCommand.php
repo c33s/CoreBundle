@@ -64,6 +64,15 @@ class InitConfigCommand extends ContainerAwareCommand
         $this->output->writeln('added Bundles');
     }
     
+    protected function createPropelDataDirectory()
+    {
+	$propelDataDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
+	
+	$fs = new Filesystem();
+	$fs->mkdir($coreBundleConfigDir);
+    }
+
+
     protected function rebuildBaseImporter($bundles)
     {
 	$kernelDir = $this->getContainer()->get('kernel')->getRootDir();
