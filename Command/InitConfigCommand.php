@@ -73,15 +73,16 @@ class InitConfigCommand extends ContainerAwareCommand
 	
         $appKernel = $this->getContainer()->get('kernel')->getRootDir().'/AppKernel.php';
 	$this->removeBundles($appKernel);
-	$this->buildBaseImporter($bundles);
+	$this->rebuildBaseImporter($bundles);
 	$this->addBundles($appKernel,$bundles);
 	
         $this->output->writeln('added Bundles');
     }
     
-    protected function buildBaseImporter($bundles)
+    protected function rebuildBaseImporter($bundles)
     {
-	$kernelDir = $this->getContainer()->get('kernel')->getRootDir();
+	$kernel = $this->getContainer()->get('kernel');
+	$kernelDir = $kernel->getRootDir();
 	$configDir = $kernelDir.'/config';
 	$coreBundleConfigDir = $configDir.'/corebundle';
 	$appKernel = $kernelDir.'/AppKernel.php';
@@ -93,9 +94,21 @@ class InitConfigCommand extends ContainerAwareCommand
 	$importerLines = array();
 	$importerLines[] = 'imports:';
     
+	
+	
         foreach ($bundles as $bundle => $properties)
         {
-	    //if file exists in core bundle config
+	    try
+	    {
+		$path = $kernel->locateResource("@c33sCoreBundle/Resources/config/config/$bundle.yml");
+	    }
+	    catch (\InvalidArgumentException $e)
+	    {
+		//throw new Exception( 'Something really gone wrong', 0, $e);
+		continue;
+	    }
+	    
+	    
 	    $importerLines[] = "- { resource: @c33sCoreBundle/Resources/config/config/$bundle.yml }";
 //	    if ($properties['class'] !== false)
 //	    {
@@ -105,8 +118,10 @@ class InitConfigCommand extends ContainerAwareCommand
         }
 	$fs->dumpFile($coreBundleConfigDir.'/_base_importer.yml', implode("\n", $importerLines));
 	
+	//ddLineToFile($file,$stringToAdd,$stringAfterToInsert=false,$checkString = false)
+	Tools::addLineToFile($configDir.'/config.yml',"    - { resource: corebundle/_base_importer.yml }\n","- { resource: @c33sCoreBundle/Resources/config/config.yml }");
 	
-	Tools::addLineToFile($configDir.'/config.yml',"- { resource: security.yml }","    - { resource: config/_base_import.yml }\n");
+	$this->output->writeln('base importer rebuild');
     }
     
     protected function removeBundles($appKernel)
