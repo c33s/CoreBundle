@@ -63,7 +63,7 @@ require:
     mobiledetect/mobiledetectlib:                                   '2.7.6'
     c33s/static-page-content-bundle:                                '1.1.*'
     friendsofsymfony/user-bundle:                                  '1.3.*'
-    liip/imagine-bundle:                                          '0.11.*'
+    liip/imagine-bundle:                                          '0.18.*'
     #gregwar/image-bundle:                                         '1.0.*'
     liip/monitor-bundle:                                          '1.0.*'
     sensiolabs/security-checker:                                  '1.2.*'
