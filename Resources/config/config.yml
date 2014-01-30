@@ -1,26 +1,4 @@
-#imports:
-#    - { resource: config/_importer.yml }
-    
 c33s_core:
-#    bundles:
-#        - c33s\StaticPageContentBundle\c33sStaticPageContentBundle
-#        - Propel\PropelBundle\PropelBundle
-#        - FOS\UserBundle\FOSUserBundle
-#        #- Gregwar\ImageBundle\GregwarImageBundle
-#        - Liip\ImagineBundle\LiipImagineBundle
-#        - Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle
-#        - Smoya\Bundle\AssetManagementBundle\SmoyaAssetManagementBundle
-#        - Liip\MonitorBundle\LiipMonitorBundle
-#        - Knp\Bundle\MarkdownBundle\KnpMarkdownBundle
-#        - Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle
-#        - Knp\Bundle\MenuBundle\KnpMenuBundle
-#        - WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle
-#        - Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle
-#        #- Liip\HyphenatorBundle\LiipHyphenatorBundle
-#        - SunCat\MobileDetectBundle\MobileDetectBundle
-#        - Zenstruck\SlugifyBundle\ZenstruckSlugifyBundle
-#        #- c33s\Bundle\OpcacheBundle\c33sOpcacheBundle
-#        #- c33s\Bundle\CrazyEggBundle\c33sCrazyEggBundle
     bundles:
         #######################################################################
         # symfony
