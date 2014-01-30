@@ -74,16 +74,19 @@ class Tools
         
         return $lines;  
     }
-    
+
     /**
      * 
      * @param type $file
-     * @param type $startLinePattern true if should start at line 0
+     * @param type $startLinePattern pattern to find in line of array, can be false if should start from beginning
      * @param type $endLinePattern
-     * @param type $includeStart
-     * @param type $includeEnd
+     * @param type $startOffset (offset relative from the found pattern)
+     * @param type $endOffset (offset relative from the found pattern)
+     * @param type $invert
+     * @return type
+     * @throws \Exception
      */
-    public static function cropFileByLine($file, $startLinePattern = false, $endLinePattern = false, $includeStart = false, $includeEnd = false, $invert = false)
+    public static function cropFileByLine($file, $startLinePattern = false, $endLinePattern = false, $startOffset = 0, $endOffset = 0, $invert = false)
     {
         if (is_array($file))
         {
@@ -93,90 +96,87 @@ class Tools
         {
             $lines = file($file);
         }
-        
-        
-        $started = false;
-        $ended = false;
-        //includeLineContainingPattern
-
-        if (
-                $startLinePattern === true 
-                || Tools::arrayLineHasString($lines, $startLinePattern)
-                || ($endLinePattern !== false && Tools::arrayLineHasString($lines, $endLinePattern))
-            )
+	
+	
+	
+	
+	
+	$start = Tools::stringPosInArray($lines,$startLinePattern,0);
+	if ($startLinePattern !== false && $start === false)
 	{
-            if ($startLinePattern === true)
-            {
-                $started = 0;
-            }
-
-            for($i=0;$i<count($lines);$i++)
-            {
-            //var_dump("in for");
-                if (strstr($lines[$i],$startLinePattern))
-                {
-                   $started = $i;
-                   //var_dump("$i start");
-                   if ($includeStart === false)
-                   {
-                       //var_dump("$i start +1");
-                       $started = $started + 1;
-                   }
-                    
-                    
-                }
-                //var_dump("strpos", strpos($lines[$i],$endLinePattern,$started+1), $lines[$i],$i,$started+1,$endLinePattern);
-                if ($started != $i && false !== $endLinePattern && strstr($lines[$i],$endLinePattern))
-                //if ($started != $i && false !== $endLinePattern && strpos($lines[$i],$endLinePattern,$started+1))
-                {
-                   $ended = $i;
-                   //var_dump("$i end");
-                   if ($includeEnd === true)
-                    {
-                       //var_dump("$i end +1");
-                       $ended = $ended + 1; 
-                    }
-                }
-            } //endfor
-            
-            if ($endLinePattern === false || $ended === false)
-            {
-                //if no endline pattern, take all
-                $ended = count($lines);
-                //var_dump("ended: $ended ".count($lines)." $started");
-            }
-            
-            $length = $ended - $started;
-//            if ($length < 0)
-//            {
-//                var_dump("negative value");
-//                $started = $started + $length;
-//                //$ended = $ended + abs($length);
-//                $length = abs($length);
-//            }
-            
-            if ($invert === false)
-            {
-                $lines = array_slice($lines, $started, $length);
-            }
-            else 
-            {
-		//var_dump("### LINES",$lines,"### STARTED",$started, "### LENGTH",$length);
-                $removed = array_splice($lines, $started, $length);
-		//var_dump($removed, $lines);
-		$lines = array_values($lines);
-            }
-            
-            //var_dump($lines, $started,$ended, $length);
-            
-            
-            if (!is_array($file))
-            {
-                file_put_contents($file, $lines);
-            }
-        }
-        
-        return $lines;
+	    throw new \Exception('Start line pattern "'.$startLinePattern.'" not found.');
+	}
+	if ($start === false)
+	{
+	    $start = 0;
+	}
+	$end = Tools::stringPosInArray($lines,$endLinePattern,$start+1);
+	$start = $start + $startOffset;
+	
+	//$endOffset = $endOffset + $start;
+	//var_dump($end);
+	if ($endLinePattern !== false && $end === false)
+	{
+	    throw new \Exception('End line pattern "'.$endLinePattern.'" not found.');
+	}	
+	if ($end === false)
+	{
+	    $end = count($lines);
+	}
+	else
+	{
+//	    //offset needed for 
+	    $end = $end +1;
+	}
+	$end = $end + $endOffset;
+	
+	
+	if (abs($start) > count($lines))
+	{
+	    throw new \Exception('Start beyond line count.');
+	}
+	if (abs($end) > count($lines))
+	{
+	    throw new \Exception('End beyond line count.');
+	}
+	
+	
+	
+	
+	$length = $end - $start;
+	
+	if ($invert === false)
+	{
+	    $minLength = 1;
+	}
+	else 
+	{
+	    $minLength = 0;
+	}
+	
+	
+	if ($length < $minLength)
+	{
+	    throw new \Exception("Length cannot be negative or zero (length: $length, start: $start, end: $end).");
+	}
+	
+	if ($invert === false)
+	{
+	    $lines = array_slice($lines, $start, $length);
+	}
+	else 
+	{
+	    //var_dump("### LINES",$lines,"### STARTED",$started, "### LENGTH",$length);
+	    $removed = array_splice($lines, $start, $length);
+	    //var_dump($removed, $lines);
+	    $lines = array_values($lines);
+	}
+	
+	if (!is_array($file))
+	{
+	    file_put_contents($file, $lines);
+	}
+	return $lines;
     }
 
 
@@ -211,20 +211,41 @@ class Tools
 
     }
     
-    public static function arrayLineHasString($array,$string)
+    public static function stringPosInArray($array,$string,$offset = 0, $trim = true)
     {
-        if ($string === false )
+	if ($string === false || $string === null || empty($string))
         {
             return false;
         }
-	foreach ($array as $line)
+	
+	if ($array === false || $array === null || empty($array))
+        {
+            return false;
+        }
+	
+	if ($trim == true)
 	{
-	    if (false !== strpos($line,trim($string)))
+	    $string = trim($string);
+	}
+	
+	for($i=0+$offset;$i<count($array);$i++)
+	{
+	    $result = strpos($array[$i],$string);
+	    if ($result !== false)
 	    {
-		return true;
+		return $i;
 	    }
 	}
-        
+	
+	return false;
+    }
+    
+    public static function arrayLineHasString($array,$string)
+    {
+	if (Tools::stringPosInArray($array, $string) !== false)
+	{
+	    return true;
+	}
 	return false;
     }
 
