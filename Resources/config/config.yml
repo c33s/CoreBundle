@@ -1,27 +1,73 @@
-imports:
-    - { resource: config/_importer.yml }
+#imports:
+#    - { resource: config/_importer.yml }
     
 c33s_core:
+#    bundles:
+#        - c33s\StaticPageContentBundle\c33sStaticPageContentBundle
+#        - Propel\PropelBundle\PropelBundle
+#        - FOS\UserBundle\FOSUserBundle
+#        #- Gregwar\ImageBundle\GregwarImageBundle
+#        - Liip\ImagineBundle\LiipImagineBundle
+#        - Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle
+#        - Smoya\Bundle\AssetManagementBundle\SmoyaAssetManagementBundle
+#        - Liip\MonitorBundle\LiipMonitorBundle
+#        - Knp\Bundle\MarkdownBundle\KnpMarkdownBundle
+#        - Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle
+#        - Knp\Bundle\MenuBundle\KnpMenuBundle
+#        - WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle
+#        - Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle
+#        #- Liip\HyphenatorBundle\LiipHyphenatorBundle
+#        - SunCat\MobileDetectBundle\MobileDetectBundle
+#        - Zenstruck\SlugifyBundle\ZenstruckSlugifyBundle
+#        #- c33s\Bundle\OpcacheBundle\c33sOpcacheBundle
+#        #- c33s\Bundle\CrazyEggBundle\c33sCrazyEggBundle
     bundles:
-        - c33s\StaticPageContentBundle\c33sStaticPageContentBundle
-        - Propel\PropelBundle\PropelBundle
-        - FOS\UserBundle\FOSUserBundle
-        #- Gregwar\ImageBundle\GregwarImageBundle
-        - Liip\ImagineBundle\LiipImagineBundle
-        - Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle
-        - Smoya\Bundle\AssetManagementBundle\SmoyaAssetManagementBundle
-        - Liip\MonitorBundle\LiipMonitorBundle
-        - Knp\Bundle\MarkdownBundle\KnpMarkdownBundle
-        - Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle
-        - Knp\Bundle\MenuBundle\KnpMenuBundle
-        - WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle
-        - Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle
-        #- Liip\HyphenatorBundle\LiipHyphenatorBundle
-        - SunCat\MobileDetectBundle\MobileDetectBundle
-        - Zenstruck\SlugifyBundle\ZenstruckSlugifyBundle
-        #- c33s\Bundle\OpcacheBundle\c33sOpcacheBundle
-        #- c33s\Bundle\CrazyEggBundle\c33sCrazyEggBundle
-
+        #######################################################################
+        # symfony
+        #######################################################################
+        assetic:
+            class: false
+        doctrine:
+            class: false
+        swiftmailer:
+            class: false
+        #######################################################################
+        # extra
+        #######################################################################
+        c33s_static_page_content:
+            class: c33s\StaticPageContentBundle\c33sStaticPageContentBundle
+        propel:
+            class: Propel\PropelBundle\PropelBundle
+        liip_imagine:
+            class: Liip\ImagineBundle\LiipImagineBundle
+        liip_monitor:
+            class: Liip\MonitorBundle\LiipMonitorBundle
+        mobile_detect:
+            class: SunCat\MobileDetectBundle\MobileDetectBundle
+        zenstruck_slugify:
+            class: Zenstruck\SlugifyBundle\ZenstruckSlugifyBundle
+        admingenerator_generator:
+            class: Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle
+        fkr_css_url_rewrite:
+            class: Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle
+        fos_user:
+            class: FOS\UserBundle\FOSUserBundle
+        #knp_gaufrette:
+        #    class: Knp\Bundle\GaufretteBundle\KnpGaufretteBundle
+        knp_markdown:
+            class: Knp\Bundle\MarkdownBundle\KnpMarkdownBundle
+        avocode_form_extensions:
+            class: Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle
+        white_october_pagerfanta:
+            class: WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle
+        somya_asset_management:
+            class: Smoya\Bundle\AssetManagementBundle\SmoyaAssetManagementBundle
+        #liip_hyphenator:
+        #    class: Liip\HyphenatorBundle\LiipHyphenatorBundle
+        #knp_menu:
+        #    class: Knp\Bundle\MenuBundle\KnpMenuBundle
+        #c33s_crazy_egg:
+        #   class: c33s\Bundle\CrazyEggBundle
     twig:
         app:
             debug: true
