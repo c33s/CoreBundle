@@ -25,6 +25,7 @@ require:
     php: '>=5.3.3'
     ### propel #################################################################
     propel/propel-bundle:                                          '1.2.*'
+    propel/propel1:                                                '1.7.*'
     willdurand/propel-typehintable-behavior:                       '~1.0'
     willdurand/propel-publishable-behavior:                        '~1.0'
     #CarpeHora/ExtraPropertiesBehavior:                            'dev-master'
