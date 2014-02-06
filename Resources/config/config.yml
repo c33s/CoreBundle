@@ -89,3 +89,43 @@ c33s_core:
 #                    shadow:
 #                        image: http://%master_domain%/media/cache/logotop/media/images/logo-alt.png
 #                        size: [32,32]
+#    datahandler:
+#        levels: 3
+#        db_maps: 
+#            picture:
+#                primary_string: Title
+#                file_fields: [ attachment ]
+#                directory: gallery
+#                class: 'c33s\ModelBundle\Model\Picture'
+#            service:
+#                primary_string: Name
+#                file_fields: [ picture ]
+#                directory: service
+#                class: 'c33s\ModelBundle\Model\Service'
+#            information:
+#                primary_string: Name
+#                file_fields: [ imageSmall, imageLarge ]
+#                directory: information
+#                class: 'c33s\ModelBundle\Model\Information'
+#            link:
+#                primary_string: Name
+#                file_fields: [ picture ]
+#                directory: link
+#                class: 'c33s\ModelBundle\Model\Link'
+#            team:
+#                primary_string: Lastname
+#                file_fields: [ picture ]
+#                directory: team
+#                class: 'c33s\ModelBundle\Model\Team'
+#            prepostgallery:
+#                primary_string: Name
+#                file_fields: [ picture, pictureBefore, pictureAfter ]
+#                directory: pre-post-gallery
+#                class: 'c33s\ModelBundle\Model\PrePostGallery'
+#        class_maps:
+#            'c33s\ModelBundle\Model\Picture': picture
+#            'c33s\ModelBundle\Model\Information': information
+#            'c33s\ModelBundle\Model\Link': link
+#            'c33s\ModelBundle\Model\Team': team
+#            'c33s\ModelBundle\Model\Service': service
+#            'c33s\ModelBundle\Model\PrePostGallery': prepostgallery

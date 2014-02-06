@@ -40,6 +40,13 @@ class Configuration implements ConfigurationInterface
 		    ->append($this->addPageNode())
 		    ->append($this->addContactNode())
 		->end()
+//		->arrayNode('datahandler')
+//		    ->children()
+//			->scalarNode('levels')->defaultValue(3)->end()
+//			->variableNode('db_maps')->end()
+//			->variableNode('class_maps')->end()
+//		    ->end()
+//		->end()
 	    ->end()
 	;
 
