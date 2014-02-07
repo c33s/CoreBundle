@@ -13,7 +13,8 @@ use c33s\CoreBundle\DataHandler\DataFile;
 //use c33s\ModelBundle\Model\ServiceQuery;
 //
 //use Symfony\Component\HttpFoundation\File\File;
-//use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Filesystem\Filesystem;
 //use Symfony\Component\Filesystem\Exception\IOException;
 
 class HashCopyCommand extends ContainerAwareCommand
@@ -72,17 +73,41 @@ EOT
 	$rootdir = $this->getContainer()->get('kernel')->getRootDir();
 	$dir = $rootdir.'/../'.$basedir;
 	
-	if (is_dir($file))
-	...
-	return collection
+	
+	//return collection
 	return $this->copy($file, $dir, $levels, $subdir);
 	
     }
     
     protected function copy($file, $dir, $levels, $subdir)
     {
-	$dataFile = new DataFile($file, $dir, $levels, $subdir, false);
-	//return $dataFile->copy();
-	return $dataFile;
+	
+	if (is_dir($file))
+	{
+	    $directory = $file;
+	    $finder = new Finder();
+	    $finder
+		->files()
+		->in($directory)
+		->depth('== 0')
+	    ;
+	    $dataFileCollection = array();
+	    
+	    foreach ($finder as $file) 
+	    {
+		  $dataFile = new DataFile($file, $dir, $levels, $subdir, false);
+		  $dataFile->copy();
+		  $dataFileCollection[] = $dataFile;
+	    }
+	    
+	    return $dataFileCollection;
+	}
+	else
+	{
+	    $dataFile = new DataFile($file, $dir, $levels, $subdir, false);
+	    $dataFile->copy();
+	    
+	    return $dataFile;
+	}
     }
 }
