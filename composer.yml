@@ -39,7 +39,8 @@ require:
     # additional twitter bootstrap for v3
     twbs/bootstrap:                                  '3.0.0'
 
-    leafo/lessphp:                                                  '0.4.*'
+    #leafo/lessphp:                                                  '0.4.*'
+    oyejorge/less.php:                                              '~1.5'
     ptachoire/cssembed:                                             '1.0.*'
     braincrafted/bootstrap-bundle:                                  '1.4.*'
     #mopa/bootstrap-bundle:                                         '2.1.*@dev'
