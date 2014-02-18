@@ -59,6 +59,7 @@ c33s_core:
                 multi_domain: true
                 domain: %master_domain%
                 enable_GDN_impression_reporting: true
+            webmaster_tools:
         page:
             title: ""
             author: ""
