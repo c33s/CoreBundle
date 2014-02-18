@@ -49,7 +49,7 @@ create a composer.yml with the framework-standard-edition version you want to us
         incenteev-parameters: { file: app/config/parameters.yml }
         branch-alias: { dev-master: 2.3-dev }
       
-after you ran composer, you can use the ```.\bin\init-symfony c33s:init-symfony``` command, to create a project. the command copies the data from the framework-standard-edition.
+after you ran ```composer update```, you can use the ```.\bin\init-symfony run``` command, to create a project. the command copies the data from the framework-standard-edition.
 after initializing symfony you can comment in the scripts again.
 
 update your project again.
