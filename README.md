@@ -4,8 +4,12 @@ CoreBundle
 everything to quickstart a webpage
 
 
-[![Build Status](https://secure.travis-ci.org/c33s/CoreBundle.png?branch=master)](http://travis-ci.org/c33s/CoreBundle) [![Latest Stable Version](https://poser.pugx.org/c33s/core-bundle/v/stable.png)](https://packagist.org/packages/c33s/core-bundle) [![Latest Unstable Version](https://poser.pugx.org/c33s/core-bundle/v/unstable.png)](https://packagist.org/packages/c33s/core-bundle) [![License](https://poser.pugx.org/c33s/core-bundle/license.png)](https://packagist.org/packages/c33s/core-bundle) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e/mini.png)](https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e)
-
+[![Build Status](https://secure.travis-ci.org/c33s/CoreBundle.png?branch=master)](http://travis-ci.org/c33s/CoreBundle)
+[![Latest Stable Version](https://poser.pugx.org/c33s/core-bundle/v/stable.png)](https://packagist.org/packages/c33s/core-bundle) 
+[![Latest Unstable Version](https://poser.pugx.org/c33s/core-bundle/v/unstable.png)](https://packagist.org/packages/c33s/core-bundle) 
+[![License](https://poser.pugx.org/c33s/core-bundle/license.png)](https://packagist.org/packages/c33s/core-bundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e/mini.png)](https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e)
+[![project status](http://stillmaintained.com/c33s/CoreBundle.png)](http://stillmaintained.com/c33s/CoreBundle)
 
 Because json is not a really handy format to read and it also lacks in commenting support, this Bundle supports the composer.yml format. [composer-yaml.phar](https://github.com/igorw/composer-yaml) is used, to convert from yml to json. In this manual all composer code snippets are in yml format. Create a script file, which call the yml to json converter before running composer.
 
