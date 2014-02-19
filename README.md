@@ -67,6 +67,5 @@ then you can call
     json convert composer.yml
     composer update --no-scripts
     bin/init-symfony run
-    json convert
     composer run-script post-update-cmd
     php app/console c33s:init-config
