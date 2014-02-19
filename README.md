@@ -25,19 +25,19 @@ create a composer.yml with the framework-standard-edition version you want to us
         white-october/pagerfanta-bundle:                 'dev-master#606467f9e9f9e80975128db589eec2f9d11139c2'
         #### End Locks corebundle ###########################################################################
     
-    #scripts:
-    #    post-install-cmd:
-    #      - 'Incenteev\ParameterHandler\ScriptHandler::buildParameters'
-    #      - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap'
-    #      - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::clearCache'
-    #      - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installAssets'
-    #      - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
-    #    post-update-cmd:
-    #      - 'Incenteev\ParameterHandler\ScriptHandler::buildParameters'
-    #      - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap'
-    #      - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::clearCache'
-    #      - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installAssets'
-    #      - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
+    scripts:
+        post-install-cmd:
+          - 'Incenteev\ParameterHandler\ScriptHandler::buildParameters'
+          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap'
+          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::clearCache'
+          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installAssets'
+          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
+        post-update-cmd:
+          - 'Incenteev\ParameterHandler\ScriptHandler::buildParameters'
+          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap'
+          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::clearCache'
+          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installAssets'
+          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
     config:
         bin-dir: bin
         component-dir: "web/components"
@@ -49,12 +49,11 @@ create a composer.yml with the framework-standard-edition version you want to us
         incenteev-parameters: { file: app/config/parameters.yml }
         branch-alias: { dev-master: 2.3-dev }
       
-after you ran ```composer update```, you can use the ```.\bin\init-symfony run``` command, to create a project. the command copies the data from the framework-standard-edition.
-after initializing symfony you can comment in the scripts again.
+after you ran ```composer update --no-scripts```, you can use the ```./bin/init-symfony run``` command to create a project. the command copies the data from the framework-standard-edition.
 
-update your project again.
+now you can run the update scripts.
 
-    composer update
+    composer run-script post-update-cmd
 
 then you can call 
 
@@ -65,11 +64,8 @@ then you can call
 
     create empty composer.json
     create basic composer.yml 
-    commented out scripts part in composer.yml
     json convert composer.yml
-    composer update
-    bin\init-symfony run
-    comment in scripts part in composer.yml
-    json convert
+    composer update --no-scripts
+    bin/init-symfony run
     composer run-script post-update-cmd
     php app/console c33s:init-config
