@@ -131,7 +131,7 @@ class InitConfigCommand extends ContainerAwareCommand
     
     protected function removeBundles($appKernel)
     {
-	Tools::cropFileByLine($appKernel,"# Sub Bundles ###", "### End Core Bundle ###", 1, -1, true);
+	Tools::cropFileByLine($appKernel,"//# Sub Bundles ###", "//### End Core Bundle ###", 1, -1, true);
     }
     
     protected function addBundles($appKernel,$bundles)
@@ -141,7 +141,7 @@ class InitConfigCommand extends ContainerAwareCommand
 	    if ($properties['class'] !== false)
 	    {
 		$bundleDefinition = "            new ".$properties['class']."(),\n";
-		Tools::addLineToFile($appKernel, $bundleDefinition, "# Sub Bundles ###");
+		Tools::addLineToFile($appKernel, $bundleDefinition, "//# Sub Bundles ###");
 	    }
         }
     }
