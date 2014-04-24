@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+//use Symfony\Component\Process\Process;
 
 use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler as SensioScriptHandler;
 
@@ -52,13 +53,41 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$this->addCoreBundle();
         $this->addConfigYml();
         $this->cleanConfig();
-        SensioScriptHandler::doBuildBootstrap($this->getAppDirectory());
+	//$this->postInstall($output);
+    }
+    
+    
+    protected function postInstall(OutputInterface $output)
+    {
+	//how to run 'Incenteev\ParameterHandler\ScriptHandler::buildParameters' here?
+	//'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap',
+	//
+	//new Incenteev\ParameterHandler\Processor();
+	//use Composer\IO\IOInterface;
+        //SensioScriptHandler::doBuildBootstrap($this->getAppDirectory());
+	//$this->getAppDirectory()
+	//need a composer instance
+
+//	$output->writeln(sprintf('Running <comment>%s</comment>', "$composer $composerScript"));
+//	$process = new Process("composer.phar run-script post-update-cmd");
+//	    
+//	$process->run(function ($type, $buffer)
+//	{
+//	if (Process::ERR === $type)
+//	{
+//		echo $buffer;
+//	}
+//	else
+//	{
+//		echo $buffer;
+//	}
+//	});
     }
     
     protected function addCoreBundle()
     {
         $checkString = "new c33s\CoreBundle\c33sCoreBundle(),";
-	$bundleDefinitionToAdd = "\n            ### Core Bundle ###\n            new c33s\CoreBundle\c33sCoreBundle(),\n            # Sub Bundles ###\n            ### End Core Bundle ###\n\n";
+	$bundleDefinitionToAdd = "\n            //### Core Bundle ###\n            new c33s\CoreBundle\c33sCoreBundle(),\n            //# Sub Bundles ###\n            //### End Core Bundle ###\n\n";
 	$stringAfterToInsert = 'new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),';
 	$appKernelFile = $this->getAppKernelPath();
 	Tools::addLineToFile($appKernelFile,$bundleDefinitionToAdd,$stringAfterToInsert,$checkString);
@@ -140,7 +169,6 @@ class InitSymfonyCommand extends ContainerAwareCommand
     protected function isFramework()
     {
         $app = $this->getApplication();
-        
         if (method_exists($app,'getKernel'))
         {
             return true;
