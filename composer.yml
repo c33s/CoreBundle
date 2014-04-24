@@ -25,9 +25,18 @@ require:
     php: '>=5.3.3'
     ### propel #################################################################
     propel/propel-bundle:                                          '1.2.*'
-    #propel/propel1:                                                '1.7.*'
     willdurand/propel-typehintable-behavior:                       '~1.0'
     willdurand/propel-publishable-behavior:                        '~1.0'
+    havvg/propel-boolean-extra-behavior:                           '~1.1'
+    
+    #propel/propel1:                                                '1.7.*'
+    #smirik/taggable-bundle:                          'dev-master#a4eb728ec04eed48b6c354eeea9ae2e9fe23755a'
+    #smirik/propel-taggable-behavior:                 'dev-master#dd94508c45056b1eca53e8667ded8be0b2451ed0'
+    #havvg/propel-autoexpire-behavior:                             '0.1.0'
+    #cedriclombardot/propel-visibility-behavior:                     '0.0.2'
+    #CarpeHora/AuditableBehavior # -> better: use official Versionable Behavior
+    #postgres-json-behavior
+
     #CarpeHora/ExtraPropertiesBehavior:                            'dev-master'
     
     ### html ###################################################################
@@ -64,12 +73,14 @@ require:
     suncat/mobile-detect-bundle:                                    '0.9.*'
     mobiledetect/mobiledetectlib:                                   '2.7.6'
     c33s/static-page-content-bundle:                                '1.1.*'
+    c33s/simple-content-bundle:                                     '0.9.0'
+    c33s/menu-bundle:                                               '0.9.0'
     friendsofsymfony/user-bundle:                                  '1.3.*'
     liip/imagine-bundle:                                          '0.18.*'
     #gregwar/image-bundle:                                         '1.0.*'
     liip/monitor-bundle:                                          '1.0.*'
     sensiolabs/security-checker:                                  '1.2.*'
-    knplabs/knp-markdown-bundle:                                  '1.2.*'
+    knplabs/knp-markdown-bundle:                                  '1.3.*'
 
 require-dev:
     ### propel #################################################################
