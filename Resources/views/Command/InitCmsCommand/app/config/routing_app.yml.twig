@@ -1,0 +1,11 @@
+{{ name.underscored }}_admin_fos:
+    resource: "@{{ name.camelcased }}AdminBundle/Resources/config/routing/fos.yml"
+    prefix:   /
+
+{{ name.underscored }}_admin:
+    resource: "@{{ name.camelcased }}AdminBundle/Resources/config/routing/routing.yml"
+    prefix:   /admin
+
+{{ name.underscored }}_webpage:
+    resource: "@{{ name.camelcased }}WebpageBundle/Resources/config/routing/routing.yml"
+    prefix:   /
