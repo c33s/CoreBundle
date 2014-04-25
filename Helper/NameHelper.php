@@ -29,6 +29,15 @@ class NameHelper
     {
 	return $this->nameUnderscore;
     }
+    public function camelcase()
+    {
+	return $this->nameCamelcase;
+    }
+
+    public function underscore()
+    {
+	return $this->nameUnderscore;
+    }
 
     public function __toString()
     {
