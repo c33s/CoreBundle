@@ -71,6 +71,21 @@ class InitCmsCommand extends ContainerAwareCommand
 	    $this->generatePredifinedBundles();
 	}
 	$this->generateRouting();
+	
+	$this->initStaticPageController();
+	$this->initTemplatesAndResources();
+    }
+    
+    protected function initTemplatesAndResources()
+    {
+	$this->generateFileFromTemplate('Resources/view/Webpage/baseWebpage.html.twig',"src/{$this->name->camelcased()}/WebpageBundle/Resources",array('bundlename' => 'Webpage'));
+	$this->generateFileFromTemplate('Resources/view/Admin/baseAdmin.html.twig',"src/{$this->name->camelcased()}/AdminBundle/Resources",array('bundlename' => 'Admin'));
+    }
+    
+    protected function initStaticPageController()
+    {
+	$this->generateFileFromTemplate('Controller/StaticPageController.php',"src/{$this->name->camelcased()}/WebpageBundle/Controller",array('bundlename' => 'Webpage'));
+	$this->generateFileFromTemplate('Controller/StaticPageController.php',"src/{$this->name->camelcased()}/AdminpageBundle/Controller",array('bundlename' => 'Admin'));
     }
     
     protected function initNameHelper($name)
@@ -113,14 +128,23 @@ class InitCmsCommand extends ContainerAwareCommand
 	});
     }
     
-    protected function generateFileFromTemplate($file, $parameters = array())
+    protected function generateFileFromTemplate($file, $targetDirectory = null, $parameters = array())
     {
 	$fileParts = pathinfo($file);
 	
 	$parameters['name'] = $this->name;
 	
 	$content = $this->getContainer()->get('templating')->render("c33sCoreBundle:Command/InitCmsCommand/${fileParts['dirname']}:${fileParts['basename']}.twig", $parameters);
-	$targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$file;
+	
+	if ($targetDirectory)
+	{
+	    $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$targetDirectory.DIRECTORY_SEPARATOR.$fileParts['basename'];
+	}
+	else
+	{
+	    $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$file;
+	}
+	    
 	
 	$this->io->write($targetFile);
 	$this->fs->dumpFile($targetFile, $content);

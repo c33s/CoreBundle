@@ -1,0 +1,35 @@
+{% verbatim %}
+{% extends "c33sCoreBundle::admin-base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets filter='cssrewrite,lessphp' output='generated/css/admin-theme.css' combine=true
+
+        '@{% endverbatim %}{{ name.camelcase }}{% verbatim %}{% endverbatim %}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/less/admin/theme-fonts.less'
+        '@{% endverbatim %}{{ name.camelcase }}{% verbatim %}{% endverbatim %}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/less/admin/theme.less'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block header %}
+    {% include '{% endverbatim %}{{ name.camelcase }}{% verbatim %}{% endverbatim %}{{ bundlename | camelcase }}{% verbatim %}Bundle::menu.html.twig' %}
+{% endblock %}
+
+{% block content_pre %}
+    {% set routename = app.request.get('_route') %}
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+
+{% endblock %}
+
+{% block content %}{% block admingen_body %}{% endblock %}{% endblock %}
+
+{% block content_post %}
+            </div><!--/span-->
+        </div><!--/row-->
+        <hr>
+{% endblock %}
+{% endverbatim %}
+
