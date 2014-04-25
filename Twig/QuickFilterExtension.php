@@ -39,6 +39,7 @@ class QuickFilterExtension extends \Twig_Extension
 	    new \Twig_SimpleFilter('underscorize', array($this, 'underscoreFilter')),
 	    new \Twig_SimpleFilter('camelcase', array($this, 'camelcaseFilter')),
 	    new \Twig_SimpleFilter('underscore', array($this, 'underscoreFilter')),
+	    new \Twig_SimpleFilter('youtube', array($this, 'youtubeFilter')),
 	);
     }
 
@@ -49,5 +50,28 @@ class QuickFilterExtension extends \Twig_Extension
     public function underscoreFilter($word)
     {
 	return $this->inflector->underscore($word);
+    }
+    public function youtubeFilter($id,$flex=true,$privacy=true)
+    {
+	if ($privacy === true)
+	{
+	    $domain = 'www.youtube-nocookie.com';
+	}
+	else
+	{
+	    $domain = 'www.youtube.com';
+	}
+	$html = "";
+	if ($flex === true)
+	{
+	    $html .= '<div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">';
+	}
+	$html .= '<iframe src="//'.$domain.'/embed/'.$id.'?rel=0&amp;wmode=opaque&amp;feature=player_embedded" style="border: 0px;" allowfullscreen></iframe>';
+	if ($flex === true)
+	{
+	    $html .= '</div>';
+	}
+	
+	return $html;
     }
 }
