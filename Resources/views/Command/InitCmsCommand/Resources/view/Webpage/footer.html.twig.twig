@@ -1,0 +1,44 @@
+{% verbatim %}
+<div class="footer-line">&nbsp;</div>
+<div class="container footer" style="margin:0 auto;">
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            <h4>Contact</h4>
+            <div style="float:left;margin-top: 5px; margin-right:10px;margin-bottom:5px; height: 60px;">
+                <img class="img-rounded-small logo-footer" src="{{ asset(('media/images/logo-alt.png') | imagine_filter('logo_footer')) }}" alt="" />
+            </div>
+            <strong>{{ c33s_core_config.contact.company }}</strong>
+            {{ macros.addressStreet() }}
+            <span class="clearfix"></span>
+            {{ macros.addressPhone() }}
+        </div>
+        <div class="col-md-3 col-sm-3">
+
+        </div>
+        <div class="col-md-3 col-sm-3">
+            <h4>Sitemap</h4>
+            <ul class="list-unstyled">
+                <li><i class="fa fa-home"></i> <a href="{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_default_homepage') }}">Home</a></li>
+                <li><i class="fa fa-user"></i> <a href="{{ macros.static('kontakt') }}">kontakt</a></li>
+                <li><i class="fa fa-link"></i> <a href="{{path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static', {name: 'links'})}}">Links</a></li>
+                <li><i class="fa fa-map-marker"></i> <a href="{{path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder', {name: 'anfahrt', subfolder: 'kontakt'})}}">Anfahrt</a></li>
+                <li><i class="fa fa-legal"></i> <a href="{{ macros.static('impressum') }}">Impressum</a></li>
+                <li><i class="fa fa-lock"></i> <a href="{{ macros.static('datenschutz') }}">Datenschutz</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3 col-sm-3">
+            <h4>Connect</h4>
+            <ul class="list-unstyled">
+                <li><i class="fa fa-youtube"></i> <a href="http://www.youtube.com/user/" title="Youtube">Youtube</a> <i class="fa fa-external-link"></i></li>
+                {#
+                <li><i class="fa fa-google-plus"></i> <a href="https://plus.google.com/" title="Google+" rel="publisher">Google+</a> <i class="fa fa-external-link"></i></li>
+                <li><i class="fa fa-xing"></i> <a href="#" title="Xing">Xing</a> <i class="fa fa-external-link"></i></li>
+                <li><i class="fa fa-flickr"></i> <a href="#" title="Flickr">Flickr</a> <i class="fa fa-external-link"></i></li>
+                <li><i class="fa fa-linkedin"></i> <a href="#" title="LinkedIn">LinkedIn</a> <i class="fa fa-external-link"></i></li>
+                #}
+            </ul>
+            created by <a href="http://consistency.at">consistency.at <i class="fa fa-external-link"></i></a>
+        </div>
+    </div>  
+</div>
+{% endverbatim %}
