@@ -1,8 +1,8 @@
 <?php
 
-// src/Mini/Bundle/CoreBundle/Util/Inflector.php
-
 namespace c33s\CoreBundle\Util;
+
+use c33s\CoreBundle\Util\InflectorInterface;
 
 /**
  * This file is part of the Akelos Framework
@@ -30,7 +30,7 @@ namespace c33s\CoreBundle\Util;
  * @license GNU Lesser General Public License <http://www.gnu.org/copyleft/lesser.html>
  */
 
-class Inflector
+class AkelosInflector implements InflectorInterface
 {
 
   /**
