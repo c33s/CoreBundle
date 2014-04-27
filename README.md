@@ -66,13 +66,14 @@ then you can call
 
 ## Short Quick Manual
 
-    create empty composer.json
-    create basic composer.yml 
+    touch composer.json
+    wget https://raw.githubusercontent.com/c33s/CoreBundle/master/Resources/files/composer-example.yml -O composer.yml
     json convert composer.yml
     composer update --no-scripts
-    bin/init-symfony run
+    ./bin/init-symfony run
     composer run-script post-update-cmd
     php app/console c33s:init-config
+    php app/console c33s:init-cms Acme
 
 
 ## Filter & Macros
