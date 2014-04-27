@@ -1,0 +1,34 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_sqlite
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: null
+    mailer_user: null
+    mailer_password: null
+    locale: de
+    secret: "{{ secret }}"
+    ga_tracking_enabled: false
+    ga_tracking_id: UA-xxxxxxx-x
+    database_path: '%kernel.root_dir%/data/data.sqlite'
+    propel_database_driver: pdo_sqlite
+    propel_database_user: myuser
+    propel_database_password: mypassword
+    propel_database_dsn: 'sqlite:%database_path%'
+    upload_base_dir: '%kernel.root_dir%/../web/upload'
+    upload_dir: upload
+    crazy_egg_api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    crazy_egg_api_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+    master_domain: example.com
+    admin_ips:
+        - 127.0.0.1
+    fos_users:
+        -
+          name: myuser
+          email: myemail@example.com
+          password: password
+          roles: ['ROLE_SUPER_ADMIN', 'ROLE_ALLOWED_TO_SWITCH']

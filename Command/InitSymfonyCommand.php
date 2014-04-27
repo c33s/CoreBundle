@@ -6,9 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+
+use Twig_Loader_Filesystem;
+use Twig_Environment;
+
 //use Symfony\Component\Process\Process;
 
-use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler as SensioScriptHandler;
+//use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler as SensioScriptHandler;
 
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -47,12 +51,13 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$output->writeln('<info>initializing symfony</info>');
         $this->input = $input;
         $this->output = $output;
-        
+
 	$this->copyData($input->getOption('force'));
 	$this->removeAcmeBundle();
 	$this->addCoreBundle();
         $this->addConfigYml();
         $this->cleanConfig();
+	
 	//$this->postInstall($output);
     }
     
@@ -87,7 +92,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
     protected function addCoreBundle()
     {
         $checkString = "new c33s\CoreBundle\c33sCoreBundle(),";
-	$bundleDefinitionToAdd = "\n            //### Core Bundle ###\n            new c33s\CoreBundle\c33sCoreBundle(),\n            //# Sub Bundles ###\n            //### End Core Bundle ###\n\n";
+	$bundleDefinitionToAdd = "\n            //### Core Bundle ###\n            new c33s\CoreBundle\c33sCoreBundle(),\n            //# Sub Bundles ###\n            //### End Core Bundle ###,\n            //new c33s\DummyBundle\c33sDummyBundle(),\n";
 	$stringAfterToInsert = 'new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),';
 	$appKernelFile = $this->getAppKernelPath();
 	Tools::addLineToFile($appKernelFile,$bundleDefinitionToAdd,$stringAfterToInsert,$checkString);
@@ -129,12 +134,28 @@ class InitSymfonyCommand extends ContainerAwareCommand
     
     protected function copyData($overwrite = false)
     {
-	
 	$fs = new Filesystem();
-	$fs->copy($this->getCoreBundleTemplatesDirectory().'/.gitignore', $this->getProjectRootDirectory().'/.gitignore', $overwrite);
-	$this->output->writeln('copied .gitignore');
-        $fs->copy($this->getCoreBundleTemplatesDirectory().'/parameters.yml.dist', $this->getProjectRootDirectory().'/app/config/parameters.yml.dist', $overwrite);
-	$this->output->writeln('copied parameters.yml.dist');
+	$path = $this->getCoreBundleTemplatesDirectory();
+	$finder = new Finder();
+	$finder
+	    ->files()
+	    ->in($path)
+	    ->ignoreDotFiles(false)
+	    ->ignoreVCS(false)		
+	;
+	foreach ($finder as $file) 
+	{
+	    $parameters['secret'] = $this->generateSecret();
+	    
+	    $loader = new Twig_Loader_Filesystem($file->getPath());
+	    $twig = new Twig_Environment($loader);
+	    $template = $twig->loadTemplate($file->getFilename());
+	    $content = $template->render($parameters);
+	    $fileParts = pathinfo($file);
+	    $targetFile = $this->getRootDirectory().'/'.$file->getRelativePath().'/'.$fileParts['filename'];
+	    $fs->dumpFile($targetFile, $content);
+	    $this->output->writeln($targetFile);
+	}
 	
 	$this->copyFramework($overwrite);
     }
@@ -180,9 +201,16 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	return $this->getVendorDirectory().'/..';
     }
     
+    protected function getRootDirectory()
+    {
+	//return __DIR__.'/../../../../..';
+	return getcwd();
+    }
+    
     protected function getVendorDirectory()
     {
-	return __DIR__.'/../../../../..';
+	//return __DIR__.'/../../../../..';
+	return getcwd().'/vendor';
     }
     
     protected function getSymfonyDirectory()
@@ -215,7 +243,8 @@ class InitSymfonyCommand extends ContainerAwareCommand
     
     protected function getCoreBundleTemplatesDirectory()
     {
-	$path = $this->getCoreBundleDirectory().'/Resources/templates';
+	$path = $this->getCoreBundleDirectory().'/Resources/views/Command/InitSymfonyCommand';
+	//var_dump($path);
 	if (!realpath($path))
 	{
 	    throw new \Exception('c33sCoreBundle Templates not found');
@@ -230,5 +259,27 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	    throw new \Exception('c33sCoreBundle not found');
 	}
 	return $path;
+    }
+    
+    protected function generateSecret()
+    {
+	return $this->generateRandomPassword();
+    }
+    
+    protected function generateRandomPassword() 
+    {
+	//Initialize the random password
+	$password = '';
+
+	//Initialize a random desired length
+	$desired_length = rand(48, 50);
+
+	for($length = 0; $length < $desired_length; $length++) 
+	{
+	    //Append a random ASCII character (including symbols)
+	    $password .= chr(rand(32, 126));
+	}
+
+	return $password;
     }
 }
