@@ -1,0 +1,17 @@
+<?php
+namespace {{ name.camelcase }}\{{ bundlename | camelcase }}Bundle\Controller;
+
+use c33s\StaticPageContentBundle\Controller\BaseStaticPageController;
+
+class StaticPageController extends BaseStaticPageController
+{
+    protected function getContentBundleName()
+    {
+        return '{{ name.camelcase }}{{ bundlename | camelcase }}Bundle';
+    }
+
+    protected function getBaseTemplateLocation()
+    {
+        return '{{ name.camelcase }}{{ bundlename | camelcase }}Bundle::base{{ bundlename | camelcase }}.html.twig';
+    }
+}
