@@ -3,11 +3,6 @@
     {{ macros.addressStreet(class) }}
     {{ macros.addressPhone(class,www) }}
 {% endmacro %}
-{% macro yt_video(id) %}
-<div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
-    <iframe src="//www.youtube-nocookie.com/embed/{{ id }}?rel=0&amp;wmode=opaque&amp;feature=player_embedded" style="border: 0px;" allowfullscreen></iframe>
-</div>
-{% endmacro %}
 
 {% macro addressPhone(class='',www=false) %}
     <address class="{{ class|default('') }}">
@@ -23,4 +18,8 @@
         {{ c33s_core_config.contact.street }}<br>
         {{ c33s_core_config.contact.zip }} {{ c33s_core_config.contact.city }}, {{ c33s_core_config.contact.country }}
     </address>
+{% endmacro %}
+
+{% macro initPopover %}
+{% include 'c33sCoreBundle::triggerPopover.html.twig' %}
 {% endmacro %}
