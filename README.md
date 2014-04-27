@@ -73,3 +73,23 @@ then you can call
     bin/init-symfony run
     composer run-script post-update-cmd
     php app/console c33s:init-config
+
+
+## Filter & Macros
+
+### Filter
+
+* youtube
+* hashDirFilter
+* camelcase (alias camelize)
+* underscore (alias underscorize)
+
+
+### Macros
+
+* initPopover
+* static(name,subfolder=false,prefix='',route='static')
+* isActive(name,prefix='',route)
+* address
+* addressPhone
+* addressStreet
