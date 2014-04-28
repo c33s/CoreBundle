@@ -1,0 +1,17 @@
+<script>
+$(document).ready(function() 
+{
+    $(function() 
+    {
+        $('body').popover({
+            trigger: '{% if is_mobile() %}click{% else %}hover{% endif %}',
+            placement: 'auto top',
+            selector: '[class="popoverLink"]'
+        });
+    });
+});
+</script>
+
+{#
+usage: {% include 'c33sCoreBundle::triggerPopover.html.twig' %}
+#}
