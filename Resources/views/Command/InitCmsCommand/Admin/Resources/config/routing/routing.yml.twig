@@ -1,0 +1,27 @@
+{{ name.underscored }}_admin_monitor:
+    resource: monitor.yml
+    
+#c33s_crazy_egg:
+#    resource: "@c33sCrazyEggBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#c33s_opcache:
+#    resource: "@c33sOpcacheBundle/Resources/config/routing.yml"
+#    prefix:   /
+    
+{{ name.underscored }}_admin:
+    resource: "@{{ name.camelcased }}AdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+{{ name.underscored }}_admin_admingen:
+    resource: "@{{ name.camelcased }}AdminGenBundle/Resources/config/routing/routing.yml"
+    prefix:   /
+    
+{{ name.underscored }}_admin_default_homepage:
+    pattern:  /
+    defaults: { _controller: "{{ name.camelcased }}AdminBundle:Dashboard:index" }
+
+{{ name.underscored }}_admin_static:
+    pattern:  /{name}
+    defaults: { _controller: "{{ name.camelcased }}AdminBundle:StaticPage:show" }
