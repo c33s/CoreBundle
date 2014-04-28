@@ -1,24 +1,6 @@
 {% verbatim %}
-{% macro address(class='',www=false) %}
-    {% import _self as macros %}
-    {{ macros.addressStreet(class) }}
-    {{ macros.addressPhone(class,www) }}
-{% endmacro %}
-
-{% macro addressPhone(class='',www=false) %}
-    <address class="{{ class|default('') }}">
-        <abbr title="phone"><i class="fa fa-phone"></i></abbr> {{ c33s_core_config.contact.phone }}<br>
-        <abbr title="fax"><i class="fa fa-print"></i></abbr> {{ c33s_core_config.contact.fax }}<br>
-        <abbr title="email"><i class="fa fa-envelope"></i></abbr> <a href="mailto:{{ c33s_core_config.contact.mail|lower }}">{{ c33s_core_config.contact.mail|lower }}</a>
-        {% if www|default(false) == true %}<br><abbr title="webpage"><i class="fa fa-link"></i></abbr> {{ c33s_core_config.contact.www }}{% endif %}
-    </address>
-{% endmacro %}
-
-{% macro addressStreet(class='') %}
-    <address class="{{ class|default('') }}">
-        {{ c33s_core_config.contact.street }}<br>
-        {{ c33s_core_config.contact.zip }} {{ c33s_core_config.contact.city }}, {{ c33s_core_config.contact.country }}
-    </address>
+{% macro static(name,subfolder=false,prefix='{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_',route='static') %}
+{% if subfolder == false %}{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static', { name: name }) }}{% else %}{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder', { name: name, subfolder: subfolder }) }}{% endif %}
 {% endmacro %}
 
 {% macro isActive(name,prefix='{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_',route) %}
@@ -48,9 +30,5 @@
         {% elseif _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder' and _subfolder == 'contact' and _name == 'anfahrt' %}active
         {% elseif _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static' and  _name == 'impressum' %}active{% endif %}
     {% endif %}
-{% endmacro %}
-    
-{% macro static(name,subfolder=false,prefix='{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_',route='static') %}
-{% if subfolder == false %}{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static', { name: name }) }}{% else %}{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder', { name: name, subfolder: subfolder }) }}{% endif %}
 {% endmacro %}
 {% endverbatim %}
