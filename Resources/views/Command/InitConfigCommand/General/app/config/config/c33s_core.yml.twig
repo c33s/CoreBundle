@@ -1,0 +1,68 @@
+c33s_core:
+    twig:
+        app:
+            debug: true
+            use_cdn: false
+            version: v0.99.0
+            name: "Example Dot Com"
+            name_short: "example.com"
+            #name_long: ""
+            production_company:
+                name: consistency.at
+                link: http://consistency.at
+        google:
+            tracking:
+                id:      %ga_tracking_id%
+                enabled: %ga_tracking_enabled%
+                multi_domain: true
+                domain: %master_domain%
+                enable_GDN_impression_reporting: true
+            webmaster_tools:
+                verify: 
+        page:
+            title: ""
+            author: ""
+            keywords:
+                - kw1
+                - kw2
+            description: |
+                Lorem
+                Ipsum
+        contact:
+            company:   
+            street:    
+            mobile: 
+            phone:     
+            fax:       
+            mail:      
+            www:       
+            zip:       
+            city:      
+            country:   
+            #title:     
+            firstname: 
+            lastname:  
+            map:
+                lat: 0.0
+                long: 0.0
+                marker: 
+                    image: http://%master_domain%/media/cache/logotop/media/images/logo.png
+                    size: [32,32]
+#                    point: [50,50]
+                    shadow:
+                        image: http://%master_domain%/media/cache/logotop/media/images/logo-alt.png
+                        size: [32,32]
+#                        point: [50,50]
+
+
+#    # default marker
+#    app_map_default_marker: http://maps.google.com/mapfiles/marker_orange.png
+#    app_map_default_marker_size: [20,34]
+#    app_map_default_marker_point: [50,50]
+#    # default marker shadow
+#    app_map_default_shadow_marker: http://maps.google.com/mapfiles/shadow50.png
+#    app_map_default_shadow_marker_size: [40,34]
+#    app_map_default_shadow_marker_point: [50,50]
+
+
+
