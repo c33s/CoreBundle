@@ -20,8 +20,8 @@ assetic:
             #bootstrap/less/
             - '%kernel.root_dir%/../vendor/twbs/'
             - '%kernel.root_dir%/../vendor/fortawesome/font-awesome/less/'
-            - '%kernel.root_dir%/../src/DrBau/AdminBundle/Resources/non-public/less/'
-            - '%kernel.root_dir%/../src/DrBau/WebpageBundle/Resources/non-public/less/'
+            - '%kernel.root_dir%/../src/%namespace%/AdminBundle/Resources/non-public/less/'
+            - '%kernel.root_dir%/../src/%namespace%/WebpageBundle/Resources/non-public/less/'
             - '%kernel.root_dir%/../vendor/c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/'
           apply_to: "\.less$"
         #closure:

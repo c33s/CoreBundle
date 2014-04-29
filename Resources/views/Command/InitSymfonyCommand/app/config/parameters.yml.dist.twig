@@ -11,7 +11,7 @@ parameters:
     mailer_user: null
     mailer_password: null
     locale: de
-    secret: "{{ secret }}"
+    secret: "{{ secret | raw }}"
     ga_tracking_enabled: false
     ga_tracking_id: UA-xxxxxxx-x
     database_path: '%kernel.root_dir%/data/data.sqlite'
@@ -24,6 +24,7 @@ parameters:
     crazy_egg_api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     crazy_egg_api_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxx
     master_domain: example.com
+    namespace: {{ name.camelcase }}
     admin_ips:
         - 127.0.0.1
     fos_users:
