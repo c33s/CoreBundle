@@ -1,0 +1,16 @@
+webpagebundle_redirects:
+    resource: redirects.yml
+    
+{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}:
+    resource: "@{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/Controller/"
+    type:     annotation
+    prefix:   /
+{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}_default_homepage:
+    pattern:  /
+    defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show", name: home }
+{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}_static_subfolder:
+    pattern:  /{subfolder}/{name}
+    defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show" }
+{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}_static:
+    pattern:  /{name}
+    defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show" }

@@ -1,0 +1,18 @@
+redirect_example:
+    path:     /example/
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /example-new/
+        permanent: false
+
+
+################################################################################
+# Legacy Hompage Redirects
+################################################################################
+
+redirect_legacy_1:
+    path:     /legacy.html
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /
+        permanent: true
