@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="{{ name.camelcase }}\ModelBundle\Model" defaultIdMethod="native">
+    <behavior name="query_cache">
+        <parameter name="lifetime" value="600" />
+    </behavior>
+    <!-- key value storage -->
+    <table name="storage">
+        <behavior name="auto_add_pk" />
+        <behavior name="timestampable" />
+
+        <column name="key" type="varchar" size="50" />
+        <column name="value" type="longvarchar" primaryString="1" />
+        <column name="description" type="varchar" size="255" />
+    </table>
+</database>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="{{ name.camelcase }}\ModelBundle\Model" defaultIdMethod="native">
+    <behavior name="query_cache">
+        <parameter name="lifetime" value="600" />
+    </behavior>
+    <table name="picture">
+        <behavior name="auto_add_pk" />
+        <behavior name="timestampable" />
+        <behavior name="sortable" />
+        <behavior name="publishable" />
+
+        <column name="title" type="varchar" primaryString="1" size="50" />
+        <column name="description" type="varchar" size="255" />
+        <column name="attachment" type="varchar" size="255" />
+    </table>
+ 
+    <table name="link">
+        <behavior name="auto_add_pk" />
+        <behavior name="timestampable" />
+        <behavior name="publishable" />
+
+        <column name="name" type="varchar" size="255" primaryString="1" />
+        <column name="link" type="varchar" size="255"  />
+        <column name="picture" type="varchar" size="255" />
+    </table>
+    
+    <table name="team">
+        <behavior name="auto_add_pk" />
+        <behavior name="timestampable" />
+        <behavior name="publishable" />
+        <behavior name="sortable" />
+
+        <column name="firstname" type="varchar" size="255" primaryString="1" />
+        <column name="middlename" type="varchar" size="255" primaryString="1" />
+        <column name="lastname" type="varchar" size="255" primaryString="1" />
+        <column name="position" type="varchar" size="255"  />
+        <column name="description" type="varchar" size="255" />
+        <column name="picture" type="varchar" size="255" />
+    </table>
+</database>
