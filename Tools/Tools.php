@@ -228,4 +228,55 @@ class Tools
 	array_splice($array, $position, 0, $element);
 	return $array;
     }
+    
+    public static function cryptoRandSecure($min, $max) 
+    {
+        if ($min >=  $max) 
+        {
+            throw new \InvalidArgumentException("$min must be larger than  $max");
+        }
+//        if ($min >= 0) 
+//        {
+//            throw new \InvalidArgumentException("$min must me larger than zero");
+//        }
+        $range = $max - $min;
+        $log = log($range, 2);
+        $byteLength = (int) ($log / 8) + 1;
+        $bitLength = (int) $log + 1;
+        $filter = (int) (1 << $bitLength) - 1; // set all lower bits to 1
+        do 
+        {
+            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($byteLength, $s)));
+            $rnd = $rnd & $filter; // discard irrelevant bits
+        } 
+        while ($rnd >= $range);
+        
+        return $min + $rnd;
+    }
+    
+    public static function generateRandomPassword($minLength=40,$maxLength=50,$asciiMin=32,$asciiMax=126,$excludedCharacters = array('(',')','"',"'",'{','}','`','\\')) 
+    {
+        $excludedOrdList = array();
+        foreach ($excludedCharacters as $excludedCharacter)
+        {
+            $excludedOrdList[] = ord($excludedCharacter);
+        }
+        $excludedOrdList[] = null;
+        
+	$password = '';
+
+	$desired_length = Tools::cryptoRandSecure($minLength, $maxLength);
+
+	for($length = 0; $length < $desired_length; $length++) 
+	{
+            $characterLookup = null;
+            while(in_array($characterLookup, $excludedOrdList))
+            {
+                $characterLookup = Tools::cryptoRandSecure($asciiMin, $asciiMax);
+            }
+            $password .= chr($characterLookup);
+	}
+
+	return $password;
+    }
 }
