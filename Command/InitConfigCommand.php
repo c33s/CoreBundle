@@ -2,7 +2,6 @@
 
 namespace c33s\CoreBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -10,12 +9,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
 use c33s\CoreBundle\Tools\Tools;
+use c33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
 
-class InitConfigCommand extends ContainerAwareCommand
+class InitConfigCommand extends BaseInitCommand
 {
-    protected $input;
-    protected $output;
-    
     protected function configure()
     {
         $this
@@ -32,9 +29,8 @@ class InitConfigCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-	$output->writeln('<info>c33s:init-config</info>');
-        $this->input = $input;
-        $this->output = $output;
+        parent::execute($input, $output);
+	$this->io->write('<info>c33s:init-config</info>');
 	$this->rebuildBundles();
 	$this->createPropelDataDirectory();
     }
@@ -47,7 +43,7 @@ class InitConfigCommand extends ContainerAwareCommand
         
         Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
         
-        $this->output->writeln('added CoreBundle config.yml to imports');
+        $this->io->write('added CoreBundle config.yml to imports');
     }
     
     protected function rebuildBundles()
@@ -62,7 +58,7 @@ class InitConfigCommand extends ContainerAwareCommand
 	$this->rebuildBaseImporter($bundles);
 	$this->addBundles($appKernel,$bundles);
 	
-        $this->output->writeln('added Bundles');
+        $this->io->write('added Bundles');
     }
     
     protected function createPropelDataDirectory()
@@ -94,7 +90,7 @@ class InitConfigCommand extends ContainerAwareCommand
 	
 	$this->addBaseImporterYmlToConfig();
 	
-	$this->output->writeln('base importer rebuild');
+	$this->io->write('base importer rebuild');
     }
     
     protected function cleanBaseImporter()

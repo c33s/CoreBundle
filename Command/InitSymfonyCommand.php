@@ -2,9 +2,10 @@
 
 namespace c33s\CoreBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Twig_Loader_Filesystem;
@@ -19,12 +20,10 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use c33s\CoreBundle\Tools\Tools;
 
-class InitSymfonyCommand extends ContainerAwareCommand
+use c33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
+
+class InitSymfonyCommand extends BaseInitCommand
 {
-    protected $input;
-    protected $output;
-    
-    
     protected function configure()
     {
         if ($this->isFramework())
@@ -37,6 +36,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
         }
         $this
             ->setDescription('Inits the project from the sf standard distribution in the vendor dir.')
+            ->addArgument('name', InputArgument::OPTIONAL, 'the Name of the Customer (used as Namespace Part)', 'Acme' )
 	    ->addOption(
                'force',
                null,
@@ -48,9 +48,9 @@ class InitSymfonyCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        parent::execute($input, $output);
 	$output->writeln('<info>initializing symfony</info>');
-        $this->input = $input;
-        $this->output = $output;
+        $this->io->write('<info>c33s:init-cms</info>');
 
 	$this->copyData($input->getOption('force'));
 	$this->removeAcmeBundle();
@@ -97,7 +97,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	$appKernelFile = $this->getAppKernelPath();
 	Tools::addLineToFile($appKernelFile,$bundleDefinitionToAdd,$stringAfterToInsert,$checkString);
         
-        $this->output->writeln('added CoreBundle to AppKernel');
+        $this->io->write('added CoreBundle to AppKernel');
     }
     
     protected function addConfigYml()
@@ -108,7 +108,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
         
         Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
         
-        $this->output->writeln('added CoreBundle config.yml to imports');
+        $this->io->write('added CoreBundle config.yml to imports');
     }
 
 
@@ -117,7 +117,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
         $configFile = $this->getConfigYmlPath();
         
         Tools::cropFileByLine($configFile, false, "# Assetic Configuration");
-        $this->output->writeln('config.yml cleaned');
+        $this->io->write('config.yml cleaned');
     }
     protected function removeAcmeBundle()
     {
@@ -129,7 +129,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	Tools::cropFileByLine($configFile, false, "# AcmeDemoBundle routes (to be removed)");
 	
         
-        $this->output->writeln('removed AcmeBundle');
+        $this->io->write('removed AcmeBundle');
     }
     
     protected function copyData($overwrite = false)
@@ -143,9 +143,13 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	    ->ignoreDotFiles(false)
 	    ->ignoreVCS(false)		
 	;
+        
+        $parameters = array();
+        $parameters['secret'] = $this->generateSecret();
+        $parameters['name'] = $this->name;    
 	foreach ($finder as $file) 
 	{
-	    $parameters['secret'] = $this->generateSecret();
+
 	    
 	    $loader = new Twig_Loader_Filesystem($file->getPath());
 	    $twig = new Twig_Environment($loader);
@@ -154,7 +158,7 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	    $fileParts = pathinfo($file);
 	    $targetFile = $this->getRootDirectory().'/'.$file->getRelativePath().'/'.$fileParts['filename'];
 	    $fs->dumpFile($targetFile, $content);
-	    $this->output->writeln($targetFile);
+	    $this->io->write($targetFile);
 	}
 	
 	$this->copyFramework($overwrite);
@@ -184,18 +188,10 @@ class InitSymfonyCommand extends ContainerAwareCommand
 	{
 	    $fs->copy($file->getRealpath(), $this->getProjectRootDirectory().'/'.$file->getRelativePathname(), $overwrite);
 	}
-        $this->output->writeln('copied Framework Files');
+        $this->io->write('copied Framework Files');
     }    
 	
-    protected function isFramework()
-    {
-        $app = $this->getApplication();
-        if (method_exists($app,'getKernel'))
-        {
-            return true;
-        }
-        return false;
-    }      
+     
     protected function getProjectRootDirectory()
     {
 	return $this->getVendorDirectory().'/..';
@@ -263,23 +259,8 @@ class InitSymfonyCommand extends ContainerAwareCommand
     
     protected function generateSecret()
     {
-	return $this->generateRandomPassword();
+	return Tools::generateRandomPassword();
     }
     
-    protected function generateRandomPassword() 
-    {
-	//Initialize the random password
-	$password = '';
 
-	//Initialize a random desired length
-	$desired_length = rand(48, 50);
-
-	for($length = 0; $length < $desired_length; $length++) 
-	{
-	    //Append a random ASCII character (including symbols)
-	    $password .= chr(rand(32, 126));
-	}
-
-	return $password;
-    }
 }

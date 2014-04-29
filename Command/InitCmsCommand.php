@@ -2,8 +2,6 @@
 
 namespace c33s\CoreBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,21 +14,17 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Finder\Finder;
 //use c33s\CoreBundle\Util\AkelosInflector as Inflector;
 
-//use Composer\IO\ConsoleIO;
 
-use c33s\CoreBundle\Command\ConsoleIO;
-use c33s\CoreBundle\Helper\NameHelper;
+//use c33s\CoreBundle\Helper\NameHelper;
 
-class InitCmsCommand extends ContainerAwareCommand
+use c33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
+
+class InitCmsCommand extends BaseInitCommand
 {
-    protected $io;
     protected $fs;
     protected $finder;
     protected $bundles;
     protected $asseticBundles;
-    protected $name;
-    //protected $input;
-    //protected $output;
     
     protected function configure()
     {
@@ -69,7 +63,8 @@ class InitCmsCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-	$this->io = new ConsoleIO($input, $output, $this->getHelperSet());
+	parent::execute($input, $output);
+        //$this->io = new ConsoleIO($input, $output, $this->getHelperSet());
 	$this->io->write('<info>c33s:init-cms</info>');
 	$this->fs = new Filesystem();
 	
@@ -126,11 +121,7 @@ class InitCmsCommand extends ContainerAwareCommand
 	}
     }
 
-    protected function initNameHelper($name)
-    {
-	$inflector = $this->getContainer()->get('c33s_core.inflector');
-	$this->name = new NameHelper($name, $inflector);
-    }
+
         
     protected function generatePredifinedBundles()
     {
@@ -161,8 +152,6 @@ class InitCmsCommand extends ContainerAwareCommand
     protected function generateFileFromTemplate($file, $targetDirectory = null, $parameters = array())
     {
 	$fileParts = pathinfo($file);
-	//var_dump($file,$fileParts);
-	//exit;
 	
 	$parameters['name'] = $this->name;
 	$parameters['asseticBundles'] = $this->asseticBundles;
@@ -183,12 +172,5 @@ class InitCmsCommand extends ContainerAwareCommand
 	$this->fs->dumpFile($targetFile, $content);
     }
     
-    protected function getDefaultHelperSet()
-    {
-	$helperSet = parent::getDefaultHelperSet();
 
-	$helperSet->set(new DialogHelper());
-
-	return $helperSet;
-    }
 }
