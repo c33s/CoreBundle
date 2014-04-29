@@ -7,23 +7,15 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Symfony\Component\Filesystem\Filesystem;
 
-//use c33s\CoreBundle\Tools\Tools;
-use Symfony\Component\Process\Process;
 use Symfony\Component\Finder\Finder;
-//use c33s\CoreBundle\Util\AkelosInflector as Inflector;
-
-
-//use c33s\CoreBundle\Helper\NameHelper;
 
 use c33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
 
 class InitCmsCommand extends BaseInitCommand
 {
-    protected $fs;
-    protected $finder;
-    protected $bundles;
+
+    //protected $bundles;
     protected $asseticBundles;
     
     protected function configure()
@@ -50,6 +42,15 @@ class InitCmsCommand extends BaseInitCommand
                InputOption::VALUE_IS_ARRAY | InputArgument::OPTIONAL,
                'supply an array of bundle names which should be generated',
 		array('Webpage', 'Admin', 'AdminGen', 'Model')
+		//array('Webpage', 'Admin', 'Model')
+            )
+	    ->addOption(
+               'models',
+               null,
+               InputOption::VALUE_IS_ARRAY | InputArgument::OPTIONAL,
+               'supply an array of model names for which admin should be generated',
+		array('Storage')
+		//array('Webpage', 'Admin', 'Model')
             )
 	    ->addOption(
                'assetic-bundles',
@@ -66,111 +67,82 @@ class InitCmsCommand extends BaseInitCommand
 	parent::execute($input, $output);
         //$this->io = new ConsoleIO($input, $output, $this->getHelperSet());
 	$this->io->write('<info>c33s:init-cms</info>');
-	$this->fs = new Filesystem();
 	
-	$this->bundles = $input->getOption('bundles');
+        
 	$this->asseticBundles = $input->getOption('bundles');
 	$this->initNameHelper($input->getArgument('name'));
 	
 	if (!$input->getOption('no-bundles'))
 	{
-	    $this->generatePredifinedBundles();
+            $bundles = $input->getOption('bundles');
+            $models = $input->getOption('models');
+            
+	    $this->generatePredifinedBundles($bundles);
+            $this->generateAdmins($models);
 	}
 	
 	$this->initTemplatesAndResources();
+        $this->fixAdminGeneratorYmls();
+        
+        $this->executeCommand("php app/console propel:build --insert-sql");
     }
     
-    protected function initTemplatesAndResources()
-    {
-	$path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/InitCmsCommand/');
-	$directoryFinder = new Finder();
-	$directoryFinder
-	    ->directories()
-	    ->in($path)
-	    ->depth('== 0')	
-	;
-	
-	$bundleNames = array();
-	foreach ($directoryFinder as $dir)
-	{
-	    $bundleNames[] =  $dir->getFilename();
-	}
-	
-	
-	foreach ($bundleNames as $bundleName)
-	{
-	    $path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/InitCmsCommand/'.$bundleName);
-	    $finder = new Finder();
-	    $finder->files()->in($path);
-	    foreach ($finder as $file) 
-	    {
-		if ($bundleName == 'General')
-		{
-		    $bundlename = '';
-		    $targetDirectory = $file->getRelativePath();
-		}
-		else
-		{
-		    $bundlename = $bundleName;
-		    $targetDirectory = "src/{$this->name->camelcased()}/${bundlename}Bundle/".$file->getRelativePath();
-		}
-		$currentFile = $bundleName.'/'.$file->getRelativePathname();
-		
-		$this->generateFileFromTemplate($currentFile,$targetDirectory,array('bundlename' => $bundlename));
-	    }
-	}
-    }
-
 
         
-    protected function generatePredifinedBundles()
+    protected function generatePredifinedBundles($bundles)
     {
-	foreach ($this->bundles as $bundle)
+	foreach ($bundles as $bundle)
 	{
 	    $this->generateBundle($bundle.'Bundle');
 	}
     }
     
+    protected function generateAdmins($models)
+    {
+        foreach ($models as $model)
+        {
+            $this->generateAdmin($model);
+        }
+    }
+    
+    protected function generateAdmin($model)
+    {
+        $command = "php app/console admin:generate-admin --namespace=\"{$this->name->camelcased()}/AdminGenBundle\" --generator=\"propel\" --model-name=\"${model}\" --prefix=\"${model}\" --no-interaction --dir=\"./src\"";
+        $this->executeCommand($command);
+    }
+    
     protected function generateBundle($bundle)
     {
 	$command = "php app/console generate:bundle --namespace={$this->name->camelcased()}/${bundle} --dir=src --bundle-name={$this->name->camelcased()}${bundle} --format=yml  --no-interaction";
-	$this->io->write(sprintf('Running <comment>%s</comment>', $command));
-	$process = new Process($command);
-	$process->run(function ($type, $buffer)
-	{
-	    if (Process::ERR === $type)
-	    {
-		echo $buffer;
-	    }
-	    else
-	    {
-		echo $buffer;
-	    }
-	});
+        $this->executeCommand($command);
     }
     
-    protected function generateFileFromTemplate($file, $targetDirectory = null, $parameters = array())
+    protected function fixAdminGeneratorYmls()
     {
-	$fileParts = pathinfo($file);
-	
+	$path = $this->getContainer()->get('kernel')->getRootDir().'/../src/'.$this->name.'/AdminGenBundle/Resources/config';
+	$finder = new Finder();
+	$finder
+	    ->files()
+            ->name('*generator.yml')
+	    ->in($path)
+	;
+        
+        foreach ($finder as $file)
+        {
+            $content = $file->getContents();
+            $from = array('model: '.$this->name.'\AdminGenBundle\Model', );
+            $to   = array('model: '.$this->name.'\ModelBundle\Model', );
+            $newContent = str_replace($from, $to, $content);
+            $this->fs->dumpFile($file->getPathname(),$newContent);
+            
+        }
+    }
+    
+    protected function renderFileFromTemplate($file, $targetDirectory = null, $parameters = array())
+    {
 	$parameters['name'] = $this->name;
 	$parameters['asseticBundles'] = $this->asseticBundles;
-	
-	$content = $this->getContainer()->get('templating')->render("c33sCoreBundle:Command/InitCmsCommand/${fileParts['dirname']}:${fileParts['basename']}", $parameters);
-	
-	if ($targetDirectory)
-	{
-	    $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$targetDirectory.DIRECTORY_SEPARATOR.$fileParts['filename'];
-	}
-	else
-	{
-	    $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$fileParts['dirname'].'/'.$fileParts['filename'];
-	}
-	    
-	
-	$this->io->write($targetFile);
-	$this->fs->dumpFile($targetFile, $content);
+        
+        parent::renderFileFromTemplate($file,$targetDirectory,$parameters);
     }
-    
-
 }

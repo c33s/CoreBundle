@@ -8,20 +8,27 @@ use Symfony\Component\Console\Input\InputInterface;
 //use Symfony\Component\Console\Input\InputOption;
 //use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Filesystem\Filesystem;
 
 use c33s\CoreBundle\Command\ConsoleIO;
 use c33s\CoreBundle\Helper\NameHelper;
 use c33s\CoreBundle\Util\AkelosInflector as Inflector;
 
+
 class BaseInitCmd extends ContainerAwareCommand
 {
     protected $io;
     protected $name;
+    protected $fs;
+    protected $asseticBundles = array('Webpage', 'Admin', 'AdminGen');
     
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 	$this->io = new ConsoleIO($input, $output, $this->getHelperSet());
-	
+        $this->fs = new Filesystem();
+        
         if ($input->hasArgument('name'))
         {
             $this->initNameHelper($input->getArgument('name'));
@@ -58,5 +65,107 @@ class BaseInitCmd extends ContainerAwareCommand
             return true;
         }
         return false;
-    } 
+    }
+    
+    protected function executeCommand($command)
+    {
+        $this->io->write(sprintf('Running <comment>%s</comment>', $command));
+	$process = new Process($command);
+	$process->run(function ($type, $buffer)
+	{
+	    if (Process::ERR === $type)
+	    {
+		echo $buffer;
+	    }
+	    else
+	    {
+		echo $buffer;
+	    }
+	});
+    }
+    
+    protected function getCommandTemplateDirectory()
+    {
+        //$commandTemplateDirectory = basename(get_class($this));
+        $reflect = new \ReflectionClass($this);
+        return $reflect->getShortName();
+    }
+
+
+    protected function initTemplatesAndResources()
+    {
+
+        
+	$path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/');
+        $bundleNames = $this->getTemplateDirectories($path);
+	
+	foreach ($bundleNames as $bundleName)
+	{
+	    $path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/'.$bundleName);
+            $this->renderFilesFromTemplates($path,$bundleName);
+	}
+    }
+    
+    protected function renderFilesFromTemplates($path,$bundleName)
+    {
+        $finder = new Finder();
+        $finder->files()->in($path);
+        foreach ($finder as $file) 
+        {
+            if ($bundleName == 'General')
+            {
+                $bundlename = '';
+                $targetDirectory = $file->getRelativePath();
+            }
+            else
+            {
+                $bundlename = $bundleName;
+                $targetDirectory = "src/{$this->name->camelcased()}/${bundlename}Bundle/".$file->getRelativePath();
+            }
+            $currentFile = $bundleName.'/'.$file->getRelativePathname();
+
+            $this->renderFileFromTemplate($currentFile,$targetDirectory,array('bundlename' => $bundlename));
+        }
+    }
+    
+
+
+    protected function getTemplateDirectories($path)
+    {
+        $directoryFinder = new Finder();
+	$directoryFinder
+	    ->directories()
+	    ->in($path)
+	    ->depth('== 0')	
+	;
+	
+	$bundleNames = array();
+	foreach ($directoryFinder as $dir)
+	{
+	    $bundleNames[] =  $dir->getFilename();
+	}
+        
+        return $bundleNames;
+    }
+    
+    protected function renderFileFromTemplate($file, $targetDirectory = null, $parameters = array())
+    {
+        $parameters['name'] = $this->name;
+                
+	$fileParts = pathinfo($file);
+	
+	$content = $this->getContainer()->get('templating')->render("c33sCoreBundle:Command/".$this->getCommandTemplateDirectory()."/${fileParts['dirname']}:${fileParts['basename']}", $parameters);
+	
+	if ($targetDirectory)
+	{
+	    $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$targetDirectory.DIRECTORY_SEPARATOR.$fileParts['filename'];
+	}
+	else
+	{
+	    $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$fileParts['dirname'].'/'.$fileParts['filename'];
+	}
+	    
+	$this->io->write($targetFile,OutputInterface::VERBOSITY_VERBOSE);
+	$this->fs->dumpFile($targetFile, $content);
+    }
 }

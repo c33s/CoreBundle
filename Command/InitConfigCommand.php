@@ -4,6 +4,7 @@ namespace c33s\CoreBundle\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Symfony\Component\Filesystem\Filesystem;
@@ -18,6 +19,7 @@ class InitConfigCommand extends BaseInitCommand
         $this
             ->setName('c33s:init-config')
             ->setDescription('the task will init the projects config with the importing system')
+            ->addArgument('name', InputArgument::REQUIRED, 'the Name of the Customer (used as Namespace Part)' )
 	    ->addOption(
                'force',
                null,
@@ -32,26 +34,34 @@ class InitConfigCommand extends BaseInitCommand
         parent::execute($input, $output);
 	$this->io->write('<info>c33s:init-config</info>');
 	$this->rebuildBundles();
-	$this->createPropelDataDirectory();
+        //$this->addImporterToConfig();
+	$this->createSqlDataDirectory();
+        $this->createPropelFixturesDirectory();
+        $this->initTemplatesAndResources();
     }
     
+    protected function createPropelFixturesDirectory()
+    {
+        
+        $propelFixturesDir = $this->getContainer()->get('kernel')->getRootDir().'/propel/fixtures';
+	$this->fs->mkdir($propelFixturesDir);
+    }
+
+
     protected function addImporterToConfig()
     {
-        $configFile = $this->getConfigYmlPath();
+        $configFile = $this->getContainer()->get('kernel')->getRootDir().'/config/config.yml';
         $configToAdd = "    - { resource: @c33sCoreBundle/Resources/config/config/_importer.yml }\n";
-        $stringAfterToInsert = "- { resource: security.yml }";
+        $stringAfterToInsert = "- { resource: corebundle/_base_importer.yml }";
         
         Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
-        
         $this->io->write('added CoreBundle config.yml to imports');
     }
     
     protected function rebuildBundles()
     {
-        $bundles = $this->getContainer()->parameters['c33s_core.config.bundles'];
-	$bundles = array_reverse($bundles);
+	$bundles = array_reverse($this->getContainer()->parameters['c33s_core.config.bundles']);
 	$appKernel = $this->getContainer()->get('kernel')->getRootDir().'/AppKernel.php';
-	
 	
 	$this->removeBundles($appKernel);
 	$this->cleanBaseImporter();
@@ -61,12 +71,13 @@ class InitConfigCommand extends BaseInitCommand
         $this->io->write('added Bundles');
     }
     
-    protected function createPropelDataDirectory()
+    protected function createSqlDataDirectory()
     {
-	$propelDataDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
+	$sqlDataDir = $this->getContainer()->get('kernel')->getRootDir().'/data';
 	
 	$fs = new Filesystem();
-	$fs->mkdir($propelDataDir);
+	$fs->mkdir($sqlDataDir);
+        $fs->dumpFile($sqlDataDir.'/.gitkeep', " ");
     }
 
 
@@ -98,7 +109,6 @@ class InitConfigCommand extends BaseInitCommand
 	$coreBundleConfigDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
 	
 	Tools::removeLineFromFile($this->getContainer()->get('kernel')->getRootDir().'/config/config.yml','- { resource: corebundle/_base_importer.yml }');
-	
 	
 	$fs = new Filesystem();
 	$fs->remove($coreBundleConfigDir);
@@ -140,5 +150,12 @@ class InitConfigCommand extends BaseInitCommand
 		Tools::addLineToFile($appKernel, $bundleDefinition, "//# Sub Bundles ###");
 	    }
         }
+    }
+    
+    protected function renderFileFromTemplate($file, $targetDirectory = null, $parameters = array())
+    {
+	$parameters['asseticBundles'] = $this->asseticBundles;
+        
+        parent::renderFileFromTemplate($file,$targetDirectory,$parameters);
     }
 }

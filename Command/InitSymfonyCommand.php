@@ -11,10 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Twig_Loader_Filesystem;
 use Twig_Environment;
 
-//use Symfony\Component\Process\Process;
-
-//use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler as SensioScriptHandler;
-
 use Symfony\Component\Filesystem\Filesystem;
 
 use Symfony\Component\Finder\Finder;
@@ -134,7 +130,6 @@ class InitSymfonyCommand extends BaseInitCommand
     
     protected function copyData($overwrite = false)
     {
-	$fs = new Filesystem();
 	$path = $this->getCoreBundleTemplatesDirectory();
 	$finder = new Finder();
 	$finder
@@ -149,21 +144,26 @@ class InitSymfonyCommand extends BaseInitCommand
         $parameters['name'] = $this->name;    
 	foreach ($finder as $file) 
 	{
-
-	    
-	    $loader = new Twig_Loader_Filesystem($file->getPath());
-	    $twig = new Twig_Environment($loader);
-	    $template = $twig->loadTemplate($file->getFilename());
-	    $content = $template->render($parameters);
-	    $fileParts = pathinfo($file);
-	    $targetFile = $this->getRootDirectory().'/'.$file->getRelativePath().'/'.$fileParts['filename'];
-	    $fs->dumpFile($targetFile, $content);
-	    $this->io->write($targetFile);
+            $this->renderTemplateFile($file,$parameters);
 	}
 	
 	$this->copyFramework($overwrite);
     }
     
+    protected function renderTemplateFile($file,$parameters = array())
+    {
+        $fs = new Filesystem();
+        $loader = new Twig_Loader_Filesystem($file->getPath());
+        $twig = new Twig_Environment($loader);
+        $template = $twig->loadTemplate($file->getFilename());
+        $content = $template->render($parameters);
+        $fileParts = pathinfo($file);
+        $targetFile = $this->getRootDirectory().'/'.$file->getRelativePath().'/'.$fileParts['filename'];
+        $fs->dumpFile($targetFile, $content);
+        $this->io->write($targetFile);
+    }
+
+
     protected function copyFramework($overwrite = false)
     {
 	$finder = new Finder();
