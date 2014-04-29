@@ -1,0 +1,48 @@
+{% verbatim %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <img class="img-rounded-small img-rounded img-responsive" src="{{ asset(('media/images/logo.png') | imagine_filter('fourblock')) }}" alt="" />
+        </div>
+        <div class="col-md-offset-1 col-md-6">
+            <h3>{{ c33s_core_config.contact.company }}</h3>
+            <h4>Information nach dem E-Commerce-Gesetz und Offenlegung gemäß § 25 Mediengesetz</h4>
+
+            {{ macros.address('',true) }}
+            <ul class="list-unstyled">
+                <li><strong>Diensteanbieter und Medieninhaber:</strong> {{ c33s_core_config.contact.title }} {{ c33s_core_config.contact.firstname }} {{ c33s_core_config.contact.lastname }}</li>
+                <li><strong>Aufsichtsbehörde:</strong> </li>
+                <li><strong>Berufsbezeichnung:</strong> </li>
+                <li><strong>Fremdsprachen:</strong> Englisch</li>
+            </ul>
+            
+            <h4>Technische Umsetzung</h4>
+            <p>
+                created by <a href="http://consistency.at" target="_blank">consistency - multimedia and it solutions</a>
+            </p>
+            <h4>Quellenangaben für die verwendeten Bilder, Grafiken und Videos</h4>
+                Fotos: 
+                <ul>
+                    <li>Eigenproduktion</li>
+                </ul>
+                Videos:
+                <ul>
+                    <li>Eigenproduktion</li>
+                </ul>
+            
+            <h4>Markenzeichen</h4>
+            <p>
+                
+            </p>
+            
+            <h4>Datenschutz & Haftungsausschluss</h4>
+                <ul class="list-inline">
+                    <li><i class="fa fa-shield"></i> <a href="{{ macros.static('haftungsausschluss') }}">Haftungsausschluss</a></li>
+                    <li><i class="fa fa-lock"></i> <a href="{{ macros.static('datenschutz') }}">Datenschutz</a></li>
+                </ul>
+
+        </div>
+    </div>
+</div>
+<br>
+{% endverbatim %}
