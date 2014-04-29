@@ -93,19 +93,23 @@ class ConsoleIO
     /**
 * {@inheritDoc}
 */
-    public function write($messages, $newline = true)
+    public function write($messages, $verboseityLevel = OutputInterface::VERBOSITY_NORMAL, $newline = true)
     {
-        if (null !== $this->startTime) {
-            $messages = (array) $messages;
-            $messages[0] = sprintf(
-                '[%.1fMB/%.2fs] %s',
-                memory_get_usage() / 1024 / 1024,
-                microtime(true) - $this->startTime,
-                $messages[0]
-            );
+        if ($this->output->getVerbosity() >= $verboseityLevel)
+        {
+            if (null !== $this->startTime) 
+            {
+                $messages = (array) $messages;
+                $messages[0] = sprintf(
+                    '[%.1fMB/%.2fs] %s',
+                    memory_get_usage() / 1024 / 1024,
+                    microtime(true) - $this->startTime,
+                    $messages[0]
+                );
+            }
+            $this->output->write($messages, $newline);
+            $this->lastMessage = join($newline ? "\n" : '', (array) $messages);
         }
-        $this->output->write($messages, $newline);
-        $this->lastMessage = join($newline ? "\n" : '', (array) $messages);
     }
 
     /**
