@@ -1,0 +1,46 @@
+@font-path: 'media/fonts/';
+
+@fontName: 'BebasNeue-webfont';
+@fontFamilyName: 'bebas_neueregular';
+@fontFamily: '@{fontFamilyName}', Arial, sans-serif;
+@fontPath: @{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/fonts/bebas;
+
+@fontAwesomeName: fontawesome-webfont;
+@fontAwesomeFamilyName: FontAwesome;
+@fontAwesomePath: @{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/fonts/fontawesome4;
+@fontAwesomeVersion: '4.0.3'; 
+
+@font-face
+{
+  font-family: '@{fontFamily}';
+  src: url('@{fontPath}/@{fontName}.eot');
+  src: url('@{fontPath}/@{fontName}.eot?#iefix') format('embedded-opentype'),
+  url('@{fontPath}/@{fontName}.woff') format('woff'),
+  url('@{fontPath}/@{fontName}.ttf') format('truetype'),
+  url('@{fontPath}/@{fontName}.svg#@{fontFamily}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: '@{fontAwesomeFamilyName}';
+  src: url('@{fontAwesomePath}/@{fontAwesomeName}.eot?v=@{fontAwesomeVersion}');
+  src: url('@{fontAwesomePath}/@{fontAwesomeName}.eot?#iefix&v=@{fontAwesomeVersion}') format('embedded-opentype'), 
+  url('@{fontAwesomePath}/@{fontAwesomeName}.woff?v=@{fontAwesomeVersion}') format('woff'), 
+  url('@{fontAwesomePath}/@{fontAwesomeName}.ttf?v=@{fontAwesomeVersion}') format('truetype'), 
+  url('@{fontAwesomePath}/@{fontAwesomeName}.svg?v=@{fontAwesomeVersion}#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, h2, h3, h4
+{
+  font-family: @fontFamilyName;
+  text-transform:uppercase;
+  font-weight: normal;
+}
+
+.navbar
+{
+  font-family: @fontFamilyName;
+}
