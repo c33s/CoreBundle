@@ -1,0 +1,71 @@
+{% verbatim %}
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }} 
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+      
+      footer
+      {
+          margin: 0 auto 20px;
+          max-width: 400px;
+      }
+    </style>
+{% endblock %}
+      
+{% block header %}{% endblock %}
+      
+{% block fos_user_content %}
+{% if error %}
+    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+{% endif %}
+    <form  class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
+         <h3 class="form-signin-heading"><img style="margin-top:5px;margin-right:10px; " class="pull-left img-rounded" src="{{ asset(('media/images/logo.png') | imagine_filter('adminlogotop')) }}" alt="" /> {{ c33s_core_config.app.name_short }} admin</h3>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+        <input type="text" class="input-block-level" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+        <input type="password" class="input-block-level" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}" id="password" name="_password" required="required" />
+
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+        <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+
+        <button class="btn btn-large btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}">Anmelden</button>
+        <br><br><a href="{{ path('fos_user_resetting_request') }}">Passwort vergessen?</a>
+    </form>
+{% endblock fos_user_content %}
+{% block content_post %}
+        </div><!--/span-->
+    </div><!--/row-->
+{% endblock %}
+{% endverbatim %}
