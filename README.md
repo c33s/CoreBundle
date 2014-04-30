@@ -74,6 +74,7 @@ then you can call
     composer run-script post-update-cmd
     php app/console c33s:init-config Acme
     php app/console c33s:init-cms Acme
+    composer dump-autoload
 
 ## Filter & Macros
 
