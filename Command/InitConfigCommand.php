@@ -34,10 +34,10 @@ class InitConfigCommand extends BaseInitCommand
         parent::execute($input, $output);
 	$this->io->write('<info>c33s:init-config</info>');
 	$this->rebuildBundles();
-        //$this->addImporterToConfig();
 	$this->createSqlDataDirectory();
         $this->createPropelFixturesDirectory();
         $this->initTemplatesAndResources();
+       
     }
     
     protected function createPropelFixturesDirectory()
@@ -48,15 +48,7 @@ class InitConfigCommand extends BaseInitCommand
     }
 
 
-    protected function addImporterToConfig()
-    {
-        $configFile = $this->getContainer()->get('kernel')->getRootDir().'/config/config.yml';
-        $configToAdd = "    - { resource: @c33sCoreBundle/Resources/config/config/_importer.yml }\n";
-        $stringAfterToInsert = "- { resource: corebundle/_base_importer.yml }";
-        
-        Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
-        $this->io->write('added CoreBundle config.yml to imports');
-    }
+
     
     protected function rebuildBundles()
     {

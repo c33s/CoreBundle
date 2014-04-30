@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 
 use Symfony\Component\Finder\Finder;
+use c33s\CoreBundle\Tools\Tools;
 
 use c33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
 
@@ -83,11 +84,20 @@ class InitCmsCommand extends BaseInitCommand
 	
 	$this->initTemplatesAndResources();
         $this->fixAdminGeneratorYmls();
+        $this->addImporterToConfig();
         
         $this->executeCommand("php app/console propel:build --insert-sql");
     }
     
-
+    protected function addImporterToConfig()
+    {
+        $configFile = $this->getContainer()->get('kernel')->getRootDir().'/config/config.yml';
+        $configToAdd = "    - { resource: config/_importer.yml }\n";
+        $stringAfterToInsert = "- { resource: corebundle/_base_importer.yml }";
+        
+        Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
+        $this->io->write('added CoreBundle config.yml to imports');
+    }
         
     protected function generatePredifinedBundles($bundles)
     {
