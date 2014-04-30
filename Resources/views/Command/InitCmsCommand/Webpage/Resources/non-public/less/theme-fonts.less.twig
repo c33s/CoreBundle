@@ -3,16 +3,19 @@
 @fontName: 'BebasNeue-webfont';
 @fontFamilyName: 'bebas_neueregular';
 @fontFamily: '@{fontFamilyName}', Arial, sans-serif;
-@fontPath: @{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/fonts/bebas;
+@fontPath: "@{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/fonts/bebas";
 
 @fontAwesomeName: fontawesome-webfont;
 @fontAwesomeFamilyName: FontAwesome;
-@fontAwesomePath: @{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/fonts/fontawesome4;
+//@fontAwesomePath: "@{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/fonts/fontawesome4";
+//@fontAwesomePath: "/components/font-awesome/font";
+@fontAwesomePath: "@{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/../../../components/font-awesome/font";
 @fontAwesomeVersion: '4.0.3'; 
 
+{#
 @font-face
 {
-  font-family: '@{fontFamily}';
+  font-family: '@{fontFamilyName}';
   src: url('@{fontPath}/@{fontName}.eot');
   src: url('@{fontPath}/@{fontName}.eot?#iefix') format('embedded-opentype'),
   url('@{fontPath}/@{fontName}.woff') format('woff'),
@@ -21,7 +24,7 @@
   font-weight: normal;
   font-style: normal;
 }
-
+#}
 @font-face {
   font-family: '@{fontAwesomeFamilyName}';
   src: url('@{fontAwesomePath}/@{fontAwesomeName}.eot?v=@{fontAwesomeVersion}');
@@ -35,12 +38,12 @@
 
 h1, h2, h3, h4
 {
-  font-family: @fontFamilyName;
+  font-family: @fontFamily;
   text-transform:uppercase;
   font-weight: normal;
 }
 
 .navbar
 {
-  font-family: @fontFamilyName;
+  font-family: @fontFamily;
 }
