@@ -82,8 +82,8 @@ c33s_core:
             firstname: 
             lastname:  
             map:
-#                lat: 
-#                long: 
+#                lat: 0.0
+#                long: 0.0
 #                marker: 
 #                    image: http://%master_domain%/media/cache/logotop/media/images/logo.png
 #                    size: [32,32]
