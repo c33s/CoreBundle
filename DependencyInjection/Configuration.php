@@ -230,8 +230,8 @@ class Configuration implements ConfigurationInterface
 	$node
 	    ->addDefaultsIfNotSet()
             ->children()
-		->floatNode('lat')->defaultNull()->end()
-		->floatNode('long')->defaultNull()->end()
+		->floatNode('lat')->defaultValue(0.0)->end()
+		->floatNode('long')->defaultValue(0.0)->end()
 		->arrayNode('marker')
 		    ->children()
 			->scalarNode('image')->defaultValue('http://maps.google.com/mapfiles/marker_orange.png')->end()
