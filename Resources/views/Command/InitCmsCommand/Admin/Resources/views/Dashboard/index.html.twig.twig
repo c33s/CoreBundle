@@ -1,0 +1,11 @@
+{% verbatim %}
+{% extends "{% endverbatim %}{{ name.camelcase }}{% verbatim %}{% endverbatim %}{{ bundlename | camelcase }}{% verbatim %}Bundle::baseAdmin.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+<div class="row-fluid">
+    
+</div>
+{% endblock %}
+{% endverbatim %}
