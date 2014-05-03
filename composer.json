@@ -24,6 +24,18 @@
         {
             "type": "vcs",
             "url": "https://github.com/c33s/AssetManagementBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/tagme/Identicon.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/tagme/AdmingeneratorGeneratorBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/tagme/FormExtensions.git"
         }
     ],
     "bin": [
@@ -45,14 +57,14 @@
         "oyejorge/less.php": "~1.5",
         "ptachoire/cssembed": "1.0.*",
         "braincrafted/bootstrap-bundle": "1.4.*",
-        "cedriclombardot/admingenerator-generator-bundle": "dev-master#6dd565dacb6e668b9bcfa216a2acca356949375c",
-        "avocode/form-extensions-bundle": "dev-master#cd83e011f7fcc979cb5714c33423845c7ce36f0a",
-        "white-october/pagerfanta-bundle": "dev-master#606467f9e9f9e80975128db589eec2f9d11139c2",
+        "white-october/pagerfanta-bundle": "1.0.*",
+        "cedriclombardot/admingenerator-generator-bundle": "0.99.*",
+        "avocode/form-extensions-bundle": "0.99.*",
+        "yzalis/identicon": "0.99.*",
         "components/jquery": "1.9.*",
         "components/jqueryui": "1.10.*",
         "malsup/form": "3.36",
         "smoya/asset-management-bundle": "1.0.*",
-        "yzalis/identicon": "1.0.*@dev",
         "zenstruck/slugify-bundle": "1.1.*",
         "guzzle/guzzle": "3.8.*",
         "suncat/mobile-detect-bundle": "0.9.*",
