@@ -36,6 +36,6 @@ class PatchCommand extends ContainerAwareCommand
         $sourcePath = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/patches/Admingenerator');
         $targetPath = $this->getContainer()->get('kernel')->getRootDir().'/../'.$vendorPath."/";
         $fs = new Filesystem();
-        $fs->mirror(sourcePath, $targetPath, null, array('override' => true, 'delete' => false));
+        $fs->mirror($sourcePath, $targetPath, null, array('override' => true, 'delete' => false));
     }
 }
