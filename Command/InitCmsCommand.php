@@ -38,6 +38,12 @@ class InitCmsCommand extends BaseInitCommand
                'If set no Bundles are generated.'
             )
 	    ->addOption(
+               'no-executes',
+               null,
+               InputOption::VALUE_NONE,
+               'If set no Bundles are generated.'
+            )
+	    ->addOption(
                'bundles',
                null,
                InputOption::VALUE_IS_ARRAY | InputArgument::OPTIONAL,
@@ -46,11 +52,11 @@ class InitCmsCommand extends BaseInitCommand
 		//array('Webpage', 'Admin', 'Model')
             )
 	    ->addOption(
-               'models',
+               'admin-models',
                null,
                InputOption::VALUE_IS_ARRAY | InputArgument::OPTIONAL,
                'supply an array of model names for which admin should be generated',
-		array('Storage')
+		array('Storage','News')
 		//array('Webpage', 'Admin', 'Model')
             )
 	    ->addOption(
@@ -72,23 +78,60 @@ class InitCmsCommand extends BaseInitCommand
         
 	$this->asseticBundles = $input->getOption('bundles');
 	$this->initNameHelper($input->getArgument('name'));
+        $this->adminModels = $input->getOption('admin-models');
 	
 	if (!$input->getOption('no-bundles'))
 	{
             $bundles = $input->getOption('bundles');
-            $models = $input->getOption('models');
             
 	    $this->generatePredifinedBundles($bundles);
-            $this->generateAdmins($models);
+            $this->generateAdmins($this->adminModels);
 	}
 	
 	$this->initTemplatesAndResources();
+        $this->createAdminGenRouting();
         $this->fixAdminGeneratorYmls();
         $this->addImporterToConfig();
-        
-        $this->executeCommand("php app/console propel:build --insert-sql");
+//        
+//        $this->copyFiles();
+//	if (!$input->getOption('no-executes'))
+//	{
+//            $this->executeCommand("php app/console propel:build --insert-sql");
+//            $this->executeCommand("c dump-autoload");
+//            $this->executeCommand("php app/console assets:install");
+//            $this->executeCommand("php app/console c33s:rebuild",120);
+//            $this->executeCommand("php app/console admin:c33s:patch");
+//	}        
     }
     
+    protected function createAdminGenRouting()
+    {
+        $this->io->write('createing admingen routing');
+        $path = $this->getContainer()->get('kernel')->locateResource("@{$this->name->camelcase()}AdminGenBundle");
+        $routingPath = "${path}/Resources/config/routing";
+        $this->fs->mkdir($routingPath);
+        $content="";
+        foreach ($this->adminModels as $model)
+        {
+            $modelLowercase = strtolower($model);
+            $content .= <<<EOT
+{$this->name->underscore()}_admin_gen_{$modelLowercase}:
+    resource: "@{$this->name->camelcase()}AdminGenBundle/Controller/${model}/"
+    type:     admingenerator
+    prefix:   /{$modelLowercase}
+
+EOT;
+        }
+        $this->fs->dumpfile($routingPath.'/admingenerator.yml',$content);
+    }
+
+    protected function copyFiles()
+    {
+        $this->io->write('copying default files');
+        $sourcePath = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/files/copy');
+        $targetPath = $this->getContainer()->get('kernel')->getRootDir().'/../';
+        $this->fs->mirror($sourcePath, $targetPath, null, array('override' => true, 'delete' => false));
+    }
     protected function addImporterToConfig()
     {
         $configFile = $this->getContainer()->get('kernel')->getRootDir().'/config/config.yml';
@@ -101,8 +144,10 @@ class InitCmsCommand extends BaseInitCommand
         
     protected function generatePredifinedBundles($bundles)
     {
+        $this->io->write('generating bundles');
 	foreach ($bundles as $bundle)
 	{
+            $this->io->write('generating bundle: '.$bundle);
 	    $this->generateBundle($bundle.'Bundle');
 	}
     }
@@ -129,6 +174,7 @@ class InitCmsCommand extends BaseInitCommand
     
     protected function fixAdminGeneratorYmls()
     {
+        $this->io->write("fixing Admin Generator Yamls");
 	$path = $this->getContainer()->get('kernel')->getRootDir().'/../src/'.$this->name.'/AdminGenBundle/Resources/config';
 	$finder = new Finder();
 	$finder
@@ -143,6 +189,7 @@ class InitCmsCommand extends BaseInitCommand
             $from = array('model: '.$this->name.'\AdminGenBundle\Model', );
             $to   = array('model: '.$this->name.'\ModelBundle\Model', );
             $newContent = str_replace($from, $to, $content);
+            $this->io->write("fixing ".$file->getPathname(), OutputInterface::VERBOSITY_DEBUG);
             $this->fs->dumpFile($file->getPathname(),$newContent);
             
         }
