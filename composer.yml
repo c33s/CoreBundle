@@ -69,10 +69,10 @@ require:
     
     ### tag me #################################################################
     ### admin generator
-    cedriclombardot/admingenerator-generator-bundle:                 '0.99.*'
-    avocode/form-extensions-bundle:                                  '0.99.*'
+    cedriclombardot/admingenerator-generator-bundle:                 '0.90.*'
+    avocode/form-extensions-bundle:                                  '0.90.*'
     ### other
-    yzalis/identicon:                                                '0.99.*'
+    yzalis/identicon:                                                '0.90.*'
     
     ### javascript #############################################################
     components/jquery:                                                '1.9.*'
