@@ -52,6 +52,7 @@
         "components/jqueryui": "1.10.*",
         "malsup/form": "3.36",
         "smoya/asset-management-bundle": "1.0.*",
+        "yzalis/identicon": "1.0.*@dev",
         "zenstruck/slugify-bundle": "1.1.*",
         "guzzle/guzzle": "3.8.*",
         "suncat/mobile-detect-bundle": "0.9.*",
