@@ -67,10 +67,11 @@ class BaseInitCmd extends ContainerAwareCommand
         return false;
     }
     
-    protected function executeCommand($command)
+    protected function executeCommand($command,$timeout=60)
     {
         $this->io->write(sprintf('Running <comment>%s</comment>', $command));
 	$process = new Process($command);
+        $process->setTimeout($timeout);
 	$process->run(function ($type, $buffer)
 	{
 	    if (Process::ERR === $type)
@@ -94,7 +95,7 @@ class BaseInitCmd extends ContainerAwareCommand
 
     protected function initTemplatesAndResources()
     {
-
+        $this->io->write('initing Templates and Resources');
         
 	$path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/');
         $bundleNames = $this->getTemplateDirectories($path);
@@ -108,10 +109,13 @@ class BaseInitCmd extends ContainerAwareCommand
     
     protected function renderFilesFromTemplates($path,$bundleName)
     {
+        $this->io->write("rendering files for $bundleName");
+        $this->io->write("rendering files in path $path", OutputInterface::VERBOSITY_DEBUG);
         $finder = new Finder();
         $finder->files()->in($path);
         foreach ($finder as $file) 
         {
+            $this->io->write("copying file '$file'", OutputInterface::VERBOSITY_DEBUG);
             if ($bundleName == 'General')
             {
                 $bundlename = '';
