@@ -1,10 +1,9 @@
 knp_gaufrette:
     adapters:
-        foo:
+        local_base:
             local:
-                directory: %kernel.root_dir%/..web/test/path
-                create:     true
+                directory:  '%kernel.root_dir%/../web/media/storage/'
+
     filesystems:
-        bar:
-            adapter:    foo
-            #alias:      foo_filesystem
+        web_storage_fs:
+            adapter:    local_base

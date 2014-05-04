@@ -14,6 +14,8 @@ c33s_core:
         #######################################################################
         c33s_static_page_content:
             class: c33s\StaticPageContentBundle\c33sStaticPageContentBundle
+        c33s_attachment:
+            class: c33s\AttachmentBundle\c33sAttachmentBundle
         propel:
             class: Propel\PropelBundle\PropelBundle
         liip_imagine:
@@ -30,8 +32,8 @@ c33s_core:
             class: Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle
         fos_user:
             class: FOS\UserBundle\FOSUserBundle
-        #knp_gaufrette:
-        #    class: Knp\Bundle\GaufretteBundle\KnpGaufretteBundle
+        knp_gaufrette:
+            class: Knp\Bundle\GaufretteBundle\KnpGaufretteBundle
         knp_markdown:
             class: Knp\Bundle\MarkdownBundle\KnpMarkdownBundle
         avocode_form_extensions:

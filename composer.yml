@@ -16,38 +16,32 @@ repositories:
    - type: composer
      url: http://satis.c33s.net
 #  - type: vcs
-#    url: https://github.com/c33s/AssetManagementBundle.git
-#  - type: vcs
-#    url: https://github.com/tagme/Identicon.git
-#  - type: vcs
-#    url: https://github.com/tagme/AdmingeneratorGeneratorBundle.git
-#  - type: vcs
-#    url: https://github.com/tagme/FormExtensions.git
-#  - type: composer
-#    url: 'http://satis.c33s.net'
-#  - type: vcs
 #    url: 'https://github.com/c33s/ApcProfilerBundle'
 bin: ["bin/init-symfony"]
 minimum-stability: stable
 require:
     php: '>=5.3.3'
+    
+    ### c33s ###################################################################
+    c33s/static-page-content-bundle:                                '1.1.*'
+    c33s/simple-content-bundle:                                     '0.9.0'
+    c33s/menu-bundle:                                               '0.9.0'
+    c33s/attachment-bundle:                                         '0.1.3'
+    
     ### propel #################################################################
-    propel/propel-bundle:                                          '1.2.*'
-    willdurand/propel-typehintable-behavior:                       '~1.0'
-    willdurand/propel-publishable-behavior:                        '~1.0'
-    havvg/propel-boolean-extra-behavior:                           '~1.1'
-    
-    #propel/propel1:                                                '1.7.*'
-    #smirik/taggable-bundle:                          'dev-master#a4eb728ec04eed48b6c354eeea9ae2e9fe23755a'
-    #smirik/propel-taggable-behavior:                 'dev-master#dd94508c45056b1eca53e8667ded8be0b2451ed0'
-    #havvg/propel-autoexpire-behavior:                             '0.1.0'
+    propel/propel-bundle:                                           '1.2.*'
+    willdurand/propel-typehintable-behavior:                        '~1.0'
+    willdurand/propel-publishable-behavior:                         '~1.0'
+    willdurand/propel-eventdispatcher-bundle:                       '1.0.*'    
+    havvg/propel-boolean-extra-behavior:                            '~1.1'
+    #smirik/taggable-bundle:                                         'dev-master#a4eb728ec04eed48b6c354eeea9ae2e9fe23755a'
+    #smirik/propel-taggable-behavior:                                'dev-master#dd94508c45056b1eca53e8667ded8be0b2451ed0'
+    #havvg/propel-autoexpire-behavior:                               '0.1.0'
     #cedriclombardot/propel-visibility-behavior:                     '0.0.2'
-    #CarpeHora/AuditableBehavior # -> better: use official Versionable Behavior
     #postgres-json-behavior
-
-    #CarpeHora/ExtraPropertiesBehavior:                            'dev-master'
+    #CarpeHora/ExtraPropertiesBehavior:                              'dev-master'
     
-    ### html ###################################################################
+    ### html & css #############################################################
     fortawesome/font-awesome:                                       '4.0.*'
     components/font-awesome:                                        '3.2.*'
     fkr/cssurlrewrite-bundle:                                       '1.0.*'
@@ -55,57 +49,47 @@ require:
     afarkas/html5shiv:                                              '3.7.*'
     # additional twitter bootstrap for v3
     twbs/bootstrap:                                                 '3.1.0'
-
-    #leafo/lessphp:                                                  '0.4.*'
     oyejorge/less.php:                                              '~1.5'
     ptachoire/cssembed:                                             '1.0.*'
-    braincrafted/bootstrap-bundle:                                  '1.4.*'
+    #braincrafted/bootstrap-bundle:                                  '1.4.*'
     #mopa/bootstrap-bundle:                                         '2.1.*@dev'
     #modernizr/modernizr:                                           '2.5.3'
     
     ### admin generator ########################################################
-    #cedriclombardot/admingenerator-generator-bundle: 'dev-master#6dd565dacb6e668b9bcfa216a2acca356949375c'
-    #avocode/form-extensions-bundle:                  'dev-master#cd83e011f7fcc979cb5714c33423845c7ce36f0a'
-    #white-october/pagerfanta-bundle:                 'dev-master#606467f9e9f9e80975128db589eec2f9d11139c2'
     white-october/pagerfanta-bundle:                                '1.0.*'
     
     ### tag me #################################################################
-    ### admin generator
-    cedriclombardot/admingenerator-generator-bundle:                 '0.99.*'
-    avocode/form-extensions-bundle:                                  '0.99.*'
+    # admin generator
+    cedriclombardot/admingenerator-generator-bundle:                '0.99.*'
+    avocode/form-extensions-bundle:                                 '0.99.*'
     ### other
-    yzalis/identicon:                                                '0.99.*'
+    yzalis/identicon:                                               '0.99.*'
+    ### end tag me #############################################################
     
     ### javascript #############################################################
-    components/jquery:                                                '1.9.*'
-    components/jqueryui:                                              '1.10.*'
-    malsup/form:                                                      '3.36'
-    #c33s/asset-management-bundle:                                    '1.0.*'
-    smoya/asset-management-bundle:                                    '1.0.*'
-    
-    #stnw/avatar-bundle:                                               '1.0.*'
-   
+    components/jquery:                                              '1.9.*'
+    components/jqueryui:                                            '1.10.*'
+    malsup/form:                                                    '3.36'
+    smoya/asset-management-bundle:                                  '1.0.*'
 
     ### general ################################################################
-    zenstruck/slugify-bundle:                        '1.1.*'
-    guzzle/guzzle:                                   '3.8.*'
+    knplabs/knp-gaufrette-bundle:                                   '0.1.*'
+    knplabs/knp-markdown-bundle:                                    '1.3.*'
+    zenstruck/slugify-bundle:                                       '1.1.*'
+    guzzle/guzzle:                                                  '3.8.*'
     suncat/mobile-detect-bundle:                                    '0.9.*'
     mobiledetect/mobiledetectlib:                                   '2.7.6'
-    c33s/static-page-content-bundle:                                '1.1.*'
-    c33s/simple-content-bundle:                                     '0.9.0'
-    c33s/menu-bundle:                                               '0.9.0'
-    friendsofsymfony/user-bundle:                                  '1.3.*'
-    liip/imagine-bundle:                                          '0.18.*'
-    #gregwar/image-bundle:                                         '1.0.*'
-    liip/monitor-bundle:                                          '1.0.*'
-    sensiolabs/security-checker:                                  '1.2.*'
-    knplabs/knp-markdown-bundle:                                  '1.3.*'
+    friendsofsymfony/user-bundle:                                   '1.3.*'
+    liip/imagine-bundle:                                            '0.18.*'
+    liip/monitor-bundle:                                            '1.0.*'
+    sensiolabs/security-checker:                                    '1.2.*'
 
 require-dev:
     ### propel #################################################################
     willdurand/faker-bundle:                                       '1.0.*'
     
 ### unsorted-require ###########################################################
+    #stnw/avatar-bundle:                                               '1.0.*'
     #html
     #mopa/bootstrap-bundle:              '2.1.*@dev'
     #modernizr/modernizr:                '2.5.3'
@@ -162,5 +146,3 @@ require-dev:
     #suin/php-rss-writer:                                1.0.*
     #white-october/pagerfanta-bundle:                    dev-master
     #yuicompressor/yuicompressor:                        2.4.*
-
-

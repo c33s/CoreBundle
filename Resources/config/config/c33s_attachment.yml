@@ -1,0 +1,57 @@
+c33s_attachment:
+    # Configure knp_gaufrette filesystems to use. Make sure they are also defined in the knp_gaufrette config section.
+    storages:
+        # Don't use dashes ("-") in your storage names!
+        web_storage:
+            # Actual name of knp_gaufrette filesystem
+            filesystem:     web_storage_fs
+
+            # Subfolder / path prefix to use inside the filesystem
+            path_prefix:    '' 
+
+            # Base url (if available) to reach files stored in this filesystem
+            # Can be either absolute path or full URL
+            base_url:       /media/storage
+
+        avatar_storage:
+            # Actual name of knp_gaufrette filesystem
+            filesystem:     web_storage_fs
+
+            # Subfolder / path prefix to use inside the filesystem
+            path_prefix:    'avatars/'
+
+            # Base url (if available) to reach files stored in this filesystem
+            # Can be either absolute path or full URL
+            base_url:       /media/storage
+
+    attachments:
+        # These are the default config values for all attachments. Specific values follow in the sub sections.
+
+        # Callable that takes a file path as first argument and returns a hash. Can be a function name or a static class call like ['MyHashClass', 'myMethod']
+        hash_callable:  sha1_file
+
+        # Number of directory levels to auto-generate
+        storage_depth:  3
+
+        # Name of the filesystem to use. Don't use dashes ("-") inside those names!
+        filesystem:     web_storage
+
+#        # Now we have defined the default values we can override some of them as needed
+#        models:
+#
+#            # Namespace and class name of specific attachable model. This should match the return value of the model's getAttachableClassName() method. 
+#            my\Super\Model\Person:
+#
+#                # You get the idea ...
+#                #hash_callable:  sha1_file
+#                #storage_depth:  3
+#                #filesystem:     web_storage
+#
+#                # For any given model you may override specific attachment fields you are using
+#                fields:
+#
+#                    # CamelCased field name.
+#                    Avatar:
+#                        hash_callable:  md5_file
+#                        storage_depth:  2
+#                        filesystem:     avatar_storage
