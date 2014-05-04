@@ -1,7 +1,14 @@
 <!DOCTYPE html>
-<html {% block html_attributes %}lang="{{ app.request.locale }}"{% endblock %}>
+<html {% block html_attributes %}lang="{{ app.request.locale }}"{% endblock %} {% if c33s_core_config.app.hinclude %}xmlns:hx="http://purl.org/NET/hinclude"{% endif %}>
     <head>
         {% block head %}
+            {% if c33s_core_config.app.hinclude %}
+                {% javascripts output='generated/js/hinclude.js' combine=true
+                    '%kernel.root_dir%/../vendor/mnot/hinclude/hinclude.js'
+                    %}
+                    <script src="{{ asset_url }}"></script>
+                {% endjavascripts %}
+            {% endif %}
             <title>{% block meta_title %}{{ c33s_core_config.page.title }}{% endblock %}</title>
             
             <meta charset="{% block meta_charset %}utf-8{% endblock %}" />

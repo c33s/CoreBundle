@@ -50,10 +50,11 @@ c33s_core:
         #   class: c33s\Bundle\CrazyEggBundle
     twig:
         app:
-            debug: true
-            use_cdn: false
+            debug:      false
+            use_cdn:    false
             name:       "long name"
             name_short: "short name"
+            hinclude:   true
         google:
             tracking:
                 id:      %ga_tracking_id%

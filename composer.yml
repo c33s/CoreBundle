@@ -72,7 +72,7 @@ require:
     malsup/form:                                                    '3.36'
     smoya/asset-management-bundle:                                  '1.0.*'
     jaysalvat/vegas:                                                '0.99.*'
-
+    mnot/hinclude:                                                  '0.9.*'
 
     ### general ################################################################
     knplabs/knp-gaufrette-bundle:                                   '0.1.*'

@@ -113,6 +113,7 @@ class Configuration implements ConfigurationInterface
 	    ->addDefaultsIfNotSet()
 	    ->children()
 		->booleanNode('debug')->defaultFalse()->end()
+		->booleanNode('hinclude')->defaultTrue()->end()
 		->booleanNode('use_cdn')->defaultFalse()->end()
 		->scalarNode('version')->defaultNull()->end()
 		->scalarNode('name')->defaultNull()->end()
