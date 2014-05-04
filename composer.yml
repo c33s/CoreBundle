@@ -13,14 +13,16 @@ autoload:
         'c33s\CoreBundle': ''
 target-dir: "c33s/CoreBundle"
 repositories:
-  - type: vcs
-    url: https://github.com/c33s/AssetManagementBundle.git
-  - type: vcs
-    url: https://github.com/tagme/Identicon.git
-  - type: vcs
-    url: https://github.com/tagme/AdmingeneratorGeneratorBundle.git
-  - type: vcs
-    url: https://github.com/tagme/FormExtensions.git
+   - type: composer
+     url: http://satis.c33s.net
+#  - type: vcs
+#    url: https://github.com/c33s/AssetManagementBundle.git
+#  - type: vcs
+#    url: https://github.com/tagme/Identicon.git
+#  - type: vcs
+#    url: https://github.com/tagme/AdmingeneratorGeneratorBundle.git
+#  - type: vcs
+#    url: https://github.com/tagme/FormExtensions.git
 #  - type: composer
 #    url: 'http://satis.c33s.net'
 #  - type: vcs
