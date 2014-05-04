@@ -7,8 +7,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use Identicon\Identicon;
 
-use Symfony\Component\Finder\Finder;
+
 use c33s\CoreBundle\Tools\Tools;
 
 use c33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
@@ -65,7 +66,8 @@ class InitCmsCommand extends BaseInitCommand
 	
         
 	$this->asseticBundles = $input->getOption('bundles');
-	$this->initNameHelper($input->getArgument('name'));
+        $name = $input->getArgument('name');
+	$this->initNameHelper($name);
 	
 	if (!$input->getOption('no-bundles'))
 	{
@@ -76,6 +78,8 @@ class InitCmsCommand extends BaseInitCommand
 	
 	$this->initTemplatesAndResources();
         $this->addImporterToConfig();
+        $this->generateLogo($name);
+        $this->generateFavicon($name);
         
         $this->copyFiles();
 	if (!$input->getOption('no-executes'))
@@ -86,6 +90,23 @@ class InitCmsCommand extends BaseInitCommand
             $this->executeCommand("php app/console c33s:rebuild",120);
             $this->executeCommand("php app/console admin:c33s:patch");
 	}        
+    }
+    
+    protected function generateLogo($name)
+    {
+        $logoDirectory = $this->getContainer()->get('kernel')->getRootDir().'/../web/media/images';
+        $this->fs->mkdir($logoDirectory);
+        $identicon = new Identicon();
+        $imageData = $identicon->getImageData($name);
+        $this->fs->dumpFile($logoDirectory.'./logo.png', $imageData);
+    }
+    protected function generateFavicon($name)
+    {
+        $logoDirectory = $this->getContainer()->get('kernel')->getRootDir().'/../web';
+        $this->fs->mkdir($logoDirectory);
+        $identicon = new Identicon();
+        $imageData = $identicon->getImageData($name);
+        $this->fs->dumpFile($logoDirectory.'./favicon.ico', $imageData);
     }
 
     protected function copyFiles()
