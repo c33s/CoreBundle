@@ -17,8 +17,8 @@ Because json is not a really handy format to read and it also lacks in commentin
 create a composer.yml with the framework-standard-edition version you want to use and also include the core bundle:
 
     repositories:
-      - type: vcs
-        url: https://github.com/c33s/AssetManagementBundle.git
+        - type: composer
+          url: http://satis.c33s.net
     require:
         symfony/framework-standard-edition: '2.3.*'
         c33s/core-bundle:   'dev-master#v0.99.1'
@@ -74,6 +74,7 @@ then you can call
     composer run-script post-update-cmd
     php app/console c33s:init-config Acme
     php app/console c33s:init-cms Acme
+    php app/console c33s:admin:build Acme
     composer dump-autoload
 
 ## Filter & Macros
