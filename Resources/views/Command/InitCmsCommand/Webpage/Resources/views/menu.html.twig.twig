@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
            <a class="" href="{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_default_homepage') }}">
-               <img class="navbar-brand-logo pull-left img-rounded-small" src="{{ asset(('media/images/logo.png') | imagine_filter('logotop')) }}" alt="" /> 
+               <img class="navbar-brand-logo pull-left img-rounded-small" src="{{ asset(('media/images/logo.png') | imagine_filter('logotop')) }}" alt="" />
             </a>
             <a class="navbar-brand" href="{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_default_homepage') }}">
                  {{ c33s_core_config.app.name }}
@@ -18,15 +18,9 @@
            
         </div>
         <div class="navbar-collapse collapse">
+            {% include "c33sMenuBundle::bootstrap_menu_renderer.html.twig" with { 'items': menu_items('webpage_top'), containerClass: 'nav navbar-nav navbar-right' } %}
+            
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown {{ macros.isActive('home') }}"><a href="{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_default_homepage') }}" >Home</a></li>
-                <li class="dropdown {{ macros.isActive('about-us') }}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Über Uns <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ macros.static('team','ueber-uns') }}">Team</a></li>
-                        <li><a href="{{ macros.static('videos','ueber-uns') }}">Videos</a></li>
-                    </ul>
-                </li>
                 {#
                 <li class="{{ macros.isActive('information') }} dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Informationen <b class="caret"></b></a>

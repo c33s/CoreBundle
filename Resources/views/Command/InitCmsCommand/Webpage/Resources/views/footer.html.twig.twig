@@ -17,28 +17,17 @@
         </div>
         <div class="col-md-3 col-sm-3">
             <h4>Sitemap</h4>
-            <ul class="list-unstyled">
-                <li><i class="fa fa-home"></i> <a href="{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_default_homepage') }}">Home</a></li>
-                <li><i class="fa fa-user"></i> <a href="{{ macros.static('kontakt') }}">kontakt</a></li>
-                <li><i class="fa fa-link"></i> <a href="{{path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static', {name: 'links'})}}">Links</a></li>
-                <li><i class="fa fa-map-marker"></i> <a href="{{path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder', {name: 'anfahrt', subfolder: 'kontakt'})}}">Anfahrt</a></li>
-                <li><i class="fa fa-legal"></i> <a href="{{ macros.static('impressum') }}">Impressum</a></li>
-                <li><i class="fa fa-lock"></i> <a href="{{ macros.static('datenschutz') }}">Datenschutz</a></li>
-            </ul>
+            
+            {% include "c33sMenuBundle::bootstrap_menu_renderer.html.twig" with { 'items': menu_items('webpage_sitemap'), 'containerClass': 'list-unstyled' } %}
+            
         </div>
         <div class="col-md-3 col-sm-3">
             <h4>Connect</h4>
-            <ul class="list-unstyled">
-                <li><i class="fa fa-youtube"></i> <a href="http://www.youtube.com/user/" title="Youtube">Youtube</a> <i class="fa fa-external-link"></i></li>
-                {#
-                <li><i class="fa fa-google-plus"></i> <a href="https://plus.google.com/" title="Google+" rel="publisher">Google+</a> <i class="fa fa-external-link"></i></li>
-                <li><i class="fa fa-xing"></i> <a href="#" title="Xing">Xing</a> <i class="fa fa-external-link"></i></li>
-                <li><i class="fa fa-flickr"></i> <a href="#" title="Flickr">Flickr</a> <i class="fa fa-external-link"></i></li>
-                <li><i class="fa fa-linkedin"></i> <a href="#" title="LinkedIn">LinkedIn</a> <i class="fa fa-external-link"></i></li>
-                #}
-            </ul>
+            
+            {% include "c33sMenuBundle::bootstrap_menu_renderer.html.twig" with { 'items': menu_items('webpage_connect'), 'containerClass': 'list-unstyled' } %}
+            
             created by <a href="http://consistency.at">consistency.at <i class="fa fa-external-link"></i></a>
         </div>
-    </div>  
+    </div>
 </div>
 {% endverbatim %}

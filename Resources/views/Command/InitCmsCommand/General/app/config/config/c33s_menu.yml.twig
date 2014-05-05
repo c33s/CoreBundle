@@ -1,0 +1,87 @@
+c33s_menu:
+    definitions:
+        webpage_top:
+            .defaults:
+                item_class:     c33s\StaticPageContentBundle\Menu\StaticPageContentMenuItem
+                
+            {{ name.underscore }}_webpage_static/home:
+                title:                  Home
+                
+            {{ name.underscore }}_webpage_static/ueber-uns:
+                title:                  Über uns
+                title_in_menu_header:   false
+                children:
+                    
+                    {{ name.underscore }}_webpage_static/ueber-uns/team:
+                        title:          Team
+                        
+                    {{ name.underscore }}_webpage_static/ueber-uns/videos:
+                        title:          Videos
+                
+        webpage_sitemap:
+            .defaults:
+                item_class:     c33s\StaticPageContentBundle\Menu\StaticPageContentMenuItem
+                
+            {{ name.underscore }}_webpage_static/home:
+                title:                  Home
+                bootstrap_icon:         fa fa-home
+                
+            {{ name.underscore }}_webpage_static/kontakt:
+                title:                  Kontakt
+                bootstrap_icon:         fa fa-user
+                
+            # custom links page
+            #route_to_links_page:
+            #    title:                  Links
+            #    bootstrap_icon:         fa fa-link
+            #    item_class:             c33s\MenuBundle\Item\MenuItem
+            
+            {{ name.underscore }}_webpage_static/links:
+                title:                  Links
+                bootstrap_icon:         fa fa-link
+                
+            {{ name.underscore }}_webpage_static/kontakt/anfahrt:
+                title:                  Anfahrt
+                bootstrap_icon:         fa fa-map-marker
+
+            {{ name.underscore }}_webpage_static/impressum:
+                title:                  Impressum
+                bootstrap_icon:         fa fa-legal
+                
+            {{ name.underscore }}_webpage_static/datenschutz:
+                title:                  Datenschutz
+                bootstrap_icon:         fa fa-lock
+                
+                
+        webpage_connect:
+            .defaults:
+                # this is not actually needed since it's the default value
+                item_class:             c33s\MenuBundle\Item\MenuItem
+            
+            # if a custom url is provided, the route name does not matter. it just has to be unique among the local keys
+            _youtube:
+                title:                  Youtube
+                bootstrap_icon:         fa fa-youtube
+                custom_url:             http://www.youtube.com/user/
+                
+            _googleplus:
+                title:                  Google+
+                bootstrap_icon:         fa fa-google-plus
+                custom_url:             https://plus.google.com/
+                
+            _xing:
+                title:                  Xing
+                bootstrap_icon:         fa fa-xing
+                custom_url:             https://xing.com/
+                
+            _flickr:
+                title:                  Flickr
+                bootstrap_icon:         fa fa-flickr
+                custom_url:             https://flickr.com/
+                
+            _linkedin:
+                title:                  LinkedIn
+                bootstrap_icon:         fa fa-linkedin
+                custom_url:             https://at.linkedin.com/
+                
+                

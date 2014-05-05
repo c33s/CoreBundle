@@ -8,9 +8,13 @@ webpagebundle_redirects:
 {{ name.underscore }}_{{ bundlename | underscore }}_default_homepage:
     pattern:  /
     defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show", name: home }
-{{ name.underscore }}_{{ bundlename | underscore }}_static_subfolder:
-    pattern:  /{subfolder}/{name}
-    defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show" }
+#{{ name.underscore }}_{{ bundlename | underscore }}_static_subfolder:
+#    pattern:  /{subfolder}/{name}
+#    defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show" }
 {{ name.underscore }}_{{ bundlename | underscore }}_static:
     pattern:  /{name}
     defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show" }
+    requirements:
+        # this makes the name parameter accept anything, even slashes. subfolder logic is not needed anymore
+        name:  .*
+    
