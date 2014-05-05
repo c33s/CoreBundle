@@ -33,8 +33,8 @@ c33s_attachment:
         # Number of directory levels to auto-generate
         storage_depth:  3
 
-        # Name of the filesystem to use. Don't use dashes ("-") inside those names!
-        filesystem:     web_storage
+        # Name of the storage to use.
+        storage:        web_storage
 
 #        # Now we have defined the default values we can override some of them as needed
 #        models:
@@ -45,7 +45,7 @@ c33s_attachment:
 #                # You get the idea ...
 #                #hash_callable:  sha1_file
 #                #storage_depth:  3
-#                #filesystem:     web_storage
+#                #storage:        web_storage
 #
 #                # For any given model you may override specific attachment fields you are using
 #                fields:
@@ -54,4 +54,4 @@ c33s_attachment:
 #                    Avatar:
 #                        hash_callable:  md5_file
 #                        storage_depth:  2
-#                        filesystem:     avatar_storage
+#                        storage:        avatar_storage
