@@ -16,6 +16,8 @@ c33s_core:
             class: c33s\StaticPageContentBundle\c33sStaticPageContentBundle
         c33s_attachment:
             class: c33s\AttachmentBundle\c33sAttachmentBundle
+        c33s_menu:
+            class: c33s\MenuBundle\c33sMenuBundle
         propel:
             class: Propel\PropelBundle\PropelBundle
         liip_imagine:
