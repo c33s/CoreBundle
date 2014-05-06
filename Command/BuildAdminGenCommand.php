@@ -45,7 +45,7 @@ class BuildAdminGenCommand extends BaseInitCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 	parent::execute($input, $output);
-	$this->io->write('<info>c33s:init-cms</info>');
+	$this->io->write('<info>admin:c33s:build</info>');
         $this->adminModels = $input->getOption('admin-models');
 	
 	if (!$input->getOption('no-bundles'))
