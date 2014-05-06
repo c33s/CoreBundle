@@ -33,9 +33,9 @@
     "require": {
         "php": ">=5.3.3",
         "c33s/static-page-content-bundle": "1.1.*",
-        "c33s/simple-content-bundle": "0.9.0",
+        "c33s/simple-content-bundle": "0.9.*",
         "c33s/menu-bundle": "0.9.*",
-        "c33s/attachment-bundle": "0.1.4",
+        "c33s/attachment-bundle": "0.1.*",
         "propel/propel-bundle": "1.2.*",
         "willdurand/propel-typehintable-behavior": "~1.0",
         "willdurand/propel-publishable-behavior": "~1.0",
