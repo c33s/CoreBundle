@@ -5,5 +5,5 @@ knp_gaufrette:
                 directory:  '%kernel.root_dir%/../web/media/storage/'
 
     filesystems:
-        web_storage_fs:
+        web_default_fs:
             adapter:    local_base
