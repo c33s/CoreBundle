@@ -68,6 +68,16 @@ liip_imagine:
             filters:
                 strip: ~
                 thumbnail: { size: [120, 90], mode: outbound }
+        icon16:
+            quality: 85
+            filters:
+                strip: ~
+                thumbnail: { size: [16, 16], mode: outbound }
+        icon32:
+            quality: 85
+            filters:
+                strip: ~
+                thumbnail: { size: [32, 32], mode: outbound }
         gallery:
             quality: 85
             filters:
