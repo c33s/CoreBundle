@@ -39,7 +39,8 @@ class QuickFilterExtension extends \Twig_Extension
 	    new \Twig_SimpleFilter('underscorize', array($this, 'underscoreFilter')),
 	    new \Twig_SimpleFilter('camelcase', array($this, 'camelcaseFilter')),
 	    new \Twig_SimpleFilter('underscore', array($this, 'underscoreFilter')),
-	    new \Twig_SimpleFilter('youtube', array($this, 'youtubeFilter')),
+	    new \Twig_SimpleFilter('youtube', array($this, 'youtubeFilter'), array('is_safe' => array('html'))),
+	    //new \Twig_SimpleFilter('hashdir', array($this, 'hashDirFilter'), array('is_safe' => array('html'))),
 	);
     }
 
