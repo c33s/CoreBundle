@@ -2,9 +2,9 @@ c33s_attachment:
     # Configure knp_gaufrette filesystems to use. Make sure they are also defined in the knp_gaufrette config section.
     storages:
         # Don't use dashes ("-") in your storage names!
-        web_storage:
+        web_default:
             # Actual name of knp_gaufrette filesystem
-            filesystem:     web_storage_fs
+            filesystem:     web_default_fs
 
             # Subfolder / path prefix to use inside the filesystem
             path_prefix:    '' 
@@ -13,17 +13,9 @@ c33s_attachment:
             # Can be either absolute path or full URL
             base_url:       /media/storage
 
-        avatar_storage:
-            # Actual name of knp_gaufrette filesystem
-            filesystem:     web_storage_fs
-
-            # Subfolder / path prefix to use inside the filesystem
-            path_prefix:    'avatars/'
-
-            # Base url (if available) to reach files stored in this filesystem
-            # Can be either absolute path or full URL
-            base_url:       /media/storage
-
+            # Local base path (if available) to reach files stored in this filesystem
+            base_path:      '%kernel.root_dir%/../web/media/storage'
+            
     attachments:
         # These are the default config values for all attachments. Specific values follow in the sub sections.
 
@@ -34,7 +26,7 @@ c33s_attachment:
         storage_depth:  3
 
         # Name of the storage to use.
-        storage:        web_storage
+        storage:        web_default
 
 #        # Now we have defined the default values we can override some of them as needed
 #        models:

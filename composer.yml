@@ -26,7 +26,7 @@ require:
     c33s/static-page-content-bundle:                                '1.1.*'
     c33s/simple-content-bundle:                                     '0.9.*'
     c33s/menu-bundle:                                               '0.9.*'
-    c33s/attachment-bundle:                                         '0.1.*'
+    c33s/attachment-bundle:                                         '0.2.*'
     
     ### propel #################################################################
     propel/propel-bundle:                                           '1.2.*'
