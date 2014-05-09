@@ -2,14 +2,13 @@ c33s_menu:
     definitions:
         webpage_top:
             .defaults:
-                item_class:     c33s\StaticPageContentBundle\Menu\StaticPageContentMenuItem
+                item_class:     static
                 
             {{ name.underscore }}_webpage_static/home:
                 title:                  Home
                 
             {{ name.underscore }}_webpage_static/ueber-uns:
                 title:                  Über uns
-                title_in_menu_header:   false
                 children:
                     
                     {{ name.underscore }}_webpage_static/ueber-uns/team:
@@ -17,10 +16,23 @@ c33s_menu:
                         
                     {{ name.underscore }}_webpage_static/ueber-uns/videos:
                         title:          Videos
+            
+            {{ name.underscore }}_webpage_static/kontakt:
+                title:                  Kontakt
+                children:
+                
+                    {{ name.underscore }}_webpage_static/kontakt:
+                        title:          Kontakt
+                        
+                    {{ name.underscore }}_webpage_static/kontakt/anfahrt:
+                        title:          Anfahrt
+                        
+                    {{ name.underscore }}_webpage_static/kontakt/impressum:
+                        title:          Impressum
                 
         webpage_sitemap:
             .defaults:
-                item_class:     c33s\StaticPageContentBundle\Menu\StaticPageContentMenuItem
+                item_class:     static
                 
             {{ name.underscore }}_webpage_static/home:
                 title:                  Home
@@ -34,7 +46,7 @@ c33s_menu:
             #route_to_links_page:
             #    title:                  Links
             #    bootstrap_icon:         fa fa-link
-            #    item_class:             c33s\MenuBundle\Item\MenuItem
+            #    item_class:             default
             
             {{ name.underscore }}_webpage_static/links:
                 title:                  Links
@@ -54,10 +66,6 @@ c33s_menu:
                 
                 
         webpage_connect:
-            .defaults:
-                # this is not actually needed since it's the default value
-                item_class:             c33s\MenuBundle\Item\MenuItem
-            
             # if a custom url is provided, the route name does not matter. it just has to be unique among the local keys
             _youtube:
                 title:                  Youtube
