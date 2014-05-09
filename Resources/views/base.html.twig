@@ -54,7 +54,7 @@
             {% endblock %}
         {% endblock %}
     </head>
-    {% block body_tag %}<body>{% endblock %}
+    <body {% block body_attributes %}{% endblock %}>
         {% block body %}
             <noscript>
             {% block noscript %}
