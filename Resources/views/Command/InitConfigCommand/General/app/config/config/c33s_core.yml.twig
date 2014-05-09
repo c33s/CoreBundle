@@ -1,58 +1,59 @@
 c33s_core:
     twig:
         app:
-            debug: true
-            use_cdn: false
-            version: v0.99.0
-            name: "Example Dot Com"
-            name_short: "example.com"
-            #name_long: ""
+            debug:          true
+            use_cdn:        false
+            use_scrollspy:  false
+            version:        v0.99.0
+            name:           "Example Dot Com"
+            name_short:     "example.com"
+            #name_long:     ""
             production_company:
-                name: consistency.at
-                link: http://consistency.at
+                name:       consistency.at
+                link:       http://consistency.at
         google:
             tracking:
-                id:      %ga_tracking_id%
-                enabled: %ga_tracking_enabled%
-                multi_domain: true
-                domain: %master_domain%
-                enable_GDN_impression_reporting: true
+                id:                                 %ga_tracking_id%
+                enabled:                            %ga_tracking_enabled%
+                multi_domain:                       true
+                domain:                             %master_domain%
+                enable_GDN_impression_reporting:    true
             webmaster_tools:
-                verify: 
+                verify:
         page:
-            title: ""
-            author: ""
+            title:          ""
+            author:         ""
             keywords:
                 - kw1
                 - kw2
-            description: |
+            description:    |
                 Lorem
                 Ipsum
         contact:
-            company:   
-            street:    
-            mobile: 
-            phone:     
-            fax:       
-            mail:      
-            www:       
-            zip:       
-            city:      
-            country:   
-            #title:     
-            firstname: 
-            lastname:  
+            company:    ~
+            street:     ~
+            mobile:     ~
+            phone:      ~
+            fax:        ~
+            mail:       ~
+            www:        ~
+            zip:        ~
+            city:       ~
+            country:    ~
+            #title:     ~
+            firstname:  ~
+            lastname:   ~
             map:
-                lat: 0.0
-                long: 0.0
-                marker: 
-                    image: http://%master_domain%/media/cache/logotop/media/images/logo.png
-                    size: [32,32]
-#                    point: [50,50]
+                lat:    0.0
+                long:   0.0
+                marker:
+                    image:  http://%master_domain%/media/cache/logotop/media/images/logo.png
+                    size:   [32,32]
+#                    point:  [50,50]
                     shadow:
-                        image: http://%master_domain%/media/cache/logotop/media/images/logo-alt.png
-                        size: [32,32]
-#                        point: [50,50]
+                        image:  http://%master_domain%/media/cache/logotop/media/images/logo-alt.png
+                        size:   [32,32]
+#                        point:  [50,50]
 
 
 #    # default marker
@@ -63,6 +64,4 @@ c33s_core:
 #    app_map_default_shadow_marker: http://maps.google.com/mapfiles/shadow50.png
 #    app_map_default_shadow_marker_size: [40,34]
 #    app_map_default_shadow_marker_point: [50,50]
-
-
 
