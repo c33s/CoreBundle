@@ -35,9 +35,16 @@ class BuildAdminGenCommand extends BaseInitCommand
 	    ->addOption(
                'admin-models',
                null,
-               InputOption::VALUE_IS_ARRAY | InputArgument::OPTIONAL,
+               InputOption::VALUE_IS_ARRAY | InputOption::OPTIONAL,
                'supply an array of model names for which admin should be generated',
 		array('Storage','News')
+            )
+	    ->addOption(
+               'append-routing',
+               null,
+               InputOption::OPTIONAL,
+               'should the routing be appended to the existing routing data or newly written',
+		true
             )
         ;
     }
@@ -53,7 +60,7 @@ class BuildAdminGenCommand extends BaseInitCommand
             $this->generateAdmins($this->adminModels);
 	}
 	
-        $this->createAdminGenRouting();
+        $this->createAdminGenRouting($input->getOption('append-routing'));
         $this->fixAdminGeneratorYmls();
         
     }
@@ -76,7 +83,10 @@ class BuildAdminGenCommand extends BaseInitCommand
 
 EOT;
         }
-        $this->fs->dumpfile($routingPath.'/admingenerator.yml',$content);
+	$filePath = $routingPath.'/admingenerator.yml';
+	$oldContent = file_get_contents($filePath);
+	$content = $oldContent."\n".$content;
+        $this->fs->dumpfile($filePath,$content);
     }
     
     protected function generateAdmins($models)
