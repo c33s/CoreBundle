@@ -23,7 +23,7 @@ use Symfony\Component\Process\ExecutableFinder;
 * @author François Pluchino <francois.pluchino@opendisplay.com>
 * @author Jordi Boggiano <j.boggiano@seld.be>
 */
-class ConsoleIo
+class ConsoleIO
 {
     protected $input;
     protected $output;
