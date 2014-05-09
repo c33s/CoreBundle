@@ -35,14 +35,14 @@ class BuildAdminGenCommand extends BaseInitCommand
 	    ->addOption(
                'admin-models',
                null,
-               InputOption::VALUE_IS_ARRAY | InputOption::OPTIONAL,
+               InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL,
                'supply an array of model names for which admin should be generated',
 		array('Storage','News')
             )
 	    ->addOption(
                'append-routing',
                null,
-               InputOption::OPTIONAL,
+               InputOption::VALUE_OPTIONAL,
                'should the routing be appended to the existing routing data or newly written',
 		true
             )
