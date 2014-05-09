@@ -24,7 +24,7 @@ class Configuration implements ConfigurationInterface
 	
 	
 	$rootNode
-	    ->addDefaultsIfNotSet()		
+	    ->addDefaultsIfNotSet()
 	    ->children()
 //		->arrayNode('bundles')
 //                    ->defaultValue(array('none'))
@@ -71,7 +71,7 @@ class Configuration implements ConfigurationInterface
 		->end()
 	;
 	
-	return $node;	
+	return $node;
     }
     
     public function addGoogleNode()
@@ -115,6 +115,7 @@ class Configuration implements ConfigurationInterface
 		->booleanNode('debug')->defaultFalse()->end()
 		->booleanNode('hinclude')->defaultTrue()->end()
 		->booleanNode('use_cdn')->defaultFalse()->end()
+		->booleanNode('use_scrollspy')->defaultFalse()->end()
 		->scalarNode('version')->defaultNull()->end()
 		->scalarNode('name')->defaultNull()->end()
 		->scalarNode('name_short')->defaultNull()->end()
@@ -253,7 +254,7 @@ class Configuration implements ConfigurationInterface
 //			    ->beforeNormalization()
 //			    ->ifString()
 //				->then(function($v) { return array('name'=> $v); })
-//			    ->end()	
+//			    ->end()
 //			    ->children()
 //				->floatNode('x')
 //				    ->beforeNormalization()
