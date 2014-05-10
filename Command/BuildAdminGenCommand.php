@@ -55,14 +55,14 @@ class BuildAdminGenCommand extends BaseInitCommand
 	$this->io->write('<info>admin:c33s:build</info>');
         $this->adminModels = $input->getOption('admin-models');
 	
+	$this->backupMainRoutingFile();
 	if (!$input->getOption('no-bundles'))
 	{
             $this->generateAdmins($this->adminModels);
 	}
-	
         $this->createAdminGenRouting($input->getOption('append-routing'));
         $this->fixAdminGeneratorYmls();
-        
+        $this->restoreMainRoutingFile();
     }
     
     protected function createAdminGenRouting()
@@ -89,6 +89,19 @@ EOT;
         $this->fs->dumpfile($filePath,$content);
     }
     
+    protected function backupMainRoutingFile()
+    {
+	$this->io->write("backing up main routing file");
+	$file = $this->getContainer()->get('kernel')->getRootDir().'/config/routing.yml';
+	$this->fs->rename($file, $file.'.tmp', true);
+    }
+    protected function restoreMainRoutingFile()
+    {
+	$this->io->write("restoring up main routing file");
+	$file = $this->getContainer()->get('kernel')->getRootDir().'/config/routing.yml';
+	$this->fs->rename($file.'.tmp', $file, true);
+    }
+
     protected function generateAdmins($models)
     {
         foreach ($models as $model)
