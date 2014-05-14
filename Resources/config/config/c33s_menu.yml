@@ -5,5 +5,6 @@ c33s_menu:
         admingen:       c33s\MenuBundle\Item\AdminGeneratorMenuItem
         static:         c33s\StaticPageContentBundle\Menu\StaticPageContentMenuItem
         simple_content: c33s\SimpleContentBundle\Menu\SimpleContentMenuItem
+        user_control:   c33s\CoreBundle\Menu\UserControlMenuItem
     
     definitions: []
