@@ -25,6 +25,7 @@ class RebuildCommand extends ContainerAwareCommand
 	//-- array('description' => 'propel:graphviz:generate', 'command' => 'php ./app/console propel:graphviz:generate'),
 	//-- array('description' => '', 'command' => 'dot -Tpdf ./app/propel/graph/default.schema.dot -o ./schema.pdf'),
 	array('description' => 'assets:install', 'command' => 'php app/console assets:install'),
+	array('description' => 'cache:warmup', 'command' => 'app/console cache:warmup'),
 
 	
     );
