@@ -1,6 +1,7 @@
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
+    write_to:       %kernel.root_dir%/../web/media/
     use_controller: false
     #bundles:        [ 'c33sCoreBundle' ]
     #java: /usr/bin/java
