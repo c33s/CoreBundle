@@ -4,7 +4,12 @@ assetic:
     use_controller: false
     #bundles:        [ 'c33sCoreBundle' ]
     #java: /usr/bin/java
+    node: %node.bin%
     filters:
+        uglifyjs2:
+            bin: %kernel.root_dir%/Resources/node_modules/uglify-js/bin/uglifyjs
+        uglifycss:
+            bin: %kernel.root_dir%/Resources/node_modules/uglifycss/uglifycss
         cssrewrite: ~
         lessphp:
           paths:
