@@ -44,8 +44,8 @@ create a composer.yml with the framework-standard-edition version you want to us
           - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
     config:
         bin-dir: bin
-        component-dir: "web/components"
-        component-baseurl: "/components"
+        component-dir: "web/media/components"
+        component-baseurl: "/media/components"
     minimum-stability: stable
     extra:
         symfony-app-dir: app
