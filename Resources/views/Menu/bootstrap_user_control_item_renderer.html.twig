@@ -1,0 +1,13 @@
+
+{% extends "c33sMenuBundle::bootstrap_item_renderer.html.twig" %}
+
+{% block item_bootstrap_icon %}
+	{% if item.isUsingBootstrap2() %}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}<i class="icon icon-star"></i>{% endif %}
+        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}<i class="icon icon-eye-open"></i>{% endif %}
+	{% else %}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}<i class="fa fa-star"></i>{% endif %}
+        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}<i class="fa fa-eye"></i>{% endif %}
+	{% endif %}
+	{{ parent() }}
+{% endblock %}
