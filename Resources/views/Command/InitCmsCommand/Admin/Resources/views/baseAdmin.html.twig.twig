@@ -3,7 +3,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets filter='cssrewrite,lessphp' output='generated/css/admin-theme.css' combine=true
+    {% stylesheets filter='cssrewrite,lessphp' output='media/generated/css/admin-theme.css' combine=true
 
         '@{% endverbatim %}{{ name.camelcase }}{% verbatim %}{% endverbatim %}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/less/admin/theme-fonts.less'
         '@{% endverbatim %}{{ name.camelcase }}{% verbatim %}{% endverbatim %}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/less/admin/theme.less'

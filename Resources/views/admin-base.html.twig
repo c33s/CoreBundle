@@ -6,7 +6,7 @@
     {# no parent call here, code duplication ness because of less compiler import#}
     {#{ parent() }#}
 
-    {% stylesheets filter='cssrewrite,lessphp' output='generated/css/admin-corebundle.css' combine=true
+    {% stylesheets filter='cssrewrite,lessphp' output='media/generated/css/admin-corebundle.css' combine=true
     '@c33sCoreBundle/Resources/non-public/less/corebundlemainadmin.less'
     '%kernel.root_dir%/../web/media/components/font-awesome/css/font-awesome.min.css'
     %}
@@ -15,7 +15,7 @@
 
 
     {# this two css must me seperated because admin conains bootstrap and it must not combined with responsive#}
-    {% stylesheets filter='cssrewrite,lessphp' output='generated/css/bootstrap-responsive.css' combine=true
+    {% stylesheets filter='cssrewrite,lessphp' output='media/generated/css/bootstrap-responsive.css' combine=true
     '@bootstrap_css_responsive'
     %}
         <link rel="stylesheet" href="{{ asset_url }}" />

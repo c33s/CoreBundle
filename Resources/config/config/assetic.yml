@@ -38,7 +38,7 @@ assetic:
     assets:
       bootstrap_js:
         #combine: true
-        output: 'generated/js/bootstrap.js'
+        output: 'media/generated/js/bootstrap.js'
         inputs:
             - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-transition.js'
             - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-alert.js'
@@ -55,7 +55,7 @@ assetic:
             - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-affix.js'
       bootstrap3_js:
         #combine: true
-        output: 'generated/js/bootstrap3.js'
+        output: 'media/generated/js/bootstrap3.js'
         inputs:
             - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/affix.js'
             - '%kernel.root_dir%/../vendor/twbs/bootstrap/js/alert.js'
@@ -72,14 +72,14 @@ assetic:
         #filters: [?yui_js]
 # no responsive bootstrap needed in ember theme
       bootstrap_css_responsive:
-        output: 'generated/css/bootstrap-responsive.css'
+        output: 'media/generated/css/bootstrap-responsive.css'
         inputs:
             - '%kernel.root_dir%/../vendor/twitter/bootstrap/less/responsive.less'
         filters: [lessphp,cssrewrite]  #cssembed
 
 # no bootstrap_css needed, is loaded with single file @import in corebundle
 #      bootstrap_css:
-#        output: 'generated/css/bootstrap-responsive.css'
+#        output: 'media/generated/css/bootstrap-responsive.css'
 #        inputs:
 #            - '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less'
 #        filters: [lessphp,cssembed]

@@ -40,8 +40,8 @@ class CleanCommand extends ContainerAwareCommand
 	$output->writeln('<info>c33s:clean</info>');
 	
 	$fs = new Filesystem();
-	$output->writeln('deleting <info>web/generated</info> directory');
-	$fs->remove($this->getContainer()->getParameter('kernel.root_dir').'/../web/generated');
+	$output->writeln('deleting <info>web/media/generated</info> directory');
+	$fs->remove($this->getContainer()->getParameter('kernel.root_dir').'/../web/media/generated');
 	$output->writeln('deleting <info>web/bundles</info> directory');
 	$fs->remove($this->getContainer()->getParameter('kernel.root_dir').'/../web/bundles');
 
