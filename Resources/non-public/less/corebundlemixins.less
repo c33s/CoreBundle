@@ -1,0 +1,9 @@
+.font-include(@name, @file, @path, @version: '1.0.0')
+{
+    font-family: '@{name}';
+        src: url('@{path}/@{file}.eot?v=@{version}');
+        src: url('@{path}/@{file}.eot?#iefix&v=@{version}') format('embedded-opentype'),
+        url('@{path}/@{file}.woff?v=@{version}') format('woff'),
+        url('@{path}/@{file}.ttf?v=@{version}') format('truetype'),
+        url('@{path}/@{file}.svg?v=@{version}#@{name}') format('svg');
+}
