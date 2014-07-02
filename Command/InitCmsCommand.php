@@ -97,7 +97,7 @@ class InitCmsCommand extends BaseInitCommand
         $this->fs->mkdir($logoDirectory);
         $identicon = new Identicon();
         $imageData = $identicon->getImageData($name);
-        $this->fs->dumpFile($logoDirectory.'./logo.png', $imageData);
+        $this->fs->dumpFile($logoDirectory.'/logo.png', $imageData);
     }
     
     protected function generateFavicon($name)
