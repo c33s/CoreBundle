@@ -93,8 +93,8 @@
     <!-- scripts -->
     {{ parent() }}
     
-    {% javascripts output='media/generated/js/webpage-app.js' combine=true
-        '@{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/js/app.js'
+    {% javascripts output='media/generated/js/webpage.js' combine=true
+        '@{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/js/webpage.js'
         %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

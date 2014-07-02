@@ -21,8 +21,7 @@
             {% block google_webmaster_tools %}
                 {% include 'c33sCoreBundle::google-webmaster-tools.html.twig' %}
             {% endblock %}
-            {% block stylesheets %}
-            {% endblock stylesheets %}
+            {% block stylesheets %}{% endblock stylesheets %}
             {% block head_icons %}
                 <link rel="shortcut icon" type="image/x-icon" href="{% block head_favicon %}{{ asset('favicon.ico') }}{% endblock %}" />
                 <link rel="apple-touch-icon" href="{% block head_apple_touch_icon %}{{ asset('apple-touch-icon.png') }}{% endblock %}" />
