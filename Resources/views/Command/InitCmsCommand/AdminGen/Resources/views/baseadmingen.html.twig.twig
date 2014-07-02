@@ -41,16 +41,16 @@
 {% block upper_javascripts %}
     {{ parent() }}
     {% javascripts output='media/generated/js/jquery-ui.js'
-    'media/components/jquery-ui/ui/jquery-ui.js'
+        'media/components/jquery-ui/jquery-ui.js'
     %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
+	    <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     {#  javascripts filter='?yui_js' output='media/generated/js/admingenerator.min.js' #}
     {% javascripts output='media/generated/js/admingenerator.min.js'
-    'bundles/admingeneratorgenerator/js/admingenerator/general.js'
+        'bundles/admingeneratorgenerator/js/admingenerator/general.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}

@@ -23,73 +23,72 @@ class InitCmsCommand extends BaseInitCommand
         $this
             ->setName('c33s:init-cms')
             ->setDescription('')
-	    ->addArgument('name', InputArgument::REQUIRED, 'the Name of the Customer (used as Namespace Part)' )
-	    ->addOption(
+            ->addArgument('name', InputArgument::REQUIRED, 'the Name of the Customer (used as Namespace Part)' )
+            ->addOption(
                'force',
                null,
                InputOption::VALUE_NONE,
                'If set, the task will overwrite the existing config files'
             )
-	    ->addOption(
+            ->addOption(
                'no-bundles',
                null,
                InputOption::VALUE_NONE,
                'If set no Bundles are generated.'
             )
-	    ->addOption(
+            ->addOption(
                'no-executes',
                null,
                InputOption::VALUE_NONE,
                'If set no Bundles are generated.'
             )
-	    ->addOption(
+            ->addOption(
                'bundles',
                null,
                InputOption::VALUE_IS_ARRAY | InputArgument::OPTIONAL,
                'supply an array of bundle names which should be generated',
-		array('Webpage', 'Admin', 'AdminGen', 'Model')
+                array('Webpage', 'Admin', 'AdminGen', 'Model')
             )
-	    ->addOption(
+            ->addOption(
                'assetic-bundles',
                null,
                InputOption::VALUE_IS_ARRAY | InputArgument::OPTIONAL,
                'supply an array of bundle names which should be generated',
-		array('Webpage', 'Admin', 'AdminGen')
+                array('Webpage', 'Admin', 'AdminGen')
             )
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-	parent::execute($input, $output);
-	$this->io->write('<info>c33s:init-cms</info>');
-	
+        parent::execute($input, $output);
+        $this->io->write('<info>c33s:init-cms</info>');
         
-	$this->asseticBundles = $input->getOption('bundles');
+        $this->asseticBundles = $input->getOption('bundles');
         $name = $input->getArgument('name');
-	$this->initNameHelper($name);
-	
-	if (!$input->getOption('no-bundles'))
-	{
+        $this->initNameHelper($name);
+        
+        if (!$input->getOption('no-bundles'))
+        {
             $bundles = $input->getOption('bundles');
             
-	    $this->generatePredifinedBundles($bundles);
-	}
-	
-	$this->initTemplatesAndResources();
+            $this->generatePredifinedBundles($bundles);
+        }
+        
+        $this->initTemplatesAndResources();
         $this->addImporterToConfig();
         $this->generateLogo($name);
         $this->generateFavicon($name);
         
         $this->copyFiles();
-	if (!$input->getOption('no-executes'))
-	{
+        if (!$input->getOption('no-executes'))
+        {
             $this->executeCommand("php app/console propel:build --insert-sql");
             $this->executeCommand("c dump-autoload");
             $this->executeCommand("php app/console assets:install");
             $this->executeCommand("php app/console c33s:rebuild",120);
             $this->executeCommand("php app/console admin:c33s:patch");
-	}        
+        }
     }
     
     protected function generateLogo($name)
@@ -100,15 +99,16 @@ class InitCmsCommand extends BaseInitCommand
         $imageData = $identicon->getImageData($name);
         $this->fs->dumpFile($logoDirectory.'./logo.png', $imageData);
     }
+    
     protected function generateFavicon($name)
     {
         $logoDirectory = $this->getContainer()->get('kernel')->getRootDir().'/../web';
         $this->fs->mkdir($logoDirectory);
         $identicon = new Identicon();
         $imageData = $identicon->getImageData($name);
-        $this->fs->dumpFile($logoDirectory.'./favicon.ico', $imageData);
+        $this->fs->dumpFile($logoDirectory.'/favicon.ico', $imageData);
     }
-
+    
     protected function copyFiles()
     {
         $this->io->write('copying default files');
@@ -130,23 +130,23 @@ class InitCmsCommand extends BaseInitCommand
     protected function generatePredifinedBundles($bundles)
     {
         $this->io->write('generating bundles');
-	foreach ($bundles as $bundle)
-	{
+        foreach ($bundles as $bundle)
+        {
             $this->io->write('generating bundle: '.$bundle);
-	    $this->generateBundle($bundle.'Bundle');
-	}
+            $this->generateBundle($bundle.'Bundle');
+        }
     }
     
     protected function generateBundle($bundle)
     {
-	$command = "php app/console generate:bundle --namespace={$this->name->camelcased()}/${bundle} --dir=src --bundle-name={$this->name->camelcased()}${bundle} --format=yml  --no-interaction";
+        $command = "php app/console generate:bundle --namespace={$this->name->camelcased()}/${bundle} --dir=src --bundle-name={$this->name->camelcased()}${bundle} --format=yml  --no-interaction";
         $this->executeCommand($command);
     }
     
     protected function renderFileFromTemplate($file, $targetDirectory = null, $parameters = array())
     {
-	$parameters['name'] = $this->name;
-	$parameters['asseticBundles'] = $this->asseticBundles;
+        $parameters['name'] = $this->name;
+        $parameters['asseticBundles'] = $this->asseticBundles;
         
         parent::renderFileFromTemplate($file,$targetDirectory,$parameters);
     }

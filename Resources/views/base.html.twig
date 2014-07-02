@@ -22,16 +22,6 @@
                 {% include 'c33sCoreBundle::google-webmaster-tools.html.twig' %}
             {% endblock %}
             {% block stylesheets %}
-                {#
-                    '%kernel.root_dir%/../web/media/components/font-awesome/css/font-awesome.min.css'
-                #}
-                {% stylesheets filter='cssrewrite,lessphp' output='media/generated/css/corebundle.css' combine=true
-                    '@c33sCoreBundle/Resources/non-public/less/corebundlemain.less'
-                %}
-                    <link rel="stylesheet" href="{{ asset_url }}" />
-                {% endstylesheets %}
-                {{ render_assets('css') }}
-                {{ render_assets('inline_css') }}
             {% endblock stylesheets %}
             {% block head_icons %}
                 <link rel="shortcut icon" type="image/x-icon" href="{% block head_favicon %}{{ asset('favicon.ico') }}{% endblock %}" />
@@ -85,13 +75,21 @@
         {% endblock %} {# body #}
         {% block javascripts %}
             {% if c33s_core_config.app.use_cdn %}
+                <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
             {% else %}
-            {% javascripts output='media/generated/js/bootstrap.js' combine=true
-                '@bootstrap_js'
+                {% javascripts output='media/generated/js/bootstrap3.js' combine=true
+                    '@bootstrap3_js'
                 %}
+                    <script src="{{ asset_url }}"></script>
+                {% endjavascripts %}
+            {% endif %}
+            
+            {% javascripts output='media/generated/js/jquery.cookie.js' combine=true
+                '@c33sCoreBundle/Resources/non-public/js/jquery.cookie1.4.js'
+            %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
-            {% endif %}
+            
             {{ render_assets('js') }}
             {{ render_assets('inline_js') }}
         {% endblock %}

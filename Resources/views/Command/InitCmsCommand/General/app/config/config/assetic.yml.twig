@@ -4,11 +4,10 @@ assetic:
     filters:
         cssrewrite: ~
         lessphp:
-          paths:
-            # @bundle notation does not work here
-            - '%kernel.root_dir%/../vendor/twitter/bootstrap/less/'
-            - '%kernel.root_dir%/../vendor/twbs/'
-            - '%kernel.root_dir%/../vendor/fortawesome/font-awesome/less/'
-            - '%kernel.root_dir%/../src/{{ name.camelcase }}/AdminBundle/Resources/non-public/less/'
-            - '%kernel.root_dir%/../src/{{ name.camelcase }}/WebpageBundle/Resources/non-public/less/'
-            - '%kernel.root_dir%/../vendor/c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/'    
+            paths:
+                # @bundle notation does not work here
+                - '%kernel.root_dir%/../src/{{ name.camelcase }}/AdminBundle/Resources/non-public/less/'
+                - '%kernel.root_dir%/../src/{{ name.camelcase }}/WebpageBundle/Resources/non-public/less/'
+                - '%kernel.root_dir%/../src/'
+                - '%kernel.root_dir%/../vendor/'
+                - '%kernel.root_dir%/../'

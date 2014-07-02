@@ -1,0 +1,52 @@
+/*
+ * This is the basic stylesheet file you should be using for your webpage bundle.
+ * 
+ * Right after the twitter bootstrap initialization some general corebundle tools and styles are being included.
+ * If you do not want to use all of them, feel free to remove (comment out) any of the corresponding lines in here.
+ */
+
+
+// Basic bootstrap 3 variables
+@import "c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/000-bootstrap-variables.less";
+@import "c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/010-bootstrap-glyphicons-path.less";
+
+// Override bootstrap variables as needed
+@import "webpage/020-bootstrap-variables-override.less";
+
+// Bootstrap
+@import "c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/030-bootstrap-main.less";
+
+// Basic Font-Awesome 4 variables
+@import "c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/050-font-awesome-variables.less";
+@import "c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/060-font-awesome-path.less";
+
+// Override Font-Awesome variables as needed
+@import "webpage/070-font-awesome-variables-override.less";
+
+// Font-Awesome
+@import "c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/080-font-awesome-main.less";
+
+// Corebundle default styles and mixins
+@import "c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/100-corebundle-variables.less";
+@import "c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/110-corebundle-mixins.less";
+@import "c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/120-corebundle-flexvideo.less";
+@import "c33s/core-bundle/c33s/CoreBundle/Resources/non-public/less/180-corebundle-styles.less";
+
+// Webpage related variables and theme. Feel free to add more files as needed. Prefixing them with ascending numbers is highly recommended!
+@import "webpage/200-variables.less";
+@import "webpage/210-mixins.less";
+@import "webpage/220-fonts.less";
+@import "webpage/300-theme.less";
+
+// These are some examples how to split up your theme into multiple less files:
+//@import "webpage/400-layout.less";
+//@import "webpage/410-typography.less";
+//@import "webpage/420-navigation.less";
+//@import "webpage/430-forms.less";
+
+// If your styles are spread over several bundles you can mix them in like this:
+//@import "{{ name.camelcase }}/SomeBundle/Resources/non-public/less/500-some-bundle.less";
+//@import "{{ name.camelcase }}/SomeOtherBundle/Resources/non-public/less/600-some-other-bundle.less";
+
+// Sometimes an additional stylesheet for highlighting stuff during debugging is useful
+//@import "webpage/999-debug.less";
