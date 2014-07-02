@@ -42,13 +42,13 @@ require:
     #CarpeHora/ExtraPropertiesBehavior:                              'dev-master'
     
     ### html & css #############################################################
-    fortawesome/font-awesome:                                       '4.0.*'
-    components/font-awesome:                                        '3.2.*'
+    #fortawesome/font-awesome:                                       '4.1.0'
+    components/font-awesome:                                        '4.1.0'
     fkr/cssurlrewrite-bundle:                                       '1.0.*'
-    twitter/bootstrap:                                              '2.3.*'
     afarkas/html5shiv:                                              '3.7.*'
     # additional twitter bootstrap for v3
-    twbs/bootstrap:                                                 '3.1.0'
+    #twitter/bootstrap:                                              '3.2.0'
+    twbs/bootstrap:                                                 '3.2.0'
     oyejorge/less.php:                                              '~1.5'
     ptachoire/cssembed:                                             '1.0.*'
     #braincrafted/bootstrap-bundle:                                  '1.4.*'
@@ -60,15 +60,15 @@ require:
     
     ### tag me #################################################################
     # admin generator
-    cedriclombardot/admingenerator-generator-bundle:                '0.99.*'
+    cedriclombardot/admingenerator-generator-bundle:                '1.1.*'
     avocode/form-extensions-bundle:                                 '0.99.*'
     ### other
     yzalis/identicon:                                               '0.99.*'
     ### end tag me #############################################################
     
     ### javascript #############################################################
-    components/jquery:                                              '1.9.*'
-    components/jqueryui:                                            '1.10.*'
+    components/jquery:                                              '1.11.*'
+    components/jqueryui:                                            '1.11.*'
     malsup/form:                                                    '3.36'
     smoya/asset-management-bundle:                                  '1.0.*'
     jaysalvat/vegas:                                                '0.99.*'
