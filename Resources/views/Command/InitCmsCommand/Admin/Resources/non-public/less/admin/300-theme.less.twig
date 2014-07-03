@@ -1,0 +1,202 @@
+/*
+ * Use this or any other files for actual theming
+ */
+
+
+body {
+  padding-top: 51px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+.navbar-brand-logo
+{
+    margin-top: 7px; 
+    margin-right: 10px;
+}
+
+.navbar-collapse
+{
+    //style="font-size: 18px"
+    font-size: ceil(@font-size-base * 1.10);
+
+    //@font-size-base:          14px;
+    //@font-size-large:         ceil(@font-size-base * 1.25); // ~18px
+    //@font-size-small:         ceil(@font-size-base * 0.85); // ~12px
+}
+
+//h1, h2, h3, h4
+//{
+//  color: @ !important;
+//}
+
+.footer
+{
+    color: @navbar-default-link-color;
+    background-color: @navbar-default-toggle-hover-bg;
+    //background: @;
+}
+
+.footer a
+{
+    color: @navbar-default-link-color;
+    //background-color: @navbar-default-color;
+    //background: @;
+}
+
+abbr[title], acronym[title]
+{
+    border-bottom-width: 0;
+}
+
+.footer address
+{
+    //padding-top: 20px;
+}
+
+.footer-logo
+{
+    float: left;
+    padding-right: 10px;
+    filter: url("data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'><filter%20id='grayscale'><feColorMatrix%20type='matrix'%20values='0.3333%200.3333%200.3333%200%200%200.3333%200.3333%200.3333%200%200%200.3333%200.3333%200.3333%200%200%200%200%200%201%200'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+    filter: grayscale(100%); /* Current draft standard */
+    -webkit-filter: grayscale(100%); /* New WebKit */
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%); 
+    -o-filter: grayscale(100%);
+    filter: gray; /* IE6+ */
+}
+
+.footer h4
+{
+    //color: @maincolor;
+    //font-weight: 300;
+    //text-align: center;
+    //text-transform: lowercase;
+    //font-size: 20px;
+    //font-size: 2rem;
+    //font-family: 'Voltaire', sans-serif;
+    ////font-family: 'Sanchez', serif;
+    color: #ffffff !important;
+}
+.navbar-brand 
+{
+    float: left;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+//h1, h2, h3, h4
+//{
+//    small
+//    {
+//        color: @ !important;
+//    }
+//}  
+
+
+//.admin
+//{
+//    color: @;
+//    a
+//    {
+//        color: @ !important; 
+//    }
+//}
+
+.overlay:after {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAHUlEQVQIW2NkYGD4D8SM6DRIAAQwJDFUwhRRUQcALRkSBISGlPAAAAAASUVORK5CYII=") repeat scroll left top rgba(0, 0, 0, 0);
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    opacity: 0.4;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+
+.jumbotron 
+{
+    //background-image: url('../../media/images/header/headerbg1.png');
+    background-repeat: no-repeat;
+    background-position:center top; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #ffffff;
+
+    margin-bottom: 0px !important;
+
+    h1, h2, h3, h4
+    {
+        color: #ffffff !important;
+    }
+}
+.img-responsive {
+    margin: 0 auto;
+}
+.image-header-text-block
+{
+    //background-color: @;
+    //width: 200px !important;
+    //height: auto;
+    display: block;
+    //background: 
+}
+
+.img-rounded-small
+{
+    border-radius: 3px;
+}
+
+.footer-line
+{
+    margin: 0 auto;
+    height: 10px;
+    min-height: 10px;
+    //background: @;
+}
+
+.logo-footer
+{
+    //.img-rounded-small();
+   // border-radius: 3px;
+}
+
+//.navbar-nav > li > a { padding:11px 10px 9px; }
+//.navbar-nav > li.dropdown-split-right > a { padding-left: 7px; }
+//.navbar-nav > li.dropdown-split-left > a { padding-right: 0; }
+
+
+#mapCanvas {
+    
+    //margin-top: -60px;
+    min-height: 600px;
+    //padding-top: 160px;
+    //text-align: center;
+    width: 100%;
+}
+
+.headlinebox
+{
+    //background: none repeat scroll 0 0 @;
+    color: #ffffff !important;
+    //padding-bottom: 15px;
+    //padding-top: 15px;
+    width: 100%;
+    h1, h2, h3, h4
+    {
+        color: #ffffff !important;
+    }
+}
+
+.img-circle
+{
+    padding-left: 30px; padding-right: 30px;
+    //max-width: 400px;
+    //max-height: 400px;
+}
+

@@ -1,0 +1,28 @@
+{% verbatim %}
+{% extends "{% endverbatim %}{{ name.camelcase }}{% verbatim %}AdminBundle::baseAdmin.html.twig" %}
+{% block meta_title %}{{ parent() }}{% block title %}{% endblock %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets filter='cssrewrite,lessphp' output='media/generated/css/admingenerator.min.css' combine=true
+        'bundles/admingeneratorgenerator/css/general.css'
+        'bundles/admingeneratorgenerator/css/profile.css'
+        'bundles/admingeneratorgenerator/css/nested-list.css'
+        'bundles/admingeneratorgenerator/css/bootstrap-extended.css'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    {#  javascripts filter='?yui_js' output='media/generated/js/admingenerator.min.js' #}
+    {% javascripts output='media/generated/js/admingenerator.min.js'
+        'bundles/admingeneratorgenerator/js/admingenerator/general.js'
+    %}
+    	<script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+{% endverbatim %}

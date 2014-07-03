@@ -12,7 +12,7 @@ class Tools
      * @author Svetoslav Marinov
      * @author http://slavi.biz
      */
-    public static function filesizeToBytes($str) 
+    public static function filesizeToBytes($str)
     {
         $bytes = 0;
 
@@ -34,25 +34,26 @@ class Tools
         $bytes = intval(round($bytes, 2));
 
         return $bytes;
-    } 
+    }
     
-    public static function removeLineFromFile($file,$stringToRemove)
+    public static function removeLineFromFile($file, $stringToRemove)
     {
-	$lines = file($file);
-	$lineCount = count($lines);
-	
-	for($i=0;$i<$lineCount;$i++)
-	{
-	    if (strstr($lines[$i],$stringToRemove))
-	    {
-		unset($lines[$i]);
-	    }
-	}
-	file_put_contents($file, $lines);
+        $lines = file($file);
+        $lineCount = count($lines);
+        
+        for($i=0; $i < $lineCount; $i++)
+        {
+            if (strstr($lines[$i], $stringToRemove))
+            {
+                unset($lines[$i]);
+            }
+        }
+        
+        file_put_contents($file, $lines);
     }
     
     /**
-     * 
+     *
      * @param type $file
      * @param type $startLinePattern pattern to find in line of array, can be false if should start from beginning
      * @param type $endLinePattern
@@ -72,170 +73,163 @@ class Tools
         {
             $lines = file($file);
         }
-	
-	
-	
-	
-	
-	$start = Tools::stringPosInArray($lines,$startLinePattern,0);
-	if ($startLinePattern !== false && $start === false)
-	{
-	    throw new \Exception('Start line pattern "'.$startLinePattern.'" not found.');
-	}
-	if ($start === false)
-	{
-	    $start = 0;
-	}
-	$end = Tools::stringPosInArray($lines,$endLinePattern,$start+1);
-	$start = $start + $startOffset;
-	
-	if ($endLinePattern !== false && $end === false)
-	{
-	    throw new \Exception('End line pattern "'.$endLinePattern.'" not found.');
-	}	
-	if ($end === false)
-	{
-	    $end = count($lines);
-	}
-	else
-	{
-	    $end = $end +1;
-	}
-	$end = $end + $endOffset;
-	
-	
-	if (abs($start) > count($lines))
-	{
-	    throw new \Exception('Start beyond line count.');
-	}
-	if (abs($end) > count($lines))
-	{
-	    throw new \Exception('End beyond line count.');
-	}
-	
-	
-	
-	
-	$length = $end - $start;
-	
-	if ($invert === false)
-	{
-	    $minLength = 1;
-	}
-	else 
-	{
-	    $minLength = 0;
-	}
-	
-	
-	if ($length < $minLength)
-	{
-	    throw new \Exception("Length cannot be negative or zero (length: $length, start: $start, end: $end).");
-	}
-	
-	if ($invert === false)
-	{
-	    $lines = array_slice($lines, $start, $length);
-	}
-	else 
-	{
-	    array_splice($lines, $start, $length);
-	    $lines = array_values($lines);
-	}
-	
-	if (!is_array($file))
-	{
-	    file_put_contents($file, $lines);
-	}
-	return $lines;
+        
+        $start = Tools::stringPosInArray($lines,$startLinePattern,0);
+        if ($startLinePattern !== false && $start === false)
+        {
+            throw new \Exception('Start line pattern "'.$startLinePattern.'" not found.');
+        }
+        if ($start === false)
+        {
+            $start = 0;
+        }
+        $end = Tools::stringPosInArray($lines,$endLinePattern,$start+1);
+        $start = $start + $startOffset;
+        
+        if ($endLinePattern !== false && $end === false)
+        {
+            throw new \Exception('End line pattern "'.$endLinePattern.'" not found.');
+        }
+        if ($end === false)
+        {
+            $end = count($lines);
+        }
+        else
+        {
+            $end = $end +1;
+        }
+        $end = $end + $endOffset;
+        
+        
+        if (abs($start) > count($lines))
+        {
+            throw new \Exception('Start beyond line count.');
+        }
+        if (abs($end) > count($lines))
+        {
+            throw new \Exception('End beyond line count.');
+        }
+        
+        $length = $end - $start;
+        
+        if ($invert === false)
+        {
+            $minLength = 1;
+        }
+        else
+        {
+            $minLength = 0;
+        }
+        
+        
+        if ($length < $minLength)
+        {
+            throw new \Exception("Length cannot be negative or zero (length: $length, start: $start, end: $end).");
+        }
+        
+        if ($invert === false)
+        {
+            $lines = array_slice($lines, $start, $length);
+        }
+        else
+        {
+            array_splice($lines, $start, $length);
+            $lines = array_values($lines);
+        }
+        
+        if (!is_array($file))
+        {
+            file_put_contents($file, $lines);
+        }
+        
+        return $lines;
     }
-
-
-    public static function addLineToFile($file,$stringToAdd,$stringAfterToInsert=false,$checkString = false)
+    
+    public static function addLineToFile($file, $stringToAdd, $stringAfterToInsert = false, $checkString = false)
     {
-	$lines = file($file);
+        $lines = file($file);
         
         if ($checkString === false)
         {
             $checkString = $stringToAdd;
         }
-	
-	if (!Tools::arrayLineHasString($lines, $checkString))
-	{
-	    if ($stringAfterToInsert !== false)
-	    {
-		$lineCount = count($lines);
-		for($i=0;$i<$lineCount;$i++)
-		{
-		    if (strstr($lines[$i],$stringAfterToInsert))
-		    {
-			$lines = Tools::insertBetweenArray($stringToAdd,$i+1,$lines);
-			break;
-		    }
-		}
-	    }
-	    else
-	    {
-		$lines[]=$stringToAdd;
-	    }
-	    file_put_contents($file, $lines);
-	}
-
+        
+        if (!Tools::arrayLineHasString($lines, $checkString))
+        {
+            if ($stringAfterToInsert !== false)
+            {
+                $lineCount = count($lines);
+                for($i=0; $i < $lineCount; $i++)
+                {
+                    if (strstr($lines[$i], $stringAfterToInsert))
+                    {
+                        $lines = Tools::insertBetweenArray($stringToAdd, $i + 1, $lines);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                $lines[] = $stringToAdd;
+            }
+            
+            file_put_contents($file, $lines);
+        }
     }
     
-    public static function stringPosInArray($array,$string,$offset = 0, $trim = true)
+    public static function stringPosInArray($array, $string, $offset = 0, $trim = true)
     {
-	if ($string === false || $string === null || empty($string))
+        if ($string === false || $string === null || empty($string))
         {
             return false;
         }
-	
-	if ($array === false || $array === null || empty($array))
+        
+        if ($array === false || $array === null || empty($array))
         {
             return false;
         }
-	
-	if ($trim == true)
-	{
-	    $string = trim($string);
-	}
-	
-	$lineCount = count($array);
-	for($i=0+$offset;$i<$lineCount;$i++)
-	{
-	    $result = strpos($array[$i],$string);
-	    if ($result !== false)
-	    {
-		return $i;
-	    }
-	}
-	
-	return false;
+        
+        if ($trim == true)
+        {
+            $string = trim($string);
+        }
+        
+        $lineCount = count($array);
+        for($i=0+$offset;$i<$lineCount;$i++)
+        {
+            $result = strpos($array[$i],$string);
+            if ($result !== false)
+            {
+                return $i;
+            }
+        }
+        
+        return false;
     }
     
-    public static function arrayLineHasString($array,$string)
+    public static function arrayLineHasString($array, $string)
     {
-	if (Tools::stringPosInArray($array, $string) !== false)
-	{
-	    return true;
-	}
-	return false;
-    }
-
-
-    public static function insertBetweenArray($element,$position,$array)
-    {
-	array_splice($array, $position, 0, $element);
-	return $array;
+        if (Tools::stringPosInArray($array, $string) !== false)
+        {
+            return true;
+        }
+        
+        return false;
     }
     
-    public static function cryptoRandSecure($min, $max) 
+    public static function insertBetweenArray($element, $position, $array)
     {
-        if ($min >=  $max) 
+        array_splice($array, $position, 0, $element);
+        return $array;
+    }
+    
+    public static function cryptoRandSecure($min, $max)
+    {
+        if ($min >=  $max)
         {
             throw new \InvalidArgumentException("$min must be larger than  $max");
         }
-//        if ($min >= 0) 
+//        if ($min >= 0)
 //        {
 //            throw new \InvalidArgumentException("$min must me larger than zero");
 //        }
@@ -244,17 +238,17 @@ class Tools
         $byteLength = (int) ($log / 8) + 1;
         $bitLength = (int) $log + 1;
         $filter = (int) (1 << $bitLength) - 1; // set all lower bits to 1
-        do 
+        do
         {
             $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($byteLength, $s)));
             $rnd = $rnd & $filter; // discard irrelevant bits
-        } 
+        }
         while ($rnd >= $range);
         
         return $min + $rnd;
     }
     
-    public static function generateRandomPassword($minLength=40,$maxLength=50,$asciiMin=32,$asciiMax=126,$excludedCharacters = array('(',')','"',"'",'{','}','`','\\')) 
+    public static function generateRandomPassword($minLength=40,$maxLength=50,$asciiMin=32,$asciiMax=126,$excludedCharacters = array('(',')','"',"'",'{','}','`','\\'))
     {
         $excludedOrdList = array();
         foreach ($excludedCharacters as $excludedCharacter)
@@ -263,20 +257,20 @@ class Tools
         }
         $excludedOrdList[] = null;
         
-	$password = '';
+        $password = '';
 
-	$desired_length = Tools::cryptoRandSecure($minLength, $maxLength);
+        $desired_length = Tools::cryptoRandSecure($minLength, $maxLength);
 
-	for($length = 0; $length < $desired_length; $length++) 
-	{
+        for($length = 0; $length < $desired_length; $length++)
+        {
             $characterLookup = null;
             while(in_array($characterLookup, $excludedOrdList))
             {
                 $characterLookup = Tools::cryptoRandSecure($asciiMin, $asciiMax);
             }
             $password .= chr($characterLookup);
-	}
+        }
 
-	return $password;
+        return $password;
     }
 }

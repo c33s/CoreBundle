@@ -29,7 +29,7 @@ c33s_menu:
                         
                     {{ name.underscore }}_webpage_static/kontakt/impressum:
                         title:          Impressum
-
+            
             fos_user_security_logout:
                 item_class:             user_control
                 children:
@@ -37,6 +37,7 @@ c33s_menu:
                     {{ name.underscore }}_admin_dashboard:
                         title:                  Admin dashboard
                         item_class:             default
+                        require_role:           ROLE_ADMIN
                 
         webpage_sitemap:
             .defaults:

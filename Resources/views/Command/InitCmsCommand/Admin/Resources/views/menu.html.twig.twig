@@ -1,61 +1,23 @@
 {% verbatim %}
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div id="logo"><img style="margin-top:5px;margin-right:10px; " class="pull-left img-rounded" src="{{ asset(('media/images/logo.png') | imagine_filter('adminlogotop')) }}" alt="" /><a class="brand" href="{{path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_admin_default_homepage')}}"> {{ c33s_core_config.app.name_short }} admin</a></div>
-            <div class="nav-collapse collapse">
-                {% include "c33sMenuBundle::bootstrap_menu_renderer.html.twig" with { 'items': menu_items('admin_top_left'), containerClass: 'nav navbar-nav' } %}
-                {% include "c33sMenuBundle::bootstrap_menu_renderer.html.twig" with { 'items': menu_items('admin_top_right'), containerClass: 'nav navbar-nav pull-right' } %}
-
-{#                 <ul class="nav">#}
-{#                     {% if is_granted('ROLE_ADMIN') %}#}
-{#                         <li class="{% if '{% endverbatim %}{{ name.underscore }}{% verbatim %}_admin_default_homepage' in app.request.get('_route') %}active{% endif %}"><a href="{{path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_admin_default_homepage')}}"><i class="icon-home"></i> Dashboard</a></li>#}
-{#                         <li class="dropdown">#}
-{#                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-edit"></i> CMS <b class="caret"></b></a>#}
-{#                             <ul class="dropdown-menu">#}
-{#                                 <li class="{% if '{% endverbatim %}{{ name.camelcase }}{% verbatim %}_AdminGenBundle_News' in app.request.get('_route') %}active{% endif %}"><a href="{{path('{% endverbatim %}{{ name.camelcase }}{% verbatim %}_AdminGenBundle_News_list')}}"><i class="icon-comment"></i> News</a></li>#}
-{#                             </ul>#}
-{#                         </li>#}
-{#                     {% endif %}#}
-{#                     {% if is_granted('ROLE_SUPER_ADMIN') %}#}
-{#                         <li class="dropdown">#}
-{#                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-shield"></i> Super Admin <b class="caret"></b></a>#}
-{#                             <ul class="dropdown-menu">#}
-{#                                 <li class="{% if '{% endverbatim %}{{ name.camelcase }}{% verbatim %}_AdminGenBundle_Storage' in app.request.get('_route') %}active{% endif %}"><a href="{{path('{% endverbatim %}{{ name.camelcase }}{% verbatim %}_AdminGenBundle_Storage_list')}}"><i class="icon-tasks"></i> Storage</a></li>#}
-{#                                 <li class=""><a href="{{path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_admin_static', {name: 'phpinfo'})}}"><i class="icon-info"></i> Phpinfo</a></li>#}
-{#                                 <li class="divider"></li>#}
-{#                                 <li class="nav-header">Foreign</li>#}
-{#                                 <li class="{% if 'liip_monitor_health_interface' in app.request.get('_route') %}active{% endif %}"><a href="{{path('liip_monitor_health_interface')}}"><i class="icon-eye-open"></i> Monitoring</a></li>#}
-{#                             </ul>#}
-{#                         </li>#}
-{#                     {% endif %}#}
-{#                 </ul>#}
-{#                 {% if app.user %}#}
-{#                     <ul class="nav pull-right">#}
-{#                         {% if is_granted('ROLE_ADMIN') %}#}
-{#                             <li class=""><a href="{{path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_webpage_default_homepage')}}"><i class="icon-external-link"></i> view Webpage</a></li>#}
-{#                         {% endif %}#}
-{#                         <li class="dropdown">#}
-{#                             <a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#">#}
-{#                                 {% if is_granted('ROLE_SUPER_ADMIN') %}<i class="icon-star"></i>{% endif %}#}
-{#                                 {% if is_granted('ROLE_PREVIOUS_ADMIN') %}<i class="icon-eye-open"></i>{% endif %}#}
-{#                                 <i class="icon-user"></i> {{app.user.username}}<b class="caret"></b>#}
-{#                             </a>#}
-{#                             <ul aria-labelledby="drop3" role="menu" class="dropdown-menu">#}
-{#                                 <li role="presentation"><a href="{{path('fos_user_security_logout')}}" tabindex="-1" role="menuitem"><i class="icon-off"></i> Logout</a></li>#}
-{#                                 <li role="presentation"><a href="{{path('fos_user_change_password')}}" tabindex="-1" role="menuitem"><i class="icon-lock"></i> Change Password</a></li>#}
-{#                                 {{ render(controller('c33sCoreBundle:Menu:switchUser', {'dropdown': false, 'header': true } )) }}#}
-{#                             </ul>#}
-{#                         </li>#}
-{#                         <li role="presentation"><a href="{{path('fos_user_security_logout')}}" tabindex="-1" role="menuitem"><i class="icon-off"></i></a></li>#}
-{#                     </ul>#}
-{#                 {% endif %}#}
-            </div><!--/.nav-collapse -->
+           	<a class="" href="{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_dashboard') }}">
+               <img class="navbar-brand-logo pull-left img-rounded-small" src="{{ asset(('media/images/logo.png') | imagine_filter('adminlogotop')) }}" alt="" id="logo" />
+            </a>
+            <a class="navbar-brand" href="{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_dashboard') }}">
+                 {{ c33s_core_config.app.name_short }} admin
+            </a>
+        </div>
+        <div class="navbar-collapse collapse navbar-scrollspy">
+            {% include "c33sMenuBundle::bootstrap_menu_renderer.html.twig" with { 'items': menu_items('admin_top_left'), containerClass: 'nav navbar-nav' } %}
+            {% include "c33sMenuBundle::bootstrap_menu_renderer.html.twig" with { 'items': menu_items('admin_top_right'), containerClass: 'nav navbar-nav navbar-right' } %}
         </div>
     </div>
 </div>

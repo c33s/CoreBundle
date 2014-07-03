@@ -8,8 +8,8 @@
 {% block stylesheets %}
     {{ parent() }}
 
-    {% stylesheets filter='cssrewrite,lessphp' output='media/generated/css/webpage.css' combine=true
-        '@{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/less/webpage/webpage.less'
+    {% stylesheets filter='cssrewrite,lessphp' output='media/generated/css/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.css' combine=true
+        '@{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/less/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.less'
     %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -93,8 +93,8 @@
     <!-- scripts -->
     {{ parent() }}
     
-    {% javascripts output='media/generated/js/webpage.js' combine=true
-        '@{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/js/webpage.js'
+    {% javascripts output='media/generated/js/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.js' combine=true
+        '@{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/js/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.js'
         %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

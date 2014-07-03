@@ -32,12 +32,12 @@ class ConsoleIO
     private $startTime;
 
     /**
-* Constructor.
-*
-* @param InputInterface $input The input instance
-* @param OutputInterface $output The output instance
-* @param HelperSet $helperSet The helperSet instance
-*/
+     * Constructor.
+     *
+     * @param InputInterface $input The input instance
+     * @param OutputInterface $output The output instance
+     * @param HelperSet $helperSet The helperSet instance
+     */
     public function __construct(InputInterface $input, OutputInterface $output, HelperSet $helperSet)
     {
         $this->input = $input;
@@ -51,53 +51,53 @@ class ConsoleIO
     }
 
     /**
-* {@inheritDoc}
-*/
+     * {@inheritDoc}
+     */
     public function isInteractive()
     {
         return $this->input->isInteractive();
     }
 
     /**
-* {@inheritDoc}
-*/
+     * {@inheritDoc}
+     */
     public function isDecorated()
     {
         return $this->output->isDecorated();
     }
 
     /**
-* {@inheritDoc}
-*/
+     * {@inheritDoc}
+     */
     public function isVerbose()
     {
         return $this->output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE;
     }
 
     /**
-* {@inheritDoc}
-*/
+     * {@inheritDoc}
+     */
     public function isVeryVerbose()
     {
         return $this->output->getVerbosity() >= 3; // OutputInterface::VERSOBITY_VERY_VERBOSE
     }
 
     /**
-* {@inheritDoc}
-*/
+     * {@inheritDoc}
+     */
     public function isDebug()
     {
         return $this->output->getVerbosity() >= 4; // OutputInterface::VERBOSITY_DEBUG
     }
 
     /**
-* {@inheritDoc}
-*/
+     * {@inheritDoc}
+     */
     public function write($messages, $verboseityLevel = OutputInterface::VERBOSITY_NORMAL, $newline = true)
     {
         if ($this->output->getVerbosity() >= $verboseityLevel)
         {
-            if (null !== $this->startTime) 
+            if (null !== $this->startTime)
             {
                 $messages = (array) $messages;
                 $messages[0] = sprintf(
@@ -113,8 +113,8 @@ class ConsoleIO
     }
 
     /**
-* {@inheritDoc}
-*/
+     * {@inheritDoc}
+     */
     public function overwrite($messages, $newline = true, $size = null)
     {
         // messages can be an array, let's convert it to string anyway
@@ -146,99 +146,34 @@ class ConsoleIO
     }
 
     /**
-* {@inheritDoc}
-*/
+     * {@inheritDoc}
+     */
     public function ask($question, $default = null)
     {
         return $this->helperSet->get('dialog')->ask($this->output, $question, $default);
     }
 
     /**
-* {@inheritDoc}
-*/
+     * {@inheritDoc}
+     */
     public function askConfirmation($question, $default = true)
     {
         return $this->helperSet->get('dialog')->askConfirmation($this->output, $question, $default);
     }
 
     /**
-* {@inheritDoc}
-*/
+     * {@inheritDoc}
+     */
     public function askAndValidate($question, $validator, $attempts = false, $default = null)
     {
         return $this->helperSet->get('dialog')->askAndValidate($this->output, $question, $validator, $attempts, $default);
     }
-
+    
     /**
-* {@inheritDoc}
-*/
-    public function askAndHideAnswer($question)
+     * {@inheritDoc}
+     */
+    public function askHiddenResponse($question, $fallback = true)
     {
-        // handle windows
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
-            $finder = new ExecutableFinder();
-
-            // use bash if it's present
-            if ($finder->find('bash') && $finder->find('stty')) {
-                $this->write($question, false);
-                $value = rtrim(shell_exec('bash -c "stty -echo; read -r mypassword; stty echo; echo $mypassword"'));
-                $this->write('');
-
-                return $value;
-            }
-
-            // fallback to hiddeninput executable
-            $exe = __DIR__.'\\hiddeninput.exe';
-
-            // handle code running from a phar
-            if ('phar:' === substr(__FILE__, 0, 5)) {
-                $tmpExe = sys_get_temp_dir().'/hiddeninput.exe';
-
-                // use stream_copy_to_stream instead of copy
-                // to work around https://bugs.php.net/bug.php?id=64634
-                $source = fopen(__DIR__.'\\hiddeninput.exe', 'r');
-                $target = fopen($tmpExe, 'w+');
-                stream_copy_to_stream($source, $target);
-                fclose($source);
-                fclose($target);
-                unset($source, $target);
-
-                $exe = $tmpExe;
-            }
-
-            $this->write($question, false);
-            $value = rtrim(shell_exec($exe));
-            $this->write('');
-
-            // clean up
-            if (isset($tmpExe)) {
-                unlink($tmpExe);
-            }
-
-            return $value;
-        }
-
-        if (file_exists('/usr/bin/env')) {
-            // handle other OSs with bash/zsh/ksh/csh if available to hide the answer
-            $test = "/usr/bin/env %s -c 'echo OK' 2> /dev/null";
-            foreach (array('bash', 'zsh', 'ksh', 'csh') as $sh) {
-                if ('OK' === rtrim(shell_exec(sprintf($test, $sh)))) {
-                    $shell = $sh;
-                    break;
-                }
-            }
-            if (isset($shell)) {
-                $this->write($question, false);
-                $readCmd = ($shell === 'csh') ? 'set mypassword = $<' : 'read -r mypassword';
-                $command = sprintf("/usr/bin/env %s -c 'stty -echo; %s; stty echo; echo \$mypassword'", $shell, $readCmd);
-                $value = rtrim(shell_exec($command));
-                $this->write('');
-
-                return $value;
-            }
-        }
-
-        // not able to hide the answer, proceed with normal question handling
-        return $this->ask($question);
+        return $this->helperSet->get('dialog')->askHiddenResponse($this->output, $question, $fallback);
     }
 }

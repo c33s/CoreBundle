@@ -73,20 +73,19 @@ class DataHandler
         
         return $fields;
     }
-
-
+    
     protected function setTableName($table,$autofixTableName = true)
     {
         if($autofixTableName == true)
         {
             $table = ucfirst(strtolower($table));
         }
+        
         $this->table = $table;
         $this->queryClassname = $this->dataBaseObjectNamespace.$this->table.'Query';
         $this->classClassname = $this->dataBaseObjectNamespace.$this->table;
     }
-
-
+    
     public function init($table, $id=null, $autofixTableName = true)
     {
         if ($this->checkIfClassValid($table))
@@ -109,12 +108,11 @@ class DataHandler
         return false;
     }
     
-    
-    
     protected function initObjectByObject($object)
     {
         $this->object = $object;
     }
+    
     protected function initObjectById($id)
     {
         $queryClassname = $this->queryClassname;
@@ -156,6 +154,7 @@ class DataHandler
         
         return $id;
     }
+    
     protected function isIdInt($id)
     {
         preg_match('/^[0-9]+$/', $id, $matches);
@@ -171,6 +170,7 @@ class DataHandler
     {
         return $this->object;
     }
+    
     public function getObjectList()
     {
         $queryClassname = $this->queryClassname;
@@ -190,7 +190,7 @@ class DataHandler
             if (get_class($file) == 'c33s\CoreBundle\DataHandler\DataFile')
             {
                 $fileHash = $file->copy();
-                //TODO: UNlink old file here
+                //TO DO: UNlink old file here
                 $method = 'set'.ucfirst($map);
                 $this->object->{$method}($fileHash);
             }
