@@ -27,7 +27,7 @@ wget https://raw.githubusercontent.com/c33s/CoreBundle/master/Resources/files/co
 touch composer.json
 
 # Convert composer.yml to json format. Do this every time you modify your composer.yml
-composer-yaml convert composer.yml
+composer-yaml convert
 
 # Update dependencies without running any scripts. This may take a while.
 composer update --no-scripts
