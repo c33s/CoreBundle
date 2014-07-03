@@ -5,8 +5,6 @@ namespace c33s\CoreBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
 use Symfony\Component\Console\Input\InputInterface;
-//use Symfony\Component\Console\Input\InputOption;
-//use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Finder\Finder;
@@ -26,22 +24,13 @@ class BaseInitCmd extends ContainerAwareCommand
     
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-	$this->io = new ConsoleIO($input, $output, $this->getHelperSet());
+        $this->io = new ConsoleIO($input, $output, $this->getHelperSet());
         $this->fs = new Filesystem();
         
         if ($input->hasArgument('name'))
         {
             $this->initNameHelper($input->getArgument('name'));
         }
-    }
-        
-    protected function getDefaultHelperSet()
-    {
-	$helperSet = parent::getDefaultHelperSet();
-
-	$helperSet->set(new DialogHelper());
-
-	return $helperSet;
     }
     
     protected function initNameHelper($name)
@@ -54,7 +43,7 @@ class BaseInitCmd extends ContainerAwareCommand
         {
             $inflector = new Inflector;
         }
-	$this->name = new NameHelper($name, $inflector);
+        $this->name = new NameHelper($name, $inflector);
     }
     
     protected function isFramework()
@@ -70,19 +59,19 @@ class BaseInitCmd extends ContainerAwareCommand
     protected function executeCommand($command,$timeout=60)
     {
         $this->io->write(sprintf('Running <comment>%s</comment>', $command));
-	$process = new Process($command);
+        $process = new Process($command);
         $process->setTimeout($timeout);
-	$process->run(function ($type, $buffer)
-	{
-	    if (Process::ERR === $type)
-	    {
-		echo $buffer;
-	    }
-	    else
-	    {
-		echo $buffer;
-	    }
-	});
+        $process->run(function ($type, $buffer)
+        {
+            if (Process::ERR === $type)
+            {
+                echo $buffer;
+            }
+            else
+            {
+                echo $buffer;
+            }
+        });
     }
     
     protected function getCommandTemplateDirectory()
@@ -91,20 +80,19 @@ class BaseInitCmd extends ContainerAwareCommand
         $reflect = new \ReflectionClass($this);
         return $reflect->getShortName();
     }
-
-
+    
     protected function initTemplatesAndResources()
     {
         $this->io->write('initing Templates and Resources');
         
-	$path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/');
+        $path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/');
         $bundleNames = $this->getTemplateDirectories($path);
-	
-	foreach ($bundleNames as $bundleName)
-	{
-	    $path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/'.$bundleName);
+        
+        foreach ($bundleNames as $bundleName)
+        {
+            $path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/'.$bundleName);
             $this->renderFilesFromTemplates($path,$bundleName);
-	}
+        }
     }
     
     protected function renderFilesFromTemplates($path,$bundleName)
@@ -113,7 +101,7 @@ class BaseInitCmd extends ContainerAwareCommand
         $this->io->write("rendering files in path $path", OutputInterface::VERBOSITY_DEBUG);
         $finder = new Finder();
         $finder->files()->in($path);
-        foreach ($finder as $file) 
+        foreach ($finder as $file)
         {
             $this->io->write("copying file '$file'", OutputInterface::VERBOSITY_DEBUG);
             if ($bundleName == 'General')
@@ -132,22 +120,21 @@ class BaseInitCmd extends ContainerAwareCommand
         }
     }
     
-
-
+    
     protected function getTemplateDirectories($path)
     {
         $directoryFinder = new Finder();
-	$directoryFinder
-	    ->directories()
-	    ->in($path)
-	    ->depth('== 0')	
-	;
-	
-	$bundleNames = array();
-	foreach ($directoryFinder as $dir)
-	{
-	    $bundleNames[] =  $dir->getFilename();
-	}
+        $directoryFinder
+            ->directories()
+            ->in($path)
+            ->depth('== 0')
+        ;
+        
+        $bundleNames = array();
+        foreach ($directoryFinder as $dir)
+        {
+            $bundleNames[] =  $dir->getFilename();
+        }
         
         return $bundleNames;
     }
@@ -156,20 +143,20 @@ class BaseInitCmd extends ContainerAwareCommand
     {
         $parameters['name'] = $this->name;
                 
-	$fileParts = pathinfo($file);
-	
-	$content = $this->getContainer()->get('templating')->render("c33sCoreBundle:Command/".$this->getCommandTemplateDirectory()."/${fileParts['dirname']}:${fileParts['basename']}", $parameters);
-	
-	if ($targetDirectory)
-	{
-	    $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$targetDirectory.DIRECTORY_SEPARATOR.$fileParts['filename'];
-	}
-	else
-	{
-	    $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$fileParts['dirname'].'/'.$fileParts['filename'];
-	}
-	    
-	$this->io->write($targetFile,OutputInterface::VERBOSITY_VERBOSE);
-	$this->fs->dumpFile($targetFile, $content);
+        $fileParts = pathinfo($file);
+        
+        $content = $this->getContainer()->get('templating')->render("c33sCoreBundle:Command/".$this->getCommandTemplateDirectory()."/${fileParts['dirname']}:${fileParts['basename']}", $parameters);
+        
+        if ($targetDirectory)
+        {
+            $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$targetDirectory.DIRECTORY_SEPARATOR.$fileParts['filename'];
+        }
+        else
+        {
+            $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$fileParts['dirname'].'/'.$fileParts['filename'];
+        }
+            
+        $this->io->write($targetFile,OutputInterface::VERBOSITY_VERBOSE);
+        $this->fs->dumpFile($targetFile, $content);
     }
 }
