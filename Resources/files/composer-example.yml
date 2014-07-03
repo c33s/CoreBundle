@@ -1,20 +1,25 @@
-name: namespace/name
-type: project
-license: proprietary
-authors:
-  - name: noname
+name:           namespace/name
+type:           project
+license:        proprietary
 
-description: 'my description'
+authors:
+  - name:       noname
+
+description:    'my description'
+
 autoload:
     psr-0: { '': src/ }
+
 repositories:
+  - type: git
+    url: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle
   - type: composer
     url: http://satis.c33s.net
-#  - type: vcs
-#    url: https://github.com/c33s/AssetManagementBundle.git
+
 require:
     symfony/framework-standard-edition: '2.3.*'
-    c33s/core-bundle:   'dev-master'
+    c33s/core-bundle:                   'dev-bootstrap3@dev'
+    
 scripts:
     post-install-cmd:
       - 'Incenteev\ParameterHandler\ScriptHandler::buildParameters'
@@ -28,13 +33,16 @@ scripts:
       - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::clearCache'
       - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installAssets'
       - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
+
 config:
-    bin-dir: bin
-    component-dir: "web/media/components"
-    component-baseurl: "/media/components"
-minimum-stability: stable
+    bin-dir:            bin
+    component-dir:      "web/media/components"
+    component-baseurl:  "/media/components"
+
+minimum-stability:  stable
+
 extra:
-    symfony-app-dir: app
-    symfony-web-dir: web
-    incenteev-parameters: { file: app/config/parameters.yml }
-    branch-alias: { dev-master: 2.3-dev }
+    symfony-app-dir:        app
+    symfony-web-dir:        web
+    incenteev-parameters:   { file: app/config/parameters.yml }
+    branch-alias:           { dev-master: 2.3-dev }

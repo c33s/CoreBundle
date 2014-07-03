@@ -3,7 +3,6 @@ CoreBundle
 
 everything to quickstart a webpage
 
-
 [![Build Status](https://secure.travis-ci.org/c33s/CoreBundle.png?branch=master)](http://travis-ci.org/c33s/CoreBundle)
 [![Latest Stable Version](https://poser.pugx.org/c33s/core-bundle/v/stable.png)](https://packagist.org/packages/c33s/core-bundle) 
 [![Latest Unstable Version](https://poser.pugx.org/c33s/core-bundle/v/unstable.png)](https://packagist.org/packages/c33s/core-bundle) 
@@ -11,87 +10,51 @@ everything to quickstart a webpage
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e/mini.png)](https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e)
 [![project status](http://stillmaintained.com/c33s/CoreBundle.png)](http://stillmaintained.com/c33s/CoreBundle)
 
-Because json is not a really handy format to read and it also lacks in commenting support, this Bundle supports the composer.yml format. [composer-yaml.phar](https://github.com/igorw/composer-yaml) is used, to convert from yml to json. In this manual all composer code snippets are in yml format. Create a script file, which call the yml to json converter before running composer.
-
-
-create a composer.yml with the framework-standard-edition version you want to use and also include the core bundle:
-
-    repositories:
-        - type: composer
-          url: http://satis.c33s.net
-    require:
-        symfony/framework-standard-edition: '2.3.*'
-        c33s/core-bundle:   'dev-master#v0.99.1'
-    
-        #### Locks from corebundle ###########################################################################
-        cedriclombardot/admingenerator-generator-bundle: 'dev-master#6dd565dacb6e668b9bcfa216a2acca356949375c'
-        avocode/form-extensions-bundle:                  'dev-master#cd83e011f7fcc979cb5714c33423845c7ce36f0a'
-        white-october/pagerfanta-bundle:                 'dev-master#606467f9e9f9e80975128db589eec2f9d11139c2'
-        #### End Locks corebundle ###########################################################################
-    
-    scripts:
-        post-install-cmd:
-          - 'Incenteev\ParameterHandler\ScriptHandler::buildParameters'
-          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap'
-          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::clearCache'
-          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installAssets'
-          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
-        post-update-cmd:
-          - 'Incenteev\ParameterHandler\ScriptHandler::buildParameters'
-          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap'
-          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::clearCache'
-          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installAssets'
-          - 'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::installRequirementsFile'
-    config:
-        bin-dir: bin
-        component-dir: "web/media/components"
-        component-baseurl: "/media/components"
-    minimum-stability: stable
-    extra:
-        symfony-app-dir: app
-        symfony-web-dir: web
-        incenteev-parameters: { file: app/config/parameters.yml }
-        branch-alias: { dev-master: 2.3-dev }
-      
-after you ran ```composer update --no-scripts```, you can use the ```./bin/init-symfony run``` command to create a project. the command copies the data from the framework-standard-edition.
-
-now you can run the update scripts.
-
-    composer run-script post-update-cmd
-
-then you can call 
-
-    php app/console  c33s:init-config
-
+Because json is not a really handy format to read and it also lacks in commenting support, this Bundle supports the composer.yml format. [composer-yaml.phar](https://github.com/igorw/composer-yaml) 
+is used, to convert from yml to json. In this manual all composer code snippets are in yml format. Create a script file, which call the yml to json converter before running composer. Make sure you 
+have both `composer` and `composer-yaml` commands at your fingertips.
 
 ## Short Quick Manual
 
-    touch composer.json
-    wget https://raw.githubusercontent.com/c33s/CoreBundle/master/Resources/files/composer-example.yml -O composer.yml --no-check-certificate
-    json convert composer.yml
-    composer update --no-scripts
-    ./bin/init-symfony run Acme
-    composer run-script post-update-cmd
-    php app/console c33s:init-config Acme
-    php app/console c33s:init-cms Acme
-    php app/console c33s:admin:build Acme
-    composer dump-autoload
+You can perform the whole installation by executing the following commands inside your empty project directory:      
 
-## Filter & Macros
+```sh
+# Get sample composer file directly from github
+wget https://raw.githubusercontent.com/c33s/CoreBundle/master/Resources/files/composer-example.yml -O composer.yml --no-check-certificate
+# Modify composer.yml as needed. You may leave this for later.
 
-### Filter
+# Create empty composer.json
+touch composer.json
 
-* youtube
-* hashDirFilter
-* camelcase (alias camelize)
-* underscore (alias underscorize)
+# Convert composer.yml to json format. Do this every time you modify your composer.yml
+composer-yaml convert composer.yml
 
+# Update dependencies without running any scripts. This may take a while.
+composer update --no-scripts
 
-### Macros
+# In the following commands, replace "YourNamespace" with your default Namespace prefix you want to use for this project's bundles. Keep it short but helpful.
+./bin/init-symfony run YourNamespace
+composer run-script post-update-cmd
 
-* initPopover
-* static(name,subfolder=false,prefix='',route='static')
-* isActive(name,prefix='',route)
-* address
-* addressPhone
-* addressStreet
+# Init basic configuration
+php app/console c33s:init-config YourNamespace
+
+# Generate cms structure (webpage and admin bundles)
+php app/console c33s:init-cms YourNamespace
+
+# Optional: generate AdminGeneratorGenerator configuration that is automatically patched and correctly integrated into your project
+php app/console admin:c33s:build YourNamespace
+
+composer dump-autoload
+
+# This command will clear your cache and pre-render assets
+php app/console c33s:clean
+
+# Make sure the web server permissions are set up correctly. This includes the path for media uploads as well as the sqlite database used by default.
+HTTPDUSER=`ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
+sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs app/data web/media
+sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs app/data web/media
+
+```
+
+If this goes well, you should see some example pages as well as a secured admin login when accessing /admin/.
