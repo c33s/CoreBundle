@@ -61,7 +61,7 @@ require:
     ### tag me #################################################################
     # admin generator
     cedriclombardot/admingenerator-generator-bundle:                '1.1.*'
-    avocode/form-extensions-bundle:                                 '0.99.*'
+    avocode/form-extensions-bundle:                                 '0.1.*'
     ### other
     yzalis/identicon:                                               '0.99.*'
     ### end tag me #############################################################

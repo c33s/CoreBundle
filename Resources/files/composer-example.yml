@@ -13,6 +13,8 @@ autoload:
 repositories:
   - type: git
     url: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle
+  - type: git
+    url: https://github.com/loostro/FormExtensions
   - type: composer
     url: http://satis.c33s.net
 

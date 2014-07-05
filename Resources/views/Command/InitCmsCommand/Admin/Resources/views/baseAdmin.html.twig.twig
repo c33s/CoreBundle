@@ -33,7 +33,7 @@
     {{ render_assets('css') }}
 	
     {% if form is defined %}
-        {{ form_stylesheet(form) }}
+        {{ afe_form_stylesheet(form) }}
     {% endif %}
 {% endblock %}
 
@@ -124,7 +124,7 @@
     {% endblock avocode_form_javascripts %}
 	
     {% if form is defined %}
-        {{ form_javascript(form) }}
+        {{ afe_form_javascript(form) }}
     {% endif %}
     
     {{ render_assets('js') }}

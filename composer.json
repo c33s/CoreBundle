@@ -49,7 +49,7 @@
         "ptachoire/cssembed": "1.0.*",
         "white-october/pagerfanta-bundle": "1.0.*",
         "cedriclombardot/admingenerator-generator-bundle": "1.1.*",
-        "avocode/form-extensions-bundle": "0.99.*",
+        "avocode/form-extensions-bundle": "0.1.*",
         "yzalis/identicon": "0.99.*",
         "components/jquery": "1.11.*",
         "components/jqueryui": "1.11.*",
