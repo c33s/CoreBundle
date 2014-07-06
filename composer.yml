@@ -12,13 +12,21 @@ autoload:
     psr-0:
         'c33s\CoreBundle': ''
 target-dir: "c33s/CoreBundle"
+
 repositories:
-   - type: composer
-     url: http://satis.c33s.net
+  - type: git
+    url: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle
+  - type: git
+    url: https://github.com/loostro/FormExtensions
+  - type: composer
+    url: http://satis.c33s.net
 #  - type: vcs
 #    url: 'https://github.com/c33s/ApcProfilerBundle'
+
 bin: ["bin/init-symfony"]
+
 minimum-stability: stable
+
 require:
     php: '>=5.3.3'
     
@@ -27,13 +35,14 @@ require:
     c33s/simple-content-bundle:                                     '0.9.*'
     c33s/menu-bundle:                                               '0.9.*'
     c33s/attachment-bundle:                                         '0.3.*'
+    symfony/symfony:                                                '~2.3'
     
     ### propel #################################################################
-    propel/propel-bundle:                                           '1.2.*'
-    willdurand/propel-typehintable-behavior:                        '~1.0'
-    willdurand/propel-publishable-behavior:                         '~1.0'
-    willdurand/propel-eventdispatcher-bundle:                       '1.0.*'    
-    havvg/propel-boolean-extra-behavior:                            '~1.1'
+    propel/propel-bundle:                                           '~1.2'
+    willdurand/propel-typehintable-behavior:                        '1.0.4'
+    willdurand/propel-publishable-behavior:                         '1.2.0'
+    willdurand/propel-eventdispatcher-bundle:                       '1.0.1'    
+    havvg/propel-boolean-extra-behavior:                            '1.1.2'
     #smirik/taggable-bundle:                                         'dev-master#a4eb728ec04eed48b6c354eeea9ae2e9fe23755a'
     #smirik/propel-taggable-behavior:                                'dev-master#dd94508c45056b1eca53e8667ded8be0b2451ed0'
     #havvg/propel-autoexpire-behavior:                               '0.1.0'
@@ -44,48 +53,48 @@ require:
     ### html & css #############################################################
     #fortawesome/font-awesome:                                       '4.1.0'
     components/font-awesome:                                        '4.1.0'
-    fkr/cssurlrewrite-bundle:                                       '1.0.*'
-    afarkas/html5shiv:                                              '3.7.*'
+    fkr/cssurlrewrite-bundle:                                       '1.0.0'
+    afarkas/html5shiv:                                              '3.7.2'
     # additional twitter bootstrap for v3
     #twitter/bootstrap:                                              '3.2.0'
     twbs/bootstrap:                                                 '3.2.0'
-    oyejorge/less.php:                                              '~1.5'
-    ptachoire/cssembed:                                             '1.0.*'
+    oyejorge/less.php:                                              '1.7.0.2'
+    ptachoire/cssembed:                                             '1.0.2'
     #braincrafted/bootstrap-bundle:                                  '1.4.*'
     #mopa/bootstrap-bundle:                                         '2.1.*@dev'
     #modernizr/modernizr:                                           '2.5.3'
     
     ### admin generator ########################################################
-    white-october/pagerfanta-bundle:                                '1.0.*'
+    white-october/pagerfanta-bundle:                                '1.0.2'
     
     ### tag me #################################################################
     # admin generator
-    cedriclombardot/admingenerator-generator-bundle:                '1.1.*'
-    avocode/form-extensions-bundle:                                 '0.1.*'
+    cedriclombardot/admingenerator-generator-bundle:                '1.1.2'
+    avocode/form-extensions-bundle:                                 '0.1.3'
     ### other
-    yzalis/identicon:                                               '0.99.*'
+    yzalis/identicon:                                               '0.99.1'
     ### end tag me #############################################################
     
     ### javascript #############################################################
-    components/jquery:                                              '1.11.*'
-    components/jqueryui:                                            '1.11.*'
-    components/jquery-cookie:                                       '1.4.*'
+    components/jquery:                                              '1.11.1'
+    components/jqueryui:                                            '1.11.0'
+    components/jquery-cookie:                                       '1.4.1.1'
     malsup/form:                                                    '3.36'
-    smoya/asset-management-bundle:                                  '1.0.*'
-    jaysalvat/vegas:                                                '0.99.*'
-    mnot/hinclude:                                                  '0.9.*'
+    smoya/asset-management-bundle:                                  '1.0.1'
+    jaysalvat/vegas:                                                '0.99.1'
+    mnot/hinclude:                                                  '0.9.5.2'
     
     ### general ################################################################
-    cocur/human-date:                                               '0.1.*'
-    knplabs/knp-gaufrette-bundle:                                   '0.1.*'
-    knplabs/knp-markdown-bundle:                                    '1.3.*'
-    zenstruck/slugify-bundle:                                       '1.1.*'
-    guzzle/guzzle:                                                  '3.8.*'
-    suncat/mobile-detect-bundle:                                    '0.9.*'
+    cocur/human-date:                                               '0.1'
+    knplabs/knp-gaufrette-bundle:                                   '0.1.7'
+    knplabs/knp-markdown-bundle:                                    '1.3.2'
+    zenstruck/slugify-bundle:                                       '1.1.1'
+    guzzle/guzzle:                                                  '3.8.1'
+    suncat/mobile-detect-bundle:                                    '0.9.4'
     mobiledetect/mobiledetectlib:                                   '2.7.6'
-    friendsofsymfony/user-bundle:                                   '1.3.*'
-    liip/imagine-bundle:                                            '0.18.*'
-    liip/monitor-bundle:                                            '1.0.*'
+    friendsofsymfony/user-bundle:                                   '1.3.4'
+    liip/imagine-bundle:                                            '0.18.0'
+    liip/monitor-bundle:                                            '1.0.1'
     sensiolabs/security-checker:                                    '1.2.*'
 
 require-dev:
