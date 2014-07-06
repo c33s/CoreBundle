@@ -3,8 +3,12 @@
 <phpunit bootstrap="./Tests/bootstrap.php" colors="true">
 
     <testsuites>
-        <testsuite name="c33sCoreBundle test suite">
+        <testsuite name="unit">
             <directory suffix="Test.php">./Tests</directory>
+            <exclude>./Tests/Deployment</exclude>
+        </testsuite>
+        <testsuite name="deployment">
+            <directory suffix="Test.php">./Tests/Deployment</directory>
         </testsuite>
     </testsuites>
 

@@ -1,0 +1,42 @@
+# This file is auto-generated during the composer install
+parameters:
+    master_domain: example.com
+    namespace: CustomNamespace
+    upload_base_dir: '%kernel.root_dir%/../web/upload'
+    upload_dir: upload
+    crazy_egg_api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    crazy_egg_api_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+    ga_tracking_enabled: false
+    ga_tracking_id: UA-xxxxxxx-x
+    admin_ips:
+        - 127.0.0.1
+    fos_users:
+        -
+            name: admin
+            email: admin@example.com
+            password: admin
+            roles:
+                - ROLE_SUPER_ADMIN
+                - ROLE_ALLOWED_TO_SWITCH
+    locale: de
+    locales:
+        - de
+        - en
+    secret: '_hd*X&Jp0!4>?hM|rN^u+m8.Y0jqrjYel.sss9/F'
+    database_driver: pdo_sqlite
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony
+    database_user: root
+    database_password: null
+    database_path: '%kernel.root_dir%/data/data.sqlite'
+    propel_database_driver_prefix: pdo_
+    propel_database_driver: sqlite
+    propel_database_user: myuser
+    propel_database_password: mypassword
+    propel_database_dsn: '%propel_database_driver%:%database_path%'
+    mailer_transport: smtp
+    mailer_host: null
+    mailer_user: null
+    mailer_password: null
+    node.bin: /usr/bin/node

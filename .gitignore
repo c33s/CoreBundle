@@ -3,3 +3,5 @@ vendor/*
 /*.bak
 /composer.lock
 phpunit.xml
+deployment.log
+
