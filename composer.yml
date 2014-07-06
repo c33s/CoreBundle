@@ -99,7 +99,8 @@ require:
 
 require-dev:
     ### propel #################################################################
-    willdurand/faker-bundle:                                       '1.0.*'
+    willdurand/faker-bundle:                                        '1.0.*'
+    igorw/composer-yaml:                                            'dev-master@dev'
     
 ### unsorted-require ###########################################################
     #stnw/avatar-bundle:                                               '1.0.*'

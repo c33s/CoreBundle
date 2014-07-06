@@ -80,6 +80,7 @@
         "sensiolabs/security-checker": "1.2.*"
     },
     "require-dev": {
-        "willdurand/faker-bundle": "1.0.*"
+        "willdurand/faker-bundle": "1.0.*",
+        "igorw/composer-yaml": "dev-master@dev"
     }
 }
