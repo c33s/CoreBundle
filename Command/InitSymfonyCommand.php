@@ -121,7 +121,14 @@ class InitSymfonyCommand extends BaseInitCommand
         Tools::removeLineFromFile($appKernelFile,$bundleDefinitionToRemove);
         
         $configFile = $this->getRoutingDevYmlPath();
-        Tools::cropFileByLine($configFile, false, "# AcmeDemoBundle routes (to be removed)");
+        try
+        {
+            Tools::cropFileByLine($configFile, false, "# AcmeDemoBundle routes (to be removed)");
+        }
+        catch (\Exception $e)
+        {
+            // gone with sf 2.5
+        }
         
         $this->io->write('removed AcmeBundle');
     }

@@ -49,7 +49,7 @@ class InitConfigCommand extends BaseInitCommand
     
     protected function rebuildBundles()
     {
-        $bundles = array_reverse($this->getContainer()->parameters['c33s_core.config.bundles']);
+        $bundles = array_reverse($this->getContainer()->getParameter('c33s_core.config.bundles'));
         $appKernel = $this->getContainer()->get('kernel')->getRootDir().'/AppKernel.php';
         
         $this->removeBundles($appKernel);

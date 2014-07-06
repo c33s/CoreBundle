@@ -9,10 +9,9 @@ use Symfony\Component\Process\Process;
  */
 class DeploymentTest extends \PHPUnit_Framework_TestCase
 {
-
     protected static $projectDir = null;
-
-    public function testDeployAProject()
+    
+    public function testInitProjectDir()
     {
         $this->logProgress("############################################################\nStarting deployment test\n############################################################\n");
         $this->logProgress('Folder: ' . self::$projectDir);
@@ -22,12 +21,30 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         $projectComposerFile = self::$projectDir . '/composer.json';
         copy($composerFile, $projectComposerFile);
         
+        if (false !== getenv('SYMFONY_VERSION'))
+        {
+            $this->logProgress('Setting symfony version to ' . getenv('SYMFONY_VERSION'));
+            $content = file_get_contents($projectComposerFile);
+            $content = str_replace('"symfony/framework-standard-edition": "2.3.*"', '"symfony/framework-standard-edition": "'.getenv('SYMFONY_VERSION').'"', $content);
+            file_put_contents($projectComposerFile, $content);
+        }
+        
+        $this->assertFileExists($projectComposerFile);
+        
         $this->logProgress('Copying parameters.yml');
         $parametersFile = realpath(__DIR__ . '/Files/parameters.yml');
         mkdir(self::$projectDir.'/app/config', 0777, true);
         $projectParametersFile = self::$projectDir . '/app/config/parameters.yml';
         copy($parametersFile, $projectParametersFile);
         
+        $this->assertFileExists($projectParametersFile);
+    }
+    
+    /**
+     * @depends testInitProjectDir
+     */
+    public function testInstallComposer()
+    {
         $composer = $this->findComposerExecutable();
         if (!$composer)
         {
@@ -37,11 +54,17 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         
         $this->logProgress('Running: ' . $composer . ' update --no-scripts');
         $composerUpdateProcess = new Process($composer . ' update --no-scripts', self::$projectDir);
-        $composerUpdateProcess->setTimeout(600);
+        $composerUpdateProcess->setTimeout(1800);
         $composerUpdateProcess->run();
         $this->logProgress($composerUpdateProcess->getOutput());
         $this->assertSame(0, $composerUpdateProcess->getExitCode(), $composerUpdateProcess->getOutput());
-        
+    }
+    
+    /**
+     * @depends testInstallComposer
+     */
+    public function testInitSymfony()
+    {
         $php = $this->findPhpExecutable();
         if (!$php)
         {
@@ -56,33 +79,92 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         $this->logProgress($initSymfonyProcess->getOutput());
         $this->assertSame(0, $initSymfonyProcess->getExitCode(), $initSymfonyProcess->getOutput());
         
+        $composer = $this->findComposerExecutable();
+        if (!$composer)
+        {
+            $this->fail('Unable to find a composer executable!');
+        }
+        $this->logProgress('Found composer: ' . $composer);
+        
         $this->logProgress('Running: ' . $composer . ' run-script post-update-cmd');
         $composerPostUpdateProcess = new Process($composer . ' run-script post-update-cmd', self::$projectDir);
         $composerPostUpdateProcess->setTimeout(60);
         $composerPostUpdateProcess->run();
         $this->logProgress($composerPostUpdateProcess->getOutput());
         $this->assertSame(0, $composerPostUpdateProcess->getExitCode(), $composerPostUpdateProcess->getOutput());
+    }
+    
+    /**
+     * @depends testInitSymfony
+     */
+    public function testInitConfig()
+    {
+        $php = $this->findPhpExecutable();
+        if (!$php)
+        {
+            $this->fail('Unable to find a php executable!');
+        }
+        $this->logProgress('Found PHP: ' . $php);
         
         $this->logProgress('Running: ' . $php . ' app/console c33s:init-config CustomNamespace');
         $initConfigProcess = new Process($php  . ' app/console c33s:init-config CustomNamespace', self::$projectDir);
-        $initConfigProcess->setTimeout(60);
+        $initConfigProcess->setTimeout(600);
         $initConfigProcess->run();
         $this->logProgress($initConfigProcess->getOutput());
         $this->assertSame(0, $initConfigProcess->getExitCode(), $initConfigProcess->getOutput());
+    }
+    
+    /**
+     * @depends testInitConfig
+     */
+    public function testInitCms()
+    {
+        $php = $this->findPhpExecutable();
+        if (!$php)
+        {
+            $this->fail('Unable to find a php executable!');
+        }
+        $this->logProgress('Found PHP: ' . $php);
         
         $this->logProgress('Running: ' . $php . ' app/console c33s:init-cms CustomNamespace');
         $initCmsProcess = new Process($php  . ' app/console c33s:init-cms CustomNamespace', self::$projectDir);
-        $initCmsProcess->setTimeout(60);
+        $initCmsProcess->setTimeout(600);
         $initCmsProcess->run();
         $this->logProgress($initCmsProcess->getOutput());
         $this->assertSame(0, $initCmsProcess->getExitCode(), $initCmsProcess->getOutput());
-
+    }
+    
+    /**
+     * @depends testInitCms
+     */
+    public function testBuildAdmin()
+    {
+        $php = $this->findPhpExecutable();
+        if (!$php)
+        {
+            $this->fail('Unable to find a php executable!');
+        }
+        $this->logProgress('Found PHP: ' . $php);
+        
         $this->logProgress('Running: ' . $php . ' app/console admin:c33s:build CustomNamespace');
         $adminBuildProcess = new Process($php  . ' app/console admin:c33s:build CustomNamespace', self::$projectDir);
-        $adminBuildProcess->setTimeout(60);
+        $adminBuildProcess->setTimeout(600);
         $adminBuildProcess->run();
         $this->logProgress($adminBuildProcess->getOutput());
         $this->assertSame(0, $adminBuildProcess->getExitCode(), $adminBuildProcess->getOutput());
+    }
+    
+    /**
+     * @depends testBuildAdmin
+     */
+    public function testClean()
+    {
+        $php = $this->findPhpExecutable();
+        if (!$php)
+        {
+            $this->fail('Unable to find a php executable!');
+        }
+        $this->logProgress('Found PHP: ' . $php);
         
         $this->logProgress('Running: ' . $php . ' app/console c33s:clean');
         $cleanProcess = new Process($php  . ' app/console c33s:clean', self::$projectDir);
@@ -91,15 +173,10 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         $this->logProgress($cleanProcess->getOutput());
         $this->assertSame(0, $cleanProcess->getExitCode(), $cleanProcess->getOutput());
         
-        //        $convertProcess = new Process(__DIR__ . '/../../vendor/bin/composer-yaml convert', $projectDir);
-//        $convertProcess->run();
-//        $this->assertSame(0, $convertProcess->getExitCode());
-//        var_dump($convertProcess->getErrorOutput()); die();
-//composer update --no-scripts
-//./bin/init-symfony run YourNamespace
-//composer run-script post-update-cmd
+        $this->logProgress("############################################################\nDeployment successful\n############################################################\n");
     }
-
+    
+    
     protected function findComposerExecutable()
     {
         $executableFinder = new Symfony\Component\Process\ExecutableFinder();
@@ -117,11 +194,6 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
     {
         $executableFinder = new Symfony\Component\Process\ExecutableFinder();
         $php = $executableFinder->find('php');
-        
-        if (null === $php)
-        {
-            $php = $executableFinder->find('composer');
-        }
         
         return null === $php ? false : $php;
     }
