@@ -81,6 +81,7 @@
     },
     "require-dev": {
         "willdurand/faker-bundle": "1.0.*",
-        "igorw/composer-yaml": "dev-master@dev"
+        "c33s/composer-yaml": "1.0.0",
+        "composer/composer": "dev-master#e77435cd0c984e2031d915a6b42648e7b284dd5c"
     }
 }
