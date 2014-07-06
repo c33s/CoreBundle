@@ -20,7 +20,7 @@ You can perform the whole installation by executing the following commands insid
 
 ```sh
 # Get sample composer file directly from github
-wget https://raw.githubusercontent.com/c33s/CoreBundle/master/Resources/files/composer-example.yml -O composer.yml --no-check-certificate
+wget https://raw.githubusercontent.com/c33s/CoreBundle/bootstrap3/Resources/files/composer-example.yml -O composer.yml --no-check-certificate
 # Modify composer.yml as needed. You may leave this for later.
 
 # Create empty composer.json
