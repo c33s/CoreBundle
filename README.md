@@ -3,7 +3,7 @@ CoreBundle
 
 everything to quickstart a webpage
 
-[![Build Status](https://secure.travis-ci.org/c33s/CoreBundle.png?branch=master)](http://travis-ci.org/c33s/CoreBundle)
+[![Build Status](https://travis-ci.org/c33s/CoreBundle.svg?branch=bootstrap3)](https://travis-ci.org/c33s/CoreBundle)
 [![Latest Stable Version](https://poser.pugx.org/c33s/core-bundle/v/stable.png)](https://packagist.org/packages/c33s/core-bundle) 
 [![Latest Unstable Version](https://poser.pugx.org/c33s/core-bundle/v/unstable.png)](https://packagist.org/packages/c33s/core-bundle) 
 [![License](https://poser.pugx.org/c33s/core-bundle/license.png)](https://packagist.org/packages/c33s/core-bundle)
