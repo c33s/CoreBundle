@@ -10,14 +10,6 @@ description:    'my description'
 autoload:
     psr-0: { '': src/ }
 
-repositories:
-  - type: git
-    url: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle
-  - type: git
-    url: https://github.com/loostro/FormExtensions
-  - type: composer
-    url: http://satis.c33s.net
-
 require:
     symfony/framework-standard-edition: '2.3.*'
     c33s/core-bundle:                   'dev-bootstrap3@dev'

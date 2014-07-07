@@ -1,13 +1,14 @@
 <?php
 
 use Symfony\Component\Process\Process;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * DeploymentTest.
  *
  * @author Michael Hirschler <michael.vhirsch@gmail.com>
  */
-class DeploymentTest extends \PHPUnit_Framework_TestCase
+class DeploymentTest extends WebTestCase
 {
     protected static $projectDir = null;
     
@@ -52,8 +53,8 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         }
         $this->logProgress('Found composer: ' . $composer);
         
-        $this->logProgress('Running: ' . $composer . ' update --no-scripts');
-        $composerUpdateProcess = new Process($composer . ' update --no-scripts', self::$projectDir);
+        $this->logProgress('Running: ' . $composer . ' install --no-scripts --prefer-source');
+        $composerUpdateProcess = new Process($composer . ' install --no-scripts --prefer-source', self::$projectDir);
         $composerUpdateProcess->setTimeout(1800);
         $composerUpdateProcess->run();
         $this->logProgress($composerUpdateProcess->getOutput());
@@ -176,6 +177,26 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         $this->logProgress("############################################################\nDeployment successful\n############################################################\n");
     }
     
+    /**
+     * @depends testClean
+     * @dataProvider  staticPagesProvider
+     */
+    public function testCallPage($url, $elementToCheck)
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', $url);
+        $this->assertTrue($client->getResponse()->isSuccessful());
+        
+        $this->assertTrue($crawler->filter($elementToCheck)->count() > 0);
+    }
+    
+    public function staticPagesProvider()
+    {
+        return array(
+            array('/', 'h2:contains("<i class="fa fa-star-o"></i> Example Dot Com")'),
+            array('/', 'h2:contains("<i class="glyphicon glyphicon-star-empty"></i> Glyphicons work, too!")'),
+        );
+    }
     
     protected function findComposerExecutable()
     {
@@ -201,17 +222,21 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
         self::$projectDir = tempnam(sys_get_temp_dir(), 'c33sCoreBundleTest');
-        if (file_exists(self::$projectDir))
+        //self::$projectDir = sys_get_temp_dir().'/c33sCoreBundleTest';
+        if (file_exists(self::$projectDir) && is_file(self::$projectDir))
         {
             unlink(self::$projectDir);
         }
         
         mkdir(self::$projectDir);
+        
+        // required for WebTestCase to find the directory
+        $_SERVER['KERNEL_DIR'] = self::$projectDir.'/app';
     }
 
     public static function tearDownAfterClass()
     {
-        //self::delTree(self::$projectDir);
+        self::delTree(self::$projectDir);
     }
 
     public static function delTree($dir)
