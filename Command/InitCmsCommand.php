@@ -58,7 +58,7 @@ class InitCmsCommand extends BaseInitCommand
             )
         ;
     }
-
+    
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         parent::execute($input, $output);
@@ -86,8 +86,7 @@ class InitCmsCommand extends BaseInitCommand
             $this->executeCommand("php app/console propel:build --insert-sql");
             $this->executeCommand("c dump-autoload");
             $this->executeCommand("php app/console assets:install");
-            $this->executeCommand("php app/console c33s:rebuild",120);
-            $this->executeCommand("php app/console admin:c33s:patch");
+            $this->executeCommand("php app/console c33s:rebuild", 120);
         }
     }
     

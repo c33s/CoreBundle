@@ -78,6 +78,7 @@
             {% else %}
                 {% javascripts output='media/generated/js/bootstrap3.js' combine=true
                     '@bootstrap3_js'
+                    '@BraincraftedBootstrapBundle/Resources/js/bc-bootstrap-collection.js'
                 %}
                     <script src="{{ asset_url }}"></script>
                 {% endjavascripts %}

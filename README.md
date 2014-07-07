@@ -34,6 +34,8 @@ composer update --no-scripts
 
 # In the following commands, replace "YourNamespace" with your default Namespace prefix you want to use for this project's bundles. Keep it short but helpful.
 ./bin/init-symfony run YourNamespace
+
+# Now that the project structure is here it's time to run those fancy composer scripts
 composer run-script post-update-cmd
 
 # Init basic configuration
@@ -44,8 +46,6 @@ php app/console c33s:init-cms YourNamespace
 
 # Optional: generate AdminGeneratorGenerator configuration that is automatically patched and correctly integrated into your project
 php app/console admin:c33s:build YourNamespace
-
-composer dump-autoload
 
 # This command will clear your cache and pre-render assets
 php app/console c33s:clean

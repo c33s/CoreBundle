@@ -213,8 +213,8 @@ class DeploymentTest extends WebTestCase
 
     protected function findPhpExecutable()
     {
-        $executableFinder = new Symfony\Component\Process\ExecutableFinder();
-        $php = $executableFinder->find('php');
+        $executableFinder = new Symfony\Component\Process\PhpExecutableFinder();
+        $php = $executableFinder->find();
         
         return null === $php ? false : $php;
     }

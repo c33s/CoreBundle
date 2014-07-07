@@ -95,7 +95,7 @@
     
     {% javascripts output='media/generated/js/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.js' combine=true
         '@{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/js/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.js'
-        %}
+    %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     

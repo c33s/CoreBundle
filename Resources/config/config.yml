@@ -4,56 +4,58 @@ c33s_core:
         # symfony
         #######################################################################
         assetic:
-            class: false
+            class:  false
         doctrine:
-            class: false
+            class:  false
         swiftmailer:
-            class: false
+            class:  false
         #######################################################################
         # extra
         #######################################################################
-        cocur_human_date:
-            class: Cocur\HumanDate\Bridge\Symfony\CocurHumanDateBundle
-        c33s_static_page_content:
-            class: c33s\StaticPageContentBundle\c33sStaticPageContentBundle
-        c33s_attachment:
-            class: c33s\AttachmentBundle\c33sAttachmentBundle
-        c33s_menu:
-            class: c33s\MenuBundle\c33sMenuBundle
-        bazinga_propel_event_dispatcher:
-            class: Bazinga\Bundle\PropelEventDispatcherBundle\BazingaPropelEventDispatcherBundle
-        propel:
-            class: Propel\PropelBundle\PropelBundle
-        liip_imagine:
-            class: Liip\ImagineBundle\LiipImagineBundle
-        liip_monitor:
-            class: Liip\MonitorBundle\LiipMonitorBundle
-        mobile_detect:
-            class: SunCat\MobileDetectBundle\MobileDetectBundle
-        zenstruck_slugify:
-            class: Zenstruck\SlugifyBundle\ZenstruckSlugifyBundle
         admingenerator_generator:
-            class: Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle
-        fkr_css_url_rewrite:
-            class: Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle
-        fos_user:
-            class: FOS\UserBundle\FOSUserBundle
-        knp_gaufrette:
-            class: Knp\Bundle\GaufretteBundle\KnpGaufretteBundle
-        knp_markdown:
-            class: Knp\Bundle\MarkdownBundle\KnpMarkdownBundle
+            class:  Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle
         avocode_form_extensions:
-            class: Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle
-        white_october_pagerfanta:
-            class: WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle
+            class:  Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle
+        bazinga_propel_event_dispatcher:
+            class:  Bazinga\Bundle\PropelEventDispatcherBundle\BazingaPropelEventDispatcherBundle
+        braincrafted_bootstrap:
+            class:  Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle
+        c33s_static_page_content:
+            class:  c33s\StaticPageContentBundle\c33sStaticPageContentBundle
+        c33s_attachment:
+            class:  c33s\AttachmentBundle\c33sAttachmentBundle
+        c33s_menu:
+            class:  c33s\MenuBundle\c33sMenuBundle
+        cocur_human_date:
+            class:  Cocur\HumanDate\Bridge\Symfony\CocurHumanDateBundle
+        fkr_css_url_rewrite:
+            class:  Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle
+        fos_user:
+            class:  FOS\UserBundle\FOSUserBundle
+        knp_gaufrette:
+            class:  Knp\Bundle\GaufretteBundle\KnpGaufretteBundle
+        knp_markdown:
+            class:  Knp\Bundle\MarkdownBundle\KnpMarkdownBundle
+        liip_imagine:
+            class:  Liip\ImagineBundle\LiipImagineBundle
+        liip_monitor:
+            class:  Liip\MonitorBundle\LiipMonitorBundle
+        mobile_detect:
+            class:  SunCat\MobileDetectBundle\MobileDetectBundle
+        propel:
+            class:  Propel\PropelBundle\PropelBundle
         somya_asset_management:
-            class: Smoya\Bundle\AssetManagementBundle\SmoyaAssetManagementBundle
-        #liip_hyphenator:
-        #    class: Liip\HyphenatorBundle\LiipHyphenatorBundle
-        #knp_menu:
-        #    class: Knp\Bundle\MenuBundle\KnpMenuBundle
+            class:  Smoya\Bundle\AssetManagementBundle\SmoyaAssetManagementBundle
+        white_october_pagerfanta:
+            class:  WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle
+        zenstruck_slugify:
+            class:  Zenstruck\SlugifyBundle\ZenstruckSlugifyBundle
         #c33s_crazy_egg:
-        #   class: c33s\Bundle\CrazyEggBundle
+        #   class:  c33s\Bundle\CrazyEggBundle
+        #knp_menu:
+        #    class:  Knp\Bundle\MenuBundle\KnpMenuBundle
+        #liip_hyphenator:
+        #    class:  Liip\HyphenatorBundle\LiipHyphenatorBundle
     twig:
         app:
             debug:      false
@@ -106,32 +108,32 @@ c33s_core:
 #                primary_string: Title
 #                file_fields: [ attachment ]
 #                directory: gallery
-#                class: 'c33s\ModelBundle\Model\Picture'
+#                class:  'c33s\ModelBundle\Model\Picture'
 #            service:
 #                primary_string: Name
 #                file_fields: [ picture ]
 #                directory: service
-#                class: 'c33s\ModelBundle\Model\Service'
+#                class:  'c33s\ModelBundle\Model\Service'
 #            information:
 #                primary_string: Name
 #                file_fields: [ imageSmall, imageLarge ]
 #                directory: information
-#                class: 'c33s\ModelBundle\Model\Information'
+#                class:  'c33s\ModelBundle\Model\Information'
 #            link:
 #                primary_string: Name
 #                file_fields: [ picture ]
 #                directory: link
-#                class: 'c33s\ModelBundle\Model\Link'
+#                class:  'c33s\ModelBundle\Model\Link'
 #            team:
 #                primary_string: Lastname
 #                file_fields: [ picture ]
 #                directory: team
-#                class: 'c33s\ModelBundle\Model\Team'
+#                class:  'c33s\ModelBundle\Model\Team'
 #            prepostgallery:
 #                primary_string: Name
 #                file_fields: [ picture, pictureBefore, pictureAfter ]
 #                directory: pre-post-gallery
-#                class: 'c33s\ModelBundle\Model\PrePostGallery'
+#                class:  'c33s\ModelBundle\Model\PrePostGallery'
 #        class_maps:
 #            'c33s\ModelBundle\Model\Picture': picture
 #            'c33s\ModelBundle\Model\Information': information

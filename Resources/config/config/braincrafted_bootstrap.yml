@@ -1,0 +1,9 @@
+braincrafted_bootstrap:
+    less_filter: lessphp # "less", "lessphp" or "none"
+    
+    auto_configure:
+        assetic:        false
+        knp_menu:       false
+        knp_paginator:  false
+        twig:           true
+        

@@ -46,7 +46,15 @@
 {#         <div class="row-fluid">#}
 {% endblock %}
 
-{% block content %}{% block admingen_body %}{% endblock %}{% endblock %}
+{% block content %}
+    {#{ bootstrap_set_style('horizontal') }#}
+    {{ bootstrap_set_style('vertical') }}
+    <div class="row">
+        <div class="col-md-12 col-lg-10 col-lg-offset-1">
+            {% block admingen_body %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
 
 {% block content_post %}
 {#             </div><!--/span-->#}
@@ -69,7 +77,7 @@
     
     {% javascripts output='media/generated/js/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.js' combine=true
         '@{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/js/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.js'
-        %}
+    %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     

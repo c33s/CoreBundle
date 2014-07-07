@@ -69,7 +69,7 @@ require:
     twbs/bootstrap:                                                 '3.2.0'
     oyejorge/less.php:                                              '1.7.0.2'
     ptachoire/cssembed:                                             '1.0.2'
-    #braincrafted/bootstrap-bundle:                                  'v2.1.0-beta1@dev'
+    braincrafted/bootstrap-bundle:                                  'v2.1.0-beta1@dev'
     #mopa/bootstrap-bundle:                                         '2.1.*@dev'
     #modernizr/modernizr:                                           '2.5.3'
     
@@ -89,10 +89,12 @@ require:
     components/jqueryui:                                            '1.11.0'
     components/jquery-cookie:                                       '1.4.1.1'
     malsup/form:                                                    '3.36'
-    smoya/asset-management-bundle:                                  '1.0.1'
-    # deactivated until official repo exists
+    #smoya/asset-management-bundle:                                  '1.0.1'
+    smoya/asset-management-bundle:                                  'dev-master#82538d09119da015dcb1f976e8b344d6d4322b2e'
+    
+    # deactivated until official repos exist
     #jaysalvat/vegas:                                                '1.3.4'
-    mnot/hinclude:                                                  '0.9.5.2'
+    #mnot/hinclude:                                                  '0.9.5.2'
     
     ### general ################################################################
     cocur/human-date:                                               '0.1'
