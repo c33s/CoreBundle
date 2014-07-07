@@ -13,6 +13,8 @@ autoload:
 require:
     symfony/framework-standard-edition: '2.3.*'
     c33s/core-bundle:                   'dev-bootstrap3@dev'
+    braincrafted/bootstrap-bundle:      'v2.1.0-beta1@dev'
+    smoya/asset-management-bundle:      'dev-master#82538d09119da015dcb1f976e8b344d6d4322b2e'
     
 scripts:
     post-install-cmd:

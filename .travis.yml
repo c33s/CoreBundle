@@ -13,9 +13,13 @@ env:
 before_script:
     - export SYMFONY_VERSION
     - composer require symfony/symfony:${SYMFONY_VERSION} --no-update
+    - composer require --dev symfony/framework-standard-edition:${SYMFONY_VERSION} --no-update
     - composer --dev install
 
-script: phpunit --coverage-text
+script:
+    - phpunit -c phpunit.xml.dist --coverage-text
+    - phpunit -c phpunit-deployment.xml.dist
+    - phpunit -c phpunit-deployed.xml.dist
 
 notifications:
   email: development@consistency.at

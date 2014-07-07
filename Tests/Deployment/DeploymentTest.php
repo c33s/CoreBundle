@@ -1,14 +1,13 @@
 <?php
 
 use Symfony\Component\Process\Process;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * DeploymentTest.
  *
  * @author Michael Hirschler <michael.vhirsch@gmail.com>
  */
-class DeploymentTest extends WebTestCase
+class DeploymentTest extends \PHPUnit_Framework_TestCase
 {
     protected static $projectDir = null;
     
@@ -20,21 +19,25 @@ class DeploymentTest extends WebTestCase
         $this->logProgress('Copying composer.json');
         $composerFile = realpath(__DIR__ . '/../../Resources/files/composer-example.json');
         $projectComposerFile = self::$projectDir . '/composer.json';
+        
         copy($composerFile, $projectComposerFile);
         
-        if (false !== getenv('SYMFONY_VERSION'))
-        {
-            $this->logProgress('Setting symfony version to ' . getenv('SYMFONY_VERSION'));
-            $content = file_get_contents($projectComposerFile);
-            $content = str_replace('"symfony/framework-standard-edition": "2.3.*"', '"symfony/framework-standard-edition": "'.getenv('SYMFONY_VERSION').'"', $content);
-            file_put_contents($projectComposerFile, $content);
-        }
+//         if (false !== getenv('SYMFONY_VERSION'))
+//         {
+//             $this->logProgress('Setting symfony version to ' . getenv('SYMFONY_VERSION'));
+//             $content = file_get_contents($projectComposerFile);
+//             $content = str_replace('"symfony/framework-standard-edition": "2.3.*"', '"symfony/framework-standard-edition": "'.getenv('SYMFONY_VERSION').'"', $content);
+//             file_put_contents($projectComposerFile, $content);
+//         }
         
         $this->assertFileExists($projectComposerFile);
         
         $this->logProgress('Copying parameters.yml');
         $parametersFile = realpath(__DIR__ . '/Files/parameters.yml');
-        mkdir(self::$projectDir.'/app/config', 0777, true);
+        if (!file_exists(self::$projectDir.'/app/config'))
+        {
+            mkdir(self::$projectDir.'/app/config', 0777, true);
+        }
         $projectParametersFile = self::$projectDir . '/app/config/parameters.yml';
         copy($parametersFile, $projectParametersFile);
         
@@ -53,8 +56,8 @@ class DeploymentTest extends WebTestCase
         }
         $this->logProgress('Found composer: ' . $composer);
         
-        $this->logProgress('Running: ' . $composer . ' install --no-scripts --prefer-source');
-        $composerUpdateProcess = new Process($composer . ' install --no-scripts --prefer-source', self::$projectDir);
+        $this->logProgress('Running: ' . $composer . ' install --no-scripts --prefer-dist');
+        $composerUpdateProcess = new Process($composer . ' install --no-scripts --prefer-dist', self::$projectDir);
         $composerUpdateProcess->setTimeout(1800);
         $composerUpdateProcess->run();
         $this->logProgress($composerUpdateProcess->getOutput());
@@ -177,27 +180,6 @@ class DeploymentTest extends WebTestCase
         $this->logProgress("############################################################\nDeployment successful\n############################################################\n");
     }
     
-    /**
-     * @depends testClean
-     * @dataProvider  staticPagesProvider
-     */
-    public function testCallPage($url, $elementToCheck)
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', $url);
-        $this->assertTrue($client->getResponse()->isSuccessful());
-        
-        $this->assertTrue($crawler->filter($elementToCheck)->count() > 0);
-    }
-    
-    public function staticPagesProvider()
-    {
-        return array(
-            array('/', 'h2:contains("<i class="fa fa-star-o"></i> Example Dot Com")'),
-            array('/', 'h2:contains("<i class="glyphicon glyphicon-star-empty"></i> Glyphicons work, too!")'),
-        );
-    }
-    
     protected function findComposerExecutable()
     {
         $executableFinder = new Symfony\Component\Process\ExecutableFinder();
@@ -210,7 +192,7 @@ class DeploymentTest extends WebTestCase
         
         return null === $composer ? false : $composer;
     }
-
+    
     protected function findPhpExecutable()
     {
         $executableFinder = new Symfony\Component\Process\PhpExecutableFinder();
@@ -218,27 +200,36 @@ class DeploymentTest extends WebTestCase
         
         return null === $php ? false : $php;
     }
-
+    
     public static function setUpBeforeClass()
     {
+        $dirFile = __DIR__ . '/../../.deployed_project_dir';
+        if (file_exists($dirFile))
+        {
+            self::$projectDir = trim(file_get_contents($dirFile));
+        }
+        
+        if (is_dir(self::$projectDir))
+        {
+            return;
+        }
+        
         self::$projectDir = tempnam(sys_get_temp_dir(), 'c33sCoreBundleTest');
-        //self::$projectDir = sys_get_temp_dir().'/c33sCoreBundleTest';
         if (file_exists(self::$projectDir) && is_file(self::$projectDir))
         {
             unlink(self::$projectDir);
         }
         
-        mkdir(self::$projectDir);
+        file_put_contents($dirFile, self::$projectDir);
         
-        // required for WebTestCase to find the directory
-        $_SERVER['KERNEL_DIR'] = self::$projectDir.'/app';
+        mkdir(self::$projectDir);
     }
-
+    
     public static function tearDownAfterClass()
     {
-        self::delTree(self::$projectDir);
+        //self::delTree(self::$projectDir);
     }
-
+    
     public static function delTree($dir)
     {
         if (empty($dir) || !strpos($dir, 'c33s'))

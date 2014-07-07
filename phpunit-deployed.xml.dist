@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./Tests/bootstrap-unit.php" colors="true">
+<phpunit bootstrap="./Tests/bootstrap-deployed.php" colors="true">
 
     <testsuites>
-        <testsuite name="unit">
-            <directory suffix="Test.php">./Tests</directory>
-            <exclude>./Tests/Deployment</exclude>
-            <exclude>./Tests/Deployed</exclude>
+        <testsuite name="deployment">
+            <directory suffix="Test.php">./Tests/Deployed</directory>
         </testsuite>
     </testsuites>
-    
+
     <filter>
         <whitelist>
             <directory>./</directory>
