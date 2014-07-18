@@ -13,11 +13,15 @@
             "": "src/"
         }
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://satis.c33s.net"
+        }
+    ],
     "require": {
         "symfony/framework-standard-edition": "2.3.*",
-        "c33s/core-bundle": "dev-bootstrap3@dev",
-        "braincrafted/bootstrap-bundle": "@beta",
-        "smoya/asset-management-bundle": "@dev"
+        "c33s/core-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
