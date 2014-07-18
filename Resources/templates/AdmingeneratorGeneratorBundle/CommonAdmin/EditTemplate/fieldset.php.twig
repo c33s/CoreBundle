@@ -6,7 +6,7 @@
         {% endif %}
 			
         {% for rows in builder.fieldsets[fieldset] %}
-            <div class="row">
+            <div class="row form-group">
             {% for field in rows %}
                 {% if builder.Columns[field].credentials %}
                       {{ echo_if_granted(builder.Columns[field].credentials, builder.ModelClass) }}
