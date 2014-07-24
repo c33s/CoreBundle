@@ -3,13 +3,14 @@ CoreBundle
 
 everything to quickstart a webpage
 
-[![Build Status](https://travis-ci.org/c33s/CoreBundle.svg?branch=bootstrap3)](https://travis-ci.org/c33s/CoreBundle)
-[![Latest Stable Version](https://poser.pugx.org/c33s/core-bundle/v/stable.png)](https://packagist.org/packages/c33s/core-bundle) 
-[![Latest Unstable Version](https://poser.pugx.org/c33s/core-bundle/v/unstable.png)](https://packagist.org/packages/c33s/core-bundle) 
-[![License](https://poser.pugx.org/c33s/core-bundle/license.png)](https://packagist.org/packages/c33s/core-bundle)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e/mini.png)](https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e)
-[![project status](http://stillmaintained.com/c33s/CoreBundle.png)](http://stillmaintained.com/c33s/CoreBundle)
+[![Build Status]](https://travis-ci.org/c33s/CoreBundle)
 [![SemVer]](http://semver.org)
+[![Latest Stable Version]](https://packagist.org/packages/c33s/core-bundle) 
+[![Latest Unstable Version]](https://packagist.org/packages/c33s/core-bundle) 
+[![License]](https://packagist.org/packages/c33s/core-bundle)
+[![SensioLabsInsight]](https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e)
+[![Project Status]](http://stillmaintained.com/c33s/CoreBundle)
+
 
 Because json is not a really handy format to read and it also lacks in commenting support, this Bundle supports the composer.yml format. [composer-yaml.phar](https://github.com/igorw/composer-yaml) 
 is used, to convert from yml to json. In this manual all composer code snippets are in yml format. Create a script file, which call the yml to json converter before running composer. Make sure you 
@@ -59,3 +60,35 @@ sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs app/
 ```
 
 If this goes well, you should see some example pages as well as a secured admin login when accessing /admin/.
+http://img.shields.io/packagist/v/c33s/core-bundle.svg
+http://img.shields.io/packagist/l/c33s/core-bundle.svg
+
+<!-- === references ============================================================================ -->
+<!-- badges -->
+[Build Status]:            https://img.shields.io/travis/c33s/CoreBundle.svg
+[SemVer]:                  https://img.shields.io/:semver-master-orange.svg
+[Latest Stable Version]:   https://poser.pugx.org/c33s/core-bundle/v/stable.png
+[Latest Unstable Version]: https://poser.pugx.org/c33s/core-bundle/v/unstable.png
+[License]:                 https://poser.pugx.org/c33s/core-bundle/license.png
+[SensioLabsInsight]:       https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e/mini.png
+[Project Status]:          http://stillmaintained.com/c33s/CoreBundle.png
+
+
+<!-- disabled 
+[Build Status]:            https://travis-ci.org/c33s/CoreBundle.svg?branch=bootstrap3
+[Build Status]:            http://img.shields.io/travis/c33s/CoreBundle/bootstrap3.svg
+[SemVer]:                  http://img.shields.io/:semver-master-brightgreen.svg
+ -->
+
+<!-- links -->
+
+<!-- unused -->
+[composer]: http://getcomposer.org/
+[convention-over-configuration]: http://en.wikipedia.org/wiki/Convention_over_configuration
+[coveralls]: https://coveralls.io/
+[github pages]: http://pages.github.com/
+[github default branch]: https://help.github.com/articles/setting-the-default-branch-for-a-repository
+[pathogen]: https://github.com/eloquent/pathogen
+[psr-0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
+[sami]: https://github.com/fabpot/Sami
+[travis ci]: https://travis-ci.org/
