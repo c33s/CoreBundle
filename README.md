@@ -60,8 +60,7 @@ sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs app/
 ```
 
 If this goes well, you should see some example pages as well as a secured admin login when accessing /admin/.
-http://img.shields.io/packagist/v/c33s/core-bundle.svg
-http://img.shields.io/packagist/l/c33s/core-bundle.svg
+
 
 <!-- === references ============================================================================ -->
 <!-- badges -->
@@ -72,12 +71,13 @@ http://img.shields.io/packagist/l/c33s/core-bundle.svg
 [License]:                 https://poser.pugx.org/c33s/core-bundle/license.png
 [SensioLabsInsight]:       https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e/mini.png
 [Project Status]:          http://stillmaintained.com/c33s/CoreBundle.png
-
+[Packagist Version]:       http://img.shields.io/packagist/v/c33s/core-bundle.svg
+[Packagist License]:       http://img.shields.io/packagist/l/c33s/core-bundle.svg
 
 <!-- disabled 
-[Build Status]:            https://travis-ci.org/c33s/CoreBundle.svg?branch=bootstrap3
-[Build Status]:            http://img.shields.io/travis/c33s/CoreBundle/bootstrap3.svg
-[SemVer]:                  http://img.shields.io/:semver-master-brightgreen.svg
+[Build Status disabled1]:            https://travis-ci.org/c33s/CoreBundle.svg?branch=bootstrap3
+[Build Status disabled2]:            http://img.shields.io/travis/c33s/CoreBundle/bootstrap3.svg
+[SemVer disabled1]:                  http://img.shields.io/:semver-master-brightgreen.svg
  -->
 
 <!-- links -->
