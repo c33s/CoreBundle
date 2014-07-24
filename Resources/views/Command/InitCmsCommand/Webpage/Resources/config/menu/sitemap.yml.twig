@@ -1,0 +1,36 @@
+c33s_menu:
+    definitions:
+        webpage_sitemap:
+            .defaults:
+                item_class:     static
+
+            {{ name.underscore }}_webpage_static/home:
+                title:                  Home
+                bootstrap_icon:         fa fa-home
+
+            {{ name.underscore }}_webpage_static/kontakt:
+                title:                  Kontakt
+                bootstrap_icon:         fa fa-user
+
+            # custom links page
+            #route_to_links_page:
+            #    title:                  Links
+            #    bootstrap_icon:         fa fa-link
+            #    item_class:             default
+
+            {{ name.underscore }}_webpage_static/links:
+                title:                  Links
+                bootstrap_icon:         fa fa-link
+
+            {{ name.underscore }}_webpage_static/kontakt/anfahrt:
+                title:                  Anfahrt
+                bootstrap_icon:         fa fa-map-marker
+
+            {{ name.underscore }}_webpage_static/impressum:
+                title:                  Impressum
+                bootstrap_icon:         fa fa-legal
+
+            {{ name.underscore }}_webpage_static/datenschutz:
+                title:                  Datenschutz
+                bootstrap_icon:         fa fa-lock
+                

@@ -39,8 +39,8 @@ class DevelopCommand extends BaseInitCommand
         parent::execute($input, $output);
         $this->io->write('<info>c33s:develop</info>');
 
-        $name = 'S7';
-	$this->generateLogo($name);
+        $name = 'Example Name';
+        $this->generateLogo($name);
     }
     
     

@@ -1,0 +1,21 @@
+c33s_menu:
+    definitions:
+        admin_top_left:
+            .defaults:
+                item_class:             admingen
+                require_role:           ROLE_ADMIN
+
+            {{ name.underscore }}_admin_dashboard:
+                title:                  Dashboard
+                item_class:             default
+                bootstrap_icon:         fa fa-dashboard
+
+#            {{ name.camelcase}}_ModelBundle1_Model1_list:
+#                title:                  Model1 admin
+
+#            {{ name.camelcase}}_ModelBundle2_Model2_list:
+#                title:                  Model2 admin
+
+#                    liip_monitor_health_interface:
+#                        title:                      Monitoring
+#                        bootstrap_icon:             icon-eye-open

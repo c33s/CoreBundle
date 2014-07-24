@@ -1,0 +1,31 @@
+c33s_menu:
+    definitions:
+        webpage_top:
+            .defaults:
+                item_class:     static
+
+            {{ name.underscore }}_webpage_static/home:
+                title:                  Home
+
+            {{ name.underscore }}_webpage_static/ueber-uns:
+                title:                  Über uns
+                children:
+
+                    {{ name.underscore }}_webpage_static/ueber-uns/team:
+                        title:          Team
+
+                    {{ name.underscore }}_webpage_static/ueber-uns/videos:
+                        title:          Videos
+
+            {{ name.underscore }}_webpage_static/kontakt:
+                title:                  Kontakt
+                children:
+
+                    {{ name.underscore }}_webpage_static/kontakt:
+                        title:          Kontakt
+
+                    {{ name.underscore }}_webpage_static/kontakt/anfahrt:
+                        title:          Anfahrt
+
+                    {{ name.underscore }}_webpage_static/kontakt/impressum:
+                        title:          Impressum
