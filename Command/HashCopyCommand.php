@@ -8,14 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use C33s\CoreBundle\DataHandler\DataFile;
-//
-//use c33s\ModelBundle\Model\Service;
-//use c33s\ModelBundle\Model\ServiceQuery;
-//
-//use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Filesystem\Filesystem;
-//use Symfony\Component\Filesystem\Exception\IOException;
 
 class HashCopyCommand extends ContainerAwareCommand
 {

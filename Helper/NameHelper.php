@@ -2,13 +2,15 @@
 
 namespace C33s\CoreBundle\Helper;
 
+use C33s\CoreBundle\Util\InflectorInterface;
+
 class NameHelper
 {
     protected $name;
     protected $nameCamelcase;
     protected $nameUnderscore;
 
-    public function __construct($name,$inflector)
+    public function __construct($name, InflectorInterface $inflector)
     {
         $this->name = ucfirst($name);
         $this->nameCamelcase = $inflector->camelize($name);

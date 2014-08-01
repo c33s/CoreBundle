@@ -2,7 +2,6 @@
 
 namespace C33s\CoreBundle\Menu;
 
-use C33s\MenuBundle\Menu\Menu;
 use FOS\UserBundle\Propel\UserQuery;
 use Symfony\Component\Security\Core\Role\SwitchUserRole;
 use C33s\MenuBundle\Item\MenuItem;

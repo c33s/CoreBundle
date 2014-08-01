@@ -2,12 +2,8 @@
 
 namespace C33s\CoreBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Exception\IOException;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Process\Process;
 
 class FixCommand extends CheckCommand
 {
@@ -20,7 +16,7 @@ class FixCommand extends CheckCommand
         //---array('description' => 'Pdepend', 'command' => 'pdepend --jdepend-chart=tmp/chart.png --jdepend-xml=tmp/depend.xml --overview-pyramid=tmp/pyramid.png --summary-xml=tmp/summary.xml ./src'),
         //--array('description' => 'phploc', 'command' => 'phploc --progress --exclude Model --count-tests ./src'),
     );
-    
+
     protected function configure()
     {
         $this
@@ -28,12 +24,12 @@ class FixCommand extends CheckCommand
             ->setDescription('c33s:fix calls the PHP code standards fixer phpfix')
         ;
     }
-    
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('<info>c33s:fix</info>');
         $this->dumpConfigFiles($output);
-        
+
         foreach ($this->commandSets as $commandSet)
         {
             $this->processCommandSet($commandSet, $output);

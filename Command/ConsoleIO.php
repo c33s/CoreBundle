@@ -15,7 +15,6 @@ namespace C33s\CoreBundle\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\HelperSet;
-use Symfony\Component\Process\ExecutableFinder;
 
 /**
 * The Input/Output helper.
@@ -168,7 +167,7 @@ class ConsoleIO
     {
         return $this->helperSet->get('dialog')->askAndValidate($this->output, $question, $validator, $attempts, $default);
     }
-    
+
     /**
      * {@inheritDoc}
      */
