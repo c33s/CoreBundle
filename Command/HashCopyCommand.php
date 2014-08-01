@@ -1,13 +1,13 @@
 <?php
 
-namespace c33s\CoreBundle\Command;
+namespace C33s\CoreBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use c33s\CoreBundle\DataHandler\DataFile;
+use C33s\CoreBundle\DataHandler\DataFile;
 //
 //use c33s\ModelBundle\Model\Service;
 //use c33s\ModelBundle\Model\ServiceQuery;

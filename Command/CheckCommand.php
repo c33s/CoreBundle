@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Command;
+namespace C33s\CoreBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -69,7 +69,7 @@ class CheckCommand extends ContainerAwareCommand
             $output->writeln('<comment>starting dumping config files</comment>');
             $body = $templateing->render
             (
-                'c33sCoreBundle:Command:code_standard_fixer.php.twig',
+                'C33sCoreBundle:Command:code_standard_fixer.php.twig',
                 array()
             );
             try

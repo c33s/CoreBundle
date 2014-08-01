@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Menu;
+namespace C33s\CoreBundle\Menu;
 
 use c33s\MenuBundle\Menu\Menu;
 use FOS\UserBundle\Propel\UserQuery;
@@ -76,7 +76,7 @@ class UserControlMenuItem extends MenuItem
     
     protected function getUserItemTemplate()
     {
-        return 'c33sCoreBundle:Menu:bootstrap_user_control_item_renderer.html.twig';
+        return 'C33sCoreBundle:Menu:bootstrap_user_control_item_renderer.html.twig';
     }
     
     protected function generateChildren()
@@ -96,13 +96,13 @@ class UserControlMenuItem extends MenuItem
         $this->addChildByData('fos_user_security_logout', array(
             'title' => 'Logout',
             'bootstrap_icon' => $this->isUsingBootstrap2() ? 'icon icon-off' : 'fa fa-power-off',
-            'item_class' => 'c33s\\MenuBundle\\Item\\MenuItem',
+            'item_class' => 'C33s\\MenuBundle\\Item\\MenuItem',
         ));
         
         $this->addChildByData('fos_user_change_password', array(
             'title' => 'Change password',
             'bootstrap_icon' => $this->isUsingBootstrap2() ? 'icon icon-lock' : 'fa fa-lock',
-            'item_class' => 'c33s\\MenuBundle\\Item\\MenuItem',
+            'item_class' => 'C33s\\MenuBundle\\Item\\MenuItem',
         ));
         
         $currentUrl = $this->getRequest()->getUri();
@@ -116,7 +116,7 @@ class UserControlMenuItem extends MenuItem
                 'custom_url_icon' => null,
                 'set_request_variables' => array('_switch_user' => '_exit'),
                 'bootstrap_icon' => $this->isUsingBootstrap2() ? 'icon icon-remove' : 'fa fa-times',
-                'item_class' => 'c33s\\MenuBundle\\Item\\MenuItem',
+                'item_class' => 'C33s\\MenuBundle\\Item\\MenuItem',
             ));
             
             return;
@@ -132,7 +132,7 @@ class UserControlMenuItem extends MenuItem
             'custom_url' => $currentUrl,
             'custom_url_icon' => null,
             'bootstrap_icon' => $this->isUsingBootstrap2() ? 'icon icon-group' : 'fa fa-users',
-            'item_class' => 'c33s\\MenuBundle\\Item\\MenuItem',
+            'item_class' => 'C33s\\MenuBundle\\Item\\MenuItem',
         ));
         
         $username = $this->userParams['current_user']->getUsername();
@@ -149,7 +149,7 @@ class UserControlMenuItem extends MenuItem
                 'bootstrap_icon' => $this->isUsingBootstrap2() ? 'icon icon-user' : 'fa fa-user',
                 'custom_url' => $currentUrl,
                 'custom_url_icon' => null,
-                'item_class' => 'c33s\\MenuBundle\\Item\\MenuItem',
+                'item_class' => 'C33s\\MenuBundle\\Item\\MenuItem',
             ));
         }
     }

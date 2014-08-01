@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Tools;
+namespace C33s\CoreBundle\Tools;
 
 class Phpinfo
 {

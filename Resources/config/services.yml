@@ -1,18 +1,18 @@
 parameters:
-#    c33s_core.example.class: c33s\CoreBundle\Example
+#    c33s_core.example.class: C33s\CoreBundle\Example
 
 services:
     c33s_core.inflector:
-        class: c33s\CoreBundle\Util\AkelosInflector
+        class: C33s\CoreBundle\Util\AkelosInflector
     #twig extensions
     c33s_core.twig.config_variables_extension:
-        class: c33s\CoreBundle\Twig\ConfigVariablesExtension
+        class: C33s\CoreBundle\Twig\ConfigVariablesExtension
         arguments:
             - %c33s_core.config.twig_variables%
         tags:
             - { name: twig.extension }
     c33s_core.twig.quickfilter_extension:
-        class: c33s\CoreBundle\Twig\QuickFilterExtension
+        class: C33s\CoreBundle\Twig\QuickFilterExtension
         arguments:
             - @c33s_core.inflector
         tags:

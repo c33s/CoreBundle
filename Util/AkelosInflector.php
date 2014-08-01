@@ -1,8 +1,8 @@
 <?php
 
-namespace c33s\CoreBundle\Util;
+namespace C33s\CoreBundle\Util;
 
-use c33s\CoreBundle\Util\InflectorInterface;
+use C33s\CoreBundle\Util\InflectorInterface;
 
 /**
  * This file is part of the Akelos Framework

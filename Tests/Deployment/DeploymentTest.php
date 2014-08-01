@@ -214,7 +214,7 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
             return;
         }
         
-        self::$projectDir = tempnam(sys_get_temp_dir(), 'c33sCoreBundleTest');
+        self::$projectDir = tempnam(sys_get_temp_dir(), 'C33sCoreBundleTest');
         if (file_exists(self::$projectDir) && is_file(self::$projectDir))
         {
             unlink(self::$projectDir);

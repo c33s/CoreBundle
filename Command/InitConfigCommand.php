@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Command;
+namespace C33s\CoreBundle\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -9,8 +9,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Symfony\Component\Filesystem\Filesystem;
 
-use c33s\CoreBundle\Tools\Tools;
-use c33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
+use C33s\CoreBundle\Tools\Tools;
+use C33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
 
 class InitConfigCommand extends BaseInitCommand
 {
@@ -81,7 +81,7 @@ class InitConfigCommand extends BaseInitCommand
             
             if ($path !== false)
             {
-                $importerLines[] = "- { resource: @c33sCoreBundle/Resources/config/config/$bundle.yml }";
+                $importerLines[] = "- { resource: @C33sCoreBundle/Resources/config/config/$bundle.yml }";
             }
         }
         $fs = new Filesystem();
@@ -106,7 +106,7 @@ class InitConfigCommand extends BaseInitCommand
     protected function addBaseImporterYmlToConfig()
     {
         $configDir = $this->getContainer()->get('kernel')->getRootDir().'/config';
-        Tools::addLineToFile($configDir.'/config.yml',"    - { resource: corebundle/_base_importer.yml }\n","- { resource: @c33sCoreBundle/Resources/config/config.yml }");
+        Tools::addLineToFile($configDir.'/config.yml',"    - { resource: corebundle/_base_importer.yml }\n","- { resource: @C33sCoreBundle/Resources/config/config.yml }");
     }
     
     protected function enableTranslationsInConfig()
@@ -126,7 +126,7 @@ class InitConfigCommand extends BaseInitCommand
         $path = false;
         try
         {
-            $path = $this->getContainer()->get('kernel')->locateResource("@c33sCoreBundle/Resources/config/config/$bundle.yml");
+            $path = $this->getContainer()->get('kernel')->locateResource("@C33sCoreBundle/Resources/config/config/$bundle.yml");
         }
         catch (\InvalidArgumentException $e)
         {

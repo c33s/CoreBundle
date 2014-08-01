@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Command;
+namespace C33s\CoreBundle\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -10,9 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Identicon\Identicon;
 
 
-use c33s\CoreBundle\Tools\Tools;
+use C33s\CoreBundle\Tools\Tools;
 
-use c33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
+use C33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
 
 class InitCmsCommand extends BaseInitCommand
 {
@@ -111,7 +111,7 @@ class InitCmsCommand extends BaseInitCommand
     protected function copyFiles()
     {
         $this->io->write('copying default files');
-        $sourcePath = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/files/copy');
+        $sourcePath = $this->getContainer()->get('kernel')->locateResource('@C33sCoreBundle/Resources/files/copy');
         $targetPath = $this->getContainer()->get('kernel')->getRootDir().'/../';
         $this->fs->mirror($sourcePath, $targetPath, null, array('override' => true, 'delete' => false));
     }

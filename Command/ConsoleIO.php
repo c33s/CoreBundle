@@ -10,7 +10,7 @@
 * file that was distributed with this source code.
 */
 
-namespace c33s\CoreBundle\Command;
+namespace C33s\CoreBundle\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

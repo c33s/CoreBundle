@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Command;
+namespace C33s\CoreBundle\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Symfony\Component\Finder\Finder;
 
-use c33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
+use C33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
 
 class BuildAdminGenCommand extends BaseInitCommand
 {

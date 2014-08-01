@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Twig;
+namespace C33s\CoreBundle\Twig;
 
 
 class DataHandlerHashDirExtension extends \Twig_Extension
@@ -10,7 +10,7 @@ class DataHandlerHashDirExtension extends \Twig_Extension
     */
     protected $environment;
     
-    public function __construct(\c33s\CoreBundle\DataHandler\DataHandler $dataHandler)
+    public function __construct(\C33s\CoreBundle\DataHandler\DataHandler $dataHandler)
     {
 	$this->dataHandler = $dataHandler;
     }

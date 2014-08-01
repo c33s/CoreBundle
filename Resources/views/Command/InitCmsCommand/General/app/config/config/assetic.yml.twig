@@ -1,6 +1,6 @@
 # Assetic Configuration
 assetic:
-    bundles:        [ 'c33sCoreBundle', {% for asseticBundle in asseticBundles %}'{{ name.camelcase }}{{ asseticBundle }}Bundle',{% endfor %} 'AvocodeFormExtensionsBundle' ]
+    bundles:        [ 'C33sCoreBundle', {% for asseticBundle in asseticBundles %}'{{ name.camelcase }}{{ asseticBundle }}Bundle',{% endfor %} 'AvocodeFormExtensionsBundle' ]
     filters:
         cssrewrite: ~
         lessphp:

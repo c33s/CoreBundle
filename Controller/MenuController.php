@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Controller;
+namespace C33s\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

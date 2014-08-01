@@ -34,7 +34,7 @@ if
 }
 
 use Symfony\Component\Console\Application;
-use c33s\CoreBundle\Command\InitSymfonyCommand;
+use C33s\CoreBundle\Command\InitSymfonyCommand;
 
 
 $console = new Application('Symfony Init', '1.0');

@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\DataHandler;
+namespace C33s\CoreBundle\DataHandler;
 
 #use Symfony\Component\HttpFoundation\File\File;
 
@@ -187,7 +187,7 @@ class DataHandler
     {
         foreach ($this->files as $map => $file)
         {
-            if (get_class($file) == 'c33s\CoreBundle\DataHandler\DataFile')
+            if (get_class($file) == 'C33s\CoreBundle\DataHandler\DataFile')
             {
                 $fileHash = $file->copy();
                 //TO DO: UNlink old file here
@@ -258,7 +258,7 @@ class DataHandler
         }
         else
         {
-            throw new \InvalidArgumentException('Invalid class. Only Class allowed which is defined in c33sCoreBundle/Resources/config.yml in class_maps. Input was: '.$class);
+            throw new \InvalidArgumentException('Invalid class. Only Class allowed which is defined in C33sCoreBundle/Resources/config.yml in class_maps. Input was: '.$class);
         }
     }
 }

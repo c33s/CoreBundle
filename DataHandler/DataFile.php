@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\DataHandler;
+namespace C33s\CoreBundle\DataHandler;
 
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -96,7 +96,7 @@ class DataFile extends File
     {
         if ($directory != null || $name != null)
         {
-            throw new \InvalidArgumentException('the call to move must not contain parameters, they are only added to prevent "Runtime Notice: Declaration of c33s\CoreBundle\DataHandler\DataFile::move() should be compatible with Symfony\Component\HttpFoundation\File\File::move($directory, $name = NULL)"');
+            throw new \InvalidArgumentException('the call to move must not contain parameters, they are only added to prevent "Runtime Notice: Declaration of C33s\CoreBundle\DataHandler\DataFile::move() should be compatible with Symfony\Component\HttpFoundation\File\File::move($directory, $name = NULL)"');
         }
         
         $directory = $this->getDirectory();

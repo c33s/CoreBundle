@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Command;
+namespace C33s\CoreBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
@@ -10,9 +10,9 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 
-use c33s\CoreBundle\Command\ConsoleIO;
-use c33s\CoreBundle\Helper\NameHelper;
-use c33s\CoreBundle\Util\AkelosInflector as Inflector;
+use C33s\CoreBundle\Command\ConsoleIO;
+use C33s\CoreBundle\Helper\NameHelper;
+use C33s\CoreBundle\Util\AkelosInflector as Inflector;
 
 
 class BaseInitCmd extends ContainerAwareCommand
@@ -85,12 +85,12 @@ class BaseInitCmd extends ContainerAwareCommand
     {
         $this->io->write('initing Templates and Resources');
         
-        $path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/');
+        $path = $this->getContainer()->get('kernel')->locateResource('@C33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/');
         $bundleNames = $this->getTemplateDirectories($path);
         
         foreach ($bundleNames as $bundleName)
         {
-            $path = $this->getContainer()->get('kernel')->locateResource('@c33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/'.$bundleName);
+            $path = $this->getContainer()->get('kernel')->locateResource('@C33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/'.$bundleName);
             $this->renderFilesFromTemplates($path,$bundleName);
         }
     }
@@ -145,7 +145,7 @@ class BaseInitCmd extends ContainerAwareCommand
                 
         $fileParts = pathinfo($file);
         
-        $content = $this->getContainer()->get('templating')->render("c33sCoreBundle:Command/".$this->getCommandTemplateDirectory()."/${fileParts['dirname']}:${fileParts['basename']}", $parameters);
+        $content = $this->getContainer()->get('templating')->render("C33sCoreBundle:Command/".$this->getCommandTemplateDirectory()."/${fileParts['dirname']}:${fileParts['basename']}", $parameters);
         
         if ($targetDirectory)
         {

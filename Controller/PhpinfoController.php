@@ -2,13 +2,13 @@
 /*
  *  orginal code from jon at sitewizard dot ca http://php.net/phpinfo
  */
-namespace c33s\CoreBundle\Controller;
+namespace C33s\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use c33s\CoreBundle\Tools\Phpinfo;
+use C33s\CoreBundle\Tools\Phpinfo;
 
 /**
  * @Route("/phpinfo")

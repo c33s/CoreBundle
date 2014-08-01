@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Command;
+namespace C33s\CoreBundle\Command;
 
 
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,9 +14,9 @@ use Twig_Environment;
 use Symfony\Component\Filesystem\Filesystem;
 
 use Symfony\Component\Finder\Finder;
-use c33s\CoreBundle\Tools\Tools;
+use C33s\CoreBundle\Tools\Tools;
 
-use c33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
+use C33s\CoreBundle\Command\BaseInitCmd as BaseInitCommand;
 
 class InitSymfonyCommand extends BaseInitCommand
 {
@@ -86,8 +86,8 @@ class InitSymfonyCommand extends BaseInitCommand
     
     protected function addCoreBundle()
     {
-        $checkString = "new c33s\CoreBundle\c33sCoreBundle(),";
-        $bundleDefinitionToAdd = "\n            //### Core Bundle ###\n            new c33s\CoreBundle\c33sCoreBundle(),\n            //# Sub Bundles ###\n            //### End Core Bundle ###,\n            //new c33s\DummyBundle\c33sDummyBundle(),\n";
+        $checkString = "new C33s\CoreBundle\C33sCoreBundle(),";
+        $bundleDefinitionToAdd = "\n            //### Core Bundle ###\n            new C33s\CoreBundle\C33sCoreBundle(),\n            //# Sub Bundles ###\n            //### End Core Bundle ###,\n            //new c33s\DummyBundle\c33sDummyBundle(),\n";
         $stringAfterToInsert = 'new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),';
         $appKernelFile = $this->getAppKernelPath();
         Tools::addLineToFile($appKernelFile,$bundleDefinitionToAdd,$stringAfterToInsert,$checkString);
@@ -98,7 +98,7 @@ class InitSymfonyCommand extends BaseInitCommand
     protected function addConfigYml()
     {
         $configFile = $this->getConfigYmlPath();
-        $configToAdd = "    - { resource: @c33sCoreBundle/Resources/config/config.yml }\n";
+        $configToAdd = "    - { resource: @C33sCoreBundle/Resources/config/config.yml }\n";
         $stringAfterToInsert = "- { resource: security.yml }";
         
         Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
@@ -249,17 +249,17 @@ class InitSymfonyCommand extends BaseInitCommand
         //var_dump($path);
         if (!realpath($path))
         {
-            throw new \Exception('c33sCoreBundle Templates not found');
+            throw new \Exception('C33sCoreBundle Templates not found');
         }
         return $path;
     }
     
     protected function getCoreBundleDirectory()
     {
-        $path = $this->getVendorDirectory().'/c33s/core-bundle/c33s/CoreBundle';
+        $path = $this->getVendorDirectory().'/c33s/core-bundle';
         if (!realpath($path))
         {
-            throw new \Exception('c33sCoreBundle not found');
+            throw new \Exception('C33sCoreBundle not found');
         }
         return $path;
     }

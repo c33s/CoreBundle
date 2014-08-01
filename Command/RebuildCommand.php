@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Command;
+namespace C33s\CoreBundle\Command;
 
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;

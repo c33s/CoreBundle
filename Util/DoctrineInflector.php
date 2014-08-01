@@ -1,9 +1,9 @@
 <?php
 
-namespace c33s\CoreBundle\Util;
+namespace C33s\CoreBundle\Util;
 
-use c33s\CoreBundle\Util\InflectorInterface;
-use c33s\CoreBundle\Exception\MethodNotImplementedException;
+use C33s\CoreBundle\Util\InflectorInterface;
+use C33s\CoreBundle\Exception\MethodNotImplementedException;
 use Doctrine\Common\Inflector\Inflector;
 
 

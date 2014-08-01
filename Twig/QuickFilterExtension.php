@@ -1,8 +1,8 @@
 <?php
 
-namespace c33s\CoreBundle\Twig;
+namespace C33s\CoreBundle\Twig;
 
-use c33s\CoreBundle\Util\InflectorInterface;
+use C33s\CoreBundle\Util\InflectorInterface;
 
 
 class QuickFilterExtension extends \Twig_Extension

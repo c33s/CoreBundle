@@ -19,7 +19,7 @@
             <meta name="keywords" content="{% block meta_keywords %}{{ c33s_core_config.page.keywords|join(', ') }}{% endblock %}" />
             {% block meta_extra %}{% endblock %}
             {% block google_webmaster_tools %}
-                {% include 'c33sCoreBundle::google-webmaster-tools.html.twig' %}
+                {% include 'C33sCoreBundle::google-webmaster-tools.html.twig' %}
             {% endblock %}
             {% block stylesheets %}{% endblock stylesheets %}
             {% block head_icons %}
@@ -43,7 +43,7 @@
                 {% endif %}
             {% endblock %}
             {% block google_analytics %}
-                {% include 'c33sCoreBundle::google-analytics.html.twig' %}
+                {% include 'C33sCoreBundle::google-analytics.html.twig' %}
             {% endblock %}
         {% endblock %}
     </head>
@@ -56,7 +56,7 @@
             
             {% block message %}
             {#% include 'messages.html.twig' with {'messages': messages }} %#}
-            {% include 'c33sCoreBundle::messages.html.twig' %}
+            {% include 'C33sCoreBundle::messages.html.twig' %}
             {% endblock %}
             
             {% block header %}{% endblock %}

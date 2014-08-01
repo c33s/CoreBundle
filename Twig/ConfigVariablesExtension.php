@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Twig;
+namespace C33s\CoreBundle\Twig;
 
 
 class ConfigVariablesExtension extends \Twig_Extension

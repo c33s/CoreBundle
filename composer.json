@@ -15,11 +15,10 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "c33s\\CoreBundle": ""
+        "psr-4": {
+            "C33s\\CoreBundle\\": ""
         }
     },
-    "target-dir": "c33s/CoreBundle",
     "repositories": [
         {
             "type": "composer",
@@ -32,10 +31,11 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.3.3",
-        "c33s/attachment-bundle": "0.3.*",
-        "c33s/menu-bundle": "0.9.*",
-        "c33s/simple-content-bundle": "0.9.*",
-        "c33s/static-page-content-bundle": "1.1.*",
+        "c33s/attachment-admin-bundle": "0.4.*",
+        "c33s/contact-form-bundle": "0.1.*",
+        "c33s/menu-bundle": "0.10.*",
+        "c33s/simple-content-bundle": "0.10.*",
+        "c33s/static-page-content-bundle": "dev-master",
         "symfony/symfony": "~2.3",
         "havvg/propel-boolean-extra-behavior": "1.1.2",
         "propel/propel-bundle": "~1.2",

@@ -9,7 +9,7 @@ propel:
     behaviors:
         typehintable:                          vendor.willdurand.propel-typehintable-behavior.src.TypehintableBehavior
         publishable:                           vendor.willdurand.propel-publishable-behavior.src.PublishableBehavior
-        c33s_attachable:                       vendor.c33s.attachment-bundle.c33s.AttachmentBundle.Behavior.C33sPropelBehaviorAttachable
+        c33s_attachable:                       vendor.c33s.attachment-bundle.C33s.AttachmentBundle.Behavior.C33sPropelBehaviorAttachable
         event_dispatcher:                      vendor.willdurand.propel-eventdispatcher-behavior.src.EventDispatcherBehavior
 
         #typehintable:                           vendor.willdurand.propel-typehintable-behavior.src.TypehintableBehavior

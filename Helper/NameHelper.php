@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Helper;
+namespace C33s\CoreBundle\Helper;
 
 class NameHelper
 {

@@ -5,6 +5,6 @@ admingenerator_generator:
     use_doctrine_odm:     false
     #dashboard_welcome_path:     MyDashboard_path
     # choose and uncomment only one
-    base_admin_template: c33sCoreBundle::admin-base.html.twig
+    base_admin_template: C33sCoreBundle::admin-base.html.twig
     #base_admin_template: AdmingeneratorGeneratorBundle::base_admin.html.twig
     # base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig

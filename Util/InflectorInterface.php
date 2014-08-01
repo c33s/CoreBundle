@@ -2,7 +2,7 @@
 
 // src/Mini/Bundle/CoreBundle/Util/Inflector.php
 
-namespace c33s\CoreBundle\Util;
+namespace C33s\CoreBundle\Util;
 
 /**
  * This file is based upon part of the Akelos Framework

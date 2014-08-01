@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\CoreBundle\Exception;
+namespace C33s\CoreBundle\Exception;
 
 class MethodNotImplementedException extends NotImplementedException
 {
