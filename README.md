@@ -22,7 +22,7 @@ You can perform the whole installation by executing the following commands insid
 
 ```sh
 # Get sample composer file directly from github
-wget https://raw.githubusercontent.com/c33s/CoreBundle/bootstrap3/Resources/files/composer-example.yml -O composer.yml --no-check-certificate
+wget https://raw.githubusercontent.com/c33s/CoreBundle/master/Resources/files/composer-example.yml -O composer.yml --no-check-certificate
 # Modify composer.yml as needed. You may leave this for later.
 
 # Create empty composer.json
@@ -51,12 +51,18 @@ php app/console admin:c33s:build YourNamespace
 
 # This command will clear your cache and pre-render assets
 php app/console c33s:clean
+```
 
-# Make sure the web server permissions are set up correctly. This includes the path for media uploads as well as the sqlite database used by default.
-HTTPDUSER=`ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
-sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs app/data web/media
-sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs app/data web/media
+Make sure the web server permissions are set up correctly. This includes the path for media uploads as well as the sqlite database used by default.
+See [http://symfony.com/doc/master/book/installation.html#configuration-and-setup](http://symfony.com/doc/master/book/installation.html#configuration-and-setup) for further information.
 
+You should enable web server writing for the following folders: 
+
+```sh
+app/cache
+app/logs
+app/data
+web/media
 ```
 
 If this goes well, you should see some example pages as well as a secured admin login when accessing /admin/.

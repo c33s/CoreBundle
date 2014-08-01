@@ -4,8 +4,8 @@ c33s_menu:
             {{ name.underscore }}_admin_default_homepage: #dummy
                 title:                  Admin dashboard
                 require_role:                       ROLE_ADMIN
-                item_class:             default
-                #item_class:             user_control
+                #item_class:             default
+                item_class:             user_control
                 children:
                     {{ name.underscore }}_admin_default_homepage:
                         title:                  Admin Dashboard

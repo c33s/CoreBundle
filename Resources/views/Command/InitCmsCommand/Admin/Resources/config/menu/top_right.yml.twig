@@ -4,12 +4,16 @@ c33s_menu:
             .defaults:
                 item_class:                         default
                 require_role:                       ROLE_ADMIN
+
             {{ name.underscore }}_webpage_default_homepage:
                 title:                              view Webpage
                 bootstrap_icon:                     icon-external-link
+
             fos_user_security_logout:
                 title:
                 bootstrap_icon:                     icon-off
+                item_class:                         user_control
+
 #            .{{ name.underscore }}_admin_view_webpage:
 #                title:                              view Webpage
 #                bootstrap_icon:                     icon-external-link
