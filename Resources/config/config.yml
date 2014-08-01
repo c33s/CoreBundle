@@ -18,7 +18,7 @@ c33s_core:
             class:  Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle
         bazinga_propel_event_dispatcher:
             class:  Bazinga\Bundle\PropelEventDispatcherBundle\BazingaPropelEventDispatcherBundle
-        besimple_i18n_routing:
+        be_simple_i18n_routing:
             class:  BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle
         braincrafted_bootstrap:
             class:  Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle
