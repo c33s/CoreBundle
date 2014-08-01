@@ -22,10 +22,10 @@ class MenuController extends Controller
     public function switchUserAction($dropdown=false,$header=false,$headerSeperator=true,$headerText='Switch User')
     {
         $parameters = array();
-	$parameters['dropdown']   = $dropdown;
-	$parameters['header']     = $header;
-	$parameters['headerText'] = $headerText;
-	$parameters['headerSeperator'] = $headerSeperator;
+        $parameters['dropdown']   = $dropdown;
+        $parameters['header']     = $header;
+        $parameters['headerText'] = $headerText;
+        $parameters['headerSeperator'] = $headerSeperator;
 
         $security = $this->get('security.context');
         if ($security->isGranted('ROLE_ALLOWED_TO_SWITCH') || $security->isGranted('ROLE_PREVIOUS_ADMIN'))

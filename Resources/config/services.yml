@@ -8,12 +8,12 @@ services:
     c33s_core.twig.config_variables_extension:
         class: C33s\CoreBundle\Twig\ConfigVariablesExtension
         arguments:
-            - %c33s_core.config.twig_variables%
+            - "%c33s_core.config.twig_variables%"
         tags:
             - { name: twig.extension }
     c33s_core.twig.quickfilter_extension:
         class: C33s\CoreBundle\Twig\QuickFilterExtension
         arguments:
-            - @c33s_core.inflector
+            - "@c33s_core.inflector"
         tags:
             - { name: twig.extension }

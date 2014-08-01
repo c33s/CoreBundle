@@ -7,7 +7,7 @@ liip_monitor:
         custom_error_pages: 
           error_codes: [404, 500]
         http_service:
-            host: %master_domain%
+            host: "%master_domain%"
             port: 80
             status_code: 200
             #content: mycontent

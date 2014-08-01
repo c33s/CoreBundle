@@ -2,7 +2,6 @@
 
 namespace C33s\CoreBundle\Command;
 
-
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -41,22 +40,22 @@ class InitSymfonyCommand extends BaseInitCommand
             )
         ;
     }
-    
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         parent::execute($input, $output);
         $output->writeln('<info>initializing symfony</info>');
         $this->io->write('<info>c33s:init-cms</info>');
-        
+
         $this->copyData($input->getOption('force'));
         $this->removeAcmeBundle();
         $this->addCoreBundle();
         $this->addConfigYml();
         $this->cleanConfig();
-        
+
         //$this->postInstall($output);
     }
-    
+
     protected function postInstall(OutputInterface $output)
     {
         //how to run 'Incenteev\ParameterHandler\ScriptHandler::buildParameters' here?
@@ -83,43 +82,43 @@ class InitSymfonyCommand extends BaseInitCommand
 //        }
 //        });
     }
-    
+
     protected function addCoreBundle()
     {
         $checkString = "new C33s\CoreBundle\C33sCoreBundle(),";
-        $bundleDefinitionToAdd = "\n            //### Core Bundle ###\n            new C33s\CoreBundle\C33sCoreBundle(),\n            //# Sub Bundles ###\n            //### End Core Bundle ###,\n            //new c33s\DummyBundle\c33sDummyBundle(),\n";
+        $bundleDefinitionToAdd = "\n            //### Core Bundle ###\n            new C33s\CoreBundle\C33sCoreBundle(),\n            //# Sub Bundles ###\n            //### End Core Bundle ###,\n            //new C33s\DummyBundle\C33sDummyBundle(),\n";
         $stringAfterToInsert = 'new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),';
         $appKernelFile = $this->getAppKernelPath();
         Tools::addLineToFile($appKernelFile,$bundleDefinitionToAdd,$stringAfterToInsert,$checkString);
-        
+
         $this->io->write('added CoreBundle to AppKernel');
     }
-    
+
     protected function addConfigYml()
     {
         $configFile = $this->getConfigYmlPath();
         $configToAdd = "    - { resource: @C33sCoreBundle/Resources/config/config.yml }\n";
         $stringAfterToInsert = "- { resource: security.yml }";
-        
+
         Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
-        
+
         $this->io->write('added CoreBundle config.yml to imports');
     }
-    
+
     protected function cleanConfig()
     {
         $configFile = $this->getConfigYmlPath();
-        
+
         Tools::cropFileByLine($configFile, false, "# Assetic Configuration");
         $this->io->write('config.yml cleaned');
     }
-    
+
     protected function removeAcmeBundle()
     {
         $bundleDefinitionToRemove = '$bundles[] = new Acme\DemoBundle\AcmeDemoBundle();';
         $appKernelFile = $this->getProjectRootDirectory().'/app/AppKernel.php';
         Tools::removeLineFromFile($appKernelFile,$bundleDefinitionToRemove);
-        
+
         $configFile = $this->getRoutingDevYmlPath();
         try
         {
@@ -129,10 +128,10 @@ class InitSymfonyCommand extends BaseInitCommand
         {
             // gone with sf 2.5
         }
-        
+
         $this->io->write('removed AcmeBundle');
     }
-    
+
     protected function copyData($overwrite = false)
     {
         $path = $this->getCoreBundleTemplatesDirectory();
@@ -143,7 +142,7 @@ class InitSymfonyCommand extends BaseInitCommand
             ->ignoreDotFiles(false)
             ->ignoreVCS(false)
         ;
-        
+
         $parameters = array();
         $parameters['secret'] = $this->generateSecret();
         $parameters['name'] = $this->name;
@@ -151,10 +150,10 @@ class InitSymfonyCommand extends BaseInitCommand
         {
             $this->renderTemplateFile($file,$parameters);
         }
-        
+
         $this->copyFramework($overwrite);
     }
-    
+
     protected function renderTemplateFile($file,$parameters = array())
     {
         $fs = new Filesystem();
@@ -167,12 +166,12 @@ class InitSymfonyCommand extends BaseInitCommand
         $fs->dumpFile($targetFile, $content);
         $this->io->write($targetFile);
     }
-    
+
     protected function copyFramework($overwrite = false)
     {
         $finder = new Finder();
         $fs = new Filesystem();
-        
+
         $finder
             ->files()
             ->in($this->getSymfonyDirectory())
@@ -188,31 +187,31 @@ class InitSymfonyCommand extends BaseInitCommand
             ->notName('README.md')
             ->notName('composer.json')
         ;
-        
+
         foreach ($finder as $file)
         {
             $fs->copy($file->getRealpath(), $this->getProjectRootDirectory().'/'.$file->getRelativePathname(), $overwrite);
         }
         $this->io->write('copied Framework Files');
     }
-    
+
     protected function getProjectRootDirectory()
     {
         return $this->getVendorDirectory().'/..';
     }
-    
+
     protected function getRootDirectory()
     {
         //return __DIR__.'/../../../../..';
         return getcwd();
     }
-    
+
     protected function getVendorDirectory()
     {
         //return __DIR__.'/../../../../..';
         return getcwd().'/vendor';
     }
-    
+
     protected function getSymfonyDirectory()
     {
         $path = $this->getVendorDirectory().'/symfony/framework-standard-edition';
@@ -222,27 +221,27 @@ class InitSymfonyCommand extends BaseInitCommand
         }
         return $path;
     }
-    
+
     protected function getAppKernelPath()
     {
         return $this->getAppDirectory().'/AppKernel.php';
     }
-    
+
     protected function getAppDirectory()
     {
         return $this->getProjectRootDirectory().'/app';
     }
-    
+
     protected function getConfigYmlPath()
     {
         return $this->getAppDirectory().'/config/config.yml';
     }
-    
+
     protected function getRoutingDevYmlPath()
     {
         return $this->getAppDirectory().'/config/routing_dev.yml';
     }
-    
+
     protected function getCoreBundleTemplatesDirectory()
     {
         $path = $this->getCoreBundleDirectory().'/Resources/views/Command/InitSymfonyCommand';
@@ -253,7 +252,7 @@ class InitSymfonyCommand extends BaseInitCommand
         }
         return $path;
     }
-    
+
     protected function getCoreBundleDirectory()
     {
         $path = $this->getVendorDirectory().'/c33s/core-bundle';
@@ -263,7 +262,7 @@ class InitSymfonyCommand extends BaseInitCommand
         }
         return $path;
     }
-    
+
     protected function generateSecret()
     {
         return Tools::generateRandomPassword();

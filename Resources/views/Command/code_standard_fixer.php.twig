@@ -1,21 +1,21 @@
 <?php
 
 $finder = Symfony\CS\Finder\DefaultFinder::create()
-	//->ignoreDotFiles()
-	//->ignoreUnreadableDirs()
-	->notName('AppCache.php')
-	->notName('AppKernel.php')
-	->notName('SymfonyRequirements.php')
-	//->notName('LICENSE')
-	//->notName('README.md')
-	//->notName('.php_cs')
-	//->notName('composer.*')
+    //->ignoreDotFiles()
+    //->ignoreUnreadableDirs()
+    ->notName('AppCache.php')
+    ->notName('AppKernel.php')
+    ->notName('SymfonyRequirements.php')
+    //->notName('LICENSE')
+    //->notName('README.md')
+    //->notName('.php_cs')
+    //->notName('composer.*')
     //->notName('phpunit.xml*')
     //->notName('*.phar')
     //->exclude('vendor')
     //->exclude('Symfony/CS/Tests/Fixer')
     //->notName('ElseifFixer.php')
-	//->exclude('app/cache/*')
+    //->exclude('app/cache/*')
     //->exclude('src/*/*/Model/map')
     //->exclude('src*/*/Model/om')
     ->exclude('Model')
@@ -26,21 +26,21 @@ $finder = Symfony\CS\Finder\DefaultFinder::create()
 
 return Symfony\CS\Config\Config::create()
     ->fixers(array
-	(
-		'linefeed', 
-		'trailing_spaces',
-		'unused_use',
-		'phpdoc_params',
-		'visibility',
-		'return',
-		'short_tag',
-		'include',
-		'php_closing_tag',
-		'extra_empty_lines',
-		'psr0',
-		'controls_spaces',
-		'elseif',
-		'eof_ending',
-	))
+    (
+        'linefeed',
+        'trailing_spaces',
+        'unused_use',
+        'phpdoc_params',
+        'visibility',
+        'return',
+        'short_tag',
+        'include',
+        'php_closing_tag',
+        'extra_empty_lines',
+        'psr0',
+        'controls_spaces',
+        'elseif',
+        'eof_ending',
+    ))
     ->finder($finder)
 ;

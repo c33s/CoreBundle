@@ -39,46 +39,46 @@ class InitConfigCommand extends BaseInitCommand
         $this->initTemplatesAndResources();
         $this->enableTranslationsInConfig();
     }
-    
+
     protected function createPropelFixturesDirectory()
     {
-        
+
         $propelFixturesDir = $this->getContainer()->get('kernel')->getRootDir().'/propel/fixtures';
         $this->fs->mkdir($propelFixturesDir);
     }
-    
+
     protected function rebuildBundles()
     {
         $bundles = array_reverse($this->getContainer()->getParameter('c33s_core.config.bundles'));
         $appKernel = $this->getContainer()->get('kernel')->getRootDir().'/AppKernel.php';
-        
+
         $this->removeBundles($appKernel);
         $this->cleanBaseImporter();
         $this->rebuildBaseImporter($bundles);
         $this->addBundles($appKernel,$bundles);
-        
+
         $this->io->write('added Bundles');
     }
-    
+
     protected function createSqlDataDirectory()
     {
         $sqlDataDir = $this->getContainer()->get('kernel')->getRootDir().'/data';
-        
+
         $fs = new Filesystem();
         $fs->mkdir($sqlDataDir);
         $fs->dumpFile($sqlDataDir.'/.gitkeep', " ");
     }
-    
+
     protected function rebuildBaseImporter($bundles)
     {
         $coreBundleConfigDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
-        
+
         $importerLines = array();
         $importerLines[] = 'imports:';
         foreach ($bundles as $bundle => $properties)
         {
             $path = $this->getBundleConfigPath($bundle);
-            
+
             if ($path !== false)
             {
                 $importerLines[] = "- { resource: @C33sCoreBundle/Resources/config/config/$bundle.yml }";
@@ -86,41 +86,41 @@ class InitConfigCommand extends BaseInitCommand
         }
         $fs = new Filesystem();
         $fs->dumpFile($coreBundleConfigDir.'/_base_importer.yml', implode("\n", $importerLines));
-        
+
         $this->addBaseImporterYmlToConfig();
-        
+
         $this->io->write('base importer rebuild');
     }
-    
+
     protected function cleanBaseImporter()
     {
         $coreBundleConfigDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
-        
+
         Tools::removeLineFromFile($this->getContainer()->get('kernel')->getRootDir().'/config/config.yml','- { resource: corebundle/_base_importer.yml }');
-        
+
         $fs = new Filesystem();
         $fs->remove($coreBundleConfigDir);
         $fs->mkdir($coreBundleConfigDir);
     }
-    
+
     protected function addBaseImporterYmlToConfig()
     {
         $configDir = $this->getContainer()->get('kernel')->getRootDir().'/config';
         Tools::addLineToFile($configDir.'/config.yml',"    - { resource: corebundle/_base_importer.yml }\n","- { resource: @C33sCoreBundle/Resources/config/config.yml }");
     }
-    
+
     protected function enableTranslationsInConfig()
     {
         $configFile = $this->getContainer()->get('kernel')->getRootDir().'/config/config.yml';
         $original = '#translator:      { fallback: "%locale%" }';
         $new = "    translator:      { fallback: \"%locale%\" }\n";
-        
+
         $this->io->write('enabling translations in main config');
-        
+
         Tools::removeLineFromFile($configFile, $original);
         Tools::addLineToFile($configFile, $new, 'esi:             ~');
     }
-    
+
     protected function getBundleConfigPath($bundle)
     {
         $path = false;
@@ -134,12 +134,12 @@ class InitConfigCommand extends BaseInitCommand
         }
         return $path;
     }
-    
+
     protected function removeBundles($appKernel)
     {
         Tools::cropFileByLine($appKernel,"//# Sub Bundles ###", "//### End Core Bundle ###,", 1, -1, true);
     }
-    
+
     protected function addBundles($appKernel, $bundles)
     {
         foreach ($bundles as $bundle => $properties)
@@ -151,11 +151,11 @@ class InitConfigCommand extends BaseInitCommand
             }
         }
     }
-    
+
     protected function renderFileFromTemplate($file, $targetDirectory = null, $parameters = array())
     {
         $parameters['asseticBundles'] = $this->asseticBundles;
-        
+
         parent::renderFileFromTemplate($file,$targetDirectory,$parameters);
     }
 }

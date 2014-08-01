@@ -2,7 +2,6 @@
 
 namespace C33s\CoreBundle\Command;
 
-
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -42,9 +41,7 @@ class DevelopCommand extends BaseInitCommand
         $name = 'Example Name';
         $this->generateLogo($name);
     }
-    
-    
-    
+
     protected function generateLogo($name)
     {
         $logoDirectory = $this->getContainer()->get('kernel')->getRootDir().'/../web/media/images';

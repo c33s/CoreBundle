@@ -26,6 +26,5 @@ class C33sCoreExtension extends Extension
         $loader->load('services.yml');
         $container->setParameter('c33s_core.config.twig_variables', $config['twig']);
         $container->setParameter('c33s_core.config.bundles', $config['bundles']);
-	//$container->setParameter('c33s_core.datahandler.config', $config['datahandler']);
     }
 }

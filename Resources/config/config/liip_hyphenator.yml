@@ -1,6 +1,6 @@
 liip_hyphenator:
-    language: de
-    hyphen: '&shy;'
+    language:   de
+    hyphen:     '&shy;'
     #left_min: 2
     #right_min: 2
     #word_min: 6

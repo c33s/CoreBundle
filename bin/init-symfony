@@ -20,13 +20,19 @@ function includeIfExists($file)
 
 if 
 (
-    (!$loader = includeIfExists(__DIR__.'/../vendor/autoload.php')) 
-&& (!$loader = includeIfExists(__DIR__.'/vendor/autoload.php')) 
-&& (!$loader = includeIfExists(__DIR__.'/../../../../../autoload.php'))
-&& (!$loader = includeIfExists(__DIR__.'/../../../../../../autoload.php'))
-&& (!$loader = includeIfExists(__DIR__.'/../../autoload.php'))
-&& (!$loader = includeIfExists(__DIR__.'/../../../../autoload.php'))
-) 
+// symlink from vendor/c33s/core-bundle/bin folder
+    (!$loader = includeIfExists(__DIR__.'/../../../autoload.php'))
+// copied script from project bin folder
+&&  (!$loader = includeIfExists(__DIR__.'/../vendor/autoload.php')) 
+
+// those should not be needed anymore
+//&& (!$loader = includeIfExists(__DIR__.'/../autoload.php'))
+//&& (!$loader = includeIfExists(__DIR__.'/../../autoload.php'))
+//&& (!$loader = includeIfExists(__DIR__.'/../../../autoload.php'))
+//&& (!$loader = includeIfExists(__DIR__.'/../../../../autoload.php'))
+//&& (!$loader = includeIfExists(__DIR__.'/../../../../../autoload.php'))
+//&& (!$loader = includeIfExists(__DIR__.'/../../../../../../autoload.php'))
+)
 {
     die('You must set up the project dependencies, run the following commands:'.PHP_EOL.
         'curl -sS https://getcomposer.org/installer | php'.PHP_EOL.
@@ -35,7 +41,6 @@ if
 
 use Symfony\Component\Console\Application;
 use C33s\CoreBundle\Command\InitSymfonyCommand;
-
 
 $console = new Application('Symfony Init', '1.0');
 $console->add(new InitSymfonyCommand());
