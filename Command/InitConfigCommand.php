@@ -81,7 +81,7 @@ class InitConfigCommand extends BaseInitCommand
 
             if ($path !== false)
             {
-                $importerLines[] = "- { resource: @C33sCoreBundle/Resources/config/config/$bundle.yml }";
+                $importerLines[] = "- { resource: '@C33sCoreBundle/Resources/config/config/$bundle.yml' }";
             }
         }
         $fs = new Filesystem();
