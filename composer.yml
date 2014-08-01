@@ -67,6 +67,7 @@ require:
     afarkas/html5shiv:                                              '3.7.2'
     components/font-awesome:                                        '4.1.0'
     fkr/cssurlrewrite-bundle:                                       '1.0.0'
+    kwipi/famfamfam-flags:                                          '0.1.2'
     oyejorge/less.php:                                              '1.7.0.2'
     ptachoire/cssembed:                                             '1.0.2'
     twbs/bootstrap:                                                 '3.2.0'
@@ -78,7 +79,7 @@ require:
     #twitter/bootstrap:                                              '3.2.0'
     
     ### admin generator ########################################################
-    avocode/form-extensions-bundle:                                 '0.1.3'
+    avocode/form-extensions-bundle:                                 '0.1.4'
     cedriclombardot/admingenerator-generator-bundle:                '1.1.2'
     white-october/pagerfanta-bundle:                                '1.0.2'
     
@@ -106,7 +107,7 @@ require:
     ### tagme packages served by satis.c33s.net ################################
     # html & css
     braincrafted/bootstrap-bundle:                                  '2.1.0'
-    jaysalvat/vegas:                                                '0.99.1'
+    jaysalvat/vegas:                                                '0.99.3'
     mnot/hinclude:                                                  '0.9.5.2'
     # general
     smoya/asset-management-bundle:                                  '1.0.1'
