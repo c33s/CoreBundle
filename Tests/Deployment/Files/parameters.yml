@@ -39,6 +39,8 @@ parameters:
     mailer_host: null
     mailer_user: null
     mailer_password: null
+    mailer_encryption: ssl
+    mailer_spool_type: memory
     node.bin: /usr/bin/node
     
     # Symfony 2.5+
