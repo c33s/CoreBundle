@@ -7,9 +7,10 @@
 
 {% macro addressPhone(class='',www=false) %}
     <address class="{{ class|default('') }}">
-        <abbr title="phone"><i class="fa fa-phone"></i></abbr> {{ c33s_core_config.contact.phone }}<br>
-        <abbr title="fax"><i class="fa fa-print"></i></abbr> {{ c33s_core_config.contact.fax }}<br>
-        <abbr title="email"><i class="fa fa-envelope"></i></abbr> <a href="mailto:{{ c33s_core_config.contact.mail|lower }}">{{ c33s_core_config.contact.mail|lower }}</a>
+        {% if c33s_core_config.contact.phone is not empty %}<abbr title="phone"><i class="fa fa-phone"></i></abbr> {{ c33s_core_config.contact.phone }}<br>{% endif %}
+        {% if c33s_core_config.contact.mobile is not empty %}<abbr title="phone"><i class="fa fa-mobile"></i></abbr> {{ c33s_core_config.contact.mobile }}<br>{% endif %}
+        {% if c33s_core_config.contact.fax is not empty %}<abbr title="fax"><i class="fa fa-print"></i></abbr> {{ c33s_core_config.contact.fax }}<br>{% endif %}
+        {% if c33s_core_config.contact.mail is not empty %}<abbr title="email"><i class="fa fa-envelope"></i></abbr> <a href="mailto:{{ c33s_core_config.contact.mail|lower }}">{{ c33s_core_config.contact.mail|lower }}</a>{% endif %}
         {% if www|default(false) == true %}<br><abbr title="webpage"><i class="fa fa-link"></i></abbr> {{ c33s_core_config.contact.www }}{% endif %}
     </address>
 {% endmacro %}
