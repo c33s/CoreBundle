@@ -61,6 +61,48 @@ sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs app/
 
 If this goes well, you should see some example pages as well as a secured admin login when accessing /admin/.
 
+## Features
+
+### Propel Model Traits
+A helper Trait which can be used to extend your propel model classes, to easily load data from your fixtures for 1:n relations. The data can be directly defined in the fixture file for the object which the data is related to.
+
+
+By extending your class like this:
+
+ACME/ModelBundle/YourPropelObject.php
+```
+class YourPropelObject extends BaseYourPropelObject
+{
+    use \c33s\ModelBundle\Traits\PropelModelTraits;
+
+    public function setYourDataFromArray($data)
+    {
+	$properties = array
+	(
+	    'model' => 'ACME\\ModelBundle\\Model\\YourExtraModel',
+	);
+
+	return $this->setRelationFromDataArray($data, $properties);
+    }
+```
+you can define fixtures like this:
+
+app/propel/fixtures/yourfixtures.yml
+```
+ACME\ModelBundle\Model\YourPropelObject:
+    YourPropelObject_1:
+	 	# normal m:n relation fixtures
+        object_has_groups:
+            - Group_1
+            - Group_2
+     	# load 
+        your_data_from_array:
+            - name: your data name1
+              type:  type1
+            - value: your data name2
+              type:  type2
+```
+
 
 <!-- === references ============================================================================ -->
 <!-- badges -->
