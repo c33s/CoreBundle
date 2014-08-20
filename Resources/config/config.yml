@@ -20,6 +20,8 @@ c33s_core:
             class:  Bazinga\Bundle\PropelEventDispatcherBundle\BazingaPropelEventDispatcherBundle
         braincrafted_bootstrap:
             class:  Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle
+        c33s_contact_form:
+            class:  C33s\ContactFormBundle\C33sContactFormBundle
         c33s_static_page_content:
             class:  c33s\StaticPageContentBundle\c33sStaticPageContentBundle
         c33s_attachment:
