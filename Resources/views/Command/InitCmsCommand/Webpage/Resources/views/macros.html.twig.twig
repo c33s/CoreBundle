@@ -1,4 +1,14 @@
 {% verbatim %}
+{% macro name() %}
+{% filter trim %}
+    {% if c33s_core_config.contact.title is not empty %}{{ c33s_core_config.contact.title ~ ' ' }}{% endif %}
+    {% if c33s_core_config.contact.firstname is not empty %}{{ c33s_core_config.contact.firstname ~ ' ' }}{% endif %}
+    {% if c33s_core_config.contact.middlename is not empty %}{{ c33s_core_config.contact.middlename ~ ' ' }}{% endif %}
+    {% if c33s_core_config.contact.lastname is not empty %}{{ c33s_core_config.contact.lastname ~ ' ' }}{% endif %}
+    {% if c33s_core_config.contact.post_title is not empty %}{{ ', ' ~ c33s_core_config.contact.post_title }}{% endif %}
+{% endfilter %}
+{% endmacro %}
+
 {% macro address(class='',www=false) %}
     {% import _self as macros %}
     {{ macros.addressStreet(class) }}
