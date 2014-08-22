@@ -5,7 +5,7 @@
     {% if c33s_core_config.contact.firstname is not empty %}{{ c33s_core_config.contact.firstname ~ ' ' }}{% endif %}
     {% if c33s_core_config.contact.middlename is not empty %}{{ c33s_core_config.contact.middlename ~ ' ' }}{% endif %}
     {% if c33s_core_config.contact.lastname is not empty %}{{ c33s_core_config.contact.lastname ~ ' ' }}{% endif %}
-    {% if c33s_core_config.contact.post_title is not empty %}{{ ', ' ~ c33s_core_config.contact.post_title }}{% endif %}
+    {% if c33s_core_config.contact.title_post is not empty %}{{ ', ' ~ c33s_core_config.contact.title_post }}{% endif %}
 {% endfilter %}
 {% endmacro %}
 
