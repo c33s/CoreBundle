@@ -11,6 +11,9 @@ webpagebundle_redirects:
 #{{ name.underscore }}_{{ bundlename | underscore }}_static_subfolder:
 #    pattern:  /{subfolder}/{name}
 #    defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show" }
+contact_form:
+    resource: "@C33sContactFormBundle/Resources/config/routing/contact_form.yml"
+    prefix:   /
 {{ name.underscore }}_{{ bundlename | underscore }}_static:
     pattern:  /{name}
     defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show" }

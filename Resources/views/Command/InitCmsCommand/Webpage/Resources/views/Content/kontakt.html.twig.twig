@@ -1,22 +1,31 @@
 {% verbatim %}
+<script src="{{ asset('media/components/form/jquery.form.js') }}"></script>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <img class="pull-left img-rounded img-responsive" src="{{ asset(('media/images/content/contact/contact.jpg') | imagine_filter('fourblock')) }}" alt="" />
             <span class="clearfix"></span>
             <br>
-            <p>
-                {% if is_mobile() %}
-                    <a class="btn btn-primary" href="tel:{{ c33s_core_config.contact.phone|replace({' ': ''})}}" role="button"><i class="fa fa-phone"></i></abbr> anrufen &raquo;</a>
-                {% endif %}
-            </p>
+            {% set message %}
+                <div class="alert alert-success">
+                    {% trans %}Anfrage erfolgreich Versendet.{% endtrans %}
+                </div>
+            {% endset %}
+            {{ render(controller('C33sContactFormBundle:ContactForm:form', { 'use_ajax': true, 'success_message': message })) }}
+
+
         </div>
         <div class="col-md-6">
             <h3>{{ c33s_core_config.contact.company }}</h3>
             <h4>{{ macros.name() }}</h4>
 
             {{ macros.address() }}
- 
+            {#{ macros.addressPhone() }#}
+            <p>
+                {% if is_mobile() %}
+                    <a class="btn btn-primary" href="tel:{{ c33s_core_config.contact.phone|replace({' ': ''})}}" role="button"><i class="fa fa-phone"></i></abbr> anrufen &raquo;</a>
+                {% endif %}
+            </p>
         </div>
     </div>
 </div>
