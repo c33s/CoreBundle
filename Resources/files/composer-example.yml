@@ -13,6 +13,9 @@ autoload:
 repositories:
   - type: composer
     url: http://satis.c33s.net
+# example for using a fork repo
+#  - type: vcs
+#    url: https://github.com/c33s/ContactFormBundle.git
 
 require:
     symfony/framework-standard-edition: '2.3.*'
