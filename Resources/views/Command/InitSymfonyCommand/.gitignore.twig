@@ -14,7 +14,6 @@
 # application ##########
 /tmp
 /app/data/*
-!app/data/.gitkeep
 /composer.json.bak
 
 # IDE ##################
@@ -27,6 +26,7 @@
 /web/upload/*
 /web/assetic/*
 /web/js/*
+/web/media/storage/*
 
 # propel ###############
 /web/app/propel/graph/*
@@ -36,6 +36,15 @@
 /app/propel/sql/sqldb.map
 *.dot
 
+# propel blacklist models ###########
+# ignore models to only whitelist changed ones
+#/src/{{ name.camelcase }}/ModelBundle/Model/*
+
+### admingenerator blacklist generated #######
+# whitelist below
+#/src/{{ name.camelcase }}/AdminGenBundle/Form/*
+#/src/{{ name.camelcase }}/AdminGenBundle/Controller/*/*
+#/src/{{ name.camelcase }}/AdminGenBundle/Resources/views/*/*
 
 #temp ignores
 /behat.phar
@@ -49,3 +58,6 @@
 !/app/logs/.gitkeep
 !/app/data/.gitkeep
 
+# allow specific, changed models
+#!/src/{{ name.camelcase }}/ModelBundle/Model/ExampleQuery.php
+#!/src/{{ name.camelcase }}/AdminGenBundle/Resources/views/ExampleNew/index.html.twig
