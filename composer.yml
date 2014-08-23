@@ -45,7 +45,7 @@ require:
     c33s/menu-bundle:                                               '0.9.*'
     c33s/simple-content-bundle:                                     '0.9.*'
     c33s/static-page-content-bundle:                                '1.1.*'
-    c33s/contact-form-bundle:                                       '0.1.0'
+    c33s/contact-form-bundle:                                       '0.1.*'
     ### symfony ################################################################
     symfony/symfony:                                                '~2.3'
     
