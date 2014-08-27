@@ -36,7 +36,7 @@
         "c33s/menu-bundle": "0.9.*",
         "c33s/simple-content-bundle": "0.9.*",
         "c33s/static-page-content-bundle": "1.1.*",
-        "c33s/contact-form-bundle": "0.1.*",
+        "c33s/contact-form-bundle": "0.2.*",
         "symfony/symfony": "~2.3",
         "havvg/propel-boolean-extra-behavior": "1.1.2",
         "propel/propel-bundle": "~1.2",
