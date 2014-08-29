@@ -19,12 +19,13 @@ class SecurityHelper
     protected $router;
     //protected $
 
-    public function __construct($securityContext, $eventDispatcher, $request, $router)
+    public function __construct($securityContext, $eventDispatcher, $request, $router, $logger)
     {
         $this->securityContext = $securityContext;
         $this->eventDispatcher = $eventDispatcher;
         $this->request         = $request;
         $this->router          = $router;
+        $this->logger          = $logger;
     }
 
     public function setFirewall($firewall)
@@ -46,19 +47,30 @@ class SecurityHelper
         $this->eventDispatcher->dispatch('security.interactive_login', $event);
     }
 
-    public function redirectRole($role, $route, $status = 302)
+    public function redirectRole($roleRrouteSets, $defaultUrl = '/', $status = 302)
     {
-        if ($this->securityContext->isGranted($role))
+//        $roles = $this->securityContext->getToken()->getRoles();
+//        $roles_ = '';
+//        $this->logger->debug('c33s.security_helper.redirect_role: Required Role for redirect: "'.$role.'".');
+//        $this->logger->debug('c33s.security_helper.redirect_role: User Roles: "'.$roles_.'".');
+
+        $url = $defaultUrl;
+
+        foreach ($roleRrouteSets as $role => $route)
         {
+            if ($this->securityContext->isGranted($role))
+            {
+                $url = $this->router->generate($route, $parameters = array(), $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH);
+    //            $this->logger->debug('c33s.security_helper.redirect_role: Redirecting to "'.$route.'"');
+                return new RedirectResponse($url, $status);
+            }
+        }
+
+        return new RedirectResponse($url, $status);
             //'IS_AUTHENTICATED_REMEMBERED'
             // authenticated REMEMBERED, FULLY will imply REMEMBERED (NON anonymous)
-            $url = $this->router->generate($route, $parameters = array(), $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH);
-
-            return new RedirectResponse($url, $status);
-        }
+//        $this->logger->debug('c33s.security_helper.redirect_role: No redirect.');
     }
-
-
     // UPSF2.4 Prepeare for upgrade prepeare for symfony 2.4 upgrade
 //    public function setRequest(RequestStack $request_stack)
 //    {
