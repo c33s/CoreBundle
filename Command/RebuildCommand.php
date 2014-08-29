@@ -76,13 +76,17 @@ class RebuildCommand extends ContainerAwareCommand
     protected function addCreateFosUsersToCommandSet()
     {
 	$users = $this->getContainer()->getParameter('fos_users');
-	foreach ($users as $key => $user)
-	{
-		$this->commandSets[] = array('description' => 'fos:user:create', 'command' => "php app/console fos:user:create ${user['name']} ${user['email']} ${user['password']}");
-		foreach ($user['roles'] as $role)
-		{
-			$this->commandSets[] = array('description' => 'fos:user:promote', 'command' => "php app/console fos:user:promote ${user['name']} ${role}");
-		}
-	}
+        if (is_array($users))
+        {
+
+            foreach ($users as $key => $user)
+            {
+                    $this->commandSets[] = array('description' => 'fos:user:create', 'command' => "php app/console fos:user:create ${user['name']} ${user['email']} ${user['password']}");
+                    foreach ($user['roles'] as $role)
+                    {
+                            $this->commandSets[] = array('description' => 'fos:user:promote', 'command' => "php app/console fos:user:promote ${user['name']} ${role}");
+                    }
+            }
+        }
     }
 }
