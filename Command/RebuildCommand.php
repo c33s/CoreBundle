@@ -21,11 +21,11 @@ class RebuildCommand extends ContainerAwareCommand
 	array('description' => 'cache:clear', 'command' => 'php app/console cache:clear'),
 	array('description' => 'cache:clear', 'command' => 'php app/console cache:clear --env=prod'),
 	array('description' => 'propel:build', 'command' => 'php app/console propel:build --insert-sql'),
-	array('description' => 'propel:fixtures:load', 'command' => 'php app/console propel:fixtures:load'),
+	
 	//-- array('description' => 'propel:graphviz:generate', 'command' => 'php ./app/console propel:graphviz:generate'),
 	//-- array('description' => '', 'command' => 'dot -Tpdf ./app/propel/graph/default.schema.dot -o ./schema.pdf'),
 	array('description' => 'assets:install', 'command' => 'php app/console assets:install'),
-	array('description' => 'cache:warmup', 'command' => 'app/console cache:warmup'),
+	array('description' => 'cache:warmup', 'command' => 'php app/console cache:warmup'),
 
 	
     );
@@ -40,6 +40,12 @@ class RebuildCommand extends ContainerAwareCommand
                InputOption::VALUE_NONE,
                'If set, the task will overwrite the existing config files'
             )
+	    ->addOption(
+               'update',
+               null,
+               InputOption::VALUE_NONE,
+               'If set Fos user password and roles get updated and not created'
+            )
         ;
 	
     }
@@ -48,8 +54,21 @@ class RebuildCommand extends ContainerAwareCommand
     {
 	$fs = new Filesystem();
 	$fs->mkdir('app/data');
-		
-	$this->addCreateFosUsersToCommandSet();
+
+        if ( $input->getOption('update'))
+        {
+            $this->addLoadPropelFixtures();
+            $this->addCreateFosUsersUpdateToCommandSet();
+        }
+        else
+        {
+            $this->addCreateFosUsersToCommandSet();
+            $this->addLoadPropelFixtures();
+        }
+
+
+        //var_dump($this->commandSets);
+        
 	$this->runCommandSets($input,$output);
     }
     
@@ -57,6 +76,7 @@ class RebuildCommand extends ContainerAwareCommand
     {
 	foreach ($this->commandSets as $commandSet)
 	{
+
 	    $output->writeln(sprintf('Running <comment>%s</comment>', $commandSet['description']));
 	    $process = new Process($commandSet['command']);
 	    $process->run(function ($type, $buffer)
@@ -78,15 +98,57 @@ class RebuildCommand extends ContainerAwareCommand
 	$users = $this->getContainer()->getParameter('fos_users');
         if (is_array($users))
         {
+            $fosCommandSet = array();
 
             foreach ($users as $key => $user)
             {
-                    $this->commandSets[] = array('description' => 'fos:user:create', 'command' => "php app/console fos:user:create ${user['name']} ${user['email']} ${user['password']}");
-                    foreach ($user['roles'] as $role)
-                    {
-                            $this->commandSets[] = array('description' => 'fos:user:promote', 'command' => "php app/console fos:user:promote ${user['name']} ${role}");
-                    }
+                $fosCommandSet[] = array('description' => 'fos:user:create', 'command' => "php app/console fos:user:create ${user['name']} ${user['email']} '${user['password']}'");
+                foreach ($user['roles'] as $role)
+                {
+                    $fosCommandSet[] = array('description' => 'fos:user:promote', 'command' => "php app/console fos:user:promote ${user['name']} ${role}");
+                }
             }
+//            $fosCommandSet[] = array('description' => 'propel:fixtures:load', 'command' => 'php app/console propel:fixtures:load');
+            $this->commandSets = array_merge($this->commandSets, $fosCommandSet);
+//            $fosCommandSet = array_reverse($fosCommandSet);
+//
+//            foreach($fosCommandSet as $fosCommand)
+//            {
+//                array_unshift($this->commandSets, $fosCommand);
+//            }
+        }
+    }
+
+    protected function addLoadPropelFixtures()
+    {
+        $this->commandSets[] = array('description' => 'propel:fixtures:load', 'command' => 'php app/console propel:fixtures:load');
+    }
+
+    protected function addCreateFosUsersUpdateToCommandSet()
+    {
+	$users = $this->getContainer()->getParameter('fos_users');
+        if (is_array($users))
+        {
+            $fosCommandSet = array();
+
+            foreach ($users as $key => $user)
+            {
+                $fosCommandSet[] = array('description' => 'fos:user:change-password', 'command' => "php app/console fos:user:change-password ${user['name']} '${user['password']}'");
+                $fosCommandSet[] = array('description' => 'fos:user:demote', 'command' => "php app/console fos:user:demote --super ${user['name']}");
+
+                foreach ($user['roles'] as $role)
+                {
+                    $fosCommandSet[] = array('description' => 'fos:user:promote', 'command' => "php app/console fos:user:promote ${user['name']} ${role}");
+                }
+            }
+            //$fosCommandSet[] = array('description' => 'propel:fixtures:load', 'command' => 'php app/console propel:fixtures:load');
+
+            $this->commandSets = array_merge($this->commandSets, $fosCommandSet);
+//            $fosCommandSet = array_reverse($fosCommandSet);
+//            foreach($fosCommandSet as $fosCommand)
+//            {
+//                array_unshift($this->commandSets, $fosCommand);
+//            }
         }
     }
 }
