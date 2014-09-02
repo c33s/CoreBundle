@@ -5,12 +5,14 @@ webpagebundle_redirects:
     resource: "@{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/Controller/"
     type:     annotation
     prefix:   /
+{{ name.underscore }}_{{ bundlename | underscore }}_webpage:
+    resource: "@{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/Controller/"
+    type:     annotation
+    prefix:   /
 {{ name.underscore }}_{{ bundlename | underscore }}_default_homepage:
     pattern:  /
-    defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show", name: home }
-#{{ name.underscore }}_{{ bundlename | underscore }}_static_subfolder:
-#    pattern:  /{subfolder}/{name}
-#    defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show" }
+    defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:Home:index" }
+
 contact_form:
     resource: "@C33sContactFormBundle/Resources/config/routing/contact_form.yml"
     prefix:   /

@@ -1,0 +1,24 @@
+<?php
+
+namespace {{ name.camelcase }}\{{ bundlename | camelcase }}Bundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
+/**
+ * @Template
+ * @Route("/")
+ */
+class HomeController extends Controller
+{
+
+    /**
+     *
+     * @Route("/")
+     */
+    public function indexAction()
+    {
+        return array();
+    }
+}

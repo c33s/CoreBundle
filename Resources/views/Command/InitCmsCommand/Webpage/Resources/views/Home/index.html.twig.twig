@@ -1,12 +1,19 @@
 {% verbatim %}
+
+{% extends "{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle::baseWebpage.html.twig" %}
+
+{% import _self as macro %}
+
+{% block content %}
 <section id="home" class="box">
     <div class="jumbotron">
+    {# <div class="jumbotron" style="background-image: url('{{ asset(('media/images/temp/header.jpg') | imagine_filter('header')) }}');"> #}
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <h2><i class="fa fa-star-o"></i> {{ c33s_core_config.app.name }}</h2>
                     <p>
-                        
+
                     </p>
                     {#<div class="container"> #}
                         <div class="row">
@@ -17,7 +24,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <p>
-                                
+
                                     <span class="pull-right hidden-xs">
                                         <a href="#" class="btn btn-lg btn-primary">Action2 &raquo;</a>
                                     </span>
@@ -33,9 +40,10 @@
                     <h2><i class="glyphicon glyphicon-star-empty"></i> Glyphicons work, too!</h2>
                     {#{ 'xxxxxxxxx'|youtube }#}
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
 </section>
 <br>
+{% endblock home %}
 {% endverbatim %}
