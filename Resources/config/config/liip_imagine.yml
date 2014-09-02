@@ -88,6 +88,11 @@ liip_imagine:
             filters:
                 strip: ~
                 thumbnail: { size: [128, 128], mode: outbound }
+        icon128b:
+            quality: 85
+            filters:
+                strip: ~
+                thumbnail: { size: [128, 128], mode: inset  }
         gallery:
             quality: 85
             filters:
