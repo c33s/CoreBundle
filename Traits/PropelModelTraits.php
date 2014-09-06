@@ -1,6 +1,6 @@
 <?php
 
-namespace c33s\ModelBundle\Traits;
+namespace c33s\CoreBundle\Traits;
 
 use Propel\PropelBundle\Util\PropelInflector;
 
@@ -12,6 +12,8 @@ trait PropelModelTraits
 	$modelClassName = str_replace('//', '/', $modelName);          //ACME\ModelBundle\Model\ObjectItem
 	$modelShortClassName = substr(strrchr($modelName, "\\"), 1);   //ObjectItem
 	$namespace = substr($modelName, 0, strrpos($modelName, '\\')); //ACME\ModelBundle\Model
+
+        $findMethod = $this->getFindMethod($properties);
 
 	$objectPeer = $namespace.'\\'.$modelShortClassName.'Peer';
 	$tableMap = \Propel::getDatabaseMap($objectPeer::DATABASE_NAME)->getTable($objectPeer::TABLE_NAME);
@@ -28,25 +30,12 @@ trait PropelModelTraits
 	    {
 		$columnName = ucfirst(PropelInflector::camelize($key));
 
-		if (is_callable(array($item, $method = 'set'.$columnName))) {
-
-		    if ($tableMap->hasRelation($columnName))
-		    {
-			$findMethod = 'findOneBySlug';
-
-			$objectQuery = $namespace.'\\'.$columnName.'Query';
-			$relatedObject = $objectQuery::create()->$findMethod($value);
-
-			if (!$relatedObject)
-			{
-			    throw new \InvalidArgumentException(sprintf('No Related Object found with id "%s" with the Class "%s".', $value, $namespace.'\\'.$columnName));
-			}
-			$value = $relatedObject;
-		    }
-
+		if (is_callable(array($item, $method = 'set'.$columnName)))
+                {
+                    $value = $this->handleRelation($tableMap, $columnName, $namespace, $findMethod);
 		    $item->$method($value);
-
-		} else {
+		} else
+                {
 		    throw new \InvalidArgumentException(sprintf('Column "%s" does not exist for class "%s".', $key, get_class($item)));
 		}
 	    }
@@ -63,5 +52,33 @@ trait PropelModelTraits
 	}
 
 	return false;
+    }
+
+    protected function getFindMethod($properties)
+    {
+        if (array_key_exists($properties['find_method']))
+        {
+            return $properties['find_method'];
+        }
+        else
+        {
+            return 'findOneBySlug';
+        }
+    }
+
+    protected function handleRelation($value, $tableMap, $columnName, $namespace, $findMethod)
+    {
+        if ($tableMap->hasRelation($columnName))
+        {
+            $objectQuery = $namespace.'\\'.$columnName.'Query';
+            $relatedObject = $objectQuery::create()->$findMethod($value);
+
+            if (!$relatedObject)
+            {
+                throw new \InvalidArgumentException(sprintf('No Related Object found with id "%s" with the Class "%s".', $value, $namespace.'\\'.$columnName));
+            }
+            $value = $relatedObject;
+        }
+        return $value;
     }
 }
