@@ -8,10 +8,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-           	<a class="" href="{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_dashboard') }}">
+           	<a class="" href="{{ path('{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_dashboard') }}">
                <img class="navbar-brand-logo pull-left img-rounded-small" src="{{ asset(('media/images/logo.png') | imagine_filter('adminlogotop')) }}" alt="" id="logo" />
             </a>
-            <a class="navbar-brand" href="{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_dashboard') }}">
+            <a class="navbar-brand" href="{{ path('{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_dashboard') }}">
                  {{ c33s_core_config.app.name_short }} admin
             </a>
         </div>

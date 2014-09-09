@@ -1,12 +1,12 @@
 c33s_menu:
     definitions:
         webpage_admin:
-            {{ name.underscore }}_admin_default_homepage: #dummy
+            {{ name|lower }}_admin_default_homepage: #dummy
                 title:                  Admin dashboard
                 require_role:                       ROLE_ADMIN
                 item_class:             c33s\MenuBundle\Item\MenuItem
                 #item_class:             user_control
                 children:
-                    {{ name.underscore }}_admin_default_homepage:
+                    {{ name|lower }}_admin_default_homepage:
                         title:                  Admin Dashboard
                         item_class:             c33s\MenuBundle\Item\MenuItem

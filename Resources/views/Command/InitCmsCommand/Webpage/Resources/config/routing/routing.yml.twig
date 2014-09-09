@@ -1,22 +1,20 @@
 webpagebundle_redirects:
     resource: redirects.yml
     
-{{ name.underscore }}_{{ bundlename | underscore }}:
+{{ name|lower }}_{{ bundlename | underscore }}:
     resource: "@{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/Controller/"
     type:     annotation
     prefix:   /
-{{ name.underscore }}_{{ bundlename | underscore }}_webpage:
-    resource: "@{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/Controller/"
-    type:     annotation
-    prefix:   /
-{{ name.underscore }}_{{ bundlename | underscore }}_default_homepage:
+
+{{ name|lower }}_{{ bundlename | underscore }}_default_homepage:
     pattern:  /
     defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:Home:index" }
 
 contact_form:
     resource: "@C33sContactFormBundle/Resources/config/routing/contact_form.yml"
     prefix:   /
-{{ name.underscore }}_{{ bundlename | underscore }}_static:
+	
+{{ name|lower }}_{{ bundlename | underscore }}_static:
     pattern:  /{name}
     defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show" }
     requirements:

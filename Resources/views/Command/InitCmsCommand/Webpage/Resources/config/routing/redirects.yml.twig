@@ -1,4 +1,4 @@
-{{ name.underscore }}_{{ bundlename | underscore }}_redirect_example:
+{{ name|lower }}_{{ bundlename | underscore }}_redirect_example:
     path:     /example/
     defaults:
         _controller: FrameworkBundle:Redirect:urlRedirect
@@ -10,7 +10,7 @@
 # Legacy Hompage Redirects
 ################################################################################
 
-{{ name.underscore }}_{{ bundlename | underscore }}_redirect_legacy_1:
+{{ name|lower }}_{{ bundlename | underscore }}_redirect_legacy_1:
     path:     /legacy.html
     defaults:
         _controller: FrameworkBundle:Redirect:urlRedirect
