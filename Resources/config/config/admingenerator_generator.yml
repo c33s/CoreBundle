@@ -8,3 +8,7 @@ admingenerator_generator:
     base_admin_template: C33sCoreBundle::admin-base.html.twig
     #base_admin_template: AdmingeneratorGeneratorBundle::base_admin.html.twig
     # base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
+
+parameters:
+    admingenerator.fieldguesser.propel.class:   'C33s\CoreBundle\Admingenerator\Guesser\PropelORMFieldGuesser'
+    
