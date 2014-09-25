@@ -66,7 +66,7 @@ trait PropelModelTraits
         return 'findOneBySlug';
     }
 
-    protected function handleRelation($value, $tableMap, $columnName, $namespace, $findMethod)
+    protected function handleRelation($value, \TableMap $tableMap, $columnName, $namespace, $findMethod)
     {
         if ($tableMap->hasRelation($columnName))
         {

@@ -3,10 +3,11 @@
 
 namespace C33s\CoreBundle\Service;
 
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 //https://stackoverflow.com/questions/13957652/login-in-controller-with-fosuserbundle
 
@@ -38,7 +39,7 @@ class SecurityHelper
     }
 
     //https://stackoverflow.com/questions/14512664/how-to-programmatically-authenticate-a-user
-    public function autoLogin($user)
+    public function autoLogin(UserInterface $user)
     {
         $token = new UsernamePasswordToken($user, $user->getPassword(), $this->firewall, $user->getRoles());
         $this->securityContext->setToken($token);
