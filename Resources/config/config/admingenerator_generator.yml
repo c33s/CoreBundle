@@ -11,4 +11,3 @@ admingenerator_generator:
 
 parameters:
     admingenerator.fieldguesser.propel.class:   'C33s\CoreBundle\Admingenerator\Guesser\PropelORMFieldGuesser'
-    

@@ -10,7 +10,7 @@
                 {% endjavascripts %}
             {% endif %}
             <title>{% block meta_title %}{{ c33s_core_config.page.title }}{% endblock %}</title>
-            
+
             <meta charset="{% block meta_charset %}utf-8{% endblock %}" />
             <meta name="description" content="{% block meta_description %}{{ c33s_core_config.page.description }}{% endblock %}">
             <meta name="author" content="{% block meta_author %}{{ c33s_core_config.page.authors|join(', ') }}{% endblock %}">
@@ -53,23 +53,23 @@
             {% block noscript %}
             {% endblock %}
             </noscript>
-            
+
             {% block message %}
             {#% include 'messages.html.twig' with {'messages': messages }} %#}
             {% include 'C33sCoreBundle::messages.html.twig' %}
             {% endblock %}
-            
+
             {% block header %}{% endblock %}
             {% block content_pre %}{% endblock %}
             {% block content %}{% endblock %}
             {% block content_post %}{% endblock %}
-            
+
             {% block footer_pre %}<footer class="footer">{% endblock %}
             {% block footer %}
                     &copy; {% block footer_company %}{{ c33s_core_config.app.name }}{% endblock %}{% block footer_predate %}{% endblock %}{{ "now"|date("Y") }}{% block footer_postdate %}{% endblock %}
             {% endblock %}
             {% block footer_post %}</footer>{% endblock %}
-            
+
             {% block body_end %}{% endblock %}
         {% endblock %} {# body #}
         {% block javascripts %}
@@ -83,13 +83,13 @@
                     <script src="{{ asset_url }}"></script>
                 {% endjavascripts %}
             {% endif %}
-            
+
             {% javascripts output='media/generated/js/jquery.cookie.js' combine=true
                 'media/components/jquery-cookie/jquery.cookie.js'
             %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
-            
+
             {{ render_assets('js') }}
             {{ render_assets('inline_js') }}
         {% endblock %}

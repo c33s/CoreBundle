@@ -52,35 +52,6 @@ class InitSymfonyCommand extends BaseInitCommand
         $this->addCoreBundle();
         $this->addConfigYml();
         $this->cleanConfig();
-
-        //$this->postInstall($output);
-    }
-
-    protected function postInstall(OutputInterface $output)
-    {
-        //how to run 'Incenteev\ParameterHandler\ScriptHandler::buildParameters' here?
-        //'Sensio\Bundle\DistributionBundle\Composer\ScriptHandler::buildBootstrap',
-        //
-        //new Incenteev\ParameterHandler\Processor();
-        //use Composer\IO\IOInterface;
-        //SensioScriptHandler::doBuildBootstrap($this->getAppDirectory());
-        //$this->getAppDirectory()
-        //need a composer instance
-
-//        $output->writeln(sprintf('Running <comment>%s</comment>', "$composer $composerScript"));
-//        $process = new Process("composer.phar run-script post-update-cmd");
-//
-//        $process->run(function ($type, $buffer)
-//        {
-//        if (Process::ERR === $type)
-//        {
-//                echo $buffer;
-//        }
-//        else
-//        {
-//                echo $buffer;
-//        }
-//        });
     }
 
     protected function addCoreBundle()
@@ -192,6 +163,7 @@ class InitSymfonyCommand extends BaseInitCommand
         {
             $fs->copy($file->getRealpath(), $this->getProjectRootDirectory().'/'.$file->getRelativePathname(), $overwrite);
         }
+
         $this->io->write('copied Framework Files');
     }
 
@@ -202,13 +174,11 @@ class InitSymfonyCommand extends BaseInitCommand
 
     protected function getRootDirectory()
     {
-        //return __DIR__.'/../../../../..';
         return getcwd();
     }
 
     protected function getVendorDirectory()
     {
-        //return __DIR__.'/../../../../..';
         return getcwd().'/vendor';
     }
 
@@ -219,6 +189,7 @@ class InitSymfonyCommand extends BaseInitCommand
         {
             throw new \Exception('Symfony Framwork Standard Edition not found');
         }
+
         return $path;
     }
 
@@ -245,11 +216,11 @@ class InitSymfonyCommand extends BaseInitCommand
     protected function getCoreBundleTemplatesDirectory()
     {
         $path = $this->getCoreBundleDirectory().'/Resources/views/Command/InitSymfonyCommand';
-        //var_dump($path);
         if (!realpath($path))
         {
             throw new \Exception('C33sCoreBundle Templates not found');
         }
+
         return $path;
     }
 
@@ -260,6 +231,7 @@ class InitSymfonyCommand extends BaseInitCommand
         {
             throw new \Exception('C33sCoreBundle not found');
         }
+
         return $path;
     }
 

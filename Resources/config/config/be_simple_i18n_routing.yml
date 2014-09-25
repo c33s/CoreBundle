@@ -1,4 +1,3 @@
 be_simple_i18n_routing:
     attribute_translator:
         type: translator
-        

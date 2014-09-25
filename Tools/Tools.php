@@ -35,12 +35,12 @@ class Tools
 
         return $bytes;
     }
-    
+
     public static function removeLineFromFile($file, $stringToRemove)
     {
         $lines = file($file);
         $lineCount = count($lines);
-        
+
         for($i=0; $i < $lineCount; $i++)
         {
             if (strstr($lines[$i], $stringToRemove))
@@ -48,10 +48,10 @@ class Tools
                 unset($lines[$i]);
             }
         }
-        
+
         file_put_contents($file, $lines);
     }
-    
+
     /**
      *
      * @param type $file
@@ -73,7 +73,7 @@ class Tools
         {
             $lines = file($file);
         }
-        
+
         $start = Tools::stringPosInArray($lines,$startLinePattern,0);
         if ($startLinePattern !== false && $start === false)
         {
@@ -85,7 +85,7 @@ class Tools
         }
         $end = Tools::stringPosInArray($lines,$endLinePattern,$start+1);
         $start = $start + $startOffset;
-        
+
         if ($endLinePattern !== false && $end === false)
         {
             throw new \Exception('End line pattern "'.$endLinePattern.'" not found.');
@@ -99,8 +99,8 @@ class Tools
             $end = $end +1;
         }
         $end = $end + $endOffset;
-        
-        
+
+
         if (abs($start) > count($lines))
         {
             throw new \Exception('Start beyond line count.');
@@ -109,9 +109,9 @@ class Tools
         {
             throw new \Exception('End beyond line count.');
         }
-        
+
         $length = $end - $start;
-        
+
         if ($invert === false)
         {
             $minLength = 1;
@@ -120,13 +120,13 @@ class Tools
         {
             $minLength = 0;
         }
-        
-        
+
+
         if ($length < $minLength)
         {
             throw new \Exception("Length cannot be negative or zero (length: $length, start: $start, end: $end).");
         }
-        
+
         if ($invert === false)
         {
             $lines = array_slice($lines, $start, $length);
@@ -136,24 +136,24 @@ class Tools
             array_splice($lines, $start, $length);
             $lines = array_values($lines);
         }
-        
+
         if (!is_array($file))
         {
             file_put_contents($file, $lines);
         }
-        
+
         return $lines;
     }
-    
+
     public static function addLineToFile($file, $stringToAdd, $stringAfterToInsert = false, $checkString = false)
     {
         $lines = file($file);
-        
+
         if ($checkString === false)
         {
             $checkString = $stringToAdd;
         }
-        
+
         if (!Tools::arrayLineHasString($lines, $checkString))
         {
             if ($stringAfterToInsert !== false)
@@ -172,28 +172,28 @@ class Tools
             {
                 $lines[] = $stringToAdd;
             }
-            
+
             file_put_contents($file, $lines);
         }
     }
-    
+
     public static function stringPosInArray($array, $string, $offset = 0, $trim = true)
     {
         if ($string === false || $string === null || empty($string))
         {
             return false;
         }
-        
+
         if ($array === false || $array === null || empty($array))
         {
             return false;
         }
-        
+
         if ($trim == true)
         {
             $string = trim($string);
         }
-        
+
         $lineCount = count($array);
         for($i=0+$offset;$i<$lineCount;$i++)
         {
@@ -203,36 +203,33 @@ class Tools
                 return $i;
             }
         }
-        
+
         return false;
     }
-    
+
     public static function arrayLineHasString($array, $string)
     {
         if (Tools::stringPosInArray($array, $string) !== false)
         {
             return true;
         }
-        
+
         return false;
     }
-    
+
     public static function insertBetweenArray($element, $position, $array)
     {
         array_splice($array, $position, 0, $element);
+
         return $array;
     }
-    
+
     public static function cryptoRandSecure($min, $max)
     {
         if ($min >=  $max)
         {
             throw new \InvalidArgumentException("$min must be larger than  $max");
         }
-//        if ($min >= 0)
-//        {
-//            throw new \InvalidArgumentException("$min must me larger than zero");
-//        }
         $range = $max - $min;
         $log = log($range, 2);
         $byteLength = (int) ($log / 8) + 1;
@@ -244,10 +241,10 @@ class Tools
             $rnd = $rnd & $filter; // discard irrelevant bits
         }
         while ($rnd >= $range);
-        
+
         return $min + $rnd;
     }
-    
+
     public static function generateRandomPassword($minLength=40,$maxLength=50,$asciiMin=32,$asciiMax=126,$excludedCharacters = array('(',')','"',"'",'{','}','`','\\'))
     {
         $excludedOrdList = array();
@@ -256,7 +253,7 @@ class Tools
             $excludedOrdList[] = ord($excludedCharacter);
         }
         $excludedOrdList[] = null;
-        
+
         $password = '';
 
         $desired_length = Tools::cryptoRandSecure($minLength, $maxLength);

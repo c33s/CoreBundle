@@ -18,7 +18,6 @@ class SecurityHelper
     protected $eventDispatcher;
     protected $request;
     protected $router;
-    //protected $
 
     public function __construct($securityContext, $eventDispatcher, $request, $router, $logger)
     {
@@ -50,27 +49,19 @@ class SecurityHelper
 
     public function redirectRole($roleRrouteSets, $defaultUrl = '/', $status = 302)
     {
-//        $roles = $this->securityContext->getToken()->getRoles();
-//        $roles_ = '';
-//        $this->logger->debug('c33s.security_helper.redirect_role: Required Role for redirect: "'.$role.'".');
-//        $this->logger->debug('c33s.security_helper.redirect_role: User Roles: "'.$roles_.'".');
-
         $url = $defaultUrl;
 
         foreach ($roleRrouteSets as $role => $route)
         {
             if ($this->securityContext->isGranted($role))
             {
-                $url = $this->router->generate($route, $parameters = array(), $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH);
-    //            $this->logger->debug('c33s.security_helper.redirect_role: Redirecting to "'.$route.'"');
+                $url = $this->router->generate($route, array(), UrlGeneratorInterface::ABSOLUTE_PATH);
+
                 return new RedirectResponse($url, $status);
             }
         }
 
         return new RedirectResponse($url, $status);
-            //'IS_AUTHENTICATED_REMEMBERED'
-            // authenticated REMEMBERED, FULLY will imply REMEMBERED (NON anonymous)
-//        $this->logger->debug('c33s.security_helper.redirect_role: No redirect.');
     }
     // UPSF2.4 Prepeare for upgrade prepeare for symfony 2.4 upgrade
 //    public function setRequest(RequestStack $request_stack)

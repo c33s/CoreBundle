@@ -22,4 +22,3 @@ script:
 
 notifications:
   email: development@consistency.at
-  

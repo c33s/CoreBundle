@@ -75,7 +75,6 @@ class BaseInitCmd extends ContainerAwareCommand
 
     protected function getCommandTemplateDirectory()
     {
-        //$commandTemplateDirectory = basename(get_class($this));
         $reflect = new \ReflectionClass($this);
         return $reflect->getShortName();
     }

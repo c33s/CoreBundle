@@ -13,7 +13,7 @@
     %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
-    
+
     {{ render_assets('css') }}
 
 {# Font-Awesome 4+ does not support IE7 any more #}
@@ -33,7 +33,7 @@
 {% endblock %}
 
 {% block content_pre %}
-    
+
     {#
     {% if not app.request.cookies.has('accept-cookie') %}
     <div id="cookie-alert" class="alert alert-danger fade in">
@@ -47,9 +47,9 @@
     </div>
     {% endif %}
     #}
-    
+
     {% block content_pre_container %}{% endblock %}
-    
+
     {# <div class="container"> #}
 {% endblock %}
 
@@ -57,7 +57,7 @@
 
 {% block content_post %}
     {# <br></div> <!-- end container --> #}
-    
+
     {% block content_post_container %}
         <div id="toTop" class="text-right lead">
             {# <a href="#"><i class="fa fa-chevron-up"></i> to top</a> #}
@@ -92,19 +92,19 @@
 {% block javascripts %}
     <!-- scripts -->
     {{ parent() }}
-    
+
     {% javascripts output='media/generated/js/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.js' combine=true
         '@{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/js/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.js'
     %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    
+
     {#
        <script>
            //alert('binding');
            //$(".alert").alert()
            $(document).ready(function() {
-               $('#cookie-alert').bind('closed.bs.alert', function () 
+               $('#cookie-alert').bind('closed.bs.alert', function ()
                {
                    $.cookie("accept-cookie", 1);
                    alert('dismissed');

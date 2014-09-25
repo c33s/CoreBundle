@@ -6,4 +6,3 @@ braincrafted_bootstrap:
         knp_menu:       false
         knp_paginator:  false
         twig:           true
-        
