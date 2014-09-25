@@ -13,6 +13,6 @@ class StaticPageController extends BaseStaticPageController
 
     protected function getBaseTemplateLocation()
     {
-        return '{{ name.camelcase }}{{ bundlename | camelcase }}Bundle::{{ name.underscore }}base.html.twig';
+        return '{{ name.camelcase }}{{ bundlename | camelcase }}Bundle::{{ name|lower }}base.html.twig';
     }
 }

@@ -22,16 +22,18 @@ c33s_core:
             class:  BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle
         braincrafted_bootstrap:
             class:  Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle
-        c33s_static_page_content:
-            class:  C33s\StaticPageContentBundle\C33sStaticPageContentBundle
-        c33s_attachment_admin:
-            class:  C33s\AttachmentAdminBundle\C33sAttachmentAdminBundle
         c33s_attachment:
             class:  C33s\AttachmentBundle\C33sAttachmentBundle
+        c33s_attachment_admin:
+            class:  C33s\AttachmentAdminBundle\C33sAttachmentAdminBundle
+        c33s_contact_form:
+            class:  C33s\ContactFormBundle\C33sContactFormBundle
         c33s_menu:
             class:  C33s\MenuBundle\C33sMenuBundle
         c33s_simple_content:
             class:  C33s\SimpleContentBundle\C33sSimpleContentBundle
+        c33s_static_page_content:
+            class:  C33s\StaticPageContentBundle\C33sStaticPageContentBundle
         cocur_human_date:
             class:  Cocur\HumanDate\Bridge\Symfony\CocurHumanDateBundle
         fkr_css_url_rewrite:

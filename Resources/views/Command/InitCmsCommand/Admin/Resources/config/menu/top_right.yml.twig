@@ -5,22 +5,22 @@ c33s_menu:
                 item_class:                         default
                 require_role:                       ROLE_ADMIN
 
-            {{ name.underscore }}_webpage_default_homepage:
+            {{ name|lower }}_webpage_default_homepage:
                 title:                              view Webpage
                 bootstrap_icon:                     icon-external-link
 
             fos_user_security_logout:
-                title:
+                title:                              ~
                 bootstrap_icon:                     icon-off
                 item_class:                         user_control
 
-#            .{{ name.underscore }}_admin_view_webpage:
+#            .{{ name|lower }}_admin_view_webpage:
 #                title:                              view Webpage
 #                bootstrap_icon:                     icon-external-link
 #                #require_role:                       ROLE_SUPER_ADMIN
 #                title_in_menu_header:               false
 #                children:
-#                    {{ name.underscore }}_AdminGenBundle_Example_list:
+#                    {{ name|lower }}_AdminGenBundle_Example_list:
 #                        title:                      Team
 #                        bootstrap_icon:             icon-group
 #                        item_class:                 admingen

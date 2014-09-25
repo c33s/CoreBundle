@@ -1,4 +1,14 @@
 {% verbatim %}
+{% macro name() %}
+{% filter trim %}
+    {% if c33s_core_config.contact.title is not empty %}{{ c33s_core_config.contact.title ~ ' ' }}{% endif %}
+    {% if c33s_core_config.contact.firstname is not empty %}{{ c33s_core_config.contact.firstname ~ ' ' }}{% endif %}
+    {% if c33s_core_config.contact.middlename is not empty %}{{ c33s_core_config.contact.middlename ~ ' ' }}{% endif %}
+    {% if c33s_core_config.contact.lastname is not empty %}{{ c33s_core_config.contact.lastname ~ ' ' }}{% endif %}
+    {% if c33s_core_config.contact.title_post is not empty %}{{ ', ' ~ c33s_core_config.contact.title_post }}{% endif %}
+{% endfilter %}
+{% endmacro %}
+
 {% macro address(class='',www=false) %}
     {% import _self as macros %}
     {{ macros.addressStreet(class) }}
@@ -7,9 +17,10 @@
 
 {% macro addressPhone(class='',www=false) %}
     <address class="{{ class|default('') }}">
-        <abbr title="phone"><i class="fa fa-phone"></i></abbr> {{ c33s_core_config.contact.phone }}<br>
-        <abbr title="fax"><i class="fa fa-print"></i></abbr> {{ c33s_core_config.contact.fax }}<br>
-        <abbr title="email"><i class="fa fa-envelope"></i></abbr> <a href="mailto:{{ c33s_core_config.contact.mail|lower }}">{{ c33s_core_config.contact.mail|lower }}</a>
+        {% if c33s_core_config.contact.phone is not empty %}<abbr title="phone"><i class="fa fa-phone"></i></abbr> {{ c33s_core_config.contact.phone }}<br>{% endif %}
+        {% if c33s_core_config.contact.mobile is not empty %}<abbr title="phone"><i class="fa fa-mobile"></i></abbr> {{ c33s_core_config.contact.mobile }}<br>{% endif %}
+        {% if c33s_core_config.contact.fax is not empty %}<abbr title="fax"><i class="fa fa-print"></i></abbr> {{ c33s_core_config.contact.fax }}<br>{% endif %}
+        {% if c33s_core_config.contact.mail is not empty %}<abbr title="email"><i class="fa fa-envelope"></i></abbr> <a href="mailto:{{ c33s_core_config.contact.mail|lower }}">{{ c33s_core_config.contact.mail|lower }}</a>{% endif %}
         {% if www|default(false) == true %}<br><abbr title="webpage"><i class="fa fa-link"></i></abbr> {{ c33s_core_config.contact.www }}{% endif %}
     </address>
 {% endmacro %}
@@ -25,36 +36,36 @@
     {% include 'C33sCoreBundle::triggerPopover.html.twig' %}
 {% endmacro %}
 
-{% macro static(name,subfolder=false,prefix='{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_',route='static') %}
-{% if subfolder == false %}{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static', { name: name }) }}{% else %}{{ path('{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder', { name: name, subfolder: subfolder }) }}{% endif %}
+{% macro static(name,subfolder=false,prefix='{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_',route='static') %}
+{% if subfolder == false %}{{ path('{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static', { name: name }) }}{% else %}{{ path('{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder', { name: name, subfolder: subfolder }) }}{% endif %}
 {% endmacro %}
 
-{% macro isActive(name,prefix='{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_',route) %}
+{% macro isActive(name,prefix='{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_',route) %}
     {% set _route = app.request.get('_route') %}
     {% set _name = app.request.get('name') %}
     {% set _subfolder = app.request.get('subfolder') %}
 
     {% if name == 'home' %}
-        {% if _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_default_homepage' %}active{% endif %}
+        {% if _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_default_homepage' %}active{% endif %}
     {% elseif name == 'about-us' %}
-        {% if _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_team_index' %}active
-        {% elseif _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder' and _subfolder == 'ueber-uns' and _name == 'praxis' %}active
-        {% elseif _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder' and _subfolder == 'ueber-uns' and _name == 'videos' %}active
+        {% if _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_team_index' %}active
+        {% elseif _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder' and _subfolder == 'ueber-uns' and _name == 'praxis' %}active
+        {% elseif _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder' and _subfolder == 'ueber-uns' and _name == 'videos' %}active
         {% endif %}
     {% elseif name == 'services' %}
-        {% if _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_services_index' %}active{% endif %}
+        {% if _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_services_index' %}active{% endif %}
     {% elseif name == 'information' %}
-        {% if _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_information_index' %}active
-        {% elseif _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_faq_index' %}active
-        {% elseif _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_terms_index' %}active
-        {% elseif _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder' and _subfolder == 'informationen' and _name == 'meinarzt-app' %}active
+        {% if _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_information_index' %}active
+        {% elseif _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_faq_index' %}active
+        {% elseif _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_terms_index' %}active
+        {% elseif _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder' and _subfolder == 'informationen' and _name == 'meinarzt-app' %}active
         {#% elseif _route == '' %}active{% endif %#}
         {% endif %}
     {% elseif name == 'contact' %}
-        {% if _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static' and  _name == 'kontakt' %}active
-        {% elseif _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static' and  _name == 'termine' %}active
-        {% elseif _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder' and _subfolder == 'contact' and _name == 'anfahrt' %}active
-        {% elseif _route == '{% endverbatim %}{{ name.underscore }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static' and  _name == 'impressum' %}active{% endif %}
+        {% if _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static' and  _name == 'kontakt' %}active
+        {% elseif _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static' and  _name == 'termine' %}active
+        {% elseif _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static_subfolder' and _subfolder == 'contact' and _name == 'anfahrt' %}active
+        {% elseif _route == '{% endverbatim %}{{ name|lower }}{% verbatim %}_{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}_static' and  _name == 'impressum' %}active{% endif %}
     {% endif %}
 {% endmacro %}
 {% endverbatim %}

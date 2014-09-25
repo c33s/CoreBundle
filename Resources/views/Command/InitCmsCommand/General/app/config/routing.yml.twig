@@ -2,7 +2,7 @@ _imagine:
     resource: .
     type:     imagine
 
-{{ name.underscored }}_app:
+{{ name|lower }}_app:
     resource: routing_app.yml
 #    host:     "{hostname}"
 #    defaults: { hostname: %master_domain% }

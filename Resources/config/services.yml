@@ -4,6 +4,7 @@ parameters:
 services:
     c33s_core.inflector:
         class: C33s\CoreBundle\Util\AkelosInflector
+        
     #twig extensions
     c33s_core.twig.config_variables_extension:
         class: C33s\CoreBundle\Twig\ConfigVariablesExtension
@@ -11,9 +12,54 @@ services:
             - "%c33s_core.config.twig_variables%"
         tags:
             - { name: twig.extension }
+    
     c33s_core.twig.quickfilter_extension:
         class: C33s\CoreBundle\Twig\QuickFilterExtension
         arguments:
             - "@c33s_core.inflector"
         tags:
             - { name: twig.extension }
+    
+    c33s_core.security_helper:
+        class: C33s\CoreBundle\Service\SecurityHelper
+        arguments:
+            - "@security.context"
+            - "@event_dispatcher"
+            - "@request"
+            - "@router"
+            - "@logger"
+        public: true    #for request injection
+        scope: request  #for request injection
+    
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+    
+#    twig.extension.i18n:
+#        class: Twig_Extensions_Extension_I18n
+#        tags:
+#            - { name: twig.extension }
+    
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+    
+    twig.extension.array:
+        class: Twig_Extensions_Extension_Array
+        tags:
+            - { name: twig.extension }
+    
+    security.access.anonymous.voter:
+        class: C33s\CoreBundle\Security\Authorization\Voter\AnonymousVoter
+        tags:
+            - { name: security.voter }
+        arguments:
+            - "@security.authentication.trust_resolver"
+
+
+#       UPSF2.4 Prepeare for upgrade
+#        calls:
+#            - [setRequest, [@request_stack]]
+# https://stackoverflow.com/questions/9332925/how-to-inject-the-request-into-a-service

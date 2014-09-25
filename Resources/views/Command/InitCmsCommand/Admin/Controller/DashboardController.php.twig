@@ -1,10 +1,9 @@
 <?php
 namespace {{ name.camelcase }}\AdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
@@ -15,7 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class DashboardController extends Controller
 {
 	/**
-	 * @Route("/", name="{{ name.underscored }}_admin_dashboard")
+	 * @Route("/")
 	 * @Template()
 	 */
 	public function indexAction()

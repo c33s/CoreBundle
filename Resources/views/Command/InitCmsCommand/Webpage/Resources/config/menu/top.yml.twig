@@ -4,28 +4,30 @@ c33s_menu:
             .defaults:
                 item_class:     static
 
-            {{ name.underscore }}_webpage_static/home:
+            {{ name|lower }}_webpage_home_index:
                 title:                  Home
+                #bootstrap_icon:         fa fa-home
+                item_class:             default
 
-            {{ name.underscore }}_webpage_static/ueber-uns:
+            {{ name|lower }}_webpage_static/ueber-uns:
                 title:                  Über uns
                 children:
 
-                    {{ name.underscore }}_webpage_static/ueber-uns/team:
+                    {{ name|lower }}_webpage_static/ueber-uns/team:
                         title:          Team
 
-                    {{ name.underscore }}_webpage_static/ueber-uns/videos:
+                    {{ name|lower }}_webpage_static/ueber-uns/videos:
                         title:          Videos
 
-            {{ name.underscore }}_webpage_static/kontakt:
+            {{ name|lower }}_webpage_static/kontakt:
                 title:                  Kontakt
                 children:
 
-                    {{ name.underscore }}_webpage_static/kontakt:
+                    {{ name|lower }}_webpage_static/kontakt:
                         title:          Kontakt
 
-                    {{ name.underscore }}_webpage_static/kontakt/anfahrt:
+                    {{ name|lower }}_webpage_static/kontakt/anfahrt:
                         title:          Anfahrt
 
-                    {{ name.underscore }}_webpage_static/kontakt/impressum:
+                    {{ name|lower }}_webpage_static/kontakt/impressum:
                         title:          Impressum

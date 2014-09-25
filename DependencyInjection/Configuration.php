@@ -20,15 +20,9 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('c33s_core');
 
-//                ->variableNode('twig')->end()
-
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
-//                ->arrayNode('bundles')
-//                    ->defaultValue(array('none'))
-//                    ->prototype('scalar')->end()
-//                ->end()
                 ->append($this->addBundleNode())
                 ->arrayNode('twig')
                     ->addDefaultsIfNotSet()
@@ -39,13 +33,6 @@ class Configuration implements ConfigurationInterface
                     ->append($this->addPageNode())
                     ->append($this->addContactNode())
                 ->end()
-//                ->arrayNode('datahandler')
-//                    ->children()
-//                        ->scalarNode('levels')->defaultValue(3)->end()
-//                        ->variableNode('db_maps')->end()
-//                        ->variableNode('class_maps')->end()
-//                    ->end()
-//                ->end()
             ->end()
         ;
 
@@ -58,15 +45,15 @@ class Configuration implements ConfigurationInterface
         $node = $builder->root('bundles');
 
         $node
-                ->isRequired()
-                ->requiresAtLeastOneElement()
-                ->useAttributeAsKey('name')
-                ->prototype('array')
-                    ->children()
-                        //->booleanNode('auto_add')->defaultTrue()->end()
-                        ->scalarNode('class')->isRequired()->end()
-                    ->end()
+            ->isRequired()
+            ->requiresAtLeastOneElement()
+            ->useAttributeAsKey('name')
+            ->prototype('array')
+                ->children()
+                    //->booleanNode('auto_add')->defaultTrue()->end()
+                    ->scalarNode('class')->isRequired()->end()
                 ->end()
+            ->end()
         ;
 
         return $node;
@@ -78,7 +65,6 @@ class Configuration implements ConfigurationInterface
         $node = $builder->root('google');
 
         $node
-            //->addDefaultsIfNotSet()
             ->children()
                 ->arrayNode('tracking')
                     ->children()
@@ -107,7 +93,6 @@ class Configuration implements ConfigurationInterface
         $node = $builder->root('app');
 
         $node
-            //->arrayNode('app')
             ->addDefaultsIfNotSet()
             ->children()
                 ->booleanNode('debug')->defaultFalse()->end()
@@ -118,7 +103,6 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('name')->defaultNull()->end()
                 ->scalarNode('name_short')->defaultNull()->end()
                 ->arrayNode('production_company')
-                    #->defaultValue(array())
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('name')->defaultValue('consistency.at')->end()
@@ -176,17 +160,8 @@ class Configuration implements ConfigurationInterface
         $node
             ->fixXmlConfig('keyword')
             ->children()
-                //->arrayNode('keywords')
-                    //->defaultValue($this->bundles)
-                    //->scalarNode('Title')->defaultNull()->end()
-                        //->defaultValue(array('ddd'))
-                    ->prototype('scalar')
-                        //->validate()
-                            //->ifNotInArray($this->bundles)
-                            //->thenInvalid('%s is not a valid bundle.')
-                        //->end()
-                    ->end()
-                //->end()
+                ->prototype('scalar')
+                ->end()
             ->end()
         ;
 
@@ -213,7 +188,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('country')->defaultNull()->end()
                 ->scalarNode('title')->defaultNull()->end()
                 ->scalarNode('firstname')->defaultNull()->end()
+                ->scalarNode('middlename')->defaultNull()->end()
                 ->scalarNode('lastname')->defaultNull()->end()
+                ->scalarNode('title_post')->defaultNull()->end()
                 ->scalarNode('company')->defaultNull()->end()
             ->end()
             ->append($this->addMapNode())
@@ -235,7 +212,6 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('marker')
                     ->children()
                         ->scalarNode('image')->defaultValue('http://maps.google.com/mapfiles/marker_orange.png')->end()
-                        //->arrayNode('size')
                         ->variableNode('size')->defaultValue(array(20,34))->end()
                         ->variableNode('point')->defaultValue(array(50,50))->end()
                         ->arrayNode('shadow')
@@ -246,29 +222,6 @@ class Configuration implements ConfigurationInterface
                                 ->variableNode('point')->defaultValue(array(50,50))->end()
                             ->end()
                         ->end()
-//                            ->addDefaultsIfNotSet()
-//                            //->useAttributeAsKey()
-//                            //->useAttributeAsKey('name')
-//                            ->beforeNormalization()
-//                            ->ifString()
-//                                ->then(function($v) { return array('name'=> $v); })
-//                            ->end()
-//                            ->children()
-//                                ->floatNode('x')
-//                                    ->beforeNormalization()
-//                                    ->ifString()
-//                                    ->then(function($v) { return array('x'=> $v); })
-//                                    ->end()
-//                                    //->defaultValue(20)
-//                                ->end()
-//                                ->floatNode('y')
-//                                    //->defaultValue(34)
-//                                    ->beforeNormalization()
-//                                    ->ifString()
-//                                    ->then(function($v) { return array('y'=> $v); })
-//                                    ->end()
-//                                ->end()
-//                            ->end()
                         ->end()
                     ->end()
                 ->end()

@@ -1,4 +1,4 @@
-{{ name.underscored }}_admin_monitor:
+{{ name|lower }}_admin_monitor:
     resource: monitor.yml
     
 #c33s_crazy_egg:
@@ -9,19 +9,19 @@
 #    resource: "@c33sOpcacheBundle/Resources/config/routing.yml"
 #    prefix:   /
     
-{{ name.underscored }}_admin:
+{{ name|lower }}_admin:
     resource: "@{{ name.camelcased }}AdminBundle/Controller/"
     type:     annotation
     prefix:   /
 
-{{ name.underscored }}_admin_admingen:
+{{ name|lower }}_admin_admingen:
     resource: "@{{ name.camelcased }}AdminGenBundle/Resources/config/routing/admingenerator.yml"
     prefix:   /
     
-{{ name.underscored }}_admin_default_homepage:
+{{ name|lower }}_admin_default_homepage:
     pattern:  /
     defaults: { _controller: "{{ name.camelcased }}AdminBundle:Dashboard:index" }
 
-{{ name.underscored }}_admin_static:
+{{ name|lower }}_admin_static:
     pattern:  /{name}
     defaults: { _controller: "{{ name.camelcased }}AdminBundle:StaticPage:show" }

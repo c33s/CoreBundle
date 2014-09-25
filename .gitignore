@@ -1,8 +1,15 @@
-vendor/*
+/vendor
 /components
 /*.bak
 /composer.lock
+
+# Testing
 phpunit.xml
 deployment.log
 .deployed_project_dir
+
+# IDE stuff
+.buildpath
+.project
+.settings
 
