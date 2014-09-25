@@ -1,6 +1,6 @@
 webpagebundle_redirects:
     resource: redirects.yml
-    
+
 {{ name|lower }}_{{ bundlename | underscore }}:
     resource: "@{{ name.camelcase }}{{ bundlename | camelcase }}Bundle/Controller/"
     type:     annotation
@@ -13,11 +13,10 @@ webpagebundle_redirects:
 contact_form:
     resource: "@C33sContactFormBundle/Resources/config/routing/contact_form.yml"
     prefix:   /
-	
+
 {{ name|lower }}_{{ bundlename | underscore }}_static:
     pattern:  /{name}
     defaults: { _controller: "{{ name.camelcase }}{{ bundlename | camelcase }}Bundle:StaticPage:show" }
     requirements:
         # this makes the name parameter accept anything, even slashes. subfolder logic is not needed anymore
         name:  .*
-    

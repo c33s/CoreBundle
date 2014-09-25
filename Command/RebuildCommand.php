@@ -20,7 +20,7 @@ class RebuildCommand extends ContainerAwareCommand
         array('description' => 'cache:clear', 'command' => 'php app/console cache:clear --env=prod'),
         array('description' => 'propel:build', 'command' => 'php app/console propel:build --insert-sql'),
         array('description' => 'assets:install', 'command' => 'php app/console assets:install'),
-        array('description' => 'cache:warmup', 'command' => 'app/console cache:warmup'),
+        array('description' => 'cache:warmup', 'command' => 'php app/console cache:warmup'),
     );
 
     protected function configure()

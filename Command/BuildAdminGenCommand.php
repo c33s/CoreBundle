@@ -71,7 +71,9 @@ class BuildAdminGenCommand extends BaseInitCommand
         $path = $this->getContainer()->get('kernel')->locateResource("@{$this->name->camelcase()}AdminGenBundle");
         $routingPath = "${path}/Resources/config/routing";
         $this->fs->mkdir($routingPath);
+
         $content="";
+
         foreach ($this->adminModels as $model)
         {
             $modelLowercase = strtolower($model);
@@ -83,10 +85,12 @@ class BuildAdminGenCommand extends BaseInitCommand
 
 EOT;
         }
-        $filePath = $routingPath.'/admingenerator.yml';
-        $oldContent = file_get_contents($filePath);
-        $content = $oldContent."\n".$content;
-        $this->fs->dumpfile($filePath,$content);
+
+        $filePath = $routingPath . '/admingenerator.yml';
+
+        $oldContent = file_exists($filePath) ? file_get_contents($filePath) : '';
+        $content = $oldContent . "\n" . $content;
+        $this->fs->dumpfile($filePath, $content);
     }
 
     protected function backupMainRoutingFile()
