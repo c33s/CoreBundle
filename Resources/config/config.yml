@@ -40,10 +40,14 @@ c33s_core:
             class:  Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle
         fos_user:
             class:  FOS\UserBundle\FOSUserBundle
+        jms_translation:
+            class:  JMS\TranslationBundle\JMSTranslationBundle()
         knp_gaufrette:
             class:  Knp\Bundle\GaufretteBundle\KnpGaufretteBundle
         knp_markdown:
             class:  Knp\Bundle\MarkdownBundle\KnpMarkdownBundle
+        lexik_translation:
+            class:  Lexik\Bundle\TranslationBundle\LexikTranslationBundle
         liip_imagine:
             class:  Liip\ImagineBundle\LiipImagineBundle
         liip_monitor:

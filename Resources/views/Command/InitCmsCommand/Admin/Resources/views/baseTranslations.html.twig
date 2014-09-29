@@ -1,0 +1,18 @@
+{% verbatim %}
+{% extends "{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle::baseAdmin.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/lexiktranslation/ng-table/ng-table.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <!-- scripts -->
+    {{ parent() }}
+
+    {% block javascript_footer %}
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+        <script src="{{ asset('bundles/lexiktranslation/ng-table/ng-table.min.js') }}"></script>
+    {% endblock %}
+{% endblock %}
+{% endverbatim %}
