@@ -41,7 +41,7 @@ c33s_core:
         fos_user:
             class:  FOS\UserBundle\FOSUserBundle
         jms_translation:
-            class:  JMS\TranslationBundle\JMSTranslationBundle()
+            class:  JMS\TranslationBundle\JMSTranslationBundle
         knp_gaufrette:
             class:  Knp\Bundle\GaufretteBundle\KnpGaufretteBundle
         knp_markdown:
