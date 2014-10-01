@@ -50,7 +50,11 @@ services:
         class: Twig_Extensions_Extension_Array
         tags:
             - { name: twig.extension }
-    
+    twig.extension.template_from_string:
+        class: Twig_Extension_StringLoader
+        tags:
+            - { name: twig.extension }
+
     security.access.anonymous.voter:
         class: C33s\CoreBundle\Security\Authorization\Voter\AnonymousVoter
         tags:
