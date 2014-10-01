@@ -31,7 +31,7 @@ trait PropelModelTraits
 
                 if (is_callable(array($item, $method = 'set'.$columnName)))
                 {
-                    $value = $this->handleRelation($tableMap, $columnName, $namespace, $findMethod);
+                    $value = $this->handleRelation($value, $tableMap, $columnName, $namespace, $findMethod);
                     $item->$method($value);
                 } else
                 {
@@ -58,7 +58,7 @@ trait PropelModelTraits
 
     protected function getFindMethod($properties)
     {
-        if (array_key_exists($properties['find_method']))
+        if (array_key_exists('find_method', $properties))
         {
             return $properties['find_method'];
         }
