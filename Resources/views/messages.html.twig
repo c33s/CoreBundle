@@ -1,23 +1,19 @@
 {% for type, messages in app.session.flashbag.all() %}
-    {% if (type == 'error') %}
-        {% set bootstrap_type = 'error' %}
-    {% elseif (type == 'danger')%}
-        {% set bootstrap_type = 'danger' %}
-    {% elseif type == 'success'%}
+    {% if type == 'success'%}
         {% set bootstrap_type = 'success' %}
     {% elseif (type == 'info' or type == 'notice')%}
         {% set bootstrap_type = 'info' %}
-    {% elseif (type == 'lert-block')%}
-        {% set bootstrap_type = 'alert-block' %}
-    {% else %}
-        {% set bootstrap_type = 'error' %}
+    {% elseif type == 'warn' or type == 'warning' %}
+        {% set bootstrap_type = 'warn' %}
+    {% else %} {# error, danger#}
+        {% set bootstrap_type = 'danger' %}
     {% endif %}
 
     {% for key, message in messages %}
-        <div class="alert alert-{{bootstrap_type}}">
+        <div class="alert alert-{{bootstrap_type}}" role="alert">
             <button class="close" data-dismiss="alert">×</button>
-                <strong>{{ type }}</strong>
-                {{ message |trans }}
+            <strong>{{ type }}</strong>
+            {{ message |trans }}
         </div>
     {% endfor %}
 {% endfor %}
