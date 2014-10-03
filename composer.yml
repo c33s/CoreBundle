@@ -92,7 +92,7 @@ require:
     ### i18n related ###########################################################
     besimple/i18n-routing-bundle:                                   '2.2.0'
     jms/translation-bundle:                                         '1.1.0'
-    lexik/translation-bundle:                                       '2.0.99'
+    lexik/translation-bundle:                                       '2.1.0'
     
     ### general ################################################################
     cocur/human-date:                                               '0.1'
