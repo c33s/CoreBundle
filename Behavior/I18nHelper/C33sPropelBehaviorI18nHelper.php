@@ -115,12 +115,50 @@ public function setI18n{$phpName}(\${$varPlural})
     return \$this;
 }
 
+/**
+ * Get i18n value of the "{$phpName}" column, using locale fallback (reverse default locales)
+ * if the value is empty.
+ * Starts with either the given locale or the current/default locale, set previously using getTranslation().
+ *
+ * @param string \$locale
+ *
+ * @return mixed
+ */
+public function get{$phpName}WithFallback(\$locale = null)
+{
+    \$locale = null !== \$locale ? \$locale : \$this->currentLocale;
+
+    \${$phpName} = \$this->getTranslation(\$locale)->get{$phpName}();
+    if ('' != \${$phpName})
+    {
+        return \${$phpName};
+    }
+
+    \$locales = \$this->getI18nDefaultLocales();
+    \$key = array_search(\$locale, \$locales);
+
+    if (false === \$key || null === \$key || !isset(\$locales[\$key - 1]))
+    {
+        // no more fallbacks available, just return the value
+        return \${$phpName};
+    }
+
+    return \$this->get{$phpName}WithFallback(\$locales[\$key - 1]);
+}
+
 EOF;
 
         }
 
         $methods .= <<<EOF
 
+/**
+ * Set an array of default locales to use for the {$this->getName()} behavior (getI18n*(), get*WithFallback()).
+ *
+ * @param array \$locales
+ *
+ * @return {$this->getTable()->getPhpName()}
+ */
 public function setI18nDefaultLocales(array \$locales)
 {
     \$this->i18nDefaultLocales = \$locales;
@@ -128,6 +166,11 @@ public function setI18nDefaultLocales(array \$locales)
     return \$this;
 }
 
+/**
+ * Get an array of default locales used by the {$this->getName()} behavior (getI18n*(), get*WithFallback()).
+ *
+ * @return array
+ */
 public function getI18nDefaultLocales()
 {
     return \$this->i18nDefaultLocales;
