@@ -209,6 +209,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->floatNode('lat')->defaultValue(0.0)->end()
                 ->floatNode('long')->defaultValue(0.0)->end()
+                ->booleanNode('scrollwheel')->defaultTrue()->end()
                 ->arrayNode('marker')
                     ->children()
                         ->scalarNode('image')->defaultValue('http://maps.google.com/mapfiles/marker_orange.png')->end()
