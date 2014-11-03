@@ -132,6 +132,8 @@ class PropelORMFieldGuesser extends BaseGuesser
         if ('single_file' === $dbType)
         {
             $options['previewFilter'] = 'gallery_thumb';
+            // cut off the "File" suffix
+            $options['deleteable'] = substr($columnName, 0, strlen($columnName) - 4);
         }
 
         if ('multi_file' === $dbType)
