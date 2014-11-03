@@ -86,8 +86,7 @@ c33s_core:
         page:
             title: ""
             author: ""
-            keywords:
-                - my keyword
+            keywords: []
             description: |
                 my description
         contact:

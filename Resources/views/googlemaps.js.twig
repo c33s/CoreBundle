@@ -4,7 +4,7 @@ $(function() {
 	var latlng = new google.maps.LatLng({{ c33s_core_config.contact.map.lat }},{{ c33s_core_config.contact.map.long }});
 	var settings = {
 		zoom: 17,
-		scrollwheel: true,
+		scrollwheel: {{ c33s_core_config.contact.map.scrollwheel ? 'true':'false'}},
 		center: latlng,
 		mapTypeControl: true,
 		mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
