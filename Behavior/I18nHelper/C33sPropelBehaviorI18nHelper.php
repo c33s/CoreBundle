@@ -28,6 +28,11 @@ class C33sPropelBehaviorI18nHelper extends Behavior
 
     public function objectAttributes()
     {
+        if (!$this->getTable()->hasBehavior('i18n'))
+        {
+            return;
+        }
+
         $attributes = '';
         $locales = implode(', ', array_map(function($locale) { return "'$locale'"; }, $this->getDefaultLocales()));
 
@@ -49,7 +54,7 @@ EOF;
     {
         if (!$this->getTable()->hasBehavior('i18n'))
         {
-            throw new \RuntimeException('Cannot add c33s_i18n_helper behavior to table without i18n behavior');
+            return;
         }
 
         $builder->declareClass('C33s\\CoreBundle\\Behavior\\I18nHelper\\I18nModelInterface');
@@ -183,6 +188,11 @@ EOF;
 
     public function objectFilter(&$script)
     {
+        if (!$this->getTable()->hasBehavior('i18n'))
+        {
+            return;
+        }
+
         $this->addInterface($script, 'I18nModelInterface');
     }
 
