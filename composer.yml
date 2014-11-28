@@ -53,6 +53,7 @@ require:
     ### propel #################################################################
     havvg/propel-boolean-extra-behavior:                            '1.1.*'
     propel/propel-bundle:                                           '~1.2'
+    phing/phing:                                                    '2.8.*'
     willdurand/propel-eventdispatcher-bundle:                       '1.0.1'    
     willdurand/propel-publishable-behavior:                         '1.2.0'
     willdurand/propel-typehintable-behavior:                        '1.0.4'
