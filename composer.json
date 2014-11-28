@@ -37,7 +37,7 @@
         "c33s/simple-content-bundle": "0.11.*",
         "c33s/static-page-content-bundle": "2.0.*",
         "symfony/symfony": "~2.3",
-        "havvg/propel-boolean-extra-behavior": "1.1.2",
+        "havvg/propel-boolean-extra-behavior": "1.1.*",
         "propel/propel-bundle": "~1.2",
         "willdurand/propel-eventdispatcher-bundle": "1.0.1",
         "willdurand/propel-publishable-behavior": "1.2.0",
