@@ -1,0 +1,17 @@
+{% for locale in locales %}
+    {% if locale != app.request.locale %}
+        {% set flag = locale %}
+        {% if "en" == locale %}
+            {% set flag = "gb" %}
+        {% endif %}
+        <li>
+            {% set params = app.request.get('_route_params')|merge({'locale': locale}) %}
+            {% if params.name is defined %}
+                {% set params = params|merge({'translate': 'name'}) %}
+            {% endif %}
+            <a href="{{ path(app.request.get('_route'), params) }}">
+                <img src="{{ asset('media/components/famfamfam-flags/img/' ~ flag ~ '.png') }}" alt="Switch to {{ locale }}" title="Switch to {{ locale }}" />
+            </a>
+        </li>
+    {% endif %}
+{% endfor %}
