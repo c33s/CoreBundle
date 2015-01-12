@@ -54,12 +54,12 @@ liip_imagine:
                 strip: ~
                 relative_resize: { widen: 150 }
         sixblock:
-            quality: 75
+            quality: 85
             filters:
                 strip: ~
                 relative_resize: { widen: 600 }
         fourblock:
-            quality: 75
+            quality: 85
             filters:
                 strip: ~
                 relative_resize: { widen: 400 }
