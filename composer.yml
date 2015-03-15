@@ -2,12 +2,15 @@ name:           c33s/core-bundle
 type:           symfony-bundle
 description:    everything to quickstart a webpage
 #keywords: []
-homepage: "https://github.com/c33s/CoreBundle"
-license:       ["MIT", "GPL-3.0"]
+homepage:       'https://github.com/c33s/CoreBundle'
+license:        ['MIT']
 authors:
   - name:       Julian
     email:      office@consistency.at
     homepage:   'http://consistency.at'
+  - name:       David Herrmann
+    email:      office@web-emerge.com
+    homepage:   'http://web-emerge.com'
 
 autoload:
     psr-4:
@@ -33,28 +36,36 @@ repositories:
 #  - type: vcs
 #    url: 'https://github.com/c33s/ApcProfilerBundle'
 
-bin: ["bin/init-symfony"]
+#bin: ['bin/init-symfony']
 
 minimum-stability: stable
 
 require:
     php: '>=5.3.3'
-    
+
     ### c33s ###################################################################
-    c33s/attachment-admin-bundle:                                   '0.4.*'
+    c33s/attachment-bundle:                                         '0.4.*'
     c33s/contact-form-bundle:                                       '0.2.*'
     c33s/menu-bundle:                                               '0.10.*'
-    c33s/simple-content-bundle:                                     '0.11.*'
-    c33s/static-page-content-bundle:                                '2.0.*'
-    
+    c33s/construction-kit-bundle:                                   'dev-master as 0.1.0'
+
+    # temporary
+    c33s/composer-construction-kit-installer:                       'dev-master'
+
+    #c33s/simple-content-bundle:                                     '0.11.*'
+    #c33s/static-page-content-bundle:                                '2.0.*'
+
     ### symfony ################################################################
     symfony/symfony:                                                '~2.3'
-    
+
     ### propel #################################################################
-    havvg/propel-boolean-extra-behavior:                            '1.1.*'
+    c33s/i18n-helper-behavior:                                      '~0.1.0'
+    glorpen/propel-bundle:                                          '~1.2.5'
+    havvg/propel-boolean-extra-behavior:                            '~1.1.2'
     propel/propel-bundle:                                           '~1.2'
-    phing/phing:                                                    '2.8.*'
+    phing/phing:                                                    '~2.8'
     willdurand/propel-eventdispatcher-bundle:                       '1.0.1'    
+    willdurand/propel-geocodable-behavior:                          '~1.2.1'
     willdurand/propel-publishable-behavior:                         '1.2.0'
     willdurand/propel-typehintable-behavior:                        '1.0.4'
     #smirik/taggable-bundle:                                         'dev-master#a4eb728ec04eed48b6c354eeea9ae2e9fe23755a'
@@ -63,68 +74,69 @@ require:
     #cedriclombardot/propel-visibility-behavior:                     '0.0.2'
     #postgres-json-behavior
     #CarpeHora/ExtraPropertiesBehavior:                              'dev-master'
-    
+
     ### html & css #############################################################
     afarkas/html5shiv:                                              '3.7.2'
-    components/font-awesome:                                        '4.1.0'
+    components/font-awesome:                                        '~4.3.0'
     fkr/cssurlrewrite-bundle:                                       '1.0.0'
     kwipi/famfamfam-flags:                                          '0.1.2'
     oyejorge/less.php:                                              '1.7.0.2'
     ptachoire/cssembed:                                             '1.0.2'
-    twbs/bootstrap:                                                 '3.2.0'
+    twbs/bootstrap:                                                 '~3.3.2'
     #modernizr/modernizr:                                           '2.5.3'
     #mopa/bootstrap-bundle:                                         '2.1.*@dev'
-    
+
     # duplicate packages that are not needed at the moment
     #fortawesome/font-awesome:                                       '4.1.0'
     #twitter/bootstrap:                                              '3.2.0'
-    
+
     ### admin generator ########################################################
     avocode/form-extensions-bundle:                                 '0.1.4'
-    cedriclombardot/admingenerator-generator-bundle:                '1.1.2'
-    white-october/pagerfanta-bundle:                                '1.0.2'
-    
+    #cedriclombardot/admingenerator-generator-bundle:                '1.1.2'
+    #white-october/pagerfanta-bundle:                                '1.0.2'
+
     ### javascript #############################################################
     components/jquery:                                              '1.11.1'
     components/jqueryui:                                            '1.11.0'
     components/jquery-cookie:                                       '1.4.1.1'
     malsup/form:                                                    '3.36'
-    
+
     ### i18n related ###########################################################
-    besimple/i18n-routing-bundle:                                   '2.2.0'
+    #besimple/i18n-routing-bundle:                                   '2.2.0'
+    jms/i18n-routing-bundle:                                        '~1.1.1'
     jms/translation-bundle:                                         '1.1.0'
-    lexik/translation-bundle:                                       '2.1.0'
-    
+    #lexik/translation-bundle:                                       '2.1.0'
+
     ### general ################################################################
     cocur/human-date:                                               '0.1'
-    friendsofsymfony/user-bundle:                                   '1.3.4'
-    guzzle/guzzle:                                                  '3.8.1'
-    liip/imagine-bundle:                                            '0.18.0'
-    liip/monitor-bundle:                                            '1.0.1'
+    cocur/slugify:                                                  '1.0'
+    friendsofsymfony/user-bundle:                                   '~1.3.5'
+    guzzlehttp/guzzle:                                              '~5.2.0'
+    jms/di-extra-bundle:                                            '~1.5.0'
     knplabs/knp-gaufrette-bundle:                                   '0.1.7'
     knplabs/knp-markdown-bundle:                                    '1.3.2'
-    mobiledetect/mobiledetectlib:                                   '2.7.6'
+    liip/imagine-bundle:                                            '~1.2.3'
+    liip/monitor-bundle:                                            '~2.0.7'
     sensiolabs/security-checker:                                    '~1.2'
-    suncat/mobile-detect-bundle:                                    '0.9.4'
-    yzalis/identicon:                                               '1.0.0'
-    zenstruck/slugify-bundle:                                       '1.1.1'
-    
+    suncat/mobile-detect-bundle:                                    '~0.10.1'
+    yzalis/identicon:                                               '1.1.0'
+
     ### tagme packages served by satis.c33s.net ################################
     # html & css
-    braincrafted/bootstrap-bundle:                                  '2.1.0'
+    braincrafted/bootstrap-bundle:                                  '~2.1.2'
     jaysalvat/vegas:                                                '0.99.3'
     mnot/hinclude:                                                  '0.9.5.2'
     # general
-    smoya/asset-management-bundle:                                  '1.0.1'
+    smoya/asset-management-bundle:                                  '1.0.0'
     ### end tag me #############################################################
-    
+
 require-dev:
     ### propel #################################################################
     c33s/composer-yaml:                                             '1.0.0'
-    composer/composer:                                              'dev-master#e77435cd0c984e2031d915a6b42648e7b284dd5c'
-    willdurand/faker-bundle:                                        '1.0.*'
+    composer/composer:                                              'dev-master'
+    willdurand/faker-bundle:                                        '~1.2.1'
     #symfony/framework-standard-edition:                             '2.3.*'
-    
+
 ### unsorted-require ###########################################################
     #stnw/avatar-bundle:                                               '1.0.*'
     #html
@@ -183,3 +195,8 @@ require-dev:
     #suin/php-rss-writer:                                1.0.*
     #white-october/pagerfanta-bundle:                    dev-master
     #yuicompressor/yuicompressor:                        2.4.*
+
+extra:
+    c33s-building-blocks:
+        - C33s\CoreBundle\BuildingBlock\C33sCoreBuildingBlock
+        - C33s\CoreBundle\BuildingBlock\C33sPropelBuildingBlock

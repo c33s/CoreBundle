@@ -1,0 +1,26 @@
+propel:
+    logging:                        "%kernel.debug%"
+    build_properties:
+        propel.mysql.tableType:         InnoDB
+        propel.namespace.autoPackage:   true
+        propel.database:                "%propel_database_driver%" #pgsql|mysql|sqlite|mssql|oracle
+        propel.behavior.event.class:    vendor.glorpen.propel-bundle.Glorpen.Propel.PropelBundle.Behaviors.EventBehavior
+        propel.behavior.default:        event
+
+    behaviors:
+        typehintable:                   vendor.willdurand.propel-typehintable-behavior.src.TypehintableBehavior
+        publishable:                    vendor.willdurand.propel-publishable-behavior.src.PublishableBehavior
+        event_dispatcher:               vendor.willdurand.propel-eventdispatcher-behavior.src.EventDispatcherBehavior
+        geocodable:                     vendor.willdurand.propel-geocodable-behavior.src.GeocodableBehavior
+        boolean_extra:                  vendor.havvg.propel-boolean-extra-behavior.src.BooleanExtraBehavior
+        c33s_attachable:                vendor.c33s.attachment-bundle.C33s.AttachmentBundle.Behavior.C33sPropelBehaviorAttachable
+        c33s_i18n_helper:               vendor.c33s.i18n-helper-behavior.src.C33sPropelBehaviorI18nHelper
+
+    dbal:
+        classname:                      Glorpen\Propel\PropelBundle\Connection\EventPropelPDO
+        driver:                         "%propel_database_driver%"
+        user:                           "%propel_database_user%"
+        password:                       "%propel_database_password%"
+        dsn:                            "%propel_database_dsn%"
+        options:                        {}
+        attributes:                     {}
