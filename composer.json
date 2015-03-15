@@ -84,8 +84,7 @@
     },
     "extra": {
         "c33s-building-blocks": [
-            "C33s\\CoreBundle\\BuildingBlock\\CoreBuildingBlock",
-            "C33s\\CoreBundle\\BuildingBlock\\PropelBuildingBlock"
+            "C33s\\CoreBundle\\BuildingBlock\\CoreBuildingBlock"
         ]
     }
 }
