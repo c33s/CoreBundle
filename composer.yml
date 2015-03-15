@@ -197,5 +197,5 @@ require-dev:
 
 extra:
     c33s-building-blocks:
-        - C33s\CoreBundle\BuildingBlock\C33sCoreBuildingBlock
-        - C33s\CoreBundle\BuildingBlock\C33sPropelBuildingBlock
+        - C33s\CoreBundle\BuildingBlock\CoreBuildingBlock
+        - C33s\CoreBundle\BuildingBlock\PropelBuildingBlock
