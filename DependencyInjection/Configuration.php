@@ -23,7 +23,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
-                ->append($this->addBundleNode())
                 ->arrayNode('twig')
                     ->addDefaultsIfNotSet()
                     ->children()
@@ -37,26 +36,6 @@ class Configuration implements ConfigurationInterface
         ;
 
         return $treeBuilder;
-    }
-
-    public function addBundleNode()
-    {
-        $builder = new TreeBuilder();
-        $node = $builder->root('bundles');
-
-        $node
-            ->isRequired()
-            ->requiresAtLeastOneElement()
-            ->useAttributeAsKey('name')
-            ->prototype('array')
-                ->children()
-                    //->booleanNode('auto_add')->defaultTrue()->end()
-                    ->scalarNode('class')->isRequired()->end()
-                ->end()
-            ->end()
-        ;
-
-        return $node;
     }
 
     public function addGoogleNode()

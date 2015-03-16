@@ -47,13 +47,10 @@ require:
     c33s/attachment-bundle:                                         '0.4.*'
     c33s/contact-form-bundle:                                       '0.2.*'
     c33s/menu-bundle:                                               '0.10.*'
-    c33s/construction-kit-bundle:                                   'dev-master as 0.1.0'
-
-    # temporary
-    c33s/composer-construction-kit-installer:                       'dev-master'
+    c33s/construction-kit-bundle:                                   '~0.1.0'
 
     #c33s/simple-content-bundle:                                     '0.11.*'
-    #c33s/static-page-content-bundle:                                '2.0.*'
+    c33s/static-page-content-bundle:                                '2.0.*'
 
     ### symfony ################################################################
     symfony/symfony:                                                '~2.3'

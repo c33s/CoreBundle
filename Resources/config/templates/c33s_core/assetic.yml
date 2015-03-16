@@ -1,0 +1,11 @@
+# Assetic Configuration
+assetic:
+    bundles:        [ 'C33sCoreBundle', AppBundle', 'AvocodeFormExtensionsBundle' ]
+    filters:
+        cssrewrite: ~
+        lessphp:
+            paths:
+                - '%kernel.root_dir%/../src/AppBundle/Resources/non-public/less/'
+                - '%kernel.root_dir%/../src/'
+                - '%kernel.root_dir%/../vendor/'
+                - '%kernel.root_dir%/../'

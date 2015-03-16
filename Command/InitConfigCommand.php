@@ -33,7 +33,7 @@ class InitConfigCommand extends BaseInitCommand
     {
         parent::execute($input, $output);
         $this->io->write('<info>c33s:init-config</info>');
-        $this->rebuildBundles();
+        //$this->rebuildBundles();
         $this->createSqlDataDirectory();
         $this->createPropelFixturesDirectory();
         $this->initTemplatesAndResources();

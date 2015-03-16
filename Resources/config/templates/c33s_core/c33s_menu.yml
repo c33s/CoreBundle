@@ -1,0 +1,14 @@
+imports:
+#- { resource: @AppBundle/Resources/config/menus_webpage/_menus_webpage.yml }
+#- { resource: @AppBundle/Resources/config/menus_admin/_menus_admin.yml }
+
+#c33s_menu:
+#    item_class_aliases:
+#        default:        C33s\MenuBundle\Item\MenuItem
+#        single:         C33s\MenuBundle\Item\SinglePageMenuItem
+#        admingen:       C33s\MenuBundle\Item\AdminGeneratorMenuItem
+#        static:         C33s\StaticPageContentBundle\Menu\StaticPageContentMenuItem
+#        simple_content: C33s\SimpleContentBundle\Menu\SimpleContentMenuItem
+#        user_control:   C33s\CoreBundle\Menu\UserControlMenuItem
+#
+#    definitions: []

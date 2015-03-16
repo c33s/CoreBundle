@@ -25,6 +25,5 @@ class C33sCoreExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
         $container->setParameter('c33s_core.config.twig_variables', $config['twig']);
-        $container->setParameter('c33s_core.config.bundles', $config['bundles']);
     }
 }
