@@ -195,3 +195,4 @@ require-dev:
 extra:
     c33s-building-blocks:
         - C33s\CoreBundle\BuildingBlock\CoreBuildingBlock
+        - C33s\CoreBundle\BuildingBlock\SonataBuildingBlock
