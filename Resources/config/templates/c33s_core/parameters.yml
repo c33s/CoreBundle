@@ -1,0 +1,16 @@
+# These are some basic parameters used by various components in CoreBuildingBlock but not needed in all projects.
+# Anything in here that might change between environments should be moved to app/config/parameters.yml[.dist].
+parameters:
+    mailer_transport:   smtp
+    mailer_host:        127.0.0.1
+    mailer_user:        ~
+    mailer_password:    ~
+    mailer_encryption:  ssl
+    mailer_spool_type:  memory
+
+    locales:
+        - '%locale%'
+
+    # google analytics
+    ga_tracking_enabled: false
+    ga_tracking_id: UA-xxxxxxx-x

@@ -3,6 +3,8 @@
 namespace C33s\CoreBundle\BuildingBlock;
 
 use C33s\ConstructionKitBundle\BuildingBlock\SimpleBuildingBlock;
+use RandomLib\Factory;
+use RandomLib\Generator;
 
 class CoreBuildingBlock extends SimpleBuildingBlock
 {
@@ -59,5 +61,55 @@ class CoreBuildingBlock extends SimpleBuildingBlock
     protected function getPathSuffix()
     {
         return 'c33s_core';
+    }
+
+    /**
+     * Get list of parameters including their default values to add to parameters.yml and parameters.yml.dist if not set already.
+     *
+     * This will be called every time the building blocks are refreshed.
+     *
+     * @return array
+     */
+    public function getAddParameters()
+    {
+        return array(
+            'node.bin' => '/usr/bin/node',
+            'propel_database_path' => '%kernel.root_dir%/../var/data/propel.sqlite',
+            'propel_database_driver' => 'sqlite',
+            'propel_database_user' => 'myuser',
+            'propel_database_password' => 'mypassword',
+            'propel_database_dsn' => '%propel_database_driver%:%propel_database_path%',
+            'master_domain' => 'example.com',
+        );
+    }
+
+    /**
+     * Get list of parameters including their default values to add to parameters.yml and parameters.yml.dist.
+     * If they already exist in parameters.yml, they will be replaced.
+     *
+     * This will only be called once during first enabling of the building block
+     *
+     * @return array
+     */
+    public function getInitialParameters()
+    {
+        return array(
+            'locales' => array('%locale%'),
+            'secret' => $this->generateSecret(),
+        );
+    }
+
+    /**
+     * Generate a fancy secret string to use instead of the default secret token.
+     *
+     * @return mixed
+     */
+    protected function generateSecret()
+    {
+        $factory = new Factory();
+        $generator = $factory->getMediumStrengthGenerator();
+        $secret = $generator->generateString(60 + mt_rand(0, 10), Generator::CHAR_BASE64);
+
+        return $secret;
     }
 }
