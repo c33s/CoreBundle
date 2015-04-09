@@ -100,6 +100,52 @@ class CoreBuildingBlock extends SimpleBuildingBlock
     }
 
     /**
+     * Return all assets that can be added automatically by this BuildingBlock. Return array grouped by asset type.
+     * e.g.
+     *
+     * return array(
+     *     "webpage_js_top" => array('path/to/jquery.js'),
+     *     "webpage_js"     => array('path/to/lib1.js', 'path/to/lib2.js'),
+     *     "admin_css"      => array('path/to/some.css'),
+     * );
+     *
+     * Asset paths must be provided in a way that allows them to be loaded using Assetic.
+     * The usage of this feature highly depends on your specific project structure.
+     *
+     * @return array
+     */
+    public function getAssets()
+    {
+        $assets = parent::getAssets();
+
+        $assets = array_merge_recursive($assets, array(
+            'webpage_top_js' => array(
+                'media/components/jquery/jquery.min.js',
+            ),
+            'webpage_js' => array(
+                'media/components/jquery-ui/jquery-ui.js',
+                'media/components/form/jquery.form.js',
+                'media/components/jquery-cookie/jquery.cookie.js',
+                '../vendor/twbs/bootstrap/js/affix.js',
+                '../vendor/twbs/bootstrap/js/alert.js',
+                '../vendor/twbs/bootstrap/js/button.js',
+                '../vendor/twbs/bootstrap/js/carousel.js',
+                '../vendor/twbs/bootstrap/js/collapse.js',
+                '../vendor/twbs/bootstrap/js/dropdown.js',
+                '../vendor/twbs/bootstrap/js/modal.js',
+                '../vendor/twbs/bootstrap/js/tooltip.js',
+                '../vendor/twbs/bootstrap/js/popover.js',
+                '../vendor/twbs/bootstrap/js/scrollspy.js',
+                '../vendor/twbs/bootstrap/js/tab.js',
+                '../vendor/twbs/bootstrap/js/transition.js',
+                '@BraincraftedBootstrapBundle/Resources/js/bc-bootstrap-collection.js',
+            ),
+        ));
+
+        return $assets;
+    }
+
+    /**
      * Generate a fancy secret string to use instead of the default secret token.
      *
      * @return mixed
