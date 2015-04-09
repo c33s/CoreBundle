@@ -73,7 +73,7 @@
             {% block body_end %}{% endblock %}
         {% endblock %} {# body #}
         {% block javascripts %}
-            {% if c33s_core_config.app.use_cdn %}
+{#            {% if c33s_core_config.app.use_cdn %}
                 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
             {% else %}
                 {% javascripts output='media/generated/js/bootstrap3.js' combine=true
@@ -88,7 +88,7 @@
                 'media/components/jquery-cookie/jquery.cookie.js'
             %}
                 <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
+            {% endjavascripts %}#}
 
             {{ render_assets('js') }}
             {{ render_assets('inline_js') }}

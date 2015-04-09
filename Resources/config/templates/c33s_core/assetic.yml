@@ -1,6 +1,6 @@
 # Assetic Configuration
 assetic:
-    bundles:        [ 'C33sCoreBundle', AppBundle', 'AvocodeFormExtensionsBundle' ]
+    bundles:        [ 'C33sCoreBundle', 'AppBundle', 'AvocodeFormExtensionsBundle' ]
     filters:
         cssrewrite: ~
         lessphp:
