@@ -57,6 +57,7 @@ require:
 
     ### propel #################################################################
     c33s/i18n-helper-behavior:                                      '~0.1.0'
+    c33s/propel-di-behavior-bundle:                                 '~0.1.0'
     glorpen/propel-bundle:                                          '~1.2.5'
     havvg/propel-boolean-extra-behavior:                            '~1.1.2'
     propel/propel-bundle:                                           '~1.2'

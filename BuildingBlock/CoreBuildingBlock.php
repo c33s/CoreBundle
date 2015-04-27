@@ -38,6 +38,7 @@ class CoreBuildingBlock extends SimpleBuildingBlock
             'C33s\\AttachmentBundle\\C33sAttachmentBundle',
             'C33s\\ContactFormBundle\\C33sContactFormBundle',
             'C33s\\MenuBundle\\C33sMenuBundle',
+            'C33s\\PropelDIBehaviorBundle\\C33sPropelDIBehaviorBundle',
             //'C33s\\StaticPageContentBundle\\C33sStaticPageContentBundle',
             'Cocur\\HumanDate\\Bridge\\Symfony\\CocurHumanDateBundle',
             'Cocur\\Slugify\\Bridge\\Symfony\\CocurSlugifyBundle',
