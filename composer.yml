@@ -89,7 +89,7 @@ require:
     #twitter/bootstrap:                                              '3.2.0'
 
     ### admin generator ########################################################
-    avocode/form-extensions-bundle:                                 '0.1.4'
+    avocode/form-extensions-bundle:                                 '0.1.7'
     #cedriclombardot/admingenerator-generator-bundle:                '1.1.2'
     #white-october/pagerfanta-bundle:                                '1.0.2'
 

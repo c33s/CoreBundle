@@ -55,7 +55,7 @@
         "oyejorge/less.php": "1.7.0.2",
         "ptachoire/cssembed": "1.0.2",
         "twbs/bootstrap": "~3.3.2",
-        "avocode/form-extensions-bundle": "0.1.4",
+        "avocode/form-extensions-bundle": "0.1.7",
         "components/jquery": "1.11.1",
         "components/jqueryui": "1.11.0",
         "components/jquery-cookie": "1.4.1.1",
