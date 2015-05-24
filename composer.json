@@ -33,7 +33,7 @@
     "require": {
         "php": ">=5.3.3",
         "c33s/attachment-bundle": "0.5.*",
-        "c33s/contact-form-bundle": "0.2.*",
+        "c33s/contact-form-bundle": "0.3.*",
         "c33s/menu-bundle": "0.10.*",
         "c33s/construction-kit-bundle": "~0.1.0",
         "c33s/static-page-content-bundle": "2.0.*",
