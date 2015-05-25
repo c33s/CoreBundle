@@ -49,7 +49,7 @@ require:
     c33s/menu-bundle:                                               '0.10.*'
     c33s/construction-kit-bundle:                                   '~0.1.0'
 
-    #c33s/simple-content-bundle:                                     '0.11.*'
+    c33s/simple-content-bundle:                                     '0.12.*'
     c33s/static-page-content-bundle:                                '2.0.*'
 
     ### symfony ################################################################
