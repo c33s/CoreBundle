@@ -22,7 +22,7 @@ class HashCopyCommand extends ContainerAwareCommand
          $this
             ->setName('c33s:hashcopy')
             ->setDescription('copies a file to its hash location')
-            ->addArgument('file', InputArgument::REQUIRED, 'The Database Table to alter rows in.' )
+            ->addArgument('file', InputArgument::REQUIRED, 'The Database Table to alter rows in.')
             //->addArgument('target', InputArgument::OPTIONAL, 'Add data to update or enter.' )
             ->addOption('levels', null, InputOption::VALUE_OPTIONAL, 'Int Id or Primary String of Row to select.', 3)
             ->addOption('basedir', null, InputOption::VALUE_OPTIONAL, 'Add a file via path to the Row.', 'web/upload')

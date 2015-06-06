@@ -31,7 +31,7 @@ class InitSymfonyCommand extends BaseInitCommand
         }
         $this
             ->setDescription('Inits the project from the sf standard distribution in the vendor dir.')
-            ->addArgument('name', InputArgument::OPTIONAL, 'the Name of the Customer (used as Namespace Part)', 'Acme' )
+            ->addArgument('name', InputArgument::OPTIONAL, 'the Name of the Customer (used as Namespace Part)', 'Acme')
             ->addOption(
                'force',
                null,

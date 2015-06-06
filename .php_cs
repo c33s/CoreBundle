@@ -16,7 +16,6 @@ return Symfony\CS\Config\Config::create()
             'short_tag', // [PSR-1] PHP code must use the long ?php ? tags or the short-echo ?= ? tags; it must not use the other tag variations.
             'elseif', // [PSR-2] The keyword elseif should be used instead of else if so that all control keywords looks like single words.
             'eof_ending', // [PSR-2] A file must always end with an empty line feed.
-'-function_call_space', // [PSR-2] When making a method or function call, there MUST NOT be a space between the method or function name and the opening parenthesis.
             'function_declaration', // [PSR-2] Spaces should be properly placed in a function declaration.
             'line_after_namespace', // [PSR-2] There MUST be one blank line after the namespace declaration.
             'linefeed', // [PSR-2] All PHP files must use the Unix LF (linefeed) line ending.
@@ -24,14 +23,13 @@ return Symfony\CS\Config\Config::create()
             'lowercase_keywords', // [PSR-2] PHP keywords MUST be in lower case.
             'method_argument_space', // [PSR-2] In method arguments and method call, there MUST NOT be a space before each comma and there MUST be one space after each comma.
             'multiple_use', // [PSR-2] There MUST be one use keyword per declaration.
-'-parenthesis', // [PSR-2] There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
+'parenthesis', // [PSR-2] There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
             'php_closing_tag', // [PSR-2] The closing ? tag MUST be omitted from files containing only PHP.
-'trailing_spaces', // [PSR-2] Remove trailing whitespace at the end of non-blank lines.
+            'trailing_spaces', // [PSR-2] Remove trailing whitespace at the end of non-blank lines.
             'visibility', // [PSR-2] Visibility MUST be declared on all properties and methods; abstract and final MUST be declared before the visibility; static MUST be declared after the visibility.
             'concat_without_spaces', // [symfony] Concatenation should be used without spaces.
             'double_arrow_multiline_whitespaces', // [symfony] Operator => should not be arounded by multi-line whitespaces.
             'duplicate_semicolon', // [symfony] Remove duplicated semicolons.
-'-extra_empty_lines', // [symfony] Removes extra empty lines.
             'include', // [symfony] Include and file path should be divided with a single space. File path should not be placed under brackets.
             'multiline_array_trailing_comma', // [symfony] PHP multi-line arrays should have a trailing comma.
             'namespace_no_leading_whitespace', // [symfony] The namespace declaration line shouldn't contain leading whitespace.
@@ -52,6 +50,10 @@ return Symfony\CS\Config\Config::create()
 
             // future fixes
             '-short_array_syntax', // [contrib] PHP array's should use the PHP 5.4 short-syntax.
+
+            // maybe fixers
+            '-function_call_space', // [PSR-2] When making a method or function call, there MUST NOT be a space between the method or function name and the opening parenthesis.
+            '-extra_empty_lines', // [symfony] Removes extra empty lines.
 
             // removed fixers
             '-single_array_no_trailing_comma', // [symfony] PHP single-line arrays should not have trailing comma.

@@ -19,7 +19,7 @@ class InitConfigCommand extends BaseInitCommand
         $this
             ->setName('c33s:init-config')
             ->setDescription('the task will init the projects config with the importing system')
-            ->addArgument('name', InputArgument::REQUIRED, 'the Name of the Customer (used as Namespace Part)' )
+            ->addArgument('name', InputArgument::REQUIRED, 'the Name of the Customer (used as Namespace Part)')
             ->addOption(
                'force',
                null,

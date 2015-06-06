@@ -19,7 +19,7 @@ class BuildAdminGenCommand extends BaseInitCommand
         $this
             ->setName('admin:c33s:build')
             ->setDescription('')
-            ->addArgument('name', InputArgument::REQUIRED, 'the Name of the Customer (used as Namespace Part)' )
+            ->addArgument('name', InputArgument::REQUIRED, 'the Name of the Customer (used as Namespace Part)')
             ->addOption(
                'force',
                null,

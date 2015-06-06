@@ -23,7 +23,7 @@ class InitCmsCommand extends BaseInitCommand
         $this
             ->setName('c33s:init-cms')
             ->setDescription('')
-            ->addArgument('name', InputArgument::REQUIRED, 'the Name of the Customer (used as Namespace Part)' )
+            ->addArgument('name', InputArgument::REQUIRED, 'the Name of the Customer (used as Namespace Part)')
             ->addOption(
                'force',
                null,
