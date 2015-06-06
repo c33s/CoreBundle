@@ -22,7 +22,7 @@ class PhpinfoController extends Controller
      */
     public function indexAction()
     {
-        $phpinfo = new Phpinfo;
+        $phpinfo = new Phpinfo();
 
         return array('phpinfo' => $phpinfo->get());
     }

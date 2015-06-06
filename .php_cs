@@ -35,8 +35,8 @@ return Symfony\CS\Config\Config::create()
             'include', // [symfony] Include and file path should be divided with a single space. File path should not be placed under brackets.
             '-multiline_array_trailing_comma', // [symfony] PHP multi-line arrays should have a trailing comma.
             '-namespace_no_leading_whitespace', // [symfony] The namespace declaration line shouldn't contain leading whitespace.
-            '-new_with_braces', // [symfony] All instances created with new keyword must be followed by braces.
-            '-object_operator', // [symfony] There should not be space before or after object T_OBJECT_OPERATOR.
+            'new_with_braces', // [symfony] All instances created with new keyword must be followed by braces.
+            'object_operator', // [symfony] There should not be space before or after object T_OBJECT_OPERATOR.
             '-operators_spaces', // [symfony] Operators should be arounded by at least one space.
             '-phpdoc_params', // [symfony] All items of the @param phpdoc tags must be aligned vertically.
             '-remove_leading_slash_use', // [symfony] Remove leading slashes in use clauses.

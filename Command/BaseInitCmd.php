@@ -40,7 +40,7 @@ class BaseInitCmd extends ContainerAwareCommand
         }
         else
         {
-            $inflector = new Inflector;
+            $inflector = new Inflector();
         }
         $this->name = new NameHelper($name, $inflector);
     }

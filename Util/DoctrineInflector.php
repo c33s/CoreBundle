@@ -21,7 +21,7 @@ class DoctrineInflector implements InflectorInterface
 
     public function titleize($word, $uppercase = '')
     {
-	throw new MethodNotImplementedException;
+	throw new MethodNotImplementedException();
     }
 
     public function camelize($word)
@@ -36,7 +36,7 @@ class DoctrineInflector implements InflectorInterface
 
     public function humanize($word, $uppercase = '')
     {
-	throw new MethodNotImplementedException;
+	throw new MethodNotImplementedException();
     }
 
     public function variablize($word)
@@ -56,6 +56,6 @@ class DoctrineInflector implements InflectorInterface
 
     public function ordinalize($number)
     {
-	throw new MethodNotImplementedException;
+	throw new MethodNotImplementedException();
     }
 }
