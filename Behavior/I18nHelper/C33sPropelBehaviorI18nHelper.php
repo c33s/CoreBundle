@@ -71,7 +71,7 @@ EOF;
             $phpName = $column->getPhpName();
             $var = lcfirst($phpName);
 
-            $varPlural = 'all' . $builder->getPluralizer()->getPluralForm($phpName);
+            $varPlural = 'all'.$builder->getPluralizer()->getPluralForm($phpName);
 
             $default = $column->getDefaultValueString();
 

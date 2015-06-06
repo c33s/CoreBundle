@@ -147,11 +147,11 @@ class BaseInitCmd extends ContainerAwareCommand
 
         if ($targetDirectory)
         {
-            $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$targetDirectory.DIRECTORY_SEPARATOR.$fileParts['filename'];
+            $targetFile = $this->getContainer()->get('kernel')->getRootDir().'/../'.$targetDirectory.DIRECTORY_SEPARATOR.$fileParts['filename'];
         }
         else
         {
-            $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$fileParts['dirname'].'/'.$fileParts['filename'];
+            $targetFile = $this->getContainer()->get('kernel')->getRootDir().'/../'.$fileParts['dirname'].'/'.$fileParts['filename'];
         }
 
         $this->io->write($targetFile, OutputInterface::VERBOSITY_VERBOSE);

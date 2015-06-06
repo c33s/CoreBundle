@@ -25,13 +25,12 @@ return Symfony\CS\Config\Config::create()
             'method_argument_space', // [PSR-2] In method arguments and method call, there MUST NOT be a space before each comma and there MUST be one space after each comma.
             'multiple_use', // [PSR-2] There MUST be one use keyword per declaration.
             '-parenthesis', // [PSR-2] There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
-            '-php_closing_tag', // [PSR-2] The closing ? tag MUST be omitted from files containing only PHP.
+            'php_closing_tag', // [PSR-2] The closing ? tag MUST be omitted from files containing only PHP.
             '-trailing_spaces', // [PSR-2] Remove trailing whitespace at the end of non-blank lines.
             'visibility', // [PSR-2] Visibility MUST be declared on all properties and methods; abstract and final MUST be declared before the visibility; static MUST be declared after the visibility.
-            '-concat_without_spaces', // [symfony] Concatenation should be used without spaces.
+            'concat_without_spaces', // [symfony] Concatenation should be used without spaces.
             '-double_arrow_multiline_whitespaces', // [symfony] Operator => should not be arounded by multi-line whitespaces.
-            '-duplicate_semicolon', // [symfony] Remove duplicated semicolons.
-            '-empty_return', // [symfony] A return statement wishing to return nothing should be simply "return".
+            'duplicate_semicolon', // [symfony] Remove duplicated semicolons.
             '-extra_empty_lines', // [symfony] Removes extra empty lines.
             '-include', // [symfony] Include and file path should be divided with a single space. File path should not be placed under brackets.
             '-multiline_array_trailing_comma', // [symfony] PHP multi-line arrays should have a trailing comma.
@@ -55,6 +54,7 @@ return Symfony\CS\Config\Config::create()
             '-multiline_spaces_before_semicolon', // [contrib] Multi-line whitespace before closing semicolon are prohibited.
             '-short_array_syntax', // [contrib] PHP array's should use the PHP 5.4 short-syntax.
 
+            '-empty_return', // [symfony] A return statement wishing to return nothing should be simply "return".
             '-spaces_before_semicolon', // [symfony] Single-line whitespace before closing semicolon are prohibited.
             '-indentation', // [PSR-2] Code MUST use an indent of 4 spaces, and MUST NOT use tabs for indenting.
             '-braces', // [PSR-2] The body of each structure MUST be enclosed by braces. Braces should be properly placed. Body of braces should be properly indented.

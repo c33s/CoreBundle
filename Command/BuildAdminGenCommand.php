@@ -86,10 +86,10 @@ class BuildAdminGenCommand extends BaseInitCommand
 EOT;
         }
 
-        $filePath = $routingPath . '/admingenerator.yml';
+        $filePath = $routingPath.'/admingenerator.yml';
 
         $oldContent = file_exists($filePath) ? file_get_contents($filePath) : '';
-        $content = $oldContent . "\n" . $content;
+        $content = $oldContent."\n".$content;
         $this->fs->dumpfile($filePath, $content);
     }
 

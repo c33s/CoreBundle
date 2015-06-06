@@ -14,11 +14,11 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
     public function testInitProjectDir()
     {
         $this->logProgress("############################################################\nStarting deployment test\n############################################################\n");
-        $this->logProgress('Folder: ' . self::$projectDir);
+        $this->logProgress('Folder: '.self::$projectDir);
         
         $this->logProgress('Copying composer.json');
-        $composerFile = realpath(__DIR__ . '/../../Resources/files/composer-example.json');
-        $projectComposerFile = self::$projectDir . '/composer.json';
+        $composerFile = realpath(__DIR__.'/../../Resources/files/composer-example.json');
+        $projectComposerFile = self::$projectDir.'/composer.json';
         
         copy($composerFile, $projectComposerFile);
         
@@ -33,12 +33,12 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         $this->assertFileExists($projectComposerFile);
         
         $this->logProgress('Copying parameters.yml');
-        $parametersFile = realpath(__DIR__ . '/Files/parameters.yml');
+        $parametersFile = realpath(__DIR__.'/Files/parameters.yml');
         if (!file_exists(self::$projectDir.'/app/config'))
         {
             mkdir(self::$projectDir.'/app/config', 0777, true);
         }
-        $projectParametersFile = self::$projectDir . '/app/config/parameters.yml';
+        $projectParametersFile = self::$projectDir.'/app/config/parameters.yml';
         copy($parametersFile, $projectParametersFile);
         
         $this->assertFileExists($projectParametersFile);
@@ -54,10 +54,10 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         {
             $this->fail('Unable to find a composer executable!');
         }
-        $this->logProgress('Found composer: ' . $composer);
+        $this->logProgress('Found composer: '.$composer);
         
-        $this->logProgress('Running: ' . $composer . ' install --no-scripts --prefer-dist');
-        $composerUpdateProcess = new Process($composer . ' install --no-scripts --prefer-dist', self::$projectDir);
+        $this->logProgress('Running: '.$composer.' install --no-scripts --prefer-dist');
+        $composerUpdateProcess = new Process($composer.' install --no-scripts --prefer-dist', self::$projectDir);
         $composerUpdateProcess->setTimeout(1800);
         $composerUpdateProcess->run();
         $this->logProgress($composerUpdateProcess->getOutput());
@@ -74,10 +74,10 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         {
             $this->fail('Unable to find a php executable!');
         }
-        $this->logProgress('Found PHP: ' . $php);
+        $this->logProgress('Found PHP: '.$php);
         
-        $this->logProgress('Running: ' . $php . ' bin/init-symfony run CustomNamespace');
-        $initSymfonyProcess = new Process($php  . ' bin/init-symfony run CustomNamespace', self::$projectDir);
+        $this->logProgress('Running: '.$php.' bin/init-symfony run CustomNamespace');
+        $initSymfonyProcess = new Process($php.' bin/init-symfony run CustomNamespace', self::$projectDir);
         $initSymfonyProcess->setTimeout(600);
         $initSymfonyProcess->run();
         $this->logProgress($initSymfonyProcess->getOutput());
@@ -88,10 +88,10 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         {
             $this->fail('Unable to find a composer executable!');
         }
-        $this->logProgress('Found composer: ' . $composer);
+        $this->logProgress('Found composer: '.$composer);
         
-        $this->logProgress('Running: ' . $composer . ' run-script post-update-cmd');
-        $composerPostUpdateProcess = new Process($composer . ' run-script post-update-cmd', self::$projectDir);
+        $this->logProgress('Running: '.$composer.' run-script post-update-cmd');
+        $composerPostUpdateProcess = new Process($composer.' run-script post-update-cmd', self::$projectDir);
         $composerPostUpdateProcess->setTimeout(60);
         $composerPostUpdateProcess->run();
         $this->logProgress($composerPostUpdateProcess->getOutput());
@@ -108,10 +108,10 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         {
             $this->fail('Unable to find a php executable!');
         }
-        $this->logProgress('Found PHP: ' . $php);
+        $this->logProgress('Found PHP: '.$php);
         
-        $this->logProgress('Running: ' . $php . ' app/console c33s:init-config CustomNamespace');
-        $initConfigProcess = new Process($php  . ' app/console c33s:init-config CustomNamespace', self::$projectDir);
+        $this->logProgress('Running: '.$php.' app/console c33s:init-config CustomNamespace');
+        $initConfigProcess = new Process($php.' app/console c33s:init-config CustomNamespace', self::$projectDir);
         $initConfigProcess->setTimeout(600);
         $initConfigProcess->run();
         $this->logProgress($initConfigProcess->getOutput());
@@ -128,10 +128,10 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         {
             $this->fail('Unable to find a php executable!');
         }
-        $this->logProgress('Found PHP: ' . $php);
+        $this->logProgress('Found PHP: '.$php);
         
-        $this->logProgress('Running: ' . $php . ' app/console c33s:init-cms CustomNamespace');
-        $initCmsProcess = new Process($php  . ' app/console c33s:init-cms CustomNamespace', self::$projectDir);
+        $this->logProgress('Running: '.$php.' app/console c33s:init-cms CustomNamespace');
+        $initCmsProcess = new Process($php.' app/console c33s:init-cms CustomNamespace', self::$projectDir);
         $initCmsProcess->setTimeout(600);
         $initCmsProcess->run();
         $this->logProgress($initCmsProcess->getOutput());
@@ -148,10 +148,10 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         {
             $this->fail('Unable to find a php executable!');
         }
-        $this->logProgress('Found PHP: ' . $php);
+        $this->logProgress('Found PHP: '.$php);
         
-        $this->logProgress('Running: ' . $php . ' app/console admin:c33s:build CustomNamespace');
-        $adminBuildProcess = new Process($php  . ' app/console admin:c33s:build CustomNamespace', self::$projectDir);
+        $this->logProgress('Running: '.$php.' app/console admin:c33s:build CustomNamespace');
+        $adminBuildProcess = new Process($php.' app/console admin:c33s:build CustomNamespace', self::$projectDir);
         $adminBuildProcess->setTimeout(600);
         $adminBuildProcess->run();
         $this->logProgress($adminBuildProcess->getOutput());
@@ -168,10 +168,10 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         {
             $this->fail('Unable to find a php executable!');
         }
-        $this->logProgress('Found PHP: ' . $php);
+        $this->logProgress('Found PHP: '.$php);
         
-        $this->logProgress('Running: ' . $php . ' app/console c33s:clean');
-        $cleanProcess = new Process($php  . ' app/console c33s:clean', self::$projectDir);
+        $this->logProgress('Running: '.$php.' app/console c33s:clean');
+        $cleanProcess = new Process($php.' app/console c33s:clean', self::$projectDir);
         $cleanProcess->setTimeout(600);
         $cleanProcess->run();
         $this->logProgress($cleanProcess->getOutput());
@@ -203,7 +203,7 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
     
     public static function setUpBeforeClass()
     {
-        $dirFile = __DIR__ . '/../../.deployed_project_dir';
+        $dirFile = __DIR__.'/../../.deployed_project_dir';
         if (file_exists($dirFile))
         {
             self::$projectDir = trim(file_get_contents($dirFile));
@@ -250,7 +250,7 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
     {
         $date = date('c').' ';
         $emptyDate = str_repeat(' ', strlen($date));
-        $content = $date . str_replace("\n", "\n" . $emptyDate, $content) . "\n";
+        $content = $date.str_replace("\n", "\n".$emptyDate, $content)."\n";
         file_put_contents(__DIR__.'/../../deployment.log', $content, FILE_APPEND);
     }
 }

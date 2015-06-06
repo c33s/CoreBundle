@@ -56,6 +56,6 @@ class DeployedPagesTest extends WebTestCase
     
     public static function setUpBeforeClass()
     {
-        self::$projectDir = trim(file_get_contents(__DIR__ . '/../../.deployed_project_dir'));
+        self::$projectDir = trim(file_get_contents(__DIR__.'/../../.deployed_project_dir'));
     }
 }
