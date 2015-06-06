@@ -60,7 +60,6 @@
         "ptachoire/cssembed": "1.0.2",
         "twbs/bootstrap": "~3.3.4",
         "avocode/form-extensions-bundle": "0.1.7",
-        "cedriclombardot/admingenerator-generator-bundle": "1.1.2",
         "white-october/pagerfanta-bundle": "1.0.*",
         "components/jquery": "1.11.1",
         "components/jqueryui": "1.11.0",
