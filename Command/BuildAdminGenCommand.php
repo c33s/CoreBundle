@@ -72,7 +72,7 @@ class BuildAdminGenCommand extends BaseInitCommand
         $routingPath = "${path}/Resources/config/routing";
         $this->fs->mkdir($routingPath);
 
-        $content="";
+        $content = "";
 
         foreach ($this->adminModels as $model)
         {

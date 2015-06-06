@@ -53,7 +53,7 @@ class QuickFilterExtension extends \Twig_Extension
     {
         return $this->inflector->underscore($word);
     }
-    public function youtubeFilter($id, $flex=true, $privacy=true)
+    public function youtubeFilter($id, $flex = true, $privacy = true)
     {
         if ($privacy === true)
         {

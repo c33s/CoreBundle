@@ -130,7 +130,7 @@ class Configuration implements ConfigurationInterface
             ->fixXmlConfig('author')
             ->beforeNormalization()
                 ->ifString()
-                ->then(function ($v) { return array('authors'=> $v); })
+                ->then(function ($v) { return array('authors' => $v); })
             ->end()
             ->children()
                 ->arrayNode('authors')

@@ -19,7 +19,7 @@ class MenuController extends Controller
      * @Route("/switchuser")
      * @Template()
      */
-    public function switchUserAction($dropdown=false, $header=false, $headerSeperator=true, $headerText='Switch User')
+    public function switchUserAction($dropdown = false, $header = false, $headerSeperator = true, $headerText = 'Switch User')
     {
         $parameters                    = array();
         $parameters['dropdown']        = $dropdown;

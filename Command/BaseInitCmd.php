@@ -55,7 +55,7 @@ class BaseInitCmd extends ContainerAwareCommand
         return false;
     }
 
-    protected function executeCommand($command, $timeout=60)
+    protected function executeCommand($command, $timeout = 60)
     {
         $this->io->write(sprintf('Running <comment>%s</comment>', $command));
         $process = new Process($command);

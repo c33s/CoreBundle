@@ -73,12 +73,12 @@ class AkelosInflector implements InflectorInterface
     $lowercased_word = strtolower($word);
 
     foreach ($uncountable as $_uncountable){
-      if(substr($lowercased_word, (-1*strlen($_uncountable))) == $_uncountable){
+      if(substr($lowercased_word, (-1 * strlen($_uncountable))) == $_uncountable){
         return $word;
       }
     }
 
-    foreach ($irregular as $_plural=> $_singular){
+    foreach ($irregular as $_plural => $_singular){
       if (preg_match('/('.$_plural.')$/i', $word, $arr)) {
         return preg_replace('/('.$_plural.')$/i', substr($arr[0], 0, 1).substr($_singular, 1), $word);
       }
@@ -142,12 +142,12 @@ class AkelosInflector implements InflectorInterface
 
     $lowercased_word = strtolower($word);
     foreach ($uncountable as $_uncountable){
-      if(substr($lowercased_word, (-1*strlen($_uncountable))) == $_uncountable){
+      if(substr($lowercased_word, (-1 * strlen($_uncountable))) == $_uncountable){
         return $word;
       }
     }
 
-    foreach ($irregular as $_plural=> $_singular){
+    foreach ($irregular as $_plural => $_singular){
       if (preg_match('/('.$_singular.')$/i', $word, $arr)) {
         return preg_replace('/('.$_singular.')$/i', substr($arr[0], 0, 1).substr($_plural, 1), $word);
       }

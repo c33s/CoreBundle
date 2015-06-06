@@ -42,7 +42,7 @@ class Phpinfo
             {
                 $keys           = array_keys($phpinfo);
                 $key            = end($keys);
-                $phpinfo[$key][]= $match[2];
+                $phpinfo[$key][] = $match[2];
             }
         }
 

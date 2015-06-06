@@ -41,7 +41,7 @@ class Tools
         $lines     = file($file);
         $lineCount = count($lines);
 
-        for($i=0; $i < $lineCount; $i++)
+        for($i = 0; $i < $lineCount; $i++)
         {
             if (strstr($lines[$i], $stringToRemove))
             {
@@ -83,7 +83,7 @@ class Tools
         {
             $start = 0;
         }
-        $end   = Tools::stringPosInArray($lines, $endLinePattern, $start+1);
+        $end   = Tools::stringPosInArray($lines, $endLinePattern, $start + 1);
         $start = $start + $startOffset;
 
         if ($endLinePattern !== false && $end === false)
@@ -96,7 +96,7 @@ class Tools
         }
         else
         {
-            $end = $end +1;
+            $end = $end + 1;
         }
         $end = $end + $endOffset;
 
@@ -159,7 +159,7 @@ class Tools
             if ($stringAfterToInsert !== false)
             {
                 $lineCount = count($lines);
-                for($i=0; $i < $lineCount; $i++)
+                for($i = 0; $i < $lineCount; $i++)
                 {
                     if (strstr($lines[$i], $stringAfterToInsert))
                     {
@@ -195,7 +195,7 @@ class Tools
         }
 
         $lineCount = count($array);
-        for($i=0+$offset;$i<$lineCount;$i++)
+        for($i = 0 + $offset;$i < $lineCount;$i++)
         {
             $result = strpos($array[$i], $string);
             if ($result !== false)
@@ -245,7 +245,7 @@ class Tools
         return $min + $rnd;
     }
 
-    public static function generateRandomPassword($minLength=40, $maxLength=50, $asciiMin=32, $asciiMax=126, $excludedCharacters = array('(', ')', '"', "'", '{', '}', '`', '\\'))
+    public static function generateRandomPassword($minLength = 40, $maxLength = 50, $asciiMin = 32, $asciiMax = 126, $excludedCharacters = array('(', ')', '"', "'", '{', '}', '`', '\\'))
     {
         $excludedOrdList = array();
         foreach ($excludedCharacters as $excludedCharacter)
