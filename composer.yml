@@ -84,7 +84,7 @@ require:
 
     ### admin generator ########################################################
     avocode/form-extensions-bundle:                                 '0.1.7'
-    cedriclombardot/admingenerator-generator-bundle:                '1.1.2'
+    #cedriclombardot/admingenerator-generator-bundle:                '1.1.2'
     white-october/pagerfanta-bundle:                                '1.0.*'
     
     ### javascript #############################################################
