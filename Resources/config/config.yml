@@ -12,14 +12,14 @@ c33s_core:
         #######################################################################
         # extra
         #######################################################################
-        admingenerator_generator:
-            class:  Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle
+        #admingenerator_generator:
+        #    class:  Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle
         avocode_form_extensions:
             class:  Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle
         bazinga_propel_event_dispatcher:
             class:  Bazinga\Bundle\PropelEventDispatcherBundle\BazingaPropelEventDispatcherBundle
-        be_simple_i18n_routing:
-            class:  BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle
+        #be_simple_i18n_routing:
+        #    class:  BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle
         braincrafted_bootstrap:
             class:  Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle
         c33s_attachment:
