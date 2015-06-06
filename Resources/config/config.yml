@@ -60,8 +60,6 @@ c33s_core:
             class:  Smoya\Bundle\AssetManagementBundle\SmoyaAssetManagementBundle
         white_october_pagerfanta:
             class:  WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle
-        zenstruck_slugify:
-            class:  Zenstruck\SlugifyBundle\ZenstruckSlugifyBundle
         #c33s_crazy_egg:
         #   class:  c33s\Bundle\CrazyEggBundle
         #knp_menu:
