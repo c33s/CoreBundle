@@ -42,10 +42,10 @@ return Symfony\CS\Config\Config::create()
             'remove_leading_slash_use', // [symfony] Remove leading slashes in use clauses.
             'return', // [symfony] An empty line feed should precede a return statement.
             '-single_array_no_trailing_comma', // [symfony] PHP single-line arrays should not have trailing comma.
-            '-spaces_cast', // [symfony] A single space should be between cast and variable.
+            'spaces_cast', // [symfony] A single space should be between cast and variable.
             'standardize_not_equal', // [symfony] Replace all <> with !=.
             'ternary_spaces', // [symfony] Standardize spaces around ternary operator.
-            '-unused_use', // [symfony] Unused use statements must be removed.
+            'unused_use', // [symfony] Unused use statements must be removed.
             '-whitespacy_lines', // [symfony] Remove trailing whitespace at the end of blank lines.
             '-align_double_arrow', // [contrib] Align double arrow symbols in consecutive lines.
             '-align_equals', // [contrib] Align equals symbols in consecutive lines.
