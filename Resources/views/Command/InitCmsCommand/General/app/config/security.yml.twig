@@ -31,8 +31,8 @@ security:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        
+
         - { path: ^/admin/, roles: ROLE_ADMIN }
         - { path: ^/admin/storage/, roles: ROLE_SUPER_ADMIN }
-      
+
         - { path: ^/api/, roles: ROLE_USER_IP, ip: 127.0.0.1 }

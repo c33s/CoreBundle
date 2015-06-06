@@ -17,7 +17,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    
+
     {#  javascripts filter='?yui_js' output='media/generated/js/admingenerator.min.js' #}
     {% javascripts output='media/generated/js/admingenerator.min.js'
         'bundles/admingeneratorgenerator/js/admingenerator/general.js'

@@ -4,7 +4,7 @@
         {% if "NONE" != fieldset[:4] %}
         <legend><span>{{ echo_trans(fieldset,{}, i18n_catalog|default("Admin") ) }}</span></legend>
         {% endif %}
-			
+
         {% for rows in builder.fieldsets[fieldset] %}
             <div class="row form-group">
             {% for field in rows %}

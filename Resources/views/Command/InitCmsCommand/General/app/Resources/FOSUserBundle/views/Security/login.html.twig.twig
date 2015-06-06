@@ -2,7 +2,7 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block stylesheets %}
-    {{ parent() }} 
+    {{ parent() }}
     <style type="text/css">
       body {
         padding-top: 40px;
@@ -34,7 +34,7 @@
         margin-bottom: 15px;
         padding: 7px 9px;
       }
-      
+
       footer
       {
           margin: 0 auto 20px;
@@ -42,9 +42,9 @@
       }
     </style>
 {% endblock %}
-      
+
 {% block header %}{% endblock %}
-      
+
 {% block fos_user_content %}
 {% if error %}
     <div>{{ error|trans({}, 'FOSUserBundle') }}</div>

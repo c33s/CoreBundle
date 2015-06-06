@@ -9,10 +9,10 @@
     %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
-    
+
     {## avo start #}
     {#% include 'AvocodeFormExtensionsBundle::stylesheets.html.twig' %#}
-    
+
     {% stylesheets filter='cssrewrite' output='media/generated/css/avocodeformextensions.css'
         'bundles/avocodeformextensions/bootstrap-collection/css/bootstrap-collection.css'
         'bundles/avocodeformextensions/collection-upload/css/collection-upload.css'
@@ -27,11 +27,11 @@
     %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
     {% endstylesheets %}
-    
+
     {## avo end #}
-    
+
     {{ render_assets('css') }}
-	
+
     {% if form is defined %}
         {{ afe_form_stylesheet(form) }}
     {% endif %}
@@ -64,7 +64,7 @@
 
 {% block upper_javascripts %}
     {{ parent() }}
-    
+
     {% javascripts output='media/generated/js/jquery-ui.js'
         'media/components/jquery-ui/jquery-ui.js'
     %}
@@ -74,16 +74,16 @@
 {% block javascripts %}
     <!-- scripts -->
     {{ parent() }}
-    
+
     {% javascripts output='media/generated/js/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.js' combine=true
         '@{% endverbatim %}{{ name.camelcase }}{{ bundlename | camelcase }}{% verbatim %}Bundle/Resources/non-public/js/{% endverbatim %}{{ bundlename | underscore }}{% verbatim %}.js'
     %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    
+
     {#% include 'AvocodeFormExtensionsBundle::javascripts.html.twig' %#}
     {% block avocode_form_javascripts %}
-        
+
         {% javascripts output='media/generated/js/avocodeformextensions.blueimp.jquery-file-upload.min.js'
             'bundles/avocodeformextensions/blueimp-javascript-templates/js/tmpl.js'
             'bundles/avocodeformextensions/blueimp-load-image/js/load-image.js'
@@ -102,7 +102,7 @@
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        
+
         {% javascripts output='media/generated/js/avocodeformextensions.form-extensions.min.js'
             'bundles/avocodeformextensions/bootstrap-collection/js/bootstrap-collection.js'
             'bundles/avocodeformextensions/collection-upload/js/collection-upload.js'
@@ -119,22 +119,22 @@
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        
+
         <!-- locale -->
         {% if app.request.locale in ['ca', 'cs', 'da', 'de', 'es', 'et', 'eu', 'fr', 'gl', 'he', 'hr', 'hu', 'is', 'it', 'ja', 'lt', 'lv', 'mk', 'nl', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sv', 'tr', 'ua', 'vi', 'zh-CN', 'zh-TW'] %}
         <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/select2/js/i18n/select2_locale_' ~ app.request.locale ~ '.js') }}"></script>
         {% endif %}
-        
+
         {% if app.request.locale in ['bg', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'he', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'kr', 'lt', 'lv', 'mk', 'ms', 'nb', 'nl', 'pl', 'pt-BR', 'pt', 'ro', 'rs-latin', 'rs', 'ru', 'sk', 'sl', 'sq', 'sv', 'sw', 'th', 'tr', 'uk', 'zh-CN', 'zh-TW'] %}
         <script type="text/javascript" src="{{ asset('bundles/avocodeformextensions/datepicker/js/locales/bootstrap-datepicker.' ~ app.request.locale ~ '.js') }}"></script>
         {% endif %}
-        
+
     {% endblock avocode_form_javascripts %}
-	
+
     {% if form is defined %}
         {{ afe_form_javascript(form) }}
     {% endif %}
-    
+
     {{ render_assets('js') }}
 {% endblock %}
 {% endverbatim %}
