@@ -74,7 +74,7 @@ class Tools
             $lines = file($file);
         }
 
-        $start = Tools::stringPosInArray($lines,$startLinePattern,0);
+        $start = Tools::stringPosInArray($lines, $startLinePattern, 0);
         if ($startLinePattern !== false && $start === false)
         {
             throw new \Exception('Start line pattern "'.$startLinePattern.'" not found.');
@@ -83,7 +83,7 @@ class Tools
         {
             $start = 0;
         }
-        $end = Tools::stringPosInArray($lines,$endLinePattern,$start+1);
+        $end = Tools::stringPosInArray($lines, $endLinePattern, $start+1);
         $start = $start + $startOffset;
 
         if ($endLinePattern !== false && $end === false)
@@ -197,7 +197,7 @@ class Tools
         $lineCount = count($array);
         for($i=0+$offset;$i<$lineCount;$i++)
         {
-            $result = strpos($array[$i],$string);
+            $result = strpos($array[$i], $string);
             if ($result !== false)
             {
                 return $i;
@@ -245,7 +245,7 @@ class Tools
         return $min + $rnd;
     }
 
-    public static function generateRandomPassword($minLength=40,$maxLength=50,$asciiMin=32,$asciiMax=126,$excludedCharacters = array('(',')','"',"'",'{','}','`','\\'))
+    public static function generateRandomPassword($minLength=40, $maxLength=50, $asciiMin=32, $asciiMax=126, $excludedCharacters = array('(', ')', '"', "'", '{', '}', '`', '\\'))
     {
         $excludedOrdList = array();
         foreach ($excludedCharacters as $excludedCharacter)

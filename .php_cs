@@ -17,12 +17,12 @@ return Symfony\CS\Config\Config::create()
             'elseif', // [PSR-2] The keyword elseif should be used instead of else if so that all control keywords looks like single words.
             'eof_ending', // [PSR-2] A file must always end with an empty line feed.
 '-function_call_space', // [PSR-2] When making a method or function call, there MUST NOT be a space between the method or function name and the opening parenthesis.
-            '-function_declaration', // [PSR-2] Spaces should be properly placed in a function declaration.
+            'function_declaration', // [PSR-2] Spaces should be properly placed in a function declaration.
             'line_after_namespace', // [PSR-2] There MUST be one blank line after the namespace declaration.
-            '-linefeed', // [PSR-2] All PHP files must use the Unix LF (linefeed) line ending.
+            'linefeed', // [PSR-2] All PHP files must use the Unix LF (linefeed) line ending.
             'lowercase_constants', // [PSR-2] The PHP constants true, false, and null MUST be in lower case.
             'lowercase_keywords', // [PSR-2] PHP keywords MUST be in lower case.
-            '-method_argument_space', // [PSR-2] In method arguments and method call, there MUST NOT be a space before each comma and there MUST be one space after each comma.
+            'method_argument_space', // [PSR-2] In method arguments and method call, there MUST NOT be a space before each comma and there MUST be one space after each comma.
             'multiple_use', // [PSR-2] There MUST be one use keyword per declaration.
             '-parenthesis', // [PSR-2] There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
             '-php_closing_tag', // [PSR-2] The closing ? tag MUST be omitted from files containing only PHP.

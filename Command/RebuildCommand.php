@@ -59,7 +59,7 @@ class RebuildCommand extends ContainerAwareCommand
             $this->addLoadPropelFixtures();
         }
 
-        $this->runCommandSets($input,$output);
+        $this->runCommandSets($input, $output);
     }
 
     protected function runCommandSets(InputInterface $input, OutputInterface $output)

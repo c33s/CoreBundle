@@ -36,7 +36,7 @@ class DataHandlerHashDirExtension extends \Twig_Extension
 	);
     }
 
-    public function hashDirFilter($object,$field)
+    public function hashDirFilter($object, $field)
     {
 	$this->dataHandler->init($object);
 	$return = $this->dataHandler->getFilePath($field, false);

@@ -31,17 +31,17 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
     //Tools::stringPosInArray($array,$string,$offset = 0, $trim = true)
     public function testEmptyData()
     {
-	$result = Tools::stringPosInArray(array(),"Not Relevant");
+	$result = Tools::stringPosInArray(array(), "Not Relevant");
 	$this->assertEquals(false, $result);
     }
     public function testNullData()
     {
-	$result = Tools::stringPosInArray(null,"Not Relevant");
+	$result = Tools::stringPosInArray(null, "Not Relevant");
 	$this->assertEquals(false, $result);
     }
     public function testFalseData()
     {
-	$result = Tools::stringPosInArray(false,"Not Relevant");
+	$result = Tools::stringPosInArray(false, "Not Relevant");
 	$this->assertEquals(false, $result);
     }
     
@@ -49,17 +49,17 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
     
     public function testEmptyString()
     {
-	$result = Tools::stringPosInArray($this->data,"");
+	$result = Tools::stringPosInArray($this->data, "");
 	$this->assertEquals(false, $result);
     }
     public function testNullString()
     {
-	$result = Tools::stringPosInArray($this->data,null);
+	$result = Tools::stringPosInArray($this->data, null);
 	$this->assertEquals(false, $result);
     }
     public function testFalseString()
     {
-	$result = Tools::stringPosInArray($this->data,false);
+	$result = Tools::stringPosInArray($this->data, false);
 	$this->assertEquals(false, $result);
     }
     
@@ -67,12 +67,12 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
     
     public function testTrimFalse()
     {
-	$result = Tools::stringPosInArray($this->data,"\n\n\t\t Two \n\n\n\n\t",0,false);
+	$result = Tools::stringPosInArray($this->data, "\n\n\t\t Two \n\n\n\n\t", 0, false);
 	$this->assertEquals(false, $result);
     }   
     public function testTrimTrue()
     {
-	$result = Tools::stringPosInArray($this->data,"\n\n\t\t Two \n\n\n\n\t",0,true);
+	$result = Tools::stringPosInArray($this->data, "\n\n\t\t Two \n\n\n\n\t", 0, true);
 	$this->assertEquals(true, $result);
     }   
     
@@ -80,27 +80,27 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
     
     public function testMissing()
     {
-	$result = Tools::stringPosInArray($this->data,"Missing");
+	$result = Tools::stringPosInArray($this->data, "Missing");
 	$this->assertEquals(false, $result);
     }
     public function testFirstByNumber()
     {
-	$result = Tools::stringPosInArray($this->data,"Number");
+	$result = Tools::stringPosInArray($this->data, "Number");
 	$this->assertEquals(0, $result);
     }
     public function testSecond()
     {
-	$result = Tools::stringPosInArray($this->data,"Two");
+	$result = Tools::stringPosInArray($this->data, "Two");
 	$this->assertEquals(1, $result);
     }
     public function testFirst()
     {
-	$result = Tools::stringPosInArray($this->data,"One");
+	$result = Tools::stringPosInArray($this->data, "One");
 	$this->assertEquals(0, $result);
     }
     public function testTenth()
     {
-	$result = Tools::stringPosInArray($this->data,"Ten");
+	$result = Tools::stringPosInArray($this->data, "Ten");
 	$this->assertEquals(9, $result);
     }
     
@@ -108,27 +108,27 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
     
     public function testFifthOfsettTwo()
     {
-	$result = Tools::stringPosInArray($this->data,"Number",2);
+	$result = Tools::stringPosInArray($this->data, "Number", 2);
 	$this->assertEquals(2, $result);
     }
     public function testFifthOfsettNine()
     {
-	$result = Tools::stringPosInArray($this->data,"Three",9);
+	$result = Tools::stringPosInArray($this->data, "Three", 9);
 	$this->assertEquals(12, $result);
     }
     public function testFifthOfsettEleven()
     {
-	$result = Tools::stringPosInArray($this->data,"Three",11);
+	$result = Tools::stringPosInArray($this->data, "Three", 11);
 	$this->assertEquals(12, $result);
     }
     public function testFifthOfsettTwelve()
     {
-	$result = Tools::stringPosInArray($this->data,"Three",12);
+	$result = Tools::stringPosInArray($this->data, "Three", 12);
 	$this->assertEquals(12, $result);
     }
     public function testFifthOfsettThirteen()
     {
-	$result = Tools::stringPosInArray($this->data,"Three",13);
+	$result = Tools::stringPosInArray($this->data, "Three", 13);
 	$this->assertEquals(false, $result);
     }
     

@@ -37,7 +37,7 @@ class BuildAdminGenCommand extends BaseInitCommand
                null,
                InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL,
                'supply an array of model names for which admin should be generated',
-                array('Storage','News')
+                array('Storage', 'News')
             )
             ->addOption(
                'append-routing',
@@ -139,7 +139,7 @@ EOT;
             $to   = array('model: '.$this->name.'\ModelBundle\Model', );
             $newContent = str_replace($from, $to, $content);
             $this->io->write("fixing ".$file->getPathname(), OutputInterface::VERBOSITY_DEBUG);
-            $this->fs->dumpFile($file->getPathname(),$newContent);
+            $this->fs->dumpFile($file->getPathname(), $newContent);
         }
     }
 }

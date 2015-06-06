@@ -45,7 +45,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Five',
             'My Line Number Six',
         );       
-        $result = Tools::cropFileByLine($this->data,false, "Six", 0, 0);
+        $result = Tools::cropFileByLine($this->data, false, "Six", 0, 0);
         $this->assertEquals($expected, $result);
     }
     
@@ -62,7 +62,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Nine',
             'My Line Number Ten',
         );
-        $result = Tools::cropFileByLine($this->data,"One", false, 1, 0);
+        $result = Tools::cropFileByLine($this->data, "One", false, 1, 0);
         $this->assertEquals($expected, $result);
     }
     
@@ -83,7 +83,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Ten',
         );
 	
-        $result = Tools::cropFileByLine($this->data,"One", false, 0, 0);
+        $result = Tools::cropFileByLine($this->data, "One", false, 0, 0);
         $this->assertEquals($expected, $result);
     }
     
@@ -93,7 +93,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
      */
     public function testCropAllStartingWithOneIncludingOneAndEndOffsetBeyond()
     {
-        $result = Tools::cropFileByLine($this->data,"One", false, 0, 1);
+        $result = Tools::cropFileByLine($this->data, "One", false, 0, 1);
     }
     
     public function testCropAllStartingWithOneStartOffsetOne()
@@ -110,7 +110,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Nine',
             'My Line Number Ten',
         );
-        $result = Tools::cropFileByLine($this->data,"One", false, 1, 0);
+        $result = Tools::cropFileByLine($this->data, "One", false, 1, 0);
         $this->assertEquals($expected, $result);
     }
     
@@ -125,7 +125,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Nine',
             'My Line Number Ten',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", false, 0, 0);
+        $result = Tools::cropFileByLine($this->data, "Four", false, 0, 0);
         $this->assertEquals($expected, $result);
     }
     
@@ -139,7 +139,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Nine',
             'My Line Number Ten',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", false, 1, 0);
+        $result = Tools::cropFileByLine($this->data, "Four", false, 1, 0);
         $this->assertEquals($expected, $result);
     }
     
@@ -149,7 +149,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
      */
     public function testCropAllStartWithFourOffsetOneOne()
     {
-        $result = Tools::cropFileByLine($this->data,"Four", false, 1, 1);
+        $result = Tools::cropFileByLine($this->data, "Four", false, 1, 1);
     }
     
     public function testCropAllStartWithFourOffsetOneMinusOne()
@@ -162,7 +162,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Eight',
             'My Line Number Nine',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", false, 0, -1);
+        $result = Tools::cropFileByLine($this->data, "Four", false, 0, -1);
         $this->assertEquals($expected, $result);
     }
     public function testCropStartWithFourOffsetMinusTwoMinusTwo()
@@ -176,7 +176,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Seven',
             'My Line Number Eight',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", false, -2, -2);
+        $result = Tools::cropFileByLine($this->data, "Four", false, -2, -2);
         $this->assertEquals($expected, $result);
     }
     
@@ -189,7 +189,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             //'My Line Number Seven',
             //'My Line Number Eight',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", false, 0, -6);
+        $result = Tools::cropFileByLine($this->data, "Four", false, 0, -6);
         $this->assertEquals($expected, $result);
     }
     
@@ -206,7 +206,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             //'My Line Number Seven',
             //'My Line Number Eight',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", false, 0, -7);
+        $result = Tools::cropFileByLine($this->data, "Four", false, 0, -7);
         $this->assertEquals($expected, $result);
     }
     
@@ -216,7 +216,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
      */
     public function testCropStartWithFourOffsetMinusTwoMinusEight()
     {
-        $result = Tools::cropFileByLine($this->data,"Four", false, 0, -8);
+        $result = Tools::cropFileByLine($this->data, "Four", false, 0, -8);
     }
     
     
@@ -229,7 +229,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Seven',
             'My Line Number Eight',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", false, 0, -2);
+        $result = Tools::cropFileByLine($this->data, "Four", false, 0, -2);
         $this->assertEquals($expected, $result);
     }
     public function testCropAllStartWithFourOffsetOneMinusThree()
@@ -240,7 +240,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Six',
             'My Line Number Seven',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", false, 0, -3);
+        $result = Tools::cropFileByLine($this->data, "Four", false, 0, -3);
         $this->assertEquals($expected, $result);
     }
     
@@ -250,7 +250,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
      */
     public function testStartPatternEndOffsetOne()
     {
-        $result = Tools::cropFileByLine($this->data,"Ten", false, 1, 0);
+        $result = Tools::cropFileByLine($this->data, "Ten", false, 1, 0);
     }
     
     public function testStartPatternEndNoOffset()
@@ -258,7 +258,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
         $expected = array(
             'My Line Number Ten',
         );
-        $result = Tools::cropFileByLine($this->data,"Ten", false, 0, 0);
+        $result = Tools::cropFileByLine($this->data, "Ten", false, 0, 0);
         $this->assertEquals($expected, $result);
     }
 	
@@ -277,7 +277,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Eight',
             'My Line Number Nine',
         );
-        $result = Tools::cropFileByLine($this->data,"One", "Ten", 1, -1);
+        $result = Tools::cropFileByLine($this->data, "One", "Ten", 1, -1);
         $this->assertEquals($expected, $result);
     }   
         
@@ -294,7 +294,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Eight',
             'My Line Number Nine',
         );
-        $result = Tools::cropFileByLine($this->data,"One", "Ten", 0, -1);
+        $result = Tools::cropFileByLine($this->data, "One", "Ten", 0, -1);
         $this->assertEquals($expected, $result);
     }   
 
@@ -312,7 +312,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Nine',
             'My Line Number Ten',
         );
-        $result = Tools::cropFileByLine($this->data,"One", "Ten", 0, 0);
+        $result = Tools::cropFileByLine($this->data, "One", "Ten", 0, 0);
         $this->assertEquals($expected, $result);
     }   
 
@@ -324,7 +324,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Seven',
 
         );
-        $result = Tools::cropFileByLine($this->data,"Four", "Eight", 1, -1);
+        $result = Tools::cropFileByLine($this->data, "Four", "Eight", 1, -1);
         $this->assertEquals($expected, $result);
     }
     
@@ -337,7 +337,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Seven',
             'My Line Number Eight',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", "Eight", 1, 0);
+        $result = Tools::cropFileByLine($this->data, "Four", "Eight", 1, 0);
         $this->assertEquals($expected, $result);
     }
     
@@ -348,7 +348,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Six',
             'My Line Number Seven',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", "Eight", 1, -1);
+        $result = Tools::cropFileByLine($this->data, "Four", "Eight", 1, -1);
         $this->assertEquals($expected, $result);
     }
     
@@ -362,7 +362,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Eight',
             'My Line Number Nine',
         );
-        $result = Tools::cropFileByLine($this->data,"Four", "Eight", 0, 1);
+        $result = Tools::cropFileByLine($this->data, "Four", "Eight", 0, 1);
         $this->assertEquals($expected, $result);
     }
     
@@ -377,7 +377,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Ten',
         );
 	
-        $result = Tools::cropFileByLine($this->data,"Ten", "Ten", 0, -1);
+        $result = Tools::cropFileByLine($this->data, "Ten", "Ten", 0, -1);
         $this->assertEquals($expected, $result);
 
     }
@@ -389,7 +389,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
      */
     public function testStartEndPatternEndException5()
     {
-        $result = Tools::cropFileByLine($this->data,"Ten", "Ten", 0, 1);
+        $result = Tools::cropFileByLine($this->data, "Ten", "Ten", 0, 1);
         
     }
     
@@ -399,7 +399,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
      */
     public function testStartEndPatternEndException4()
     {
-        $result = Tools::cropFileByLine($this->data,"Ten", "Ten", 0, 0);
+        $result = Tools::cropFileByLine($this->data, "Ten", "Ten", 0, 0);
     }
     
     /**
@@ -408,7 +408,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
      */
     public function testStartEndPatternEndException()
     {
-        $result = Tools::cropFileByLine($this->data,"Ten", "Ten", 1, 0);
+        $result = Tools::cropFileByLine($this->data, "Ten", "Ten", 1, 0);
     }
     /**
      * @expectedException        Exception
@@ -416,7 +416,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
      */
     public function testStartEndPatternEndException2()
     {
-        $result = Tools::cropFileByLine($this->data,"Ten", "Ten", 1, 1);
+        $result = Tools::cropFileByLine($this->data, "Ten", "Ten", 1, 1);
     }
     /**
      * @expectedException        Exception
@@ -424,7 +424,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
      */
     public function testStartEndPatternStartException()
     {
-        $result = Tools::cropFileByLine($this->data,"Ten", "Ten", 1, 0);
+        $result = Tools::cropFileByLine($this->data, "Ten", "Ten", 1, 0);
     }
    
     /**
@@ -433,7 +433,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
      */
     public function testStartEndPatternStartException3()
     {
-        $result = Tools::cropFileByLine($this->data,"Eleven", false, 0, 0);
+        $result = Tools::cropFileByLine($this->data, "Eleven", false, 0, 0);
 	//var_dump($result);
     }
     

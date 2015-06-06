@@ -55,7 +55,7 @@ class InitConfigCommand extends BaseInitCommand
         $this->removeBundles($appKernel);
         $this->cleanBaseImporter();
         $this->rebuildBaseImporter($bundles);
-        $this->addBundles($appKernel,$bundles);
+        $this->addBundles($appKernel, $bundles);
 
         $this->io->write('added Bundles');
     }
@@ -96,7 +96,7 @@ class InitConfigCommand extends BaseInitCommand
     {
         $coreBundleConfigDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
 
-        Tools::removeLineFromFile($this->getContainer()->get('kernel')->getRootDir().'/config/config.yml','- { resource: corebundle/_base_importer.yml }');
+        Tools::removeLineFromFile($this->getContainer()->get('kernel')->getRootDir().'/config/config.yml', '- { resource: corebundle/_base_importer.yml }');
 
         $fs = new Filesystem();
         $fs->remove($coreBundleConfigDir);
@@ -106,7 +106,7 @@ class InitConfigCommand extends BaseInitCommand
     protected function addBaseImporterYmlToConfig()
     {
         $configDir = $this->getContainer()->get('kernel')->getRootDir().'/config';
-        Tools::addLineToFile($configDir.'/config.yml',"    - { resource: corebundle/_base_importer.yml }\n","- { resource: @C33sCoreBundle/Resources/config/config.yml }");
+        Tools::addLineToFile($configDir.'/config.yml', "    - { resource: corebundle/_base_importer.yml }\n", "- { resource: @C33sCoreBundle/Resources/config/config.yml }");
     }
 
     protected function enableTranslationsInConfig()
@@ -137,7 +137,7 @@ class InitConfigCommand extends BaseInitCommand
 
     protected function removeBundles($appKernel)
     {
-        Tools::cropFileByLine($appKernel,"//# Sub Bundles ###", "//### End Core Bundle ###,", 1, -1, true);
+        Tools::cropFileByLine($appKernel, "//# Sub Bundles ###", "//### End Core Bundle ###,", 1, -1, true);
     }
 
     protected function addBundles($appKernel, $bundles)
@@ -156,6 +156,6 @@ class InitConfigCommand extends BaseInitCommand
     {
         $parameters['asseticBundles'] = $this->asseticBundles;
 
-        parent::renderFileFromTemplate($file,$targetDirectory,$parameters);
+        parent::renderFileFromTemplate($file, $targetDirectory, $parameters);
     }
 }

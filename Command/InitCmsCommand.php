@@ -122,7 +122,7 @@ class InitCmsCommand extends BaseInitCommand
         $configToAdd = "    - { resource: config/_importer.yml }\n";
         $stringAfterToInsert = "- { resource: corebundle/_base_importer.yml }";
 
-        Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
+        Tools::addLineToFile($configFile, $configToAdd, $stringAfterToInsert);
         $this->io->write('added CoreBundle config.yml to imports');
     }
 
@@ -147,6 +147,6 @@ class InitCmsCommand extends BaseInitCommand
         $parameters['name'] = $this->name;
         $parameters['asseticBundles'] = $this->asseticBundles;
 
-        parent::renderFileFromTemplate($file,$targetDirectory,$parameters);
+        parent::renderFileFromTemplate($file, $targetDirectory, $parameters);
     }
 }

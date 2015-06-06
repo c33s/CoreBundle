@@ -60,7 +60,7 @@ class InitSymfonyCommand extends BaseInitCommand
         $bundleDefinitionToAdd = "\n            //### Core Bundle ###\n            new C33s\CoreBundle\C33sCoreBundle(),\n            //# Sub Bundles ###\n            //### End Core Bundle ###,\n            //new C33s\DummyBundle\C33sDummyBundle(),\n";
         $stringAfterToInsert = 'new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),';
         $appKernelFile = $this->getAppKernelPath();
-        Tools::addLineToFile($appKernelFile,$bundleDefinitionToAdd,$stringAfterToInsert,$checkString);
+        Tools::addLineToFile($appKernelFile, $bundleDefinitionToAdd, $stringAfterToInsert, $checkString);
 
         $this->io->write('added CoreBundle to AppKernel');
     }
@@ -71,7 +71,7 @@ class InitSymfonyCommand extends BaseInitCommand
         $configToAdd = "    - { resource: @C33sCoreBundle/Resources/config/config.yml }\n";
         $stringAfterToInsert = "- { resource: security.yml }";
 
-        Tools::addLineToFile($configFile,$configToAdd,$stringAfterToInsert);
+        Tools::addLineToFile($configFile, $configToAdd, $stringAfterToInsert);
 
         $this->io->write('added CoreBundle config.yml to imports');
     }
@@ -88,7 +88,7 @@ class InitSymfonyCommand extends BaseInitCommand
     {
         $bundleDefinitionToRemove = '$bundles[] = new Acme\DemoBundle\AcmeDemoBundle();';
         $appKernelFile = $this->getProjectRootDirectory().'/app/AppKernel.php';
-        Tools::removeLineFromFile($appKernelFile,$bundleDefinitionToRemove);
+        Tools::removeLineFromFile($appKernelFile, $bundleDefinitionToRemove);
 
         $configFile = $this->getRoutingDevYmlPath();
         try
@@ -119,13 +119,13 @@ class InitSymfonyCommand extends BaseInitCommand
         $parameters['name'] = $this->name;
         foreach ($finder as $file)
         {
-            $this->renderTemplateFile($file,$parameters);
+            $this->renderTemplateFile($file, $parameters);
         }
 
         $this->copyFramework($overwrite);
     }
 
-    protected function renderTemplateFile($file,$parameters = array())
+    protected function renderTemplateFile($file, $parameters = array())
     {
         $fs = new Filesystem();
         $loader = new Twig_Loader_Filesystem($file->getPath());

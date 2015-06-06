@@ -48,14 +48,14 @@ class BaseInitCmd extends ContainerAwareCommand
     protected function isFramework()
     {
         $app = $this->getApplication();
-        if (method_exists($app,'getKernel'))
+        if (method_exists($app, 'getKernel'))
         {
             return true;
         }
         return false;
     }
 
-    protected function executeCommand($command,$timeout=60)
+    protected function executeCommand($command, $timeout=60)
     {
         $this->io->write(sprintf('Running <comment>%s</comment>', $command));
         $process = new Process($command);
@@ -89,11 +89,11 @@ class BaseInitCmd extends ContainerAwareCommand
         foreach ($bundleNames as $bundleName)
         {
             $path = $this->getContainer()->get('kernel')->locateResource('@C33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/'.$bundleName);
-            $this->renderFilesFromTemplates($path,$bundleName);
+            $this->renderFilesFromTemplates($path, $bundleName);
         }
     }
 
-    protected function renderFilesFromTemplates($path,$bundleName)
+    protected function renderFilesFromTemplates($path, $bundleName)
     {
         $this->io->write("rendering files for $bundleName");
         $this->io->write("rendering files in path $path", OutputInterface::VERBOSITY_DEBUG);
@@ -114,7 +114,7 @@ class BaseInitCmd extends ContainerAwareCommand
             }
             $currentFile = $bundleName.'/'.$file->getRelativePathname();
 
-            $this->renderFileFromTemplate($currentFile,$targetDirectory,array('bundlename' => $bundlename));
+            $this->renderFileFromTemplate($currentFile, $targetDirectory, array('bundlename' => $bundlename));
         }
     }
 
@@ -154,7 +154,7 @@ class BaseInitCmd extends ContainerAwareCommand
             $targetFile = $this->getContainer()->get('kernel')->getRootDir() . '/../'.$fileParts['dirname'].'/'.$fileParts['filename'];
         }
 
-        $this->io->write($targetFile,OutputInterface::VERBOSITY_VERBOSE);
+        $this->io->write($targetFile, OutputInterface::VERBOSITY_VERBOSE);
         $this->fs->dumpFile($targetFile, $content);
     }
 }
