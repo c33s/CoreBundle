@@ -91,6 +91,7 @@ class AkelosInflector implements InflectorInterface
         return preg_replace($rule, $replacement, $word);
       }
     }
+
     return false;
 
   }
@@ -184,6 +185,7 @@ class AkelosInflector implements InflectorInterface
   public function titleize($word, $uppercase = '')
   {
     $uppercase = $uppercase == 'first' ? 'ucfirst' : 'ucwords';
+
     return $uppercase($this->humanize($this->underscore($word)));
   }
 
@@ -245,6 +247,7 @@ class AkelosInflector implements InflectorInterface
   public function humanize($word, $uppercase = '')
   {
     $uppercase = $uppercase == 'all' ? 'ucwords' : 'ucfirst';
+
     return $uppercase(str_replace('_', ' ', preg_replace('/_id$/', '', $word)));
   }
 
@@ -264,6 +267,7 @@ class AkelosInflector implements InflectorInterface
   public function variablize($word)
   {
     $word = $this->camelize($word);
+
     return strtolower($word[0]).substr($word, 1);
   }
 

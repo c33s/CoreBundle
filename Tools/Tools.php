@@ -7,8 +7,8 @@ class Tools
     /**
      * Converts human readable file size (e.g. 10 MB, 200.20 GB) into bytes.
      *
-     * @param string $str
-     * @return int the result is in bytes
+     * @param  string $str
+     * @return int    the result is in bytes
      * @author Svetoslav Marinov
      * @author http://slavi.biz
      */
@@ -54,12 +54,12 @@ class Tools
 
     /**
      *
-     * @param type $file
-     * @param type $startLinePattern pattern to find in line of array, can be false if should start from beginning
-     * @param type $endLinePattern
-     * @param type $startOffset (offset relative from the found pattern)
-     * @param type $endOffset (offset relative from the found pattern)
-     * @param type $invert
+     * @param  type       $file
+     * @param  type       $startLinePattern pattern to find in line of array, can be false if should start from beginning
+     * @param  type       $endLinePattern
+     * @param  type       $startOffset      (offset relative from the found pattern)
+     * @param  type       $endOffset        (offset relative from the found pattern)
+     * @param  type       $invert
      * @return type
      * @throws \Exception
      */

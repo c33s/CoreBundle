@@ -132,6 +132,7 @@ class InitConfigCommand extends BaseInitCommand
         {
             return false;
         }
+
         return $path;
     }
 

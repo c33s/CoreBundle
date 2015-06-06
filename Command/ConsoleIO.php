@@ -33,9 +33,9 @@ class ConsoleIO
     /**
      * Constructor.
      *
-     * @param InputInterface $input The input instance
-     * @param OutputInterface $output The output instance
-     * @param HelperSet $helperSet The helperSet instance
+     * @param InputInterface  $input     The input instance
+     * @param OutputInterface $output    The output instance
+     * @param HelperSet       $helperSet The helperSet instance
      */
     public function __construct(InputInterface $input, OutputInterface $output, HelperSet $helperSet)
     {

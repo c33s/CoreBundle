@@ -44,7 +44,7 @@ class AnonymousVoter implements VoterInterface
     }
 
     /**
-     * @param string $attribute
+     * @param  string  $attribute
      * @return Boolean
      */
     public function supportsAttribute($attribute)
@@ -53,7 +53,7 @@ class AnonymousVoter implements VoterInterface
     }
 
     /**
-     * @param string $class
+     * @param  string  $class
      * @return Boolean
      */
     public function supportsClass($class)
@@ -65,9 +65,9 @@ class AnonymousVoter implements VoterInterface
      * Only allow access if the TokenInterface isAnonymous. But abstain from voting
      * if the attribute IS_ANONYMOUS is not supported.
      *
-     * @param TokenInterface $token
-     * @param object $object
-     * @param array $attributes
+     * @param  TokenInterface $token
+     * @param  object         $object
+     * @param  array          $attributes
      * @return integer
      */
     public function vote(TokenInterface $token, $object, array $attributes)

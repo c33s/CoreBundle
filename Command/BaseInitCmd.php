@@ -52,6 +52,7 @@ class BaseInitCmd extends ContainerAwareCommand
         {
             return true;
         }
+
         return false;
     }
 
@@ -76,6 +77,7 @@ class BaseInitCmd extends ContainerAwareCommand
     protected function getCommandTemplateDirectory()
     {
         $reflect = new \ReflectionClass($this);
+
         return $reflect->getShortName();
     }
 

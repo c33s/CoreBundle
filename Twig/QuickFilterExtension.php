@@ -80,8 +80,8 @@ class QuickFilterExtension extends \Twig_Extension
     /**
      * Convert array to array of arrays with a given size for each block.
      *
-     * @param array $values
-     * @param int $rowCount
+     * @param  array $values
+     * @param  int   $rowCount
      * @return array
      */
     public function columnsFilter($values, $columns)
