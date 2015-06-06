@@ -2,7 +2,6 @@
 
 namespace C33s\CoreBundle\Twig;
 
-
 class ConfigVariablesExtension extends \Twig_Extension
 {
     /**
