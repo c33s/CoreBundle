@@ -2,7 +2,6 @@
 
 namespace C33s\CoreBundle\Util;
 
-use C33s\CoreBundle\Util\InflectorInterface;
 use C33s\CoreBundle\Exception\MethodNotImplementedException;
 use Doctrine\Common\Inflector\Inflector;
 

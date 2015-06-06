@@ -10,7 +10,6 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 
-use C33s\CoreBundle\Command\ConsoleIO;
 use C33s\CoreBundle\Helper\NameHelper;
 use C33s\CoreBundle\Util\AkelosInflector as Inflector;
 
