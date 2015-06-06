@@ -6,5 +6,5 @@ c33s_menu:
         static:         C33s\StaticPageContentBundle\Menu\StaticPageContentMenuItem
         simple_content: C33s\SimpleContentBundle\Menu\SimpleContentMenuItem
         user_control:   C33s\CoreBundle\Menu\UserControlMenuItem
-    
+
     definitions: []

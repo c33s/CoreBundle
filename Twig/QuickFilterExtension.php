@@ -12,12 +12,12 @@ class QuickFilterExtension extends \Twig_Extension
     */
     protected $environment;
     protected $inflector;
-    
+
     public function __construct(InflectorInterface $inflector)
     {
         $this->inflector = $inflector;
     }
-    
+
     /**
     * {@inheritDoc}
     */
@@ -73,10 +73,10 @@ class QuickFilterExtension extends \Twig_Extension
         {
             $html .= '</div>';
         }
-        
+
         return $html;
     }
-    
+
     /**
      * Convert array to array of arrays with a given size for each block.
      *
@@ -88,7 +88,7 @@ class QuickFilterExtension extends \Twig_Extension
     {
         // make sure rowCount is at least 1
         $columns = max(1, (int) $columns);
-        
+
         $rows = array();
         $i    = 0;
         foreach ($values as $value)
@@ -96,7 +96,7 @@ class QuickFilterExtension extends \Twig_Extension
             $rows[floor($i / $columns)][] = $value;
             ++$i;
         }
-        
+
         return $rows;
     }
 }

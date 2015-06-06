@@ -5,7 +5,7 @@ namespace C33s\CoreBundle\Tools;
 class Gcd
 {
     protected $numbers = array();
-    
+
     /**
      * Create a Gcd object to calculate the GCD (Greatest Common Divisor) of the given parameters.
      *
@@ -35,13 +35,13 @@ class Gcd
         {
             $numbers = func_get_args();
         }
-        
+
         foreach ($numbers as $arg)
         {
             $this->numbers[] = abs((int) $arg);
         }
     }
-    
+
     /**
      * Create a Gcd object to calculate the GCD (Greatest Common Divisor) of the given parameters.
      *
@@ -59,10 +59,10 @@ class Gcd
     {
         $reflection = new \ReflectionClass('BookMe\CoreBundle\Tools\Gcd');
         $gcd        = $reflection->newInstanceArgs(func_get_args());
-        
+
         return $gcd->calculate();
     }
-    
+
     /**
      * Perform the actual GCD calculation.
      *
@@ -71,17 +71,17 @@ class Gcd
     public function calculate()
     {
         $gcd = $this->numbers[0];
-	
+
 	$numberCount = count($this->numbers);
-        
+
         for ($i = 1; $i < $numberCount; ++$i)
         {
             $gcd = $this->calculatePair($gcd, $this->numbers[$i]);
         }
-        
+
         return $gcd;
     }
-    
+
     /**
      * Calculate the GCD of 2 positive integers using the recursive Euclidean Algorithm.
      *
@@ -98,7 +98,7 @@ class Gcd
         {
             return $a;
         }
-        
+
         return $this->calculatePair($b, $a % $b);
     }
 }

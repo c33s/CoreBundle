@@ -8,12 +8,12 @@ class ConfigVariablesExtension extends \Twig_Extension
     * @var \Twig_Environment
     */
     protected $environment;
-    
+
     public function __construct($config)
     {
 	$this->config = $config;
     }
-    
+
     /**
     * {@inheritDoc}
     */
@@ -31,7 +31,7 @@ class ConfigVariablesExtension extends \Twig_Extension
     public function getGlobals() 
     {
 	$config = $this->config;
-	
+
         return array('c33s_core_config' => $config);
     }
 

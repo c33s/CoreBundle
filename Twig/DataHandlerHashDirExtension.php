@@ -8,12 +8,12 @@ class DataHandlerHashDirExtension extends \Twig_Extension
     * @var \Twig_Environment
     */
     protected $environment;
-    
+
     public function __construct(\C33s\CoreBundle\DataHandler\DataHandler $dataHandler)
     {
 	$this->dataHandler = $dataHandler;
     }
-    
+
     /**
     * {@inheritDoc}
     */
@@ -40,7 +40,7 @@ class DataHandlerHashDirExtension extends \Twig_Extension
     {
 	$this->dataHandler->init($object);
 	$return = $this->dataHandler->getFilePath($field, false);
-	
+
 	return $return;
     }
 }

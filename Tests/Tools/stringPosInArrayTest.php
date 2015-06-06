@@ -6,7 +6,7 @@ use C33s\CoreBundle\Tools\Tools;
 class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
 {
     protected $data;
-    
+
     protected function setUp()
     {
         $this->data = array(
@@ -27,7 +27,7 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
             'My Line Number Five Again', //14
         );
     }
-    
+
     //Tools::stringPosInArray($array,$string,$offset = 0, $trim = true)
     public function testEmptyData()
     {
@@ -44,9 +44,9 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
 	$result = Tools::stringPosInArray(false, "Not Relevant");
 	$this->assertEquals(false, $result);
     }
-    
-    
-    
+
+
+
     public function testEmptyString()
     {
 	$result = Tools::stringPosInArray($this->data, "");
@@ -62,9 +62,9 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
 	$result = Tools::stringPosInArray($this->data, false);
 	$this->assertEquals(false, $result);
     }
-    
-    
-    
+
+
+
     public function testTrimFalse()
     {
 	$result = Tools::stringPosInArray($this->data, "\n\n\t\t Two \n\n\n\n\t", 0, false);
@@ -75,9 +75,9 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
 	$result = Tools::stringPosInArray($this->data, "\n\n\t\t Two \n\n\n\n\t", 0, true);
 	$this->assertEquals(true, $result);
     }   
-    
-    
-    
+
+
+
     public function testMissing()
     {
 	$result = Tools::stringPosInArray($this->data, "Missing");
@@ -103,9 +103,9 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
 	$result = Tools::stringPosInArray($this->data, "Ten");
 	$this->assertEquals(9, $result);
     }
-    
-    
-    
+
+
+
     public function testFifthOfsettTwo()
     {
 	$result = Tools::stringPosInArray($this->data, "Number", 2);
@@ -131,6 +131,6 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
 	$result = Tools::stringPosInArray($this->data, "Three", 13);
 	$this->assertEquals(false, $result);
     }
-    
-    
+
+
 }

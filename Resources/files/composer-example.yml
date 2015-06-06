@@ -20,7 +20,7 @@ repositories:
 require:
     symfony/framework-standard-edition: '2.3.*'
     c33s/core-bundle:                   '0.101.*'
-    
+
 scripts:
     post-install-cmd:
       - 'Incenteev\ParameterHandler\ScriptHandler::buildParameters'

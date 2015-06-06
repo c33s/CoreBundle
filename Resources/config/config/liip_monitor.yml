@@ -15,7 +15,7 @@ liip_monitor:
         #security_advisory: ~
         #  percentage: 90
         #  path: /var/www
-        
+
 #DiscUsageCheck
 #DoctrineDbalCheck
 #HttpServiceCheck

@@ -15,7 +15,7 @@ c33s_attachment:
 
             # Local base path (if available) to reach files stored in this filesystem
             base_path:      '%kernel.root_dir%/../web/media/storage'
-            
+
     attachments:
         # These are the default config values for all attachments. Specific values follow in the sub sections.
 

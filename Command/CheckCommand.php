@@ -22,7 +22,7 @@ class CheckCommand extends ContainerAwareCommand
         // --- array('description' => 'Pdepend', 'command' => 'pdepend --jdepend-chart=tmp/chart.png --jdepend-xml=tmp/depend.xml --overview-pyramid=tmp/pyramid.png --summary-xml=tmp/summary.xml ./src'),
         array('description' => 'phploc', 'command' => 'phploc --progress --exclude Model --count-tests ./src'),
     );
-    
+
     protected function configure()
     {
         $this
@@ -30,23 +30,23 @@ class CheckCommand extends ContainerAwareCommand
             ->setDescription('c33s:check calls multiple Tests to check the project')
         ;
     }
-    
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('<info>c33s:check</info>');
         $this->dumpConfigFiles($output);
-        
+
         foreach ($this->commandSets as $commandSet)
         {
             $this->processCommandSet($commandSet, $output);
         }
     }
-    
+
     protected function processCommandSet($commandSet, OutputInterface $output)
     {
         $output->writeln(sprintf('Running <comment>%s</comment> check.', $commandSet['description']));
         $process = new Process($commandSet['command']);
-        
+
         $process->run(function ($type, $buffer)
         {
             if (Process::ERR === $type)
@@ -59,7 +59,7 @@ class CheckCommand extends ContainerAwareCommand
             }
         });
     }
-    
+
     protected function dumpConfigFiles(OutputInterface $output)
     {
         $templateing = $this->getContainer()->get('templating');

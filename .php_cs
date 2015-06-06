@@ -46,13 +46,17 @@ return Symfony\CS\Config\Config::create()
             'standardize_not_equal', // [symfony] Replace all <> with !=.
             'ternary_spaces', // [symfony] Standardize spaces around ternary operator.
             'unused_use', // [symfony] Unused use statements must be removed.
-            '-whitespacy_lines', // [symfony] Remove trailing whitespace at the end of blank lines.
-            '-align_double_arrow', // [contrib] Align double arrow symbols in consecutive lines.
-            '-align_equals', // [contrib] Align equals symbols in consecutive lines.
-            '-concat_with_spaces', // [contrib] Concatenation should be used with at least one whitespace around.
-            '-multiline_spaces_before_semicolon', // [contrib] Multi-line whitespace before closing semicolon are prohibited.
+            'whitespacy_lines', // [symfony] Remove trailing whitespace at the end of blank lines.
+            'align_equals', // [contrib] Align equals symbols in consecutive lines.
+            'align_double_arrow', // [contrib] Align double arrow symbols in consecutive lines.
+
+
+            // future fixes
             '-short_array_syntax', // [contrib] PHP array's should use the PHP 5.4 short-syntax.
 
+            // removed fixers
+            '-multiline_spaces_before_semicolon', // [contrib] Multi-line whitespace before closing semicolon are prohibited.
+            '-concat_with_spaces', // [contrib] Concatenation should be used with at least one whitespace around.
             '-remove_lines_between_uses', // [symfony] Removes line breaks between use statements.
             '-empty_return', // [symfony] A return statement wishing to return nothing should be simply "return".
             '-spaces_before_semicolon', // [symfony] Single-line whitespace before closing semicolon are prohibited.
