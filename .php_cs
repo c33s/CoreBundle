@@ -24,15 +24,15 @@ return Symfony\CS\Config\Config::create()
             'lowercase_keywords', // [PSR-2] PHP keywords MUST be in lower case.
             'method_argument_space', // [PSR-2] In method arguments and method call, there MUST NOT be a space before each comma and there MUST be one space after each comma.
             'multiple_use', // [PSR-2] There MUST be one use keyword per declaration.
-            '-parenthesis', // [PSR-2] There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
+'-parenthesis', // [PSR-2] There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
             'php_closing_tag', // [PSR-2] The closing ? tag MUST be omitted from files containing only PHP.
-            '-trailing_spaces', // [PSR-2] Remove trailing whitespace at the end of non-blank lines.
+'-trailing_spaces', // [PSR-2] Remove trailing whitespace at the end of non-blank lines.
             'visibility', // [PSR-2] Visibility MUST be declared on all properties and methods; abstract and final MUST be declared before the visibility; static MUST be declared after the visibility.
             'concat_without_spaces', // [symfony] Concatenation should be used without spaces.
-            '-double_arrow_multiline_whitespaces', // [symfony] Operator => should not be arounded by multi-line whitespaces.
+            'double_arrow_multiline_whitespaces', // [symfony] Operator => should not be arounded by multi-line whitespaces.
             'duplicate_semicolon', // [symfony] Remove duplicated semicolons.
-            '-extra_empty_lines', // [symfony] Removes extra empty lines.
-            '-include', // [symfony] Include and file path should be divided with a single space. File path should not be placed under brackets.
+'-extra_empty_lines', // [symfony] Removes extra empty lines.
+            'include', // [symfony] Include and file path should be divided with a single space. File path should not be placed under brackets.
             '-multiline_array_trailing_comma', // [symfony] PHP multi-line arrays should have a trailing comma.
             '-namespace_no_leading_whitespace', // [symfony] The namespace declaration line shouldn't contain leading whitespace.
             '-new_with_braces', // [symfony] All instances created with new keyword must be followed by braces.

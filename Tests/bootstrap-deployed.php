@@ -12,4 +12,4 @@ if (!is_dir($projectDir))
     throw new \LogicException('Invalid directory '.$projectDir.' specified in .deployed_project_dir file');
 }
 
-require_once($projectDir.'/app/bootstrap.php.cache');
+require_once $projectDir.'/app/bootstrap.php.cache';

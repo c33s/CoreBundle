@@ -46,7 +46,7 @@ class DeployedPagesTest extends WebTestCase
      */
     protected static function createKernel(array $options = array())
     {
-        require_once(self::$projectDir.'/app/AppKernel.php');
+        require_once self::$projectDir.'/app/AppKernel.php';
         
         return new AppKernel(
             isset($options['environment']) ? $options['environment'] : 'test',
