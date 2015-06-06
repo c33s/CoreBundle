@@ -39,13 +39,12 @@ return Symfony\CS\Config\Config::create()
             'object_operator', // [symfony] There should not be space before or after object T_OBJECT_OPERATOR.
             '-operators_spaces', // [symfony] Operators should be arounded by at least one space.
             'phpdoc_params', // [symfony] All items of the @param phpdoc tags must be aligned vertically.
-            '-remove_leading_slash_use', // [symfony] Remove leading slashes in use clauses.
-            '-remove_lines_between_uses', // [symfony] Removes line breaks between use statements.
+            'remove_leading_slash_use', // [symfony] Remove leading slashes in use clauses.
             'return', // [symfony] An empty line feed should precede a return statement.
             '-single_array_no_trailing_comma', // [symfony] PHP single-line arrays should not have trailing comma.
             '-spaces_cast', // [symfony] A single space should be between cast and variable.
-            '-standardize_not_equal', // [symfony] Replace all <> with !=.
-            '-ternary_spaces', // [symfony] Standardize spaces around ternary operator.
+            'standardize_not_equal', // [symfony] Replace all <> with !=.
+            'ternary_spaces', // [symfony] Standardize spaces around ternary operator.
             '-unused_use', // [symfony] Unused use statements must be removed.
             '-whitespacy_lines', // [symfony] Remove trailing whitespace at the end of blank lines.
             '-align_double_arrow', // [contrib] Align double arrow symbols in consecutive lines.
@@ -54,6 +53,7 @@ return Symfony\CS\Config\Config::create()
             '-multiline_spaces_before_semicolon', // [contrib] Multi-line whitespace before closing semicolon are prohibited.
             '-short_array_syntax', // [contrib] PHP array's should use the PHP 5.4 short-syntax.
 
+            '-remove_lines_between_uses', // [symfony] Removes line breaks between use statements.
             '-empty_return', // [symfony] A return statement wishing to return nothing should be simply "return".
             '-spaces_before_semicolon', // [symfony] Single-line whitespace before closing semicolon are prohibited.
             '-indentation', // [PSR-2] Code MUST use an indent of 4 spaces, and MUST NOT use tabs for indenting.
