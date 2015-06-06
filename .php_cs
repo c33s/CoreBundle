@@ -33,7 +33,7 @@ return Symfony\CS\Config\Config::create()
             'duplicate_semicolon', // [symfony] Remove duplicated semicolons.
 '-extra_empty_lines', // [symfony] Removes extra empty lines.
             'include', // [symfony] Include and file path should be divided with a single space. File path should not be placed under brackets.
-            '-multiline_array_trailing_comma', // [symfony] PHP multi-line arrays should have a trailing comma.
+            'multiline_array_trailing_comma', // [symfony] PHP multi-line arrays should have a trailing comma.
             '-namespace_no_leading_whitespace', // [symfony] The namespace declaration line shouldn't contain leading whitespace.
             'new_with_braces', // [symfony] All instances created with new keyword must be followed by braces.
             'object_operator', // [symfony] There should not be space before or after object T_OBJECT_OPERATOR.

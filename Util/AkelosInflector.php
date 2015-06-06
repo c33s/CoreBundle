@@ -59,7 +59,7 @@ class AkelosInflector implements InflectorInterface
       '/(octop|vir)us$/i'        => '\1i',
       '/(ax|test)is$/i'          => '\1es',
       '/s$/i'                    => 's',
-      '/$/'                      => 's');
+      '/$/'                      => 's', );
 
     $uncountable = array('equipment', 'information', 'rice', 'money', 'species', 'series', 'fish', 'sheep');
 
@@ -68,7 +68,7 @@ class AkelosInflector implements InflectorInterface
       'man'    => 'men',
       'child'  => 'children',
       'sex'    => 'sexes',
-      'move'   => 'moves');
+      'move'   => 'moves', );
 
     $lowercased_word = strtolower($word);
 
@@ -138,7 +138,7 @@ class AkelosInflector implements InflectorInterface
       'man'    => 'men',
       'child'  => 'children',
       'sex'    => 'sexes',
-      'move'   => 'moves');
+      'move'   => 'moves', );
 
     $lowercased_word = strtolower($word);
     foreach ($uncountable as $_uncountable){

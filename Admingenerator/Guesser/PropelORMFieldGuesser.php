@@ -149,7 +149,7 @@ class PropelORMFieldGuesser extends BaseGuesser
             $options['by_reference']     = false;
             $options['type']             = '\\C33s\\AttachmentAdminBundle\\Form\\Type\\Attachment\\EditType';
             $options['options']          = array(
-                'data_class' => '\\C33s\\AttachmentBundle\\Model\\Attachment'
+                'data_class' => '\\C33s\\AttachmentBundle\\Model\\Attachment',
             );
         }
 
