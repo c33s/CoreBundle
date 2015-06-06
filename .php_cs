@@ -23,7 +23,7 @@ return Symfony\CS\Config\Config::create()
             'lowercase_keywords', // [PSR-2] PHP keywords MUST be in lower case.
             'method_argument_space', // [PSR-2] In method arguments and method call, there MUST NOT be a space before each comma and there MUST be one space after each comma.
             'multiple_use', // [PSR-2] There MUST be one use keyword per declaration.
-'parenthesis', // [PSR-2] There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
+            'parenthesis', // [PSR-2] There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
             'php_closing_tag', // [PSR-2] The closing ? tag MUST be omitted from files containing only PHP.
             'trailing_spaces', // [PSR-2] Remove trailing whitespace at the end of non-blank lines.
             'visibility', // [PSR-2] Visibility MUST be declared on all properties and methods; abstract and final MUST be declared before the visibility; static MUST be declared after the visibility.
