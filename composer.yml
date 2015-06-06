@@ -113,6 +113,7 @@ require:
     #mobiledetect/mobiledetectlib:                                   '2.7.6'
     yzalis/identicon:                                               '1.1.0'
     xsolve-pl/xsolve-cookie-acknowledgement-bundle:                 '1.0.*'
+    kukulili-labs/feature-toggle-bundle:                            '1.0.*'
     
     ### tagme packages served by satis.c33s.net ################################
     # html & css
@@ -127,8 +128,8 @@ require-dev:
     ### propel #################################################################
     c33s/composer-yaml:                                             '1.0.0'
     composer/composer:                                              'dev-master'
-    willdurand/faker-bundle:                                        '~1.2.*'
-    nelmio/alice:                                                   '~1.7.*'
+    willdurand/faker-bundle:                                        '1.2.*'
+    nelmio/alice:                                                   '1.7.*'
     #symfony/framework-standard-edition:                             '2.3.*'
     
 ### unsorted-require ###########################################################

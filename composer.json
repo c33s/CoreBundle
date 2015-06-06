@@ -81,6 +81,7 @@
         "suncat/mobile-detect-bundle": "0.10.1",
         "yzalis/identicon": "1.1.0",
         "xsolve-pl/xsolve-cookie-acknowledgement-bundle": "1.0.*",
+        "kukulili-labs/feature-toggle-bundle": "1.0.*",
         "braincrafted/bootstrap-bundle": "~2.1.2",
         "jaysalvat/vegas": "0.99.3",
         "mnot/hinclude": "0.9.5.2",
@@ -89,7 +90,7 @@
     "require-dev": {
         "c33s/composer-yaml": "1.0.0",
         "composer/composer": "dev-master",
-        "willdurand/faker-bundle": "~1.2.*",
-        "nelmio/alice": "~1.7.*"
+        "willdurand/faker-bundle": "1.2.*",
+        "nelmio/alice": "1.7.*"
     }
 }
