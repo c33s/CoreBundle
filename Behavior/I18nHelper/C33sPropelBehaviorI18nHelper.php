@@ -34,7 +34,7 @@ class C33sPropelBehaviorI18nHelper extends Behavior
         }
 
         $attributes = '';
-        $locales = implode(', ', array_map(function($locale) { return "'$locale'"; }, $this->getDefaultLocales()));
+        $locales = implode(', ', array_map(function ($locale) { return "'$locale'"; }, $this->getDefaultLocales()));
 
         $attributes .= <<<EOF
 
