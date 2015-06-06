@@ -26,7 +26,7 @@ return Symfony\CS\Config\Config::create()
             'multiple_use', // [PSR-2] There MUST be one use keyword per declaration.
 '-parenthesis', // [PSR-2] There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
             'php_closing_tag', // [PSR-2] The closing ? tag MUST be omitted from files containing only PHP.
-'-trailing_spaces', // [PSR-2] Remove trailing whitespace at the end of non-blank lines.
+'trailing_spaces', // [PSR-2] Remove trailing whitespace at the end of non-blank lines.
             'visibility', // [PSR-2] Visibility MUST be declared on all properties and methods; abstract and final MUST be declared before the visibility; static MUST be declared after the visibility.
             'concat_without_spaces', // [symfony] Concatenation should be used without spaces.
             'double_arrow_multiline_whitespaces', // [symfony] Operator => should not be arounded by multi-line whitespaces.
@@ -41,7 +41,6 @@ return Symfony\CS\Config\Config::create()
             'phpdoc_params', // [symfony] All items of the @param phpdoc tags must be aligned vertically.
             'remove_leading_slash_use', // [symfony] Remove leading slashes in use clauses.
             'return', // [symfony] An empty line feed should precede a return statement.
-            '-single_array_no_trailing_comma', // [symfony] PHP single-line arrays should not have trailing comma.
             'spaces_cast', // [symfony] A single space should be between cast and variable.
             'standardize_not_equal', // [symfony] Replace all <> with !=.
             'ternary_spaces', // [symfony] Standardize spaces around ternary operator.
@@ -55,6 +54,7 @@ return Symfony\CS\Config\Config::create()
             '-short_array_syntax', // [contrib] PHP array's should use the PHP 5.4 short-syntax.
 
             // removed fixers
+            '-single_array_no_trailing_comma', // [symfony] PHP single-line arrays should not have trailing comma.
             '-multiline_spaces_before_semicolon', // [contrib] Multi-line whitespace before closing semicolon are prohibited.
             '-concat_with_spaces', // [contrib] Concatenation should be used with at least one whitespace around.
             '-remove_lines_between_uses', // [symfony] Removes line breaks between use statements.

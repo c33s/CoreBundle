@@ -69,12 +69,12 @@ class stringPosInArrayTest extends \PHPUnit_Framework_TestCase
     {
 	$result = Tools::stringPosInArray($this->data, "\n\n\t\t Two \n\n\n\n\t", 0, false);
 	$this->assertEquals(false, $result);
-    }   
+    }
     public function testTrimTrue()
     {
 	$result = Tools::stringPosInArray($this->data, "\n\n\t\t Two \n\n\n\n\t", 0, true);
 	$this->assertEquals(true, $result);
-    }   
+    }
 
 
 

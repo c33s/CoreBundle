@@ -2,7 +2,7 @@
     {% if parameters.dropdown == true %}
     <li class="dropdown" data-dropdown="dropdown2">
         <a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#">
-                <i class="icon-group"></i> 
+                <i class="icon-group"></i>
                     Switch User {% if app.user.username != parameters.original_user.username %}({% if is_granted('ROLE_PREVIOUS_ADMIN') %}<i class="icon-eye-open"></i> {% endif %}{{app.user.username}}){% endif %}
                 <b class="caret"></b>
         </a>

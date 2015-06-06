@@ -28,7 +28,7 @@ class ConfigVariablesExtension extends \Twig_Extension
 	return 'c33s_config_variables_extension';
     }
 
-    public function getGlobals() 
+    public function getGlobals()
     {
 	$config = $this->config;
 

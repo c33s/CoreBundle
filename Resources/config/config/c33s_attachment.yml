@@ -7,7 +7,7 @@ c33s_attachment:
             filesystem:     web_default_fs
 
             # Subfolder / path prefix to use inside the filesystem
-            path_prefix:    '' 
+            path_prefix:    ''
 
             # Base url (if available) to reach files stored in this filesystem
             # Can be either absolute path or full URL
@@ -31,7 +31,7 @@ c33s_attachment:
 #        # Now we have defined the default values we can override some of them as needed
 #        models:
 #
-#            # Namespace and class name of specific attachable model. This should match the return value of the model's getAttachableClassName() method. 
+#            # Namespace and class name of specific attachable model. This should match the return value of the model's getAttachableClassName() method.
 #            my\Super\Model\Person:
 #
 #                # You get the idea ...

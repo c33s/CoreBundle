@@ -4,7 +4,7 @@ liip_monitor:
         symfony_version_check: ~
         #custom_error_pages_check: ~
         writable_directory: ['app/cache', 'web/upload']
-        custom_error_pages: 
+        custom_error_pages:
           error_codes: [404, 500]
         http_service:
             host: "%master_domain%"

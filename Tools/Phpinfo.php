@@ -40,8 +40,8 @@ class Phpinfo
             }
             else
             {
-                $keys           = array_keys($phpinfo);
-                $key            = end($keys);
+                $keys            = array_keys($phpinfo);
+                $key             = end($keys);
                 $phpinfo[$key][] = $match[2];
             }
         }

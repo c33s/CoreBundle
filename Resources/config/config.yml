@@ -88,23 +88,23 @@ c33s_core:
             description: |
                 my description
         contact:
-            company:   
-            street:    
-            mobile: 
-            phone:     
-            fax:       
-            mail:      
+            company:
+            street:
+            mobile:
+            phone:
+            fax:
+            mail:
             www:       http://
-            zip:       
-            city:      
-            country:   
-            title:     
-            firstname: 
-            lastname:  
+            zip:
+            city:
+            country:
+            title:
+            firstname:
+            lastname:
             map:
 #                lat: 0.0
 #                long: 0.0
-#                marker: 
+#                marker:
 #                    image: http://%master_domain%/media/cache/logotop/media/images/logo.png
 #                    size: [32,32]
 #                    shadow:
@@ -112,7 +112,7 @@ c33s_core:
 #                        size: [32,32]
 #    datahandler:
 #        levels: 3
-#        db_maps: 
+#        db_maps:
 #            picture:
 #                primary_string: Title
 #                file_fields: [ attachment ]

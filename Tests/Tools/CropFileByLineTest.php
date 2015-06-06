@@ -24,9 +24,9 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
     }
 
 
-//    
+//
 //    //cropFileByLine($file, $startLinePattern = false, $endLinePattern = false, $includeStart = false, $includeEnd = false, $invert = false)
-//    
+//
     public function testCropNothing()
     {
         $result   = Tools::cropFileByLine($this->data, false, false, 0, 0);
@@ -44,7 +44,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
             'My Line Number Four',
             'My Line Number Five',
             'My Line Number Six',
-        );       
+        );
         $result = Tools::cropFileByLine($this->data, false, "Six", 0, 0);
         $this->assertEquals($expected, $result);
     }
@@ -97,7 +97,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testCropAllStartingWithOneStartOffsetOne()
-    { 
+    {
 
         $expected = array(
             'My Line Number Two',
@@ -279,7 +279,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
         );
         $result = Tools::cropFileByLine($this->data, "One", "Ten", 1, -1);
         $this->assertEquals($expected, $result);
-    }   
+    }
 
     public function testStartEndPatternBeginningEndNegativeOffset()
     {
@@ -296,7 +296,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
         );
         $result = Tools::cropFileByLine($this->data, "One", "Ten", 0, -1);
         $this->assertEquals($expected, $result);
-    }   
+    }
 
     public function testStartEndPatternBeginningToEnd()
     {
@@ -314,7 +314,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
         );
         $result = Tools::cropFileByLine($this->data, "One", "Ten", 0, 0);
         $this->assertEquals($expected, $result);
-    }   
+    }
 
     public function testStartEndPatternMiddle()
     {
@@ -329,7 +329,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testStartEndPatternOffsetOneEndOffsetZero()
-    {    
+    {
         $expected = array(
             //'My Line Number Four',
             'My Line Number Five',
@@ -342,7 +342,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testStartEndPatternOffsetOneEndOffsetMinusOne()
-    {    
+    {
         $expected = array(
             'My Line Number Five',
             'My Line Number Six',
@@ -353,7 +353,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testStartEndPatternOffsetZeroEndOffsetOne()
-    {    
+    {
         $expected = array(
             'My Line Number Four',
             'My Line Number Five',
@@ -370,7 +370,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException        Exception
      * @expectedExceptionMessage End line pattern "Ten" not found.
-     */  
+     */
     public function testStartEndPatternEnd()
     {
         $expected = array(
