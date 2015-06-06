@@ -39,8 +39,8 @@ class ConsoleIO
      */
     public function __construct(InputInterface $input, OutputInterface $output, HelperSet $helperSet)
     {
-        $this->input = $input;
-        $this->output = $output;
+        $this->input     = $input;
+        $this->output    = $output;
         $this->helperSet = $helperSet;
     }
 
@@ -98,7 +98,7 @@ class ConsoleIO
         {
             if (null !== $this->startTime)
             {
-                $messages = (array) $messages;
+                $messages    = (array) $messages;
                 $messages[0] = sprintf(
                     '[%.1fMB/%.2fs] %s',
                     memory_get_usage() / 1024 / 1024,

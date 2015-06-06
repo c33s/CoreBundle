@@ -58,7 +58,7 @@ class Gcd
     public static function initAndCalculate()
     {
         $reflection = new \ReflectionClass('BookMe\CoreBundle\Tools\Gcd');
-        $gcd = $reflection->newInstanceArgs(func_get_args());
+        $gcd        = $reflection->newInstanceArgs(func_get_args());
         
         return $gcd->calculate();
     }

@@ -21,10 +21,10 @@ class MenuController extends Controller
      */
     public function switchUserAction($dropdown=false, $header=false, $headerSeperator=true, $headerText='Switch User')
     {
-        $parameters = array();
-        $parameters['dropdown']   = $dropdown;
-        $parameters['header']     = $header;
-        $parameters['headerText'] = $headerText;
+        $parameters                    = array();
+        $parameters['dropdown']        = $dropdown;
+        $parameters['header']          = $header;
+        $parameters['headerText']      = $headerText;
         $parameters['headerSeperator'] = $headerSeperator;
 
         $security = $this->get('security.context');
@@ -33,7 +33,7 @@ class MenuController extends Controller
             $parameters['users'] = UserQuery::create()->find();
 
             $parameters['original_user'] = $this->get('security.context')->getToken();
-            $parameters['current_user'] = $this->get('security.context')->getToken();
+            $parameters['current_user']  = $this->get('security.context')->getToken();
 
             foreach ($security->getToken()->getRoles() as $role)
             {

@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('c33s_core');
+        $rootNode    = $treeBuilder->root('c33s_core');
 
         $rootNode
             ->addDefaultsIfNotSet()
@@ -42,7 +42,7 @@ class Configuration implements ConfigurationInterface
     public function addBundleNode()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('bundles');
+        $node    = $builder->root('bundles');
 
         $node
             ->isRequired()
@@ -62,7 +62,7 @@ class Configuration implements ConfigurationInterface
     public function addGoogleNode()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('google');
+        $node    = $builder->root('google');
 
         $node
             ->children()
@@ -90,7 +90,7 @@ class Configuration implements ConfigurationInterface
     public function addAppNode()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('app');
+        $node    = $builder->root('app');
 
         $node
             ->addDefaultsIfNotSet()
@@ -119,7 +119,7 @@ class Configuration implements ConfigurationInterface
     public function addPageNode()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('page');
+        $node    = $builder->root('page');
 
         $node
             ->addDefaultsIfNotSet()
@@ -155,7 +155,7 @@ class Configuration implements ConfigurationInterface
     public function addKeywordsNode()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('keywords');
+        $node    = $builder->root('keywords');
 
         $node
             ->fixXmlConfig('keyword')
@@ -171,7 +171,7 @@ class Configuration implements ConfigurationInterface
     public function addContactNode()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('contact');
+        $node    = $builder->root('contact');
 
         $node
             ->addDefaultsIfNotSet()
@@ -202,7 +202,7 @@ class Configuration implements ConfigurationInterface
     public function addMapNode()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('map');
+        $node    = $builder->root('map');
 
         $node
             ->addDefaultsIfNotSet()

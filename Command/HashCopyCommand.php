@@ -56,13 +56,13 @@ EOT
     {
         $output->writeln("\nHash Copy\n");
 
-        $file = $input->getArgument('file');
-        $levels = $input->getOption('levels');
+        $file    = $input->getArgument('file');
+        $levels  = $input->getOption('levels');
         $basedir = $input->getOption('basedir');
-        $subdir = $input->getOption('subdir');
+        $subdir  = $input->getOption('subdir');
 
         $rootdir = $this->getContainer()->get('kernel')->getRootDir();
-        $dir = $rootdir.'/../'.$basedir;
+        $dir     = $rootdir.'/../'.$basedir;
 
         //return collection
         return $this->copy($file, $dir, $levels, $subdir);
@@ -74,7 +74,7 @@ EOT
         if (is_dir($file))
         {
             $directory = $file;
-            $finder = new Finder();
+            $finder    = new Finder();
             $finder
                 ->files()
                 ->in($directory)

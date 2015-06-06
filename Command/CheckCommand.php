@@ -63,7 +63,7 @@ class CheckCommand extends ContainerAwareCommand
     protected function dumpConfigFiles(OutputInterface $output)
     {
         $templateing = $this->getContainer()->get('templating');
-        $fs = new Filesystem();
+        $fs          = new Filesystem();
         if (!$fs->exists('.php_cs'))
         {
             $output->writeln('<comment>starting dumping config files</comment>');

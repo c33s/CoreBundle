@@ -17,7 +17,7 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
         $this->logProgress('Folder: '.self::$projectDir);
         
         $this->logProgress('Copying composer.json');
-        $composerFile = realpath(__DIR__.'/../../Resources/files/composer-example.json');
+        $composerFile        = realpath(__DIR__.'/../../Resources/files/composer-example.json');
         $projectComposerFile = self::$projectDir.'/composer.json';
         
         copy($composerFile, $projectComposerFile);
@@ -183,7 +183,7 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
     protected function findComposerExecutable()
     {
         $executableFinder = new Symfony\Component\Process\ExecutableFinder();
-        $composer = $executableFinder->find('composer.phar');
+        $composer         = $executableFinder->find('composer.phar');
         
         if (null === $composer)
         {
@@ -196,7 +196,7 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
     protected function findPhpExecutable()
     {
         $executableFinder = new Symfony\Component\Process\PhpExecutableFinder();
-        $php = $executableFinder->find();
+        $php              = $executableFinder->find();
         
         return null === $php ? false : $php;
     }
@@ -248,9 +248,9 @@ class DeploymentTest extends \PHPUnit_Framework_TestCase
     
     protected function logProgress($content)
     {
-        $date = date('c').' ';
+        $date      = date('c').' ';
         $emptyDate = str_repeat(' ', strlen($date));
-        $content = $date.str_replace("\n", "\n".$emptyDate, $content)."\n";
+        $content   = $date.str_replace("\n", "\n".$emptyDate, $content)."\n";
         file_put_contents(__DIR__.'/../../deployment.log', $content, FILE_APPEND);
     }
 }

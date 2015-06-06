@@ -8,15 +8,15 @@ trait PropelModelTraits
 {
     protected function setRelationFromDataArray($data, $properties)
     {
-        $modelName = $properties['model'];                             //ACME\\ModelBundle\\Model\\ObjectItem
-        $modelClassName = str_replace('//', '/', $modelName);          //ACME\ModelBundle\Model\ObjectItem
+        $modelName           = $properties['model'];                             //ACME\\ModelBundle\\Model\\ObjectItem
+        $modelClassName      = str_replace('//', '/', $modelName);          //ACME\ModelBundle\Model\ObjectItem
         $modelShortClassName = substr(strrchr($modelName, "\\"), 1);   //ObjectItem
-        $namespace = substr($modelName, 0, strrpos($modelName, '\\')); //ACME\ModelBundle\Model
+        $namespace           = substr($modelName, 0, strrpos($modelName, '\\')); //ACME\ModelBundle\Model
 
         $findMethod = $this->getFindMethod($properties);
 
         $objectPeer = $namespace.'\\'.$modelShortClassName.'Peer';
-        $tableMap = \Propel::getDatabaseMap($objectPeer::DATABASE_NAME)->getTable($objectPeer::TABLE_NAME);
+        $tableMap   = \Propel::getDatabaseMap($objectPeer::DATABASE_NAME)->getTable($objectPeer::TABLE_NAME);
 
         $collection = new \PropelCollection();
         $collection->setModel($modelName);
@@ -70,7 +70,7 @@ trait PropelModelTraits
     {
         if ($tableMap->hasRelation($columnName))
         {
-            $objectQuery = $namespace.'\\'.$columnName.'Query';
+            $objectQuery   = $namespace.'\\'.$columnName.'Query';
             $relatedObject = $objectQuery::create()->$findMethod($value);
 
             if (!$relatedObject)

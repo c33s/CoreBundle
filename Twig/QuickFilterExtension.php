@@ -90,7 +90,7 @@ class QuickFilterExtension extends \Twig_Extension
         $columns = max(1, (int) $columns);
         
         $rows = array();
-        $i = 0;
+        $i    = 0;
         foreach ($values as $value)
         {
             $rows[floor($i / $columns)][] = $value;

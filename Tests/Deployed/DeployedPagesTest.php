@@ -17,7 +17,7 @@ class DeployedPagesTest extends WebTestCase
      */
     public function testCallPage($url, $elementToCheck)
     {
-        $client = static::createClient();
+        $client  = static::createClient();
         $crawler = $client->request('GET', $url);
         $this->assertTrue($client->getResponse()->isSuccessful());
         

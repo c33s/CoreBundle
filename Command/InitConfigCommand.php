@@ -49,7 +49,7 @@ class InitConfigCommand extends BaseInitCommand
 
     protected function rebuildBundles()
     {
-        $bundles = array_reverse($this->getContainer()->getParameter('c33s_core.config.bundles'));
+        $bundles   = array_reverse($this->getContainer()->getParameter('c33s_core.config.bundles'));
         $appKernel = $this->getContainer()->get('kernel')->getRootDir().'/AppKernel.php';
 
         $this->removeBundles($appKernel);
@@ -73,7 +73,7 @@ class InitConfigCommand extends BaseInitCommand
     {
         $coreBundleConfigDir = $this->getContainer()->get('kernel')->getRootDir().'/config/corebundle';
 
-        $importerLines = array();
+        $importerLines   = array();
         $importerLines[] = 'imports:';
         foreach ($bundles as $bundle => $properties)
         {
@@ -112,8 +112,8 @@ class InitConfigCommand extends BaseInitCommand
     protected function enableTranslationsInConfig()
     {
         $configFile = $this->getContainer()->get('kernel')->getRootDir().'/config/config.yml';
-        $original = '#translator:      { fallback: "%locale%" }';
-        $new = "    translator:      { fallback: \"%locale%\" }\n";
+        $original   = '#translator:      { fallback: "%locale%" }';
+        $new        = "    translator:      { fallback: \"%locale%\" }\n";
 
         $this->io->write('enabling translations in main config');
 

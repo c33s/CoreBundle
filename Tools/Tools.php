@@ -17,7 +17,7 @@ class Tools
         $bytes = 0;
 
         $bytes_array = array(
-            'B' => 1,
+            'B'  => 1,
             'KB' => 1024,
             'MB' => 1024 * 1024,
             'GB' => 1024 * 1024 * 1024,
@@ -38,7 +38,7 @@ class Tools
 
     public static function removeLineFromFile($file, $stringToRemove)
     {
-        $lines = file($file);
+        $lines     = file($file);
         $lineCount = count($lines);
 
         for($i=0; $i < $lineCount; $i++)
@@ -83,7 +83,7 @@ class Tools
         {
             $start = 0;
         }
-        $end = Tools::stringPosInArray($lines, $endLinePattern, $start+1);
+        $end   = Tools::stringPosInArray($lines, $endLinePattern, $start+1);
         $start = $start + $startOffset;
 
         if ($endLinePattern !== false && $end === false)
@@ -230,11 +230,11 @@ class Tools
         {
             throw new \InvalidArgumentException("$min must be larger than  $max");
         }
-        $range = $max - $min;
-        $log = log($range, 2);
+        $range      = $max - $min;
+        $log        = log($range, 2);
         $byteLength = (int) ($log / 8) + 1;
-        $bitLength = (int) $log + 1;
-        $filter = (int) (1 << $bitLength) - 1; // set all lower bits to 1
+        $bitLength  = (int) $log + 1;
+        $filter     = (int) (1 << $bitLength) - 1; // set all lower bits to 1
         do
         {
             $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($byteLength, $s)));

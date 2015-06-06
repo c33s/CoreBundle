@@ -12,8 +12,8 @@ class NameHelper
 
     public function __construct($name, InflectorInterface $inflector)
     {
-        $this->name = ucfirst($name);
-        $this->nameCamelcase = $inflector->camelize($name);
+        $this->name           = ucfirst($name);
+        $this->nameCamelcase  = $inflector->camelize($name);
         $this->nameUnderscore = $inflector->underscore($name);
     }
 

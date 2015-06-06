@@ -34,7 +34,7 @@ class C33sPropelBehaviorI18nHelper extends Behavior
         }
 
         $attributes = '';
-        $locales = implode(', ', array_map(function ($locale) { return "'$locale'"; }, $this->getDefaultLocales()));
+        $locales    = implode(', ', array_map(function ($locale) { return "'$locale'"; }, $this->getDefaultLocales()));
 
         $attributes .= <<<EOF
 
@@ -59,17 +59,17 @@ EOF;
 
         $builder->declareClass('C33s\\CoreBundle\\Behavior\\I18nHelper\\I18nModelInterface');
 
-        $methods = '';
-        $behavior = $this->getTable()->getBehavior('i18n');
+        $methods   = '';
+        $behavior  = $this->getTable()->getBehavior('i18n');
         $i18nTable = $behavior->getI18nTable();
         $i18nModel = $i18nTable->getPhpName();
-        $i18nVar = lcfirst($i18nModel);
+        $i18nVar   = lcfirst($i18nModel);
 
         foreach ($behavior->getI18nColumns() as $column)
         {
             /* @var $column \Column */
             $phpName = $column->getPhpName();
-            $var = lcfirst($phpName);
+            $var     = lcfirst($phpName);
 
             $varPlural = 'all'.$builder->getPluralizer()->getPluralForm($phpName);
 

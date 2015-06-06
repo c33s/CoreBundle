@@ -29,7 +29,7 @@ class CropFileByLineTest extends \PHPUnit_Framework_TestCase
 //    
     public function testCropNothing()
     {
-        $result = Tools::cropFileByLine($this->data, false, false, 0, 0);
+        $result   = Tools::cropFileByLine($this->data, false, false, 0, 0);
         $expected = $this->data;
         
         $this->assertEquals($expected, $result);

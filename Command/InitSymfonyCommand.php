@@ -56,10 +56,10 @@ class InitSymfonyCommand extends BaseInitCommand
 
     protected function addCoreBundle()
     {
-        $checkString = "new C33s\CoreBundle\C33sCoreBundle(),";
+        $checkString           = "new C33s\CoreBundle\C33sCoreBundle(),";
         $bundleDefinitionToAdd = "\n            //### Core Bundle ###\n            new C33s\CoreBundle\C33sCoreBundle(),\n            //# Sub Bundles ###\n            //### End Core Bundle ###,\n            //new C33s\DummyBundle\C33sDummyBundle(),\n";
-        $stringAfterToInsert = 'new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),';
-        $appKernelFile = $this->getAppKernelPath();
+        $stringAfterToInsert   = 'new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),';
+        $appKernelFile         = $this->getAppKernelPath();
         Tools::addLineToFile($appKernelFile, $bundleDefinitionToAdd, $stringAfterToInsert, $checkString);
 
         $this->io->write('added CoreBundle to AppKernel');
@@ -67,8 +67,8 @@ class InitSymfonyCommand extends BaseInitCommand
 
     protected function addConfigYml()
     {
-        $configFile = $this->getConfigYmlPath();
-        $configToAdd = "    - { resource: @C33sCoreBundle/Resources/config/config.yml }\n";
+        $configFile          = $this->getConfigYmlPath();
+        $configToAdd         = "    - { resource: @C33sCoreBundle/Resources/config/config.yml }\n";
         $stringAfterToInsert = "- { resource: security.yml }";
 
         Tools::addLineToFile($configFile, $configToAdd, $stringAfterToInsert);
@@ -87,7 +87,7 @@ class InitSymfonyCommand extends BaseInitCommand
     protected function removeAcmeBundle()
     {
         $bundleDefinitionToRemove = '$bundles[] = new Acme\DemoBundle\AcmeDemoBundle();';
-        $appKernelFile = $this->getProjectRootDirectory().'/app/AppKernel.php';
+        $appKernelFile            = $this->getProjectRootDirectory().'/app/AppKernel.php';
         Tools::removeLineFromFile($appKernelFile, $bundleDefinitionToRemove);
 
         $configFile = $this->getRoutingDevYmlPath();
@@ -105,7 +105,7 @@ class InitSymfonyCommand extends BaseInitCommand
 
     protected function copyData($overwrite = false)
     {
-        $path = $this->getCoreBundleTemplatesDirectory();
+        $path   = $this->getCoreBundleTemplatesDirectory();
         $finder = new Finder();
         $finder
             ->files()
@@ -114,9 +114,9 @@ class InitSymfonyCommand extends BaseInitCommand
             ->ignoreVCS(false)
         ;
 
-        $parameters = array();
+        $parameters           = array();
         $parameters['secret'] = $this->generateSecret();
-        $parameters['name'] = $this->name;
+        $parameters['name']   = $this->name;
         foreach ($finder as $file)
         {
             $this->renderTemplateFile($file, $parameters);
@@ -127,12 +127,12 @@ class InitSymfonyCommand extends BaseInitCommand
 
     protected function renderTemplateFile($file, $parameters = array())
     {
-        $fs = new Filesystem();
-        $loader = new Twig_Loader_Filesystem($file->getPath());
-        $twig = new Twig_Environment($loader);
-        $template = $twig->loadTemplate($file->getFilename());
-        $content = $template->render($parameters);
-        $fileParts = pathinfo($file);
+        $fs         = new Filesystem();
+        $loader     = new Twig_Loader_Filesystem($file->getPath());
+        $twig       = new Twig_Environment($loader);
+        $template   = $twig->loadTemplate($file->getFilename());
+        $content    = $template->render($parameters);
+        $fileParts  = pathinfo($file);
         $targetFile = $this->getRootDirectory().'/'.$file->getRelativePath().'/'.$fileParts['filename'];
         $fs->dumpFile($targetFile, $content);
         $this->io->write($targetFile);
@@ -141,7 +141,7 @@ class InitSymfonyCommand extends BaseInitCommand
     protected function copyFramework($overwrite = false)
     {
         $finder = new Finder();
-        $fs = new Filesystem();
+        $fs     = new Filesystem();
 
         $finder
             ->files()

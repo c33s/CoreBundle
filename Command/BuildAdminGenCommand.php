@@ -68,7 +68,7 @@ class BuildAdminGenCommand extends BaseInitCommand
     protected function createAdminGenRouting()
     {
         $this->io->write('creating admingen routing');
-        $path = $this->getContainer()->get('kernel')->locateResource("@{$this->name->camelcase()}AdminGenBundle");
+        $path        = $this->getContainer()->get('kernel')->locateResource("@{$this->name->camelcase()}AdminGenBundle");
         $routingPath = "${path}/Resources/config/routing";
         $this->fs->mkdir($routingPath);
 
@@ -89,7 +89,7 @@ EOT;
         $filePath = $routingPath.'/admingenerator.yml';
 
         $oldContent = file_exists($filePath) ? file_get_contents($filePath) : '';
-        $content = $oldContent."\n".$content;
+        $content    = $oldContent."\n".$content;
         $this->fs->dumpfile($filePath, $content);
     }
 
@@ -124,7 +124,7 @@ EOT;
     protected function fixAdminGeneratorYmls()
     {
         $this->io->write("fixing Admin Generator Yamls");
-        $path = $this->getContainer()->get('kernel')->getRootDir().'/../src/'.$this->name.'/AdminGenBundle/Resources/config';
+        $path   = $this->getContainer()->get('kernel')->getRootDir().'/../src/'.$this->name.'/AdminGenBundle/Resources/config';
         $finder = new Finder();
         $finder
             ->files()
@@ -134,9 +134,9 @@ EOT;
 
         foreach ($finder as $file)
         {
-            $content = $file->getContents();
-            $from = array('model: '.$this->name.'\AdminGenBundle\Model', );
-            $to   = array('model: '.$this->name.'\ModelBundle\Model', );
+            $content    = $file->getContents();
+            $from       = array('model: '.$this->name.'\AdminGenBundle\Model', );
+            $to         = array('model: '.$this->name.'\ModelBundle\Model', );
             $newContent = str_replace($from, $to, $content);
             $this->io->write("fixing ".$file->getPathname(), OutputInterface::VERBOSITY_DEBUG);
             $this->fs->dumpFile($file->getPathname(), $newContent);

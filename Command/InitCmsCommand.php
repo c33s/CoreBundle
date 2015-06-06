@@ -65,7 +65,7 @@ class InitCmsCommand extends BaseInitCommand
         $this->io->write('<info>c33s:init-cms</info>');
 
         $this->asseticBundles = $input->getOption('bundles');
-        $name = $input->getArgument('name');
+        $name                 = $input->getArgument('name');
         $this->initNameHelper($name);
 
         if (!$input->getOption('no-bundles'))
@@ -118,8 +118,8 @@ class InitCmsCommand extends BaseInitCommand
 
     protected function addImporterToConfig()
     {
-        $configFile = $this->getContainer()->get('kernel')->getRootDir().'/config/config.yml';
-        $configToAdd = "    - { resource: config/_importer.yml }\n";
+        $configFile          = $this->getContainer()->get('kernel')->getRootDir().'/config/config.yml';
+        $configToAdd         = "    - { resource: config/_importer.yml }\n";
         $stringAfterToInsert = "- { resource: corebundle/_base_importer.yml }";
 
         Tools::addLineToFile($configFile, $configToAdd, $stringAfterToInsert);
@@ -144,7 +144,7 @@ class InitCmsCommand extends BaseInitCommand
 
     protected function renderFileFromTemplate($file, $targetDirectory = null, $parameters = array())
     {
-        $parameters['name'] = $this->name;
+        $parameters['name']           = $this->name;
         $parameters['asseticBundles'] = $this->asseticBundles;
 
         parent::renderFileFromTemplate($file, $targetDirectory, $parameters);

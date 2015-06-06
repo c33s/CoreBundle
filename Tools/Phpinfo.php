@@ -13,7 +13,7 @@ class Phpinfo
 
     protected function buildAndParse()
     {
-        $matches = $this->build();
+        $matches       = $this->build();
         $this->phpinfo = $this->parse($matches);
     }
 
@@ -34,14 +34,14 @@ class Phpinfo
             }
             elseif(isset($match[3]))
             {
-                $keys = array_keys($phpinfo);
-                $key = end($keys);
+                $keys                     = array_keys($phpinfo);
+                $key                      = end($keys);
                 $phpinfo[$key][$match[2]] = isset($match[4]) ? array($match[3], $match[4]) : $match[3];
             }
             else
             {
-                $keys = array_keys($phpinfo);
-                $key = end($keys);
+                $keys           = array_keys($phpinfo);
+                $key            = end($keys);
                 $phpinfo[$key][]= $match[2];
             }
         }

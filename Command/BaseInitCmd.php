@@ -84,7 +84,7 @@ class BaseInitCmd extends ContainerAwareCommand
     {
         $this->io->write('initing Templates and Resources');
 
-        $path = $this->getContainer()->get('kernel')->locateResource('@C33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/');
+        $path        = $this->getContainer()->get('kernel')->locateResource('@C33sCoreBundle/Resources/views/Command/'.$this->getCommandTemplateDirectory().'/');
         $bundleNames = $this->getTemplateDirectories($path);
 
         foreach ($bundleNames as $bundleName)
@@ -105,12 +105,12 @@ class BaseInitCmd extends ContainerAwareCommand
             $this->io->write("copying file '$file'", OutputInterface::VERBOSITY_DEBUG);
             if ($bundleName == 'General')
             {
-                $bundlename = '';
+                $bundlename      = '';
                 $targetDirectory = $file->getRelativePath();
             }
             else
             {
-                $bundlename = $bundleName;
+                $bundlename      = $bundleName;
                 $targetDirectory = "src/{$this->name->camelcased()}/${bundlename}Bundle/".$file->getRelativePath();
             }
             $currentFile = $bundleName.'/'.$file->getRelativePathname();

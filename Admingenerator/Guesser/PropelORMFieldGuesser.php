@@ -34,7 +34,7 @@ class PropelORMFieldGuesser extends BaseGuesser
         if ($this->isI18nModel($class) && 'I18n' == mb_substr($fieldName, 0, 4))
         {
             // this only works for the default i18n_phpname setting of the i18n behavior
-            $i18nClass = $class.'I18n';
+            $i18nClass     = $class.'I18n';
             $i18nFieldName = mb_substr($fieldName, 4);
 
             $i18nColumn = $this->getColumn($i18nClass, $i18nFieldName);
@@ -46,11 +46,11 @@ class PropelORMFieldGuesser extends BaseGuesser
                 {
                     // found an i18n column, remember this for later
                     static::$i18nColumns[$fieldName] = array(
-                        'class' => $class,
-                        'i18nClass' => $i18nClass,
+                        'class'         => $class,
+                        'i18nClass'     => $i18nClass,
                         'i18nFieldName' => $i18nFieldName,
-                        'i18nDbType' => $dbType,
-                        'i18nColumn' => $i18nColumn,
+                        'i18nDbType'    => $dbType,
+                        'i18nColumn'    => $i18nColumn,
                     );
 
                     return 'i18n';
@@ -83,7 +83,7 @@ class PropelORMFieldGuesser extends BaseGuesser
 
     public function getFormType($dbType, $columnName)
     {
-        $config = $this->container->getParameter('admingenerator.propel_form_types');
+        $config    = $this->container->getParameter('admingenerator.propel_form_types');
         $formTypes = array();
 
         foreach ($config as $key => $value) {
@@ -125,7 +125,7 @@ class PropelORMFieldGuesser extends BaseGuesser
         {
             $i18nOptions = static::$i18nColumns[$columnName];
 
-            $options['type'] = $this->getFormType($i18nOptions['i18nDbType'], $i18nOptions['i18nFieldName']);
+            $options['type']    = $this->getFormType($i18nOptions['i18nDbType'], $i18nOptions['i18nFieldName']);
             $options['options'] = $this->getFormOptions($options['type'], $i18nOptions['i18nDbType'], $i18nOptions['i18nFieldName']);
         }
 
@@ -138,17 +138,17 @@ class PropelORMFieldGuesser extends BaseGuesser
 
         if ('multi_file' === $dbType)
         {
-            $options['nameable'] = true;
+            $options['nameable']        = true;
             $options['acceptFileTypes'] = '/^.*$/';
 
-            $options['previewMaxWidth'] = 80;
+            $options['previewMaxWidth']  = 80;
             $options['previewMaxHeight'] = 60;
-            $options['allow_add'] = true;
-            $options['allow_delete'] = true;
-            $options['error_bubbling'] = false;
-            $options['by_reference'] = false;
-            $options['type'] = '\\C33s\\AttachmentAdminBundle\\Form\\Type\\Attachment\\EditType';
-            $options['options'] = array(
+            $options['allow_add']        = true;
+            $options['allow_delete']     = true;
+            $options['error_bubbling']   = false;
+            $options['by_reference']     = false;
+            $options['type']             = '\\C33s\\AttachmentAdminBundle\\Form\\Type\\Attachment\\EditType';
+            $options['options']          = array(
                 'data_class' => '\\C33s\\AttachmentBundle\\Model\\Attachment'
             );
         }
