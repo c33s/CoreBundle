@@ -111,7 +111,6 @@ require:
     #mobiledetect/mobiledetectlib:                                   '2.7.6'
     
     yzalis/identicon:                                               ~1.1
-    zenstruck/slugify-bundle:                                       ~1.1.1
     cocur/slugify:                                                  ~1.4.1
     
     ### tagme packages served by satis.c33s.net ################################

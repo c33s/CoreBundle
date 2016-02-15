@@ -65,7 +65,6 @@
         "sensiolabs/security-checker": "~3.0",
         "suncat/mobile-detect-bundle": "~0.10.3",
         "yzalis/identicon": "~1.1",
-        "zenstruck/slugify-bundle": "~1.1.1",
         "cocur/slugify": "~1.4.1",
         "braincrafted/bootstrap-bundle": "2.1.0",
         "jaysalvat/vegas": "0.99.3",
