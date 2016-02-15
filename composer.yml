@@ -105,9 +105,9 @@ require:
     knplabs/knp-gaufrette-bundle:                                   ~0.3.0
     knplabs/knp-markdown-bundle:                                    ~1.4.2
     
-    sensiolabs/security-checker:                                    ~3.0'
+    sensiolabs/security-checker:                                    ~3.0
     
-    suncat/mobile-detect-bundle:                                    '0.10.3'
+    suncat/mobile-detect-bundle:                                    ~0.10.3
     #mobiledetect/mobiledetectlib:                                   '2.7.6'
     
     yzalis/identicon:                                               ~1.1
@@ -116,16 +116,16 @@ require:
     
     ### tagme packages served by satis.c33s.net ################################
     # html & css
-    braincrafted/bootstrap-bundle:                                  '2.1.0'
-    jaysalvat/vegas:                                                '0.99.3'
-    mnot/hinclude:                                                  '0.9.5.2'
+    braincrafted/bootstrap-bundle:                                  2.1.0
+    jaysalvat/vegas:                                                0.99.3
+    mnot/hinclude:                                                  0.9.5.2
     # general
-    smoya/asset-management-bundle:                                  '1.0.1'
+    smoya/asset-management-bundle:                                  1.0.1
     ### end tag me #############################################################
     
 require-dev:
+    #c33s/composer-yaml:                                             '1.0.0'
     ### propel #################################################################
-    c33s/composer-yaml:                                             '1.0.0'
     willdurand/faker-bundle:                                        ~1.0
     
 ### unsorted-require ###########################################################
