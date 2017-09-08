@@ -9,7 +9,7 @@ everything to quickstart a webpage
 [![Latest Unstable Version]](https://packagist.org/packages/c33s/core-bundle) 
 [![License]](https://packagist.org/packages/c33s/core-bundle)
 [![SensioLabsInsight]](https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e)
-[![Project Status]](http://stillmaintained.com/c33s/CoreBundle)
+![Project Status]
 
 
 Because json is not a really handy format to read and it also lacks in commenting support, this Bundle supports the composer.yml format. [composer-yaml.phar](https://github.com/igorw/composer-yaml) 
@@ -118,7 +118,7 @@ ACME\ModelBundle\Model\YourPropelObject:
 [Latest Unstable Version]: https://poser.pugx.org/c33s/core-bundle/v/unstable.png
 [License]:                 https://poser.pugx.org/c33s/core-bundle/license.png
 [SensioLabsInsight]:       https://insight.sensiolabs.com/projects/c0b45e1c-695f-45d9-ac81-ce2c21ddbb7e/mini.png
-[Project Status]:          http://stillmaintained.com/c33s/CoreBundle.png
+[Project Status]:          https://img.shields.io/maintenance/no/2016.svg
 [Packagist Version]:       http://img.shields.io/packagist/v/c33s/core-bundle.svg
 [Packagist License]:       http://img.shields.io/packagist/l/c33s/core-bundle.svg
 
